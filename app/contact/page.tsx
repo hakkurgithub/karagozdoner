@@ -77,7 +77,7 @@ export default function ContactPage() {
       name: 'Trendyol Yemek', 
       icon: 'ri-restaurant-line', 
       color: 'text-purple-600',
-      url: 'https://www.trendyol.com/yemek'
+      url: 'https://tgoyemek.com/arama?searchQuery=borcan%20kebap'
     },
     { 
       id: 'whatsapp', 
@@ -533,7 +533,7 @@ export default function ContactPage() {
               </p>
               <div className="flex space-x-4">
                 <a
-                  href="https://www.facebook.com/brcnkbp"
+                  href="https://www.facebook.com/profile.php?id=61579514506784&locale=tr_TR"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-colors"
