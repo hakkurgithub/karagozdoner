@@ -416,7 +416,10 @@ export default function ContactPage() {
                   <i className="ri-facebook-fill text-2xl text-blue-600 mr-3"></i>
                   <span className="font-medium">Facebook</span>
                 </button>
-                <button className="flex items-center justify-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                <button 
+                  onClick={() => window.open('https://www.instagram.com/borcan_kebap_pide_lahmacun?utm_source=qr&igsh=d2twdW0yZ2FqaGJl', '_blank')}
+                  className="flex items-center justify-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
+                >
                   <i className="ri-instagram-fill text-2xl text-pink-600 mr-3"></i>
                   <span className="font-medium">Instagram</span>
                 </button>
@@ -483,11 +486,14 @@ export default function ContactPage() {
         <div className="mt-12 bg-white rounded-xl shadow-lg overflow-hidden">
           <div className="p-8 border-b">
             <h3 className="text-2xl font-bold text-gray-800">Konum</h3>
-            <p className="text-gray-600 mt-2">Bizi haritada bulabilirsiniz</p>
+            <p className="text-gray-600 mt-2">
+              Bizi haritada bulabilirsiniz <br />
+              <span className="text-sm text-gray-500">Plus Code: 2P33+29 Avcılar, İstanbul</span>
+            </p>
           </div>
           <div className="h-96">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.2234567891!2d28.9744068!3d41.0370414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDAyJzEzLjMiTiAyOMKwNTgnMjcuOSJF!5e0!3m2!1str!2str!4v1234567890123"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6360771.36045993!2d23.44249619999998!3d38.88177901825598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa0f19c1fd125%3A0xaf8c01d8d3b4cca7!2sBORCAN%20KEBAP!5e0!3m2!1str!2str!4v1756844318638!5m2!1str!2str"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -496,6 +502,16 @@ export default function ContactPage() {
               referrerPolicy="no-referrer-when-downgrade"
               title="Borcan Kebap Konum"
             ></iframe>
+            <div className="p-4 text-center">
+              <a
+                href="https://maps.app.goo.gl/munYF8UGpoW94CoW9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-600 hover:underline"
+              >
+                Google Haritalarda Aç
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -525,7 +541,7 @@ export default function ContactPage() {
                   <i className="ri-facebook-fill text-lg"></i>
                 </a>
                 <a
-                  href="https://www.instagram.com/borcankebap/"
+                  href="https://www.instagram.com/borcan_kebap_pide_lahmacun?utm_source=qr&igsh=d2twdW0yZ2FqaGJl"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-600 rounded-full flex items-center justify-center cursor-pointer hover:from-purple-700 hover:via-pink-700 hover:to-orange-700 transition-all"
@@ -603,7 +619,7 @@ export default function ContactPage() {
                 </li>
                 <li>
                   <a
-                    href="https://www.trendyol.com/yemek"
+                    href="https://tgoyemek.com/arama?searchQuery=borcan%20kebap"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center"
