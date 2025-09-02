@@ -180,7 +180,7 @@ export default function AboutPage() {
               <div
                 className="w-24 h-24 bg-cover bg-center rounded-full mx-auto mb-4"
                 style={{
-                  backgroundImage: `url('https://readdy.ai/api/search-image?query=Professional%20Turkish%20sous%20chef%20portrait%2C%20skilled%20chef%20in%20uniform%2C%20friendly%20smile%2C%20restaurant%20kitchen%20background%2C%20culinary%20professional&width=200&height=200&seq=chef2&orientation=squarish')`,
+                  backgroundImage: `url('https://static.readdy.ai/image/86256f96d228f2d3066349cf76ade3d3/0aed3002559e61be160445f8ccde729e.jfif')`,
                 }}
               ></div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">Faruk Deniz</h3>
@@ -195,10 +195,10 @@ export default function AboutPage() {
               <div
                 className="w-24 h-24 bg-cover bg-center rounded-full mx-auto mb-4"
                 style={{
-                  backgroundImage: `url('https://readdy.ai/api/search-image?query=Professional%20Turkish%20restaurant%20manager%20portrait%2C%20experienced%20manager%20in%20business%20attire%2C%20welcoming%20smile%2C%20restaurant%20background%2C%20hospitality%20professional&width=200&height=200&seq=manager1&orientation=squarish')`,
+                  backgroundImage: `url('https://static.readdy.ai/image/86256f96d228f2d3066349cf76ade3d3/51e65a4d81c8491f6a09ffae5533fe6c.jfif')`,
                 }}
               ></div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Ahmet Deniz</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Oktay Deniz</h3>
               <p className="text-red-600 font-medium mb-3">Restoran Müdürü</p>
               <p className="text-gray-600 text-sm">
                 15 yıldır misafir ağırlama konusunda uzman.
