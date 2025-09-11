@@ -95,14 +95,14 @@ const defaultAllMenuItems = [
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Beyti%20Sarma.jpg",
   },
   {
-    id: "k-04",
-    name: "İskender Kebap",
-    description: "Yoğurt ve tereyağı soslu özel kebap",
-    price: 500,
-    category: "Kebaplar & Izgaralar" as const,
-    rating: 5,
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/iskender%20Kebap.jpeg" alt="iskender Kebap",
-  },
+  id: "k-04",
+  name: "İskender Kebap",
+  description: "Yoğurt ve tereyağı soslu özel kebap",
+  price: 500,
+  category: "Kebaplar & Izgaralar" as const,
+  rating: 5,
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/iskender%20Kebap.jpeg"
+},
   {
     id: "k-05",
     name: "Et Şiş",
