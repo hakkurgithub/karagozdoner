@@ -137,7 +137,7 @@ const defaultAllMenuItems = [
     price: 350,
     category: "Kebaplar & Izgaralar" as const,
     rating: 4,
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/%C4%B1zgara%20k%C3%B6fte.jpeg" alt="ızgara köfte",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/izgara%20k%C3%B6fte.jpeg",
   },
   {
     id: "k-09",
