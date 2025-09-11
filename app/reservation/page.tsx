@@ -18,9 +18,30 @@ export default function ReservationPage() {
     '17:00', '17:30', '18:00', '18:30', '19:00', '19:30',
     '20:00', '20:30', '21:00', '21:30', '22:00', '22:30'
   ];
-
   const handleQuickReservation = () => {
-    setShowReservationModal(true);
+    // 1) Tarih veya saat seçilmediyse eski modalı aç (isteğe bağlı)
+    if (!selectedDate || !selectedTime) {
+      setShowReservationModal(true);
+      return;
+    }
+
+    // 2) Seçili değerleri Türkçe formatla
+    const dateTr = new Date(selectedDate).toLocaleDateString('tr-TR', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    const message = `Merhaba!
+Borcan Kebap'tan masa rezervasyonu istiyorum:
+📅 Tarih: ${dateTr}
+🕒 Saat: ${selectedTime}
+👥 Kişi sayısı: ${guests}
+Teşekkürler!`;
+
+    const phone = '905455093462'; // uluslararası format (+-sız)
+    const waURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(waURL, '_blank');
   };
 
   return (
