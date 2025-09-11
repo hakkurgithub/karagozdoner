@@ -101,7 +101,7 @@ const defaultAllMenuItems = [
     price: 500,
     category: "Kebaplar & Izgaralar" as const,
     rating: 5,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20Iskender%20kebab%20with%20yogurt%20sauce%20and%20butter%20over%20bread%20slices%20traditional%20presentation%20on%20white%20plate%20professional%20food%20photography&width=400&height=300&seq=iskender1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/iskender%20Kebap.jpeg" alt="iskender Kebap",
   },
   {
     id: "k-05",
