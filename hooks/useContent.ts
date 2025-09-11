@@ -202,7 +202,7 @@ const defaultAllMenuItems = [
     price: 400,
     category: "Pide & Lahmacun" as const,
     rating: 4,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20cheese%20pide%20bread%20boat%20shaped%20with%20melted%20kashar%20cheese%20golden%20brown%20crust%20on%20white%20background%20professional%20food%20photography&width=400&height=300&seq=kasarli1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Kasarlı Pide.jpg",
   },
   {
     id: "p-04",
@@ -211,7 +211,7 @@ const defaultAllMenuItems = [
     price: 400,
     category: "Pide & Lahmacun" as const,
     rating: 5,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20mixed%20pide%20bread%20with%20meat%20cheese%20and%20egg%20boat%20shaped%20flatbread%20golden%20brown%20crust%20on%20white%20background&width=400&height=300&seq=karisik1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/karisikpide.jpeg",
   },
   {
     id: "p-05",
