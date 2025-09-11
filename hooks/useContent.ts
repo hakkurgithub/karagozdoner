@@ -164,7 +164,7 @@ const defaultAllMenuItems = [
     price: 550,
     category: "Kebaplar & Izgaralar" as const,
     rating: 5,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20cop%20shish%20small%20meat%20cubes%20on%20thin%20skewers%20with%20spices%20grilled%20perfectly%20on%20white%20plate%20professional%20food%20photography&width=400&height=300&seq=copsis1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/cop-sis.jpg",
   },
   {
     id: "k-12",
@@ -184,7 +184,7 @@ const defaultAllMenuItems = [
     price: 130,
     category: "Pide & Lahmacun" as const,
     rating: 4,
-    image: "https://readdy.ai/api/search-image?query=Traditional%20Turkish%20lahmacun%20thin%20flatbread%20with%20minced%20meat%20topping%20and%20fresh%20herbs%2C%20served%20with%20lemon%20on%20white%20background&width=400&height=300&seq=lahmacun1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Lahmacun.jpg",
   },
   {
     id: "p-02",
