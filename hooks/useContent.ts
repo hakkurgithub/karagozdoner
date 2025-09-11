@@ -137,7 +137,7 @@ const defaultAllMenuItems = [
     price: 350,
     category: "Kebaplar & Izgaralar" as const,
     rating: 4,
-    image: "https://readdy.ai/api/search-image?query=Traditional%20Turkish%20grilled%20meatballs%20kofte%20with%20rice%20and%20salad%20on%20white%20plate%20homemade%20style%20professional%20food%20photography&width=400&height=300&seq=kofte1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/%C4%B1zgara%20k%C3%B6fte.jpeg" alt="ızgara köfte",
   },
   {
     id: "k-09",
