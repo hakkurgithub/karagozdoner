@@ -193,7 +193,7 @@ const defaultAllMenuItems = [
     price: 450,
     category: "Pide & Lahmacun" as const,
     rating: 5,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20pide%20bread%20with%20diced%20meat%20cubes%20golden%20brown%20crust%20boat%20shaped%20flatbread%20on%20white%20background%20professional%20food%20photography&width=400&height=300&seq=kusbasi1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Kusbasili Pide.jpg",
   },
   {
     id: "p-03",
