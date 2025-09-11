@@ -146,7 +146,7 @@ const defaultAllMenuItems = [
     price: 800,
     category: "Kebaplar & Izgaralar" as const,
     rating: 5,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20mixed%20grill%20platter%20with%20various%20kebabs%20and%20meatballs%20on%20large%20white%20plate%20generous%20portion%20professional%20food%20photography&width=400&height=300&seq=karisikizgara1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/karisik-izgara.jpg",
   },
   {
     id: "k-10",
