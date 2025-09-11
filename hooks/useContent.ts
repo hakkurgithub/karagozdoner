@@ -220,7 +220,7 @@ const defaultAllMenuItems = [
     price: 380,
     category: "Pide & Lahmacun" as const,
     rating: 4,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20sucuklu%20pide%20bread%20with%20Turkish%20sausage%20and%20cheese%20boat%20shaped%20golden%20crust%20on%20white%20background%20professional%20food%20photography&width=400&height=300&seq=sucuklu1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/sucuklu-kasarli-pide.jpg",
   },
   {
     id: "p-06",
