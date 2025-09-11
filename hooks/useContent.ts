@@ -92,7 +92,7 @@ const defaultAllMenuItems = [
     price: 600,
     category: "Kebaplar & Izgaralar" as const,
     rating: 5,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20Beyti%20kebab%20wrapped%20in%20lavash%20bread%20with%20yogurt%20sauce%20on%20white%20plate%20professional%20food%20photography&width=400&height=300&seq=beyti1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Beyti%20Sarma.jpg",
   },
   {
     id: "k-04",
