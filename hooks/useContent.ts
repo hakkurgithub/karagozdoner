@@ -83,7 +83,7 @@ const defaultAllMenuItems = [
     price: 450,
     category: "Kebaplar & Izgaralar" as const,
     rating: 4,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20Urfa%20kebab%20grilled%20meat%20skewers%20with%20bulgur%20rice%20and%20salad%2C%20traditional%20presentation%20on%20white%20plate%2C%20professional%20food%20photography&width=400&height=300&seq=urfa1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek%20resimleri/Adanaporsiyon.jpg",
   },
   {
     id: "k-03",
