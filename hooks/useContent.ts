@@ -314,7 +314,7 @@ const defaultAllMenuItems = [
     price: 250,
     category: "Dürüm" as const,
     rating: 5,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20Adana%20durum%20wrap%20with%20grilled%20meat%20and%20vegetables%20wrapped%20in%20lavash%20bread%20on%20white%20background%20professional%20food%20photography&width=400&height=300&seq=adanadurum1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/adana durum.jpg",
   },
   {
     id: "dr-02",
@@ -323,7 +323,7 @@ const defaultAllMenuItems = [
     price: 250,
     category: "Dürüm" as const,
     rating: 4,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20chicken%20durum%20wrap%20with%20marinated%20chicken%20pieces%20and%20fresh%20vegetables%20in%20lavash%20bread%20on%20white%20plate&width=400&height=300&seq=tavukdurum1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/adana durum.jpg",
   },
   {
     id: "dr-03",
@@ -332,7 +332,7 @@ const defaultAllMenuItems = [
     price: 250,
     category: "Dürüm" as const,
     rating: 4,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20chicken%20shish%20durum%20wrap%20with%20grilled%20chicken%20pieces%20and%20vegetables%20in%20lavash%20bread%20on%20white%20background&width=400&height=300&seq=tavuksisdurum1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Tavuk sis durum.png",
   },
   {
     id: "dr-04",
@@ -341,7 +341,7 @@ const defaultAllMenuItems = [
     price: 220,
     category: "Dürüm" as const,
     rating: 4,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20meatball%20durum%20wrap%20with%20grilled%20kofte%20and%20fresh%20vegetables%20in%20lavash%20bread%20on%20white%20background%20professional%20food%20photography&width=400&height=300&seq=koftedurum1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/kofte-durum.jpg",
   },
   {
     id: "dr-05",
@@ -350,7 +350,7 @@ const defaultAllMenuItems = [
     price: 350,
     category: "Dürüm" as const,
     rating: 5,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20beef%20shish%20durum%20wrap%20with%20grilled%20meat%20cubes%20and%20vegetables%20in%20lavash%20bread%20on%20white%20background%20professional%20food%20photography&width=400&height=300&seq=etsisdurum1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Et sis Durum.png",
   },
   {
     id: "dr-06",
@@ -359,7 +359,7 @@ const defaultAllMenuItems = [
     price: 200,
     category: "Dürüm" as const,
     rating: 4,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20chicken%20wing%20durum%20wrap%20with%20grilled%20wings%20and%20vegetables%20in%20lavash%20bread%20on%20white%20background%20professional%20food%20photography&width=400&height=300&seq=kanatdurum1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Tavuk Kanat Durum.png",
   },
 
   // Çorbalar (4 adet)
@@ -370,7 +370,7 @@ const defaultAllMenuItems = [
     price: 40,
     category: "Çorbalar" as const,
     rating: 4,
-    image: "https://readdy.ai/api/search-image?query=Traditional%20Turkish%20red%20lentil%20soup%20in%20white%20bowl%20with%20lemon%20slice%20garnish%20on%20white%20background%20professional%20food%20photography&width=400&height=300&seq=mercimek1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/mercimek corbasi.jpg",
   },
   {
     id: "c-02",
