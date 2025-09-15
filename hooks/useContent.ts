@@ -258,7 +258,7 @@ const defaultAllMenuItems = [
     price: 500,
     category: "Döner" as const,
     rating: 5,
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/acık ayran.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/Porsiyon et döner.jpg",
   },
   {
     id: "d-02",
@@ -267,7 +267,7 @@ const defaultAllMenuItems = [
     price: 450,
     category: "Döner" as const,
     rating: 4,
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/Porsiyon et döner.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/pilav ustu et doner.jpg",
   },
   {
     id: "d-03",
