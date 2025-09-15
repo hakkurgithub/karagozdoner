@@ -267,7 +267,7 @@ const defaultAllMenuItems = [
     price: 450,
     category: "Döner" as const,
     rating: 4,
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/pilav ustu et doner.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/pilav ustu et doner.jpg",
   },
   {
     id: "d-03",
