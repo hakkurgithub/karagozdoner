@@ -584,7 +584,7 @@ const defaultContent: ContentData = {
       price: 450,
       description: 'Özel baharatlarla hazırlanmış geleneksel Adana kebap',
       category: 'Kebaplar',
-      image: 'https://readdy.ai/api/search-image?query=Delicious%20Turkish%20Adana%20kebab%20on%20skewers%2C%20perfectly%20grilled%20meat%2C%20traditional%20presentation%20with%20rice%20pilaf%2C%20grilled%20vegetables%2C%20white%20clean%20background%2C%20professional%20food%20photography%2C%20appetizing%20close-up%20shot&width=400&height=300&seq=adana1&orientation=landscape'
+      image: 'https://raw.githubusercontent.com/hakkurgithub/images/main/yemek%20resimleri/Adanaporsiyon.jpg'
     },
     {
       id: '2',
@@ -592,7 +592,7 @@ const defaultContent: ContentData = {
       price: 400,
       description: 'Kaşar, sucuk ve yumurtalı özel pide',
       category: 'Pideler',
-      image: 'https://readdy.ai/api/search-image?query=Fresh%20Turkish%20pide%20bread%20with%20cheese%20and%20meat%20toppings%2C%20golden%20brown%20crust%2C%20traditional%20boat-shaped%20flatbread%2C%20melted%20cheese%2C%20white%20clean%20background%2C%20professional%20food%20photography%2C%20appetizing%20presentation&width=400&height=300&seq=pide1&orientation=landscape'
+      image: 'https://raw.githubusercontent.com/hakkurgithub/images/main/karisikpide.jpeg'
     },
     {
       id: '3',
@@ -600,7 +600,7 @@ const defaultContent: ContentData = {
       price: 130,
       description: 'İnce hamur üzerine özel kıymalı lahmacun',
       category: 'Lahmacunlar',
-      image: 'https://readdy.ai/api/search-image?query=Traditional%20Turkish%20lahmacun%20with%20fresh%20herbs%2C%20thin%20crispy%20flatbread%2C%20minced%20meat%20topping%2C%20served%20with%20lemon%20and%20parsley%2C%20white%20clean%20background%2C%20professional%20food%20photography%2C%20authentic%20presentation&width=400&height=300&seq=lahmacun1&orientation=landscape'
+      image: 'https://raw.githubusercontent.com/hakkurgithub/images/main/Lahmacun.jpg'
     },
     {
       id: '4',
@@ -608,7 +608,7 @@ const defaultContent: ContentData = {
       price: 500,
       description: 'Taze döner eti, pilav ve salata ile servis',
       category: 'Kebaplar',
-      image: 'https://readdy.ai/api/search-image?query=Fresh%20Turkish%20doner%20kebab%20slices%2C%20perfectly%20seasoned%20meat%2C%20served%20in%20warm%20pita%20bread%20with%20vegetables%2C%20white%20clean%20background%2C%20professional%20food%20photography%2C%20appetizing%20close-up%20shot&width=400&height=300&seq=doner1&orientation=landscape'
+      image: 'https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/Porsiyon et döner.jpg'
     }
   ],
   allMenuItems: defaultAllMenuItems,
@@ -640,7 +640,7 @@ const defaultContent: ContentData = {
   ],
   socialMedia: {
     facebook: 'https://www.facebook.com/brcnkbp',
-    instagram: 'https://www.instagram.com/borcankebap/',
+    instagram: 'https://www.instagram.com/borcan_kebap_pide_lahmacun/',
     twitter: '#'
   }
 };
