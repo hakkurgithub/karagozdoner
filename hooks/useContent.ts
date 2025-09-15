@@ -238,7 +238,7 @@ const defaultAllMenuItems = [
     price: 420,
     category: "Pide & Lahmacun" as const,
     rating: 5,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20minced%20meat%20pide%20bread%20boat%20shaped%20with%20spiced%20ground%20meat%20golden%20crust%20on%20white%20background%20professional%20food%20photography&width=400&height=300&seq=kiymali1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/Kıymalı Pide.jpg", 
   },
   {
     id: "p-08",
@@ -247,7 +247,7 @@ const defaultAllMenuItems = [
     price: 25,
     category: "Pide & Lahmacun" as const,
     rating: 4,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20open%20ayran%20drink%20with%20cucumber%20and%20mint%20in%20glass%20traditional%20refreshing%20beverage%20on%20white%20background%20professional%20photography&width=400&height=300&seq=acikayran1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/acık ayran.jpg",
   },
 
   // Döner (6 adet)
@@ -258,7 +258,7 @@ const defaultAllMenuItems = [
     price: 500,
     category: "Döner" as const,
     rating: 5,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20beef%20doner%20kebab%20slices%20in%20pita%20bread%20with%20vegetables%20and%20sauce%20on%20white%20plate%20professional%20food%20photography&width=400&height=300&seq=etdoner1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/acık ayran.jpg",
   },
   {
     id: "d-02",
@@ -267,7 +267,7 @@ const defaultAllMenuItems = [
     price: 450,
     category: "Döner" as const,
     rating: 4,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20doner%20kebab%20portion%20with%20rice%20pilaf%20and%20salad%20on%20white%20plate%20traditional%20presentation%20professional%20food%20photography&width=400&height=300&seq=donerporsiyon1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/Porsiyon et döner.jpg",
   },
   {
     id: "d-03",
@@ -276,7 +276,7 @@ const defaultAllMenuItems = [
     price: 300,
     category: "Döner" as const,
     rating: 4,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20chicken%20doner%20kebab%20in%20warm%20pita%20bread%20with%20fresh%20vegetables%20and%20yogurt%20sauce%20on%20white%20background&width=400&height=300&seq=tavukdoner1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/Durum doner.png",
   },
   {
     id: "d-04",
@@ -285,7 +285,7 @@ const defaultAllMenuItems = [
     price: 400,
     category: "Döner" as const,
     rating: 4,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20chicken%20doner%20kebab%20slices%20with%20rice%20and%20vegetables%20on%20white%20plate%20healthy%20option%20professional%20food%20photography&width=400&height=300&seq=tavukdoner2&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/Tavuk Doner.jpg",
   },
   {
     id: "d-05",
@@ -294,7 +294,7 @@ const defaultAllMenuItems = [
     price: 250,
     category: "Döner" as const,
     rating: 4,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20doner%20kebab%20sandwich%20in%20bread%20with%20vegetables%20and%20sauce%20street%20food%20style%20on%20white%20background%20professional%20food%20photography&width=400&height=300&seq=ekmekdoner1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/ekmek arasi doner.jpg",
   },
   {
     id: "d-06",
@@ -303,7 +303,7 @@ const defaultAllMenuItems = [
     price: 550,
     category: "Döner" as const,
     rating: 5,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20mixed%20doner%20kebab%20beef%20and%20chicken%20combination%20with%20rice%20and%20salad%20on%20white%20plate%20generous%20portion%20professional%20food%20photography&width=400&height=300&seq=ciftedonet1&orientation=landscape",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/cifte doner.png",
   },
 
   // Dürüm (6 adet)
