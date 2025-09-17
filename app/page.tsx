@@ -217,9 +217,10 @@ export default function Home() {
             <button onClick={handleMenuClick} className="bg-red-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-700 transition-colors whitespace-nowrap cursor-pointer">
               Menüyü İncele
             </button>
-            <button onClick={() => setShowReservationModal(true)} className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-red-600 transition-colors whitespace-nowrap cursor-pointer">
-              Rezervasyon Yap
+            <button onClick={() => router.push('/reservation')} className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors font-medium whitespace-nowrap cursor-pointer">
+             Rezervasyon
             </button>
+
           </div>
         </div>
       </section>
@@ -402,9 +403,10 @@ export default function Home() {
           <h2 className="text-4xl font-bold mb-4">Lezzetin Tadına Varın</h2>
           <p className="text-xl mb-8">Borcan Kebap&apos;ın eşsiz lezzetlerini deneyimleyin</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button onClick={() => setShowReservationModal(true)} className="bg-white text-red-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap cursor-pointer">
-              Rezervasyon Yap
+            <button onClick={() => router.push('/reservation')} className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-red-600 transition-colors whitespace-nowrap cursor-pointer">
+            Rezervasyon Yap
             </button>
+
             <button
               onClick={() => setShowWhatsAppModal(true)}
               className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-red-600 transition-colors whitespace-nowrap cursor-pointer flex items-center justify-center"
