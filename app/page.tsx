@@ -476,8 +476,13 @@ export default function Home() {
             <div>
               <h4 className="text-lg font-semibold mb-4">Online Sipariş</h4>
               <ul className="space-y-2">
-                <li>
-                  <a href={content.socialMedia?.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center">
+               <li>
+                  <a
+                    href={content.orderChannels?.yemeksepeti?.url || "https://www.yemeksepeti.com/restaurant/kw28/borcan-kebap-pide-lahmacun-salonu"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center"
+                  >
                     <i className="ri-restaurant-line mr-2 text-orange-600"></i>
                     Yemeksepeti
                   </a>
