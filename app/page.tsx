@@ -9,7 +9,7 @@ import WhatsAppOrderModal from '../components/WhatsAppOrderModal';
 import OrderChannelDropdown from '../components/OrderChannelDropdown';
 import AdminPanel from '../components/AdminPanel';
 import { adminConfig } from '../lib/admin';
-import { useContent } from '../../hooks/useContent';
+import { useContent } from '../hooks/useContent';
 import { useCart } from '../components/CartProvider';
 
 // Menü öğesi için tip tanımı yapıyoruz
