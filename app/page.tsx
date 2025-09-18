@@ -180,7 +180,7 @@ export default function Home() {
             <span className="text-3xl md:text-4xl font-bold text-red-600 font-['Pacifico']">
               Borcan Kebap
             </span>
-            &apos;ta özgün Türk mutfağının eşsiz lezzetlerini keşfedin
+            'ta özgün Türk mutfağının eşsiz lezzetlerini keşfedin
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button onClick={handleMenuClick} className="bg-red-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-700 transition-colors whitespace-nowrap cursor-pointer">
@@ -242,7 +242,7 @@ export default function Home() {
                   <i className="ri-restaurant-line text-3xl text-purple-600"></i>
                 </div>
                 <h3 className="text-lg font-bold text-purple-600 mb-2">
-                  {content.orderChannels?.tgoyemek?.text || 'TGOYemek&apos;ten Sipariş Ver'}
+                  {content.orderChannels?.tgoyemek?.text || 'TGOYemek'ten Sipariş Ver'}
                 </h3>
                 <p className="text-gray-600 text-sm mb-4">Hızlı teslimat ve özel indirimler</p>
                 <div className="inline-flex items-center text-purple-600 font-medium">
@@ -369,7 +369,7 @@ export default function Home() {
       <section className="py-16 bg-red-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold mb-4">Lezzetin Tadına Varın</h2>
-          <p className="text-xl mb-8">Borcan Kebap&apos;ın eşsiz lezzetlerini deneyimleyin</p>
+          <p className="text-xl mb-8">Borcan Kebap'ın eşsiz lezzetlerini deneyimleyin</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button onClick={() => setShowReservationModal(true)} className="bg-white text-red-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap cursor-pointer">
               Rezervasyon Yap
