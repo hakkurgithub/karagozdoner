@@ -242,9 +242,9 @@ export default function Home() {
                   <i className="ri-restaurant-line text-3xl text-purple-600"></i>
                 </div>
                 <h3 className="text-lg font-bold text-purple-600 mb-2">
-                  {content.orderChannels?.tgoyemek?.text || 'TGOYemek'ten Sipariş Ver'}
+                    {content.orderChannels?.tgoyemek?.text || 'TGOYemek&apos;ten Sipariş Ver'}
                 </h3>
-                <p className="text-gray-600 text-sm mb-4">Hızlı teslimat ve özel indirimler</p>
+                 <p className="text-gray-600 text-sm mb-4">Hızlı teslimat ve özel indirimler</p>
                 <div className="inline-flex items-center text-purple-600 font-medium">
                   Sipariş Ver
                   <i className="ri-arrow-right-line ml-2"></i>
