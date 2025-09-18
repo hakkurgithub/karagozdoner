@@ -1,6 +1,6 @@
-
 'use client';
 
+// Gerekli bileşenleri ve hook'ları içe aktarıyoruz
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -13,58 +13,48 @@ import { useContent } from '../hooks/useContent';
 import { useCart } from '../components/CartProvider';
 
 export default function Home() {
+  // Modal ve panel durumları için state'leri tanımlıyoruz
   const [showReservationModal, setShowReservationModal] = useState(false);
   const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [isClient, setIsClient] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const { content } = useContent();
   const { addItem, getTotalItems } = useCart();
   const router = useRouter();
 
+  // Bileşen client tarafında yüklendiğinde state'i güncelliyoruz
   useEffect(() => {
     setIsClient(true);
-    setIsMounted(true);
+    checkAdminAuth();
   }, []);
 
-  useEffect(() => {
-    if (isClient && isMounted) {
-      checkAdminAuth();
-    }
-  }, [isClient, isMounted]);
-
+  // Admin yetkilendirmesini kontrol eden fonksiyon
   const checkAdminAuth = () => {
-    if (typeof window === 'undefined') return false;
-
+    if (typeof window === 'undefined') return;
     const isAuthenticated = localStorage.getItem(adminConfig.sessionKey) === 'true';
     setIsAdminMode(isAuthenticated);
-    return isAuthenticated;
   };
 
+  // Admin paneli açma ve kapatma işlemleri
   const handleAdminClick = () => {
-    if (isAdminMode) {
-      setShowAdminPanel(true);
-    } else {
-      setShowAdminPanel(true);
-    }
+    setShowAdminPanel(true);
   };
 
   const handleAdminLogout = () => {
     if (typeof window === 'undefined') return;
-
     localStorage.removeItem(adminConfig.sessionKey);
     setIsAdminMode(false);
     setShowAdminPanel(false);
     alert('Admin modundan çıkış yapıldı!');
   };
 
+  // TGOYemek siparişine yönlendirme
   const handleTGOYemekOrder = () => {
     if (!content?.orderChannels?.tgoyemek?.active) {
       alert('TGOYemek sipariş kanalı şu anda aktif değil.');
       return;
     }
-
     const tgoyemekUrl = content.orderChannels?.tgoyemek?.url;
     if (tgoyemekUrl) {
       window.open(tgoyemekUrl, '_blank');
@@ -73,7 +63,8 @@ export default function Home() {
     }
   };
 
-  const handleAddToCart = (item: any) => {
+  // Sepete ürün ekleme
+  const handleAddToCart = (item) => {
     addItem({
       id: item.id,
       name: item.name,
@@ -81,37 +72,14 @@ export default function Home() {
     });
   };
 
-  const handleCartClick = () => {
-    if (isMounted) {
-      router.push('/cart');
-    }
-  };
+  // Yönlendirme fonksiyonları
+  const handleMenuClick = () => router.push('/menu');
+  const handleAboutClick = () => router.push('/about');
+  const handleContactClick = () => router.push('/contact');
+  const handleCartClick = () => router.push('/cart');
 
-  const handleMenuClick = () => {
-    if (isMounted) {
-      router.push('/menu');
-    }
-  };
-
-  const handleAboutClick = () => {
-    if (isMounted) {
-      router.push('/about');
-    }
-  };
-
-  const handleContactClick = () => {
-    if (isMounted) {
-      router.push('/contact');
-    }
-  };
-
-  const handleReservationClick = () => {
-    if (isMounted) {
-      router.push('/reservation');
-    }
-  };
-
-  if (!isMounted) {
+  // Client tarafında değilse yükleme ekranı göster
+  if (!isClient) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-red-50 to-orange-50 flex items-center justify-center">
         <div className="text-center">
@@ -120,16 +88,17 @@ export default function Home() {
         </div>
       </div>
     );
-  };
+  }
 
+  // Ana bileşenin render edilen kısmı
   return (
     <div className="min-h-screen bg-gradient-to-b from-red-50 to-orange-50">
-      {/* Admin Mode Indicator */}
-      {isClient && isAdminMode && (
+      {/* Admin Modu Göstergesi */}
+      {isAdminMode && (
         <div className="fixed top-0 left-0 right-0 bg-blue-600 text-white text-center py-2 z-50">
           <span className="mr-4">👨‍💼 Admin Modu Aktif - İçerik düzenlemek için tıklayın</span>
           <button
-            onClick={() => setShowAdminPanel(true)}
+            onClick={handleAdminClick}
             className="bg-blue-700 px-3 py-1 rounded mr-2 hover:bg-blue-800 cursor-pointer"
           >
             Panel Aç
@@ -170,7 +139,7 @@ export default function Home() {
               <button onClick={handleContactClick} className="text-gray-700 hover:text-red-600 font-medium transition-colors cursor-pointer">
                 İletişim
               </button>
-              <button onClick={handleReservationClick} className="text-red-600 hover:text-red-700 font-medium transition-colors cursor-pointer">
+              <button onClick={() => setShowReservationModal(true)} className="text-red-600 hover:text-red-700 font-medium transition-colors cursor-pointer">
                 Rezervasyon
               </button>
             </nav>
@@ -233,7 +202,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {content.menuItems?.slice(0, 4).map((_item) => (
+            {content.menuItems?.slice(0, 4).map((item) => (
               <div key={item.id} className="bg-red-50 rounded-lg p-6 text-center hover:shadow-lg transition-shadow cursor-pointer">
                 <div className="w-full h-48 bg-cover bg-center rounded-lg mb-4" style={{ backgroundImage: `url('${item.image}')` }}></div>
                 <h3 className="text-xl font-semibold text-red-600 mb-2">{item.name}</h3>
@@ -543,7 +512,7 @@ export default function Home() {
           </div>
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Borcan Kebap. Tüm hakları saklıdır.</p>
+            <p>© 2024 Borcan Kebap. Tüm hakları saklıdır.</p>
             {isClient && (
               <div className="fixed bottom-6 right-6 z-50">
                 <button
@@ -561,11 +530,8 @@ export default function Home() {
 
       {/* Modals */}
       {showReservationModal && <ReservationModal isOpen={showReservationModal} onClose={() => setShowReservationModal(false)} />}
-
       {showWhatsAppModal && <WhatsAppOrderModal isOpen={showWhatsAppModal} onClose={() => setShowWhatsAppModal(false)} />}
-
-      {/* Admin Panel */}
-      {isClient && <AdminPanel isOpen={showAdminPanel} onClose={() => setShowAdminPanel(false)} />}
+      {isAdminMode && <AdminPanel isOpen={showAdminPanel} onClose={() => setShowAdminPanel(false)} />}
     </div>
   );
 }
