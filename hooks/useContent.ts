@@ -193,7 +193,7 @@ const defaultAllMenuItems = [
     price: 450,
     category: "Pide & Lahmacun" as const,
     rating: 5,
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Kusbasili Pide.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Kusbasili-Pide.jpeg",
   },
   {
     id: "p-03",
