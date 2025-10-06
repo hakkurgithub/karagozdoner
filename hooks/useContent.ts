@@ -74,7 +74,7 @@ const defaultAllMenuItems = [
     price: 450,
     category: "Kebaplar & Izgaralar" as const,
     rating: 5,
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek%20resimleri/Adanaporsiyon.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Adanaporsiyon.jpg",
   },
   {
     id: "k-02",
@@ -83,7 +83,7 @@ const defaultAllMenuItems = [
     price: 450,
     category: "Kebaplar & Izgaralar" as const,
     rating: 4,
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek%20resimleri/Adanaporsiyon.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Adanaporsiyon.jpg",
   },
   {
     id: "k-03",
