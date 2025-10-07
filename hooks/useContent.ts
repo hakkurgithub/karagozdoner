@@ -584,7 +584,7 @@ const defaultContent: ContentData = {
       price: 450,
       description: 'Özel baharatlarla hazırlanmış geleneksel Adana kebap',
       category: 'Kebaplar',
-      image: 'https://raw.githubusercontent.com/hakkurgithub/images/main/yemek%20resimleri/Adanaporsiyon.jpg'
+      image: 'https://raw.githubusercontent.com/hakkurgithub/images/main/Adanaporsiyon.jpg'
     },
     {
       id: '2',
