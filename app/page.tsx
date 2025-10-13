@@ -109,7 +109,7 @@ export default function Home() {
         {/* Hero Section */}
         <section
           className="relative h-[60vh] sm:h-[80vh] bg-cover bg-center flex items-center justify-center text-center text-white"
-          style={{ backgroundImage: "url('https://readdy.ai/api/search-image?query=Turkish%20food%20restaurant%20Adana%20kebap%20serving%20plate%20on%20table%20with%20garnish%20professional%20food%20photography%20natural%20light%20soft%20focus&width=1920&height=1080&seq=hero1&orientation=landscape')" }}
+          style={{ backgroundImage: "url('https://raw.githubusercontent.com/hakkurgithub/images/c566b1f24db82f2807adac6acc67e5f3e2474a67/Borcan-kebap-personeli.png')" }}
         >
           <div className="absolute inset-0 bg-black opacity-50"></div>
           <div className="relative z-10 p-4">
