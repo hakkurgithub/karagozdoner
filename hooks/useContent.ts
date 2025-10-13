@@ -1,70 +1,23 @@
-'use client';
+// hooks/useContent.ts
+import { useState, useEffect } from "react";
+import { MENU_ITEMS } from "../lib/menuData";
 
-import { useState, useEffect } from 'react';
-
-interface ContentData {
+export interface ContentData {
   restaurantName: string;
   heroTitle: string;
   heroSubtitle: string;
   aboutText: string;
   phone: string;
   address: string;
-  orderChannels?: {
-    tgoyemek?: {
-      active: boolean;
-      url: string;
-      text: string;
-    };
-    yemeksepeti?: {
-      active: boolean;
-      url: string;
-    };
-    getir?: {
-      active: boolean;
-      url: string;
-    };
-    whatsapp?: {
-      active: boolean;
-      url: string;
-    };
-  };
-  menuItems?: Array<{
-    id: string;
-    name: string;
-    price: number;
-    description: string;
-    category: string;
-    image?: string;
-    rating?: number;
-  }>;
-  aboutStats?: {
-    experience: string;
-    customers: string;
-    menuCount: string;
-    branches: string;
-  };
-  features?: Array<{
-    id: string;
-    title: string;
-    description: string;
-    icon: string;
-  }>;
   socialMedia?: {
-    facebook: string;
-    instagram: string;
-    twitter: string;
+    facebook?: string;
+    instagram?: string;
   };
-  allMenuItems?: Array<{
-    id: string;
-    name: string;
-    price: number;
-    description: string;
-    category: "Kebaplar & Izgaralar" | "Pide & Lahmacun" | "Döner" | "Dürüm" | "Çorbalar" | "Yan Ürünler" | "Tatlılar" | "İçecekler";
-    rating: number;
-    image?: string;
-  }>;
+  orderChannels?: any;
+  allMenuItems?: any;
 }
 
+<<<<<<< HEAD
 const defaultAllMenuItems = [
   // Kebaplar & Izgaralar (12 adet)
   {
@@ -645,43 +598,58 @@ const defaultContent: ContentData = {
   }
 };
 
+=======
+>>>>>>> 1f5b1163 (İlk yükleme)
 export function useContent() {
-  const [content, setContent] = useState<ContentData>(defaultContent);
+  const [content, setContent] = useState<ContentData>({
+    restaurantName: "Borcan Kebap",
+    heroTitle: "",
+    heroSubtitle: "",
+    aboutText: "",
+    phone: "",
+    address: "",
+    socialMedia: {
+      facebook: "",
+      instagram: "",
+    },
+    orderChannels: {},
+    allMenuItems: MENU_ITEMS,
+  });
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedContent = localStorage.getItem('borcan_admin_content');
-      if (savedContent) {
-        try {
-          const parsedContent = JSON.parse(savedContent);
-          const mergedContent = { 
-            ...defaultContent, 
-            ...parsedContent,
-            allMenuItems: parsedContent.allMenuItems || defaultAllMenuItems
-          };
-          setContent(mergedContent);
-        } catch (error) {
-          console.error('İçerik yüklenirken hata:', error);
-        }
-      }
-    }
-  }, []);
-
-  const updateContent = (newContent: Partial<ContentData>) => {
-    const updatedContent = { ...content, ...newContent };
-    setContent(updatedContent);
-    
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('borcan_admin_content', JSON.stringify(updatedContent));
-    }
+  // ✅ AdminPanel’in beklediği fonksiyonlar
+  const updateContent = (newData: Partial<ContentData>) => {
+    setContent((prev) => ({ ...prev, ...newData }));
   };
 
   const resetContent = () => {
-    setContent(defaultContent);
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('borcan_admin_content');
-    }
+    setContent({
+      restaurantName: "Borcan Kebap",
+      heroTitle: "",
+      heroSubtitle: "",
+      aboutText: "",
+      phone: "",
+      address: "",
+      socialMedia: {
+        facebook: "",
+        instagram: "",
+      },
+      orderChannels: {},
+      allMenuItems: MENU_ITEMS,
+    });
   };
+
+  useEffect(() => {
+    async function fetchContent() {
+      try {
+        const res = await fetch("/content.json");
+        const data = await res.json();
+        setContent({ ...data, allMenuItems: MENU_ITEMS });
+      } catch (err) {
+        console.error("İçerik yüklenirken hata oluştu:", err);
+      }
+    }
+    fetchContent();
+  }, []);
 
   return { content, updateContent, resetContent };
 }

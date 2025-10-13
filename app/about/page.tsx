@@ -54,7 +54,7 @@ export default function AboutPage() {
       <section
         className="relative h-96 bg-cover bg-center"
         style={{
-          backgroundImage: `url('https://readdy.ai/api/search-image?query=Traditional%20Turkish%20restaurant%20interior%20with%20warm%20lighting%2C%20Ottoman-style%20decorations%2C%20vintage%20cooking%20equipment%2C%20authentic%20atmosphere%2C%20professional%20photography%20showcasing%20heritage%20and%20tradition%2C%20elegant%20white%20Borcan%20Kebap%20text%20prominently%20displayed%20in%20corner%20foreground%2C%20restaurant%20branding%20clearly%20visible%20and%20readable%20in%20white%20letters%2C%20traditional%20restaurant%20setting%20with%20visible%20branding&width=1200&height=400&seq=about-hero-branded-clear&orientation=landscape')`,
+          backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/c566b1f24db82f2807adac6acc67e5f3e2474a67/Borcan-kebap-personeli.png')`,
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -195,11 +195,19 @@ export default function AboutPage() {
               <div
                 className="w-24 h-24 bg-cover bg-center rounded-full mx-auto mb-4"
                 style={{
+<<<<<<< HEAD
                   backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/ahmet-deniz .jpg')`,
                 }}
               ></div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">Oktay Deniz</h3>
               <p className="text-red-600 font-medium mb-3">Ahmet Deniz</p>
+=======
+                  backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/oktay-deniz .jpg')`,
+                }}
+              ></div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Oktay Deniz</h3>
+              <p className="text-red-600 font-medium mb-3">Restoran Müdürü</p>
+>>>>>>> 1f5b1163 (İlk yükleme)
               <p className="text-gray-600 text-sm">
                 15 yıldır misafir ağırlama konusunda uzman.
                 Müşteri memnuniyeti ve servis kalitesi sorumlusu.

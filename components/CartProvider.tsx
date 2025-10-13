@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useState, useEffect, useContext, ReactNode } from 'react';
 
+// Tipleri tanımlayalım
 interface CartItem {
-  id: string;
+  id: number;
   name: string;
   price: number;
   quantity: number;
@@ -12,51 +13,65 @@ interface CartItem {
 interface CartContextType {
   items: CartItem[];
   addItem: (item: Omit<CartItem, 'quantity'>) => void;
-  removeItem: (id: string) => void;
-  updateQuantity: (id: string, quantity: number) => void;
+  removeItem: (id: number) => void;
+  updateQuantity: (id: number, quantity: number) => void;
   clearCart: () => void;
   getTotalPrice: () => number;
   getTotalItems: () => number;
+  sendOrderToWhatsApp: (masa: string, adres: string, not: string) => void;
 }
 
+// Context'i oluşturalım
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-interface CartProviderProps {
-  children: ReactNode;
-}
+// Hook'u oluşturalım (diğer bileşenlerden sepete erişmek için)
+export const useCart = () => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
+};
 
-export function CartProvider({ children }: CartProviderProps) {
+// Provider'ı oluşturalım (tüm sepet mantığının merkezi)
+export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
 
-  const addItem = (newItem: Omit<CartItem, 'quantity'>) => {
-    setItems(prev => {
-      const existingItem = prev.find(item => item.id === newItem.id);
+  useEffect(() => {
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+      setItems(JSON.parse(storedCart));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(items));
+  }, [items]);
+
+  const addItem = (item: Omit<CartItem, 'quantity'>) => {
+    setItems(prevItems => {
+      const existingItem = prevItems.find(i => i.id === item.id);
       if (existingItem) {
-        return prev.map(item =>
-          item.id === newItem.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
+        return prevItems.map(i =>
+          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
         );
       }
-      return [...prev, { ...newItem, quantity: 1 }];
+      return [...prevItems, { ...item, quantity: 1 }];
     });
   };
 
-  const removeItem = (id: string) => {
-    setItems(prev => prev.filter(item => item.id !== id));
+  const removeItem = (id: number) => {
+    setItems(prevItems => prevItems.filter(item => item.id !== id));
   };
 
-  const updateQuantity = (id: string, quantity: number) => {
+  const updateQuantity = (id: number, quantity: number) => {
     if (quantity <= 0) {
       removeItem(id);
-      return;
+    } else {
+      setItems(prevItems =>
+        prevItems.map(item => (item.id === id ? { ...item, quantity } : item))
+      );
     }
-    
-    setItems(prev =>
-      prev.map(item =>
-        item.id === id ? { ...item, quantity } : item
-      )
-    );
   };
 
   const clearCart = () => {
@@ -64,34 +79,48 @@ export function CartProvider({ children }: CartProviderProps) {
   };
 
   const getTotalPrice = () => {
-    return items.reduce((total, item) => total + (item.price * item.quantity), 0);
+    return items.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
   const getTotalItems = () => {
     return items.reduce((total, item) => total + item.quantity, 0);
   };
 
-  const value = {
-    items,
-    addItem,
-    removeItem,
-    updateQuantity,
-    clearCart,
-    getTotalPrice,
-    getTotalItems
+  const sendOrderToWhatsApp = (masa: string, adres: string, not: string) => {
+    if (items.length === 0) {
+      alert("Sepetiniz boş!");
+      return;
+    }
+    const now = new Date();
+    const tarihSaat = now.toLocaleString('tr-TR', { dateStyle: 'short', timeStyle: 'short' });
+    const siparisNo = `BORCAN-${Date.now().toString().slice(-6)}`;
+
+    let message = `*Yeni Sipariş Talebi* 🔥\n`;
+    message += `*Sipariş No:* ${siparisNo}\n`;
+    message += `*Tarih:* ${tarihSaat}\n\n--------------------------\n`;
+    items.forEach(item => {
+      message += `${item.quantity} x ${item.name} - ${item.price * item.quantity} ₺\n`;
+    });
+    message += `--------------------------\n*Toplam Tutar:* ${getTotalPrice()} ₺\n\n`;
+    if (masa) message += `*Masa Numarası:* ${masa}\n`;
+    if (adres) message += `*Adres:* ${adres}\n`;
+    if (not) message += `*Müşteri Notu:* ${not}\n`;
+
+    const phoneNumber = "905333715577"; // Kendi numaranızı yazın
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.location.href = whatsappUrl;
+    } else {
+      window.open(whatsappUrl, "_blank");
+    }
+    clearCart();
   };
 
   return (
-    <CartContext.Provider value={value}>
+    <CartContext.Provider value={{ items, addItem, removeItem, updateQuantity, clearCart, getTotalPrice, getTotalItems, sendOrderToWhatsApp }}>
       {children}
     </CartContext.Provider>
   );
-}
-
-export function useCart() {
-  const context = useContext(CartContext);
-  if (context === undefined) {
-    throw new Error('useCart must be used within a CartProvider');
-  }
-  return context;
-}
+};

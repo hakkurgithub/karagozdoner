@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 'use client';
 
 // Gerekli bileşenleri ve hook'ları içe aktarıyoruz
@@ -11,6 +12,19 @@ import AdminPanel from '../components/AdminPanel';
 import { adminConfig } from '../lib/admin';
 import { useContent } from '../hooks/useContent';
 import { useCart } from '../components/CartProvider';
+=======
+// app/page.tsx DOSYASININ DOĞRU VE TAM HALİ
+
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { useContent } from "../hooks/useContent";
+import { MenuItem } from "../lib/menuData";
+import { useState } from "react";
+import { useCart } from "../components/CartProvider";
+import ReservationModal from "../components/ReservationModal";
+>>>>>>> 1f5b1163 (İlk yükleme)
 
 // Menü öğesi için tip tanımı yapıyoruz
 interface MenuItem {
@@ -23,6 +37,7 @@ interface MenuItem {
 }
 
 export default function Home() {
+<<<<<<< HEAD
   // Modal ve panel durumları için state'leri tanımlıyoruz
   const [showReservationModal, setShowReservationModal] = useState(false);
   const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
@@ -30,10 +45,13 @@ export default function Home() {
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+=======
+>>>>>>> 1f5b1163 (İlk yükleme)
   const { content } = useContent();
   const { addItem, getTotalItems } = useCart();
-  const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+<<<<<<< HEAD
   // Bileşen client tarafında yüklendiğinde state'i güncelliyoruz
   useEffect(() => {
     setIsClient(true);
@@ -60,15 +78,20 @@ export default function Home() {
   };
 
   // Sepete ürün ekleme
+=======
+  const popularItems: MenuItem[] = (content.allMenuItems || []).slice(0, 4);
+
+>>>>>>> 1f5b1163 (İlk yükleme)
   const handleAddToCart = (item: MenuItem) => {
     addItem({
-      id: item.id,
+      id: parseInt(item.id),
       name: item.name,
       price: item.price,
     });
   };
 
   return (
+<<<<<<< HEAD
     <div className="bg-gray-100 min-h-screen">
       {/* Header */}
       <header className="bg-white shadow-md sticky top-0 z-50">
@@ -101,10 +124,62 @@ export default function Home() {
               </button>
             </div>
             <OrderChannelDropdown />
+=======
+    <div className="min-h-screen bg-gray-50">
+      {/* HEADER */}
+      <header className="bg-white shadow-md sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+          <Link href="/" className="flex items-center space-x-3">
+            <div className="w-12 h-12 bg-yellow-400 rounded-lg flex items-center justify-center font-bold text-black text-xl border-2 border-black">
+              BK
+            </div>
+            <span className="text-2xl font-bold text-red-600 font-[Pacifico]">
+              {content.restaurantName}
+            </span>
+          </Link>
+
+          <nav className="hidden md:flex space-x-8">
+            <Link href="/" className="text-red-600 font-medium">
+              Ana Sayfa
+            </Link>
+            <Link href="/menu" className="text-gray-700 hover:text-red-600">
+              Menü
+            </Link>
+            <Link href="/about" className="text-gray-700 hover:text-red-600">
+              Hakkımızda
+            </Link>
+            <Link href="/contact" className="text-gray-700 hover:text-red-600">
+              İletişim
+            </Link>
+            <Link href="/reviews" className="text-gray-700 hover:text-red-600">
+              Yorumlar
+            </Link>
+          </nav>
+
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors font-medium whitespace-nowrap cursor-pointer"
+            >
+              Rezervasyon
+            </button>
+            <Link
+              href="/cart"
+              className="relative bg-gray-100 text-red-600 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors font-semibold cursor-pointer"
+            >
+              🛒 Sepetim
+              {getTotalItems() > 0 && (
+                 <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                   {getTotalItems()}
+                 </span>
+              )}
+            </Link>
+>>>>>>> 1f5b1163 (İlk yükleme)
           </div>
         </div>
       </header>
 
+<<<<<<< HEAD
       <main>
         {/* Hero Section */}
         <section
@@ -336,29 +411,60 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white transition-colors cursor-pointer"
-                  >
-                    {content.address}
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Borcan Kebap. Tüm hakları saklıdır.</p>
-            {isClient && (
-              <div className="fixed bottom-6 right-6 z-50">
-                <button
-                  onClick={handleAdminClick}
-                  className="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors shadow-lg cursor-pointer"
-                  title="Admin Girişi"
-                >
-                  <i className="ri-admin-line text-lg"></i>
-                </button>
-              </div>
-            )}
-          </div>
+=======
+      {/* HERO SECTION */}
+      <section className="relative bg-cover bg-center py-20" style={{ backgroundImage: "url('/hero.jpg')" }}>
+        <div className="bg-black bg-opacity-50 absolute inset-0"></div>
+        <div className="relative z-10 text-center text-white max-w-3xl mx-auto">
+          <h1 className="text-4xl font-bold mb-4">{content.heroTitle || "Lezzetin Adresi Borcan Kebap"}</h1>
+          <p className="text-lg mb-6">{content.heroSubtitle || "Gerçek kebap lezzetini keşfedin"}</p>
+          {/* ✅✅✅ HATA BURADA DÜZELTİLDİ ✅✅✅ */}
+          <Link
+            href="/menu"
+            className="bg-red-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-red-700 transition-colors cursor-pointer"
+          >
+            Menüye Göz At
+          </Link>
         </div>
+      </section>
+
+      {/* POPÜLER ÜRÜNLER */}
+      <section className="py-16 px-4">
+        <h2 className="text-3xl font-bold text-center mb-10">Popüler Lezzetler</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {popularItems.map((item: MenuItem) => (
+            <div
+              key={item.id}
+              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+            >
+              <div className="relative h-48">
+                {item.image && (
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-cover"
+                  />
+                )}
+              </div>
+              <div className="p-4 flex flex-col">
+                <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
+                <p className="text-gray-600 text-sm mb-2 flex-grow">{item.description}</p>
+                <div className="flex justify-between items-center mt-auto pt-2">
+                  <span className="text-red-600 font-bold text-lg">{item.price} ₺</span>
+                  <button
+                    onClick={() => handleAddToCart(item)}
+                    className="bg-red-600 text-white px-3 py-1 rounded-md hover:bg-red-700 text-sm"
+>>>>>>> 1f5b1163 (İlk yükleme)
+                  >
+                    Sepete Ekle
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+<<<<<<< HEAD
       </footer>
 
       {/* Modals */}
@@ -368,6 +474,12 @@ export default function Home() {
 
       {/* Admin Panel */}
       {isAdminMode && <AdminPanel isOpen={showAdminPanel} onClose={() => setShowAdminPanel(false)} />}
+=======
+      </section>
+      
+      {/* REZERVASYON MODAL */}
+      <ReservationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+>>>>>>> 1f5b1163 (İlk yükleme)
     </div>
   );
 }

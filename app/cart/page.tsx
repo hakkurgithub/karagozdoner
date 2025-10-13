@@ -1,12 +1,21 @@
+<<<<<<< HEAD
 'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useCart } from '../../components/CartProvider';
+=======
+"use client";
+
+import { useCart } from "../../components/CartProvider";
+import { useState } from "react";
+import Link from "next/link";
+>>>>>>> 1f5b1163 (İlk yükleme)
 
 type FormData = { address: string; phone: string; payment: 'K.K.' | 'Nakit' };
 
 export default function CartPage() {
+<<<<<<< HEAD
   const { items, updateQuantity, removeItem, getTotalPrice, clearCart } = useCart();
   const [isClient, setIsClient] = useState(false);
   const [form, setForm] = useState<FormData>({ address: '', phone: '', payment: 'Nakit' });
@@ -106,14 +115,75 @@ export default function CartPage() {
               <Link href="/about" className="text-gray-700 hover:text-red-600 font-medium">Hakkımızda</Link>
               <Link href="/contact" className="text-gray-700 hover:text-red-600 font-medium">İletişim</Link>
             </nav>
+=======
+  const { items, removeItem, clearCart, getTotalPrice, sendOrderToWhatsApp, updateQuantity } = useCart();
+  const [masa, setMasa] = useState("");
+  const [adres, setAdres] = useState("");
+  const [not, setNot] = useState("");
+
+  return (
+    <div className="min-h-screen bg-gray-50 py-10 px-4">
+      <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <h1 className="text-3xl font-bold mb-6 text-center text-red-700">🛒 Sepetim</h1>
+
+        {items.length === 0 ? (
+          <div className="text-center py-10">
+            <p className="text-gray-600 mb-4">Sepetiniz şu anda boş.</p>
+            <Link
+              href="/menu"
+              className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition"
+            >
+              Menüye Geri Dön
+            </Link>
+>>>>>>> 1f5b1163 (İlk yükleme)
           </div>
-        </div>
-      </header>
+        ) : (
+          <>
+            <ul className="divide-y divide-gray-200">
+              {items.map((item) => (
+                <li
+                  key={item.id}
+                  className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4"
+                >
+                  <div className="mb-2 sm:mb-0">
+                    <h2 className="font-semibold text-gray-800">{item.name}</h2>
+                    <p className="text-sm text-gray-500">{item.price} ₺</p>
+                  </div>
+                  <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
+                    <button
+                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                      className="bg-gray-200 text-gray-700 w-8 h-8 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center font-bold"
+                      aria-label="Azalt"
+                    >
+                      −
+                    </button>
+                    <span className="font-semibold w-8 text-center">{item.quantity}</span>
+                    <button
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      className="bg-gray-200 text-gray-700 w-8 h-8 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center font-bold"
+                      aria-label="Artır"
+                    >
+                      ＋
+                    </button>
+                    <button
+                      onClick={() => removeItem(item.id)}
+                      className="text-red-500 hover:text-red-700 ml-4 transition-colors"
+                      aria-label={`${item.name} ürününü kaldır`}
+                    >
+                      ✕
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
 
-      <div className="py-8 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl font-bold text-center mb-8">Sepetim</h1>
+            <div className="text-right mt-6 border-t pt-4">
+              <p className="text-xl font-bold text-red-700">
+                Toplam: {getTotalPrice()} ₺
+              </p>
+            </div>
 
+<<<<<<< HEAD
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Cart Items */}
             <div className="lg:col-span-2">
@@ -169,9 +239,51 @@ export default function CartPage() {
 
                 <Link href="/menu" className="w-full block text-center bg-gray-100 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-200">Alışverişe Devam Et</Link>
               </div>
+=======
+            <div className="mt-8 border-t pt-6">
+              <h3 className="text-lg font-semibold mb-4 text-gray-700">Sipariş Detayları</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <input
+                  type="text"
+                  placeholder="Masa No (isteğe bağlı)"
+                  value={masa}
+                  onChange={(e) => setMasa(e.target.value)}
+                  className="border rounded-lg px-4 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-red-500 transition"
+                />
+                <input
+                  type="text"
+                  placeholder="Adres (isteğe bağlı)"
+                  value={adres}
+                  onChange={(e) => setAdres(e.target.value)}
+                  className="border rounded-lg px-4 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-red-500 transition"
+                />
+                <input
+                  type="text"
+                  placeholder="Sipariş Notu (isteğe bağlı)"
+                  value={not}
+                  onChange={(e) => setNot(e.target.value)}
+                  className="border rounded-lg px-4 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-red-500 transition"
+                />
+              </div>
             </div>
-          </div>
-        </div>
+
+            <div className="flex flex-col sm:flex-row justify-between mt-8 gap-4">
+              <button
+                onClick={() => sendOrderToWhatsApp(masa, adres, not)}
+                className="bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-lg font-medium w-full sm:w-auto shadow-md hover:shadow-lg transition-all transform hover:scale-105"
+              >
+                💬 WhatsApp ile Sipariş Ver
+              </button>
+              <button
+                onClick={clearCart}
+                className="bg-gray-300 hover:bg-gray-400 text-gray-800 py-3 px-6 rounded-lg font-medium w-full sm:w-auto transition-colors"
+              >
+                🧹 Sepeti Temizle
+              </button>
+>>>>>>> 1f5b1163 (İlk yükleme)
+            </div>
+          </>
+        )}
       </div>
 
       {/* ----------  ADRES + TELEFON + ÖDEME FORMU  ---------- */}
