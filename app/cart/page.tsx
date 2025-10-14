@@ -7,7 +7,7 @@ import { useCart } from '../../components/CartProvider';
 type FormData = { address: string; phone: string; payment: 'K.K.' | 'Nakit' };
 
 export default function CartPage() {
-  const { items, updateQuantity, removeItem, getTotalPrice, clearCart, sendOrderToWhatsApp } = useCart();
+  const { items, updateQuantity, removeItem, getTotalPrice, clearCart } = useCart();
   const [isClient, setIsClient] = useState(false);
   const [form, setForm] = useState<FormData>({ address: '', phone: '', payment: 'Nakit' });
 
@@ -19,9 +19,32 @@ export default function CartPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // WhatsApp sipariş gönderme fonksiyonu: sipariş işletme numarasına gider
+  const sendOrderToWhatsApp = (address?: string, phone?: string, notes?: string) => {
+    const orderItemsText = items
+      .map(
+        (item) =>
+          `${item.name} x${item.quantity} - ${(item.price * item.quantity).toFixed(0)}₺`
+      )
+      .join('\n');
+
+    const totalPriceText = `\n\nToplam: ${getTotalPrice().toFixed(0)}₺`;
+
+    let message = `Merhaba! Borcan Kebap'tan sipariş vermek istiyorum:\n\n${orderItemsText}${totalPriceText}`;
+
+    if (address) message += `\n\nAdres: ${address}`;
+    if (phone) message += `\nTelefon: ${phone}`;
+    if (notes) message += `\nNot: ${notes}`;
+
+    const phoneNumber = '905455093462'; // İşletmenin WhatsApp numarası (sabit)
+    const encodedMessage = encodeURIComponent(message);
+
+    const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    window.open(url, '_blank');
+  };
+
   const handleCheckout = () => {
     if (items.length === 0) return;
-    
     sendOrderToWhatsApp(form.address, form.phone);
     clearCart();
   };
