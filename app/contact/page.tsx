@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import OrderChannelDropdown from '../../components/OrderChannelDropdown';
+import Image from 'next/image';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -23,7 +23,7 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulated form submission
+    // Form gönderimini simüle et
     setTimeout(() => {
       setSubmitMessage({
         type: 'success',
@@ -58,104 +58,24 @@ export default function ContactPage() {
   };
 
   const orderChannels = [
-    { 
-      id: 'yemeksepeti', 
-      name: 'Yemek Sepeti', 
-      icon: 'ri-restaurant-line', 
-      color: 'text-orange-600',
-      url: 'https://www.yemeksepeti.com/restaurant/kw28/borcan-kebap-pide-lahmacun-salonu'
-    },
-    { 
-      id: 'getir', 
-      name: 'Getir', 
-      icon: 'ri-truck-line', 
-      color: 'text-yellow-600',
-      url: 'https://getir.com/yemek/restoran/borcan-kebap-pide-lahmacun-salonu-mustafa-kemalpasa-mah-avcilar-istanbul/'
-    },
-    { 
-      id: 'trendyol', 
-      name: 'Trendyol Yemek', 
-      icon: 'ri-restaurant-line', 
-      color: 'text-purple-600',
-      url: 'https://tgoyemek.com/arama?searchQuery=borcan%20kebap'
-    },
-    { 
-      id: 'whatsapp', 
-      name: 'WhatsApp', 
-      icon: 'ri-whatsapp-line', 
+    {
+      id: 'whatsapp',
+      name: 'WhatsApp',
+      icon: 'ri-whatsapp-line',
       color: 'text-green-600',
-      url: 'https://wa.me/905455093462?text=Merhaba! Borcan Kebap\'tan sipariş vermek istiyorum.'
+      url: 'https://wa.me/905455093462?text=Merhaba! Borcan Kebap\'tan sipariş vermek istiyorum.',
     },
-    { 
-      id: 'phone', 
-      name: 'Telefon: 0212 423 3727', 
-      icon: 'ri-phone-line', 
+    {
+      id: 'phone',
+      name: 'Telefon: 0212 423 3727',
+      icon: 'ri-phone-line',
       color: 'text-blue-600',
-      url: 'tel:02124233727'
-    }
+      url: 'tel:02124233727',
+    },
   ];
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <Link href="/" className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-yellow-400 rounded-lg flex items-center justify-center font-bold text-black text-xl border-2 border-black">
-                  BK
-                </div>
-                <span className="text-2xl font-bold text-red-600 font-[`Pacifico`]">
-                  Borcan Kebap
-                </span>
-              </Link>
-            </div>
-            <nav className="hidden md:flex space-x-8">
-              <Link
-                href="/"
-                className="text-gray-700 hover:text-red-600 font-medium transition-colors cursor-pointer"
-              >
-                Ana Sayfa
-              </Link>
-              <Link
-                href="/menu"
-                className="text-gray-700 hover:text-red-600 font-medium transition-colors cursor-pointer"
-              >
-                Menü
-              </Link>
-              <Link
-                href="/about"
-                className="text-gray-700 hover:text-red-600 font-medium transition-colors cursor-pointer"
-              >
-                Hakkımızda
-              </Link>
-              <Link
-                href="/contact"
-                className="text-red-600 hover:text-red-700 font-medium transition-colors cursor-pointer"
-              >
-                İletişim
-              </Link>
-              <Link
-                href="/reviews"
-                className="text-gray-700 hover:text-red-600 font-medium transition-colors cursor-pointer"
-              >
-                Yorumlar
-              </Link>
-            </nav>
-            <div className="flex items-center space-x-4">
-              <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors font-medium whitespace-nowrap cursor-pointer">
-                Rezervasyon
-              </button>
-              <OrderChannelDropdown />
-              <button className="md:hidden w-6 h-6 flex items-center justify-center cursor-pointer">
-                <i className="ri-menu-line text-xl"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* Hero Section */}
       <section
         className="relative h-96 bg-cover bg-center"
@@ -409,14 +329,14 @@ export default function ContactPage() {
                 Sosyal Medya
               </h3>
               <div className="grid grid-cols-2 gap-4">
-                <button 
+                <button
                   onClick={() => window.open('https://www.facebook.com/profile.php?id=61579514506784&locale=tr_TR', '_blank')}
                   className="flex items-center justify-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
                 >
                   <i className="ri-facebook-fill text-2xl text-blue-600 mr-3"></i>
                   <span className="font-medium">Facebook</span>
                 </button>
-                <button 
+                <button
                   onClick={() => window.open('https://www.instagram.com/borcan_kebap_pide_lahmacun?utm_source=qr&igsh=d2twdW0yZ2FqaGJl', '_blank')}
                   className="flex items-center justify-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
                 >
@@ -446,24 +366,30 @@ export default function ContactPage() {
                   Rezervasyon Yap
                 </Link>
                 <div className="relative">
-                  <button 
+                  <button
                     onClick={handleOrderClick}
                     className="w-full bg-white text-red-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-pointer flex items-center justify-center"
                   >
                     <i className="ri-shopping-cart-line mr-2"></i>
                     Online Sipariş Ver
-                    <i className={`ri-arrow-down-s-line ml-2 transition-transform ${showOrderDropdown ? 'rotate-180' : ''}`}></i>
+                    <i
+                      className={`ri-arrow-down-s-line ml-2 transition-transform ${
+                        showOrderDropdown ? 'rotate-180' : ''
+                      }`}
+                    ></i>
                   </button>
-                  
+
                   {showOrderDropdown && (
                     <div className="absolute top-full left-0 right-0 mt-2 bg-white border rounded-lg shadow-lg z-10">
-                      {orderChannels.map(channel => (
+                      {orderChannels.map((channel) => (
                         <button
                           key={channel.id}
                           onClick={() => handleChannelClick(channel)}
                           className="w-full px-4 py-3 text-left hover:bg-gray-50 flex items-center space-x-3 first:rounded-t-lg last:rounded-b-lg cursor-pointer text-gray-800"
                         >
-                          <i className={`${channel.icon} ${channel.color} text-lg w-5 h-5 flex items-center justify-center`}></i>
+                          <i
+                            className={`${channel.icon} ${channel.color} text-lg w-5 h-5 flex items-center justify-center`}
+                          ></i>
                           <span>{channel.name}</span>
                         </button>
                       ))}
@@ -493,7 +419,7 @@ export default function ContactPage() {
           </div>
           <div className="h-96">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6360771.36045993!2d23.44249619999998!3d38.88177901825598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa0f19c1fd125%3A0xaf8c01d8d3b4cca7!2sBORCAN%20KEBAP!5e0!3m2!1str!2str!4v1756844318638!5m2!1str!2str"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.684813083507!2d28.69428587609204!3d41.03362141872166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14e0ae5c6c06a925%3A0xc3f1737e8c3b7a7c!2sBeyo%C4%9Flu%20Cad.%2C%20Parseller%2C%20Avc%C4%B1lar%2FIstanbul!5e0!3m2!1sen!2str!4v1709405629168!5m2!1sen!2str"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -504,7 +430,7 @@ export default function ContactPage() {
             ></iframe>
             <div className="p-4 text-center">
               <a
-                href="https://maps.app.goo.gl/munYF8UGpoW94CoW9"
+                href="https://www.google.com/maps/place/Borcan+Kebap+Pide+Lahmacun+Salonu/@41.0336214,28.6942859,17z/data=!3m1!4b1!4m6!3m5!1s0x14e0ae5c6c06a925:0xc3f1737e8c3b7a7c!8m2!3d41.0336214!4d28.6968608!16s%2Fg%2F11b3w4m_w1?entry=ttu"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-red-600 hover:underline"
@@ -515,174 +441,6 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4 flex items-center space-x-3">
-                <div className="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center font-bold text-black text-lg border-2 border-black">
-                  BK
-                </div>
-                <span className="font-[`Pacifico`]">Borcan Kebap</span>
-              </h3>
-              <p className="text-gray-400 mb-4">
-                Geleneksel Türk mutfağının eşsiz lezzetlerini modern sunum
-                ile buluşturuyoruz.
-              </p>
-              <div className="flex space-x-4">
-                <a
-                  href="https://www.facebook.com/profile.php?id=61579514506784&locale=tr_TR"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-colors"
-                >
-                  <i className="ri-facebook-fill text-lg"></i>
-                </a>
-                <a
-                  href="https://www.instagram.com/borcan_kebap_pide_lahmacun?utm_source=qr&igsh=d2twdW0yZ2FqaGJl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-600 rounded-full flex items-center justify-center cursor-pointer hover:from-purple-700 hover:via-pink-700 hover:to-orange-700 transition-all"
-                >
-                  <i className="ri-instagram-fill text-lg"></i>
-                </a>
-                <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-red-700 transition-colors">
-                  <i className="ri-twitter-fill text-sm"></i>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Hızlı Linkler</h4>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/menu"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer"
-                  >
-                    Menü
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer"
-                  >
-                    Hakkımızda
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer"
-                  >
-                    İletişim
-                  </Link>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer"
-                  >
-                    Rezervasyon
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Online Sipariş</h4>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="https://www.yemeksepeti.com/restaurant/kw28/borcan-kebap-pide-lahmacun-salonu"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center"
-                  >
-                    <i className="ri-restaurant-line mr-2 text-orange-600"></i>
-                    Yemeksepeti
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://getir.com/yemek/restoran/borcan-kebap-pide-lahmacun-salonu-mustafa-kemalpasa-mah-avcilar-istanbul/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center"
-                  >
-                    <i className="ri-truck-line mr-2 text-orange-600"></i>
-                    Getir
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://tgoyemek.com/arama?searchQuery=borcan%20kebap"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center"
-                  >
-                    <i className="ri-restaurant-line mr-2 text-purple-600"></i>
-                    Trendyol Yemek
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://wa.me/905455093462?text=Merhaba! Borcan Kebap'tan sipariş vermek istiyorum."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center"
-                  >
-                    <i className="ri-whatsapp-line mr-2 text-green-600"></i>
-                    WhatsApp
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-lg font-semibold mb-4">İletişim</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li className="flex items-center">
-                  <i className="ri-phone-line mr-2"></i>
-                  0212 423 3727
-                </li>
-                <li className="flex items-center">
-                  <i className="ri-phone-line mr-2"></i>
-                  0545 509 3462
-                </li>
-                <li className="flex items-center">
-                  <i className="ri-whatsapp-line mr-2"></i>
-                  0545 509 3462 (WhatsApp)
-                </li>
-                <li className="flex items-center">
-                  <i className="ri-mail-line mr-2"></i>
-                  info@borcankebap.com
-                </li>
-                <li className="flex items-start">
-                  <i className="ri-map-pin-line mr-2 mt-1"></i>
-                  <a
-                    href="https://maps.app.goo.gl/rQdBMCqk5GMwdVSM7"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer"
-                  >
-                    Beyoğlu Caddesi No: 35/A
-                    <br />
-                    Parseller, Avcılar/İstanbul
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Borcan Kebap. Tüm hakları saklıdır.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

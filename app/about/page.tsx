@@ -1,60 +1,16 @@
 'use client';
 
 import Link from 'next/link';
-import OrderChannelDropdown from '../../components/OrderChannelDropdown';
+import Image from 'next/image';
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <Link href="/" className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-yellow-400 rounded-lg flex items-center justify-center font-bold text-black text-xl border-2 border-black">
-                  BK
-                </div>
-                <span className="text-2xl font-bold text-red-600 font-[`Pacifico`]">
-                  Borcan Kebap
-                </span>
-              </Link>
-            </div>
-            <nav className="hidden md:flex space-x-8">
-              <Link href="/" className="text-gray-700 hover:text-red-600 font-medium transition-colors cursor-pointer">
-                Ana Sayfa
-              </Link>
-              <Link href="/menu" className="text-gray-700 hover:text-red-600 font-medium transition-colors cursor-pointer">
-                Menü
-              </Link>
-              <Link href="/about" className="text-red-600 hover:text-red-700 font-medium transition-colors cursor-pointer">
-                Hakkımızda
-              </Link>
-              <Link href="/contact" className="text-gray-700 hover:text-red-600 font-medium transition-colors cursor-pointer">
-                İletişim
-              </Link>
-              <Link href="/reviews" className="text-gray-700 hover:text-red-600 font-medium transition-colors cursor-pointer">
-                Yorumlar
-              </Link>
-            </nav>
-            <div className="flex items-center space-x-4">
-              <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors font-medium whitespace-nowrap cursor-pointer">
-                Rezervasyon
-              </button>
-              <OrderChannelDropdown />
-              <button className="md:hidden w-6 h-6 flex items-center justify-center cursor-pointer">
-                <i className="ri-menu-line text-xl"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* Hero Section */}
       <section
         className="relative h-96 bg-cover bg-center"
         style={{
-          backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/c566b1f24db82f2807adac6acc67e5f3e2474a67/Borcan-kebap-personeli.png')`,
+          backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/Borcan-kebap-personeli.png')`,
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -73,7 +29,7 @@ export default function AboutPage() {
             <div>
               <h2 className="text-4xl font-bold text-gray-800 mb-6">Hikayemiz</h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                1985 yılından bu yana İstanbul&apos;un Avcılar ilçesinde hizmet veren Borcan Kebap,
+                1985 yılından bu yana İstanbul'un Avcılar ilçesinde hizmet veren Borcan Kebap,
                 geleneksel Türk mutfağının eşsiz lezzetlerini modern sunum ile buluşturuyor. Ailemizin 40
                 yıllık deneyimi ve özel tariflerimizle her lokmada otantik tatları yaşayacaksınız.
               </p>
@@ -104,7 +60,7 @@ export default function AboutPage() {
             <div
               className="w-full h-96 bg-cover bg-center rounded-lg shadow-lg"
               style={{
-                backgroundImage: `url('https://readdy.ai/api/search-image?query=Traditional%20Turkish%20chef%20preparing%20kebab%20in%20authentic%20restaurant%20kitchen%2C%20skilled%20cook%20grilling%20meat%2C%20professional%20kitchen%20setup%2C%20warm%20lighting%2C%20authentic%20cooking%20process%2C%20Turkish%20cuisine%20preparation%2C%20chef%20in%20action%2C%20experienced%20master%20chef&width=600&height=400&seq=chef-about&orientation=landscape')`,
+                backgroundImage: `url('https://readdy.ai/api/search-image?query=Traditional%20Turkish%20chef%20preparing%20kebab%20in%20authentic%20restaurant%20kitchen%2C%20skilled%20cook%20grilling%20meat%2C%20professional%20kitchen%20setup%2C%20warm%20lighting%2C%20spacious%20dining%20room%2C%20professional%20restaurant%20photography%2C%20welcoming%20atmosphere&width=600&height=400&seq=chef-about&orientation=landscape')`,
               }}
             ></div>
           </div>
@@ -195,19 +151,11 @@ export default function AboutPage() {
               <div
                 className="w-24 h-24 bg-cover bg-center rounded-full mx-auto mb-4"
                 style={{
-<<<<<<< HEAD
-                  backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/ahmet-deniz .jpg')`,
-                }}
-              ></div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Oktay Deniz</h3>
-              <p className="text-red-600 font-medium mb-3">Ahmet Deniz</p>
-=======
                   backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/oktay-deniz .jpg')`,
                 }}
               ></div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">Oktay Deniz</h3>
               <p className="text-red-600 font-medium mb-3">Restoran Müdürü</p>
->>>>>>> 1f5b1163 (İlk yükleme)
               <p className="text-gray-600 text-sm">
                 15 yıldır misafir ağırlama konusunda uzman.
                 Müşteri memnuniyeti ve servis kalitesi sorumlusu.
@@ -222,7 +170,7 @@ export default function AboutPage() {
             <div>
               <h2 className="text-4xl font-bold text-gray-800 mb-6">Konumumuz</h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                İstanbul&apos;un Avcılar ilçesinde, Beyoğlu Caddesinde yer alan restoranımız
+                İstanbul'un Avcılar ilçesinde, Beyoğlu Caddesinde yer alan restoranımız
                 kolay ulaşım imkanları ile misafirlerini ağırlıyor. Geniş ve ferah salonumuz
                 120 kişilik kapasitesi ile aileniz ve arkadaşlarınızla keyifli vakit geçirmeniz
                 için ideal bir ortam sunuyor.
@@ -297,7 +245,7 @@ export default function AboutPage() {
                 <i className="ri-star-line text-2xl text-blue-800"></i>
               </div>
               <h3 className="text-lg font-semibold mb-2">5 Yıldız Değerlendirme</h3>
-              <p className="text-red-100 text-sm">TripAdvisor ve Google&apos;da 4.8+ puan ile mükemmellik sertifikası</p>
+              <p className="text-red-100 text-sm">TripAdvisor ve Google'da 4.8+ puan ile mükemmellik sertifikası</p>
             </div>
           </div>
         </section>
@@ -486,7 +434,7 @@ export default function AboutPage() {
           </div>
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Borcan Kebap. Tüm hakları saklıdır.</p>
+            <p>© 2024 Borcan Kebap. Tüm hakları saklıdır.</p>
           </div>
         </div>
       </footer>

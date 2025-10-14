@@ -12,12 +12,15 @@ export interface ContentData {
   socialMedia?: {
     facebook?: string;
     instagram?: string;
+    twitter?: string;
   };
   orderChannels?: any;
+  menuItems?: any;
   allMenuItems?: any;
+  aboutStats?: any;
+  features?: any;
 }
 
-<<<<<<< HEAD
 const defaultAllMenuItems = [
   // Kebaplar & Izgaralar (12 adet)
   {
@@ -48,14 +51,14 @@ const defaultAllMenuItems = [
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Beyti%20Sarma.jpg",
   },
   {
-  id: "k-04",
-  name: "İskender Kebap",
-  description: "Yoğurt ve tereyağı soslu özel kebap",
-  price: 500,
-  category: "Kebaplar & Izgaralar" as const,
-  rating: 5,
-  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/iskender%20Kebap.jpeg"
-},
+    id: "k-04",
+    name: "İskender Kebap",
+    description: "Yoğurt ve tereyağı soslu özel kebap",
+    price: 500,
+    category: "Kebaplar & Izgaralar" as const,
+    rating: 5,
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/iskender%20Kebap.jpeg"
+  },
   {
     id: "k-05",
     name: "Et Şiş",
@@ -108,7 +111,7 @@ const defaultAllMenuItems = [
     price: 300,
     category: "Kebaplar & Izgaralar" as const,
     rating: 4,
-    image: "https://readdy.ai/api/search-image?query=Turkish%20grilled%20chicken%20wings%20marinated%20with%20spices%20on%20white%20plate%20with%20garnish%20professional%20food%20photography&width=400&height=300&seq=kanat1&orientation=landscape",
+    image: "https://readdy.ai/api/search-image?query=Turkish%20grilled%20chicken%20wings%20marinated%20with%20spices%20on%20white%20plate%20professional%20food%20photography&width=400&height=300&seq=kanat1&orientation=landscape",
   },
   {
     id: "k-11",
@@ -598,8 +601,6 @@ const defaultContent: ContentData = {
   }
 };
 
-=======
->>>>>>> 1f5b1163 (İlk yükleme)
 export function useContent() {
   const [content, setContent] = useState<ContentData>({
     restaurantName: "Borcan Kebap",

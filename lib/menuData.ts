@@ -156,22 +156,14 @@ export const MENU_ITEMS: MenuItem[] = [
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/adana-durum.jpg",
     rating: 5,
   },
-  {
-    id: "dr-02",
-    name: "Adana Dürüm (Alternatif)",
-    price: 250,
-    description: "Adana dürüm alternatif görsel.",
-    category: "Dürüm",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Adanadurum.jpg",
-    rating: 5,
-  },
+ 
   {
     id: "dr-03",
     name: "Urfa Dürüm",
     price: 250,
     description: "Lavaşta urfa kebap.",
     category: "Dürüm",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/urfa-durum.jpeg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/adana-durum.jpg",
     rating: 4,
   },
   {
@@ -399,15 +391,7 @@ export const MENU_ITEMS: MenuItem[] = [
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Ku%C5%9Fba%C5%9F%C4%B1l%C4%B1-Pide.jpg",
     rating: 5,
   },
-  {
-    id: "p-12",
-    name: "Kuşbaşılı Pide (Alternatif)",
-    price: 450,
-    description: "Kuşbaşılı pide için alternatif görsel.",
-    category: "Pide & Lahmacun",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Kusbasili-Pide.jpg",
-    rating: 5,
-  },
+ 
   {
     id: "p-13",
     name: "Kuşbaşı Kaşarlı Pide",
@@ -417,6 +401,7 @@ export const MENU_ITEMS: MenuItem[] = [
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Kusbas%C4%B1-Kasarl%C4%B1-Pide.jpg",
     rating: 5,
   },
+
   {
     id: "c-01",
     name: "Mercimek Çorbası",
