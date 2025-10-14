@@ -29,7 +29,7 @@ export default function AboutPage() {
             <div>
               <h2 className="text-4xl font-bold text-gray-800 mb-6">Hikayemiz</h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                1985 yılından bu yana İstanbul'un Avcılar ilçesinde hizmet veren Borcan Kebap,
+                1985 yılından bu yana İstanbul&apos;un Avcılar ilçesinde hizmet veren Borcan Kebap,
                 geleneksel Türk mutfağının eşsiz lezzetlerini modern sunum ile buluşturuyor. Ailemizin 40
                 yıllık deneyimi ve özel tariflerimizle her lokmada otantik tatları yaşayacaksınız.
               </p>
@@ -170,7 +170,7 @@ export default function AboutPage() {
             <div>
               <h2 className="text-4xl font-bold text-gray-800 mb-6">Konumumuz</h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                İstanbul'un Avcılar ilçesinde, Beyoğlu Caddesinde yer alan restoranımız
+                İstanbul&apos;un Avcılar ilçesinde, Beyoğlu Caddesinde yer alan restoranımız
                 kolay ulaşım imkanları ile misafirlerini ağırlıyor. Geniş ve ferah salonumuz
                 120 kişilik kapasitesi ile aileniz ve arkadaşlarınızla keyifli vakit geçirmeniz
                 için ideal bir ortam sunuyor.
@@ -245,7 +245,7 @@ export default function AboutPage() {
                 <i className="ri-star-line text-2xl text-blue-800"></i>
               </div>
               <h3 className="text-lg font-semibold mb-2">5 Yıldız Değerlendirme</h3>
-              <p className="text-red-100 text-sm">TripAdvisor ve Google'da 4.8+ puan ile mükemmellik sertifikası</p>
+              <p className="text-red-100 text-sm">TripAdvisor ve Google&apos;da 4.8+ puan ile mükemmellik sertifikası</p>
             </div>
           </div>
         </section>
@@ -385,7 +385,7 @@ export default function AboutPage() {
                 </li>
                 <li>
                   <a
-                    href="https://wa.me/905455093462?text=Merhaba!%20Borcan%20Kebap'tan%20sipariş%20vermek%20istiyorum."
+                    href="https://wa.me/905455093462?text=Merhaba!%20Borcan%20Kebap&apos;tan%20sipariş%20vermek%20istiyorum."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center"
