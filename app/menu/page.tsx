@@ -1,24 +1,13 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
 import { useCart } from "@/components/CartProvider";
 import { useContent } from "@/hooks/useContent";
-
-// Menü öğesi için tip tanımı
-interface MenuItem {
-    id: string;
-    name: string;
-    price: number;
-    description: string;
-    category: string;
-    image?: string;
-}
+import Image from "next/image"; // ✅ Image'ı import ettik
 
 export default function MenuPage() {
     const { content } = useContent();
-    const { addItem, getTotalItems } = useCart();
+    const { addItem } = useCart();
     const [activeCategory, setActiveCategory] = useState("all");
     const [isClient, setIsClient] = useState(false);
 
@@ -44,7 +33,7 @@ export default function MenuPage() {
 
     const handleAddToCart = (item: any) => {
         addItem({
-            id: item.id, // Corrected here
+            id: item.id,
             name: item.name,
             price: item.price,
         });
@@ -60,7 +49,7 @@ export default function MenuPage() {
                 <h1 className="text-4xl font-bold text-center text-red-600 mb-8">
                     Menü
                 </h1>
-                
+
                 {/* Category Filter */}
                 <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
                     {categories.map((category) => (

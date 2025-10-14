@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, Suspense } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import OrderChannelDropdown from '../../components/OrderChannelDropdown';
+
 
 // Mock data for reviews since we don't have the lib file
 interface GoogleReview {
@@ -114,7 +114,6 @@ function StarRating({ rating }: { rating: number }) {
 
 export default function ReviewsPage() {
   const [showOrderDropdown, setShowOrderDropdown] = useState(false);
-
   const handleOrderClick = () => {
     setShowOrderDropdown(!showOrderDropdown);
   };

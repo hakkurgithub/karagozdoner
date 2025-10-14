@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { useCart } from "./CartProvider";
+import { useContent } from "../hooks/useContent";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
 
 export default function Navbar() {
+  const { content } = useContent();
   const { getTotalItems } = useCart();
   const [itemCount, setItemCount] = useState(0);
   const [animate, setAnimate] = useState(false);
@@ -14,16 +16,15 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const count = getTotalItems ? getTotalItems() : 0;
+    const count = getTotalItems();
     if (count !== itemCount) {
       setAnimate(true);
       setTimeout(() => setAnimate(false), 300);
       setItemCount(count);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getTotalItems, itemCount]);
 
-  const phoneNumber = "905455093462"; // Doğru işletme telefonu
+  const phoneNumber = content.phone.replace(/[^0-9]/g, "");
   const whatsappMessage = encodeURIComponent("Merhaba, sipariş vermek istiyorum.");
 
   return (
@@ -33,7 +34,7 @@ export default function Navbar() {
           href="/"
           className="text-2xl font-bold tracking-wide hover:text-yellow-300 transition"
         >
-          Borcan Kebap
+          {content.restaurantName}
         </Link>
 
         <div className="hidden md:flex space-x-6 items-center">
@@ -42,7 +43,6 @@ export default function Navbar() {
           <NavLink href="/about" label="Hakkımızda" active={pathname === "/about"} />
           <NavLink href="/contact" label="İletişim" active={pathname === "/contact"} />
 
-          {/* 🛒 Sepetim */}
           <Link
             href="/cart"
             className={`relative bg-yellow-400 text-red-900 px-4 py-2 rounded-full font-semibold hover:bg-yellow-300 transition ${
@@ -58,7 +58,6 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Hamburger */}
         <button
           className="md:hidden text-white text-3xl focus:outline-none"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -67,7 +66,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobil Menü */}
       {menuOpen && (
         <div className="md:hidden bg-red-800 text-white px-4 py-4 space-y-4 pb-20">
           <MobileLink href="/" label="Ana Sayfa" setMenuOpen={setMenuOpen} />
@@ -92,117 +90,6 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* 📞 ve 💬 Mobil Sabit Butonlar */}
-      <div className="fixed bottom-4 left-0 right-0 flex justify-center space-x-4 md:hidden z-50">
-        <a
-          href={`tel:${phoneNumber}`}
-          className="bg-green-600 text-white flex items-center gap-2 px-5 py-3 rounded-full shadow-lg hover:bg-green-500 transition"
-        >
-          <Phone size={18} /> Ara
-        </a>
-
-        <a
-          href={`https://wa.me/${phoneNumber}?text=${whatsappMessage}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-emerald-500 text-white flex items-center gap-2 px-5 py-3 rounded-full shadow-lg hover:bg-emerald-400 transition"
-        >
-          <MessageCircle size={18} /> WhatsApp
-        </a>
-      </div>
-    </nav>
-  );
-}
-
-function NavLink({ href, label, active }: { href: string; label: string; active: boolean }) {
-  return (
-    <Link
-      href={href}
-      className={`hover:text-yellow-300 transition ${
-        active ? "text-yellow-300 font-semibold" : ""
-      }`}
-    >
-      {label}
-    </Link>
-  );
-}
-
-function MobileLink({
-  href,
-  label,
-  setMenuOpen,
-}: {
-  href: string;
-  label: string;
-  setMenuOpen: (open: boolean) => void;
-}) {
-  return (
-    <Link
-      href={href}
-      onClick={() => setMenuOpen(false)}
-      className="block hover:text-yellow-300 transition"
-    >
-      {label}
-    </Link>
-  );
-}
-        <div className="hidden md:flex space-x-6 items-center">
-          <NavLink href="/" label="Ana Sayfa" active={pathname === "/"} />
-          <NavLink href="/menu" label="Menü" active={pathname === "/menu"} />
-          <NavLink href="/about" label="Hakkımızda" active={pathname === "/about"} />
-          <NavLink href="/contact" label="İletişim" active={pathname === "/contact"} />
-
-          {/* 🛒 Sepetim */}
-          <Link
-            href="/cart"
-            className={`relative bg-yellow-400 text-red-900 px-4 py-2 rounded-full font-semibold hover:bg-yellow-300 transition ${
-              animate ? "scale-110 transition-transform" : ""
-            }`}
-          >
-            🛒 Sepetim
-            {itemCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                {itemCount}
-              </span>
-            )}
-          </Link>
-        </div>
-
-        {/* Hamburger */}
-        <button
-          className="md:hidden text-white text-3xl focus:outline-none"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-
-      {/* Mobil Menü */}
-      {menuOpen && (
-        <div className="md:hidden bg-red-800 text-white px-4 py-4 space-y-4 pb-20">
-          <MobileLink href="/" label="Ana Sayfa" setMenuOpen={setMenuOpen} />
-          <MobileLink href="/menu" label="Menü" setMenuOpen={setMenuOpen} />
-          <MobileLink href="/about" label="Hakkımızda" setMenuOpen={setMenuOpen} />
-          <MobileLink href="/contact" label="İletişim" setMenuOpen={setMenuOpen} />
-
-          <Link
-            href="/cart"
-            onClick={() => setMenuOpen(false)}
-            className={`relative bg-yellow-400 text-red-900 px-4 py-2 rounded-full font-semibold hover:bg-yellow-300 transition block text-center ${
-              animate ? "scale-110 transition-transform" : ""
-            }`}
-          >
-            🛒 Sepetim
-            {itemCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                {itemCount}
-              </span>
-            )}
-          </Link>
-        </div>
-      )}
-
-      {/* 📞 ve 💬 Mobil Sabit Butonlar */}
       <div className="fixed bottom-4 left-0 right-0 flex justify-center space-x-4 md:hidden z-50">
         <a
           href={`tel:${phoneNumber}`}

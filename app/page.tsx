@@ -12,7 +12,7 @@ import { adminConfig } from '@/lib/admin';
 
 export default function Home() {
   const { content } = useContent();
-  const { addItem, getTotalItems } = useCart();
+  const { addItem } = useCart();
   const [showReservationModal, setShowReservationModal] = useState(false);
   const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
@@ -27,7 +27,12 @@ export default function Home() {
   };
 
   const handleAdminClick = () => {
-    setShowAdminPanel(true);
+    const password = prompt("Yönetici paneline erişim için şifreyi girin:");
+    if (password === adminConfig.password) {
+      setShowAdminPanel(true);
+    } else {
+      alert("Hatalı şifre. Lütfen tekrar deneyin.");
+    }
   };
 
   if (!isClient) {
@@ -36,10 +41,7 @@ export default function Home() {
 
   const popularItems = (content.allMenuItems || []).slice(0, 4);
 
-  // Hakkımızda metni için yedek değer
-  const aboutText =
-    content.aboutText ||
-    "Borcan Kebap, 1985 yılından beri geleneksel Türk mutfağının eşsiz lezzetlerini sunmaktadır. Aileden gelen 40 yıllık deneyimimizle, her yemeğimizde kaliteyi ve tazeliği hissedersiniz.";
+  const aboutText = content.aboutText || "Borcan Kebap, 1985 yılından beri geleneksel Türk mutfağının eşsiz lezzetlerini sunmaktadır. Aileden gelen 40 yıllık deneyimimizle, her yemeğimizde kaliteyi ve tazeliği hissedersiniz.";
 
   return (
     <div className="bg-gray-50 text-gray-800">
@@ -119,13 +121,12 @@ export default function Home() {
       {/* Hakkımızda Section */}
       <section className="bg-white py-16 px-4">
         <div className="container mx-auto flex flex-col md:flex-row items-center gap-12">
-          <div className="md:w-1/2 relative h-[350px] rounded-xl overflow-hidden shadow-lg flex items-center justify-center bg-gray-100">
-            {/* Burada görseli doğrudan ekliyoruz */}
-            <img
-              src="https://raw.githubusercontent.com/hakkurgithub/images/main/Borcan-kebap-personeli.png"
-              alt="Borcan Kebap Personeli"
-              className="rounded-lg shadow-md max-h-[330px] object-contain mx-auto"
-              style={{ background: "#fff" }}
+          <div className="md:w-1/2 relative h-[350px] rounded-xl overflow-hidden shadow-lg">
+            <Image
+              src="/images/about.jpg"
+              alt="Hakkımızda"
+              fill
+              className="object-cover"
             />
           </div>
           <div className="md:w-1/2">
