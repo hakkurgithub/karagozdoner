@@ -17,27 +17,4 @@ jobs:
         with:
           node-version: '18'
       - run: npm install
-<<<<<<< HEAD
-=======
-      - run: npm run build
-      name: Node.js Build
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-      - run: npm install
->>>>>>> 1f5b1163 (İlk yükleme)
       - run: npm run build
