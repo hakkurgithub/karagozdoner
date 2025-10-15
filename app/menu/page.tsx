@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 import { useCart } from "@/components/CartProvider";
 import { useContent } from "@/hooks/useContent";
-import Image from "next/image"; // ✅ Image'ı import ettik
+import Image from "next/image";
 
 export default function MenuPage() {
     const { content } = useContent();
-    const { addItem } = useCart();
+    const { addItem, items } = useCart(); // ✅ Sepet içeriğini de alıyoruz
     const [activeCategory, setActiveCategory] = useState("all");
     const [isClient, setIsClient] = useState(false);
 
@@ -69,36 +69,48 @@ export default function MenuPage() {
 
                 {/* Menu Items Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredItems?.map((item: any) => (
-                        <div
-                            key={item.id}
-                            className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover:shadow-2xl transition-shadow duration-300"
-                        >
-                            <div className="relative w-full h-48">
-                                <Image
-                                    src={item.image}
-                                    alt={item.name}
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                            <div className="p-5 flex-1 flex flex-col">
-                                <h3 className="text-xl font-semibold mb-2">{item.name}</h3>
-                                <p className="text-gray-600 text-sm flex-1">{item.description}</p>
-                                <div className="flex justify-between items-center mt-4">
-                                    <span className="text-2xl font-bold text-red-600">
-                                        {item.price}₺
-                                    </span>
-                                    <button
-                                        onClick={() => handleAddToCart(item)}
-                                        className="bg-red-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors"
-                                    >
-                                        <i className="ri-shopping-cart-fill mr-2"></i>Ekle
-                                    </button>
+                    {filteredItems?.map((item: any) => {
+                        // ✅ Sepette bu ürünün olup olmadığını kontrol et
+                        const cartItem = items.find(cartItem => cartItem.id === item.id);
+                        
+                        return (
+                            <div
+                                key={item.id}
+                                className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover:shadow-2xl transition-shadow duration-300"
+                            >
+                                <div className="relative w-full h-48">
+                                    <Image
+                                        src={item.image}
+                                        alt={item.name}
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                                <div className="p-5 flex-1 flex flex-col">
+                                    <h3 className="text-xl font-semibold mb-2">{item.name}</h3>
+                                    <p className="text-gray-600 text-sm flex-1">{item.description}</p>
+                                    <div className="flex justify-between items-center mt-4">
+                                        <span className="text-2xl font-bold text-red-600">
+                                            {item.price}₺
+                                        </span>
+                                        <div className="relative">
+                                            <button
+                                                onClick={() => handleAddToCart(item)}
+                                                className="bg-red-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors"
+                                            >
+                                                <i className="ri-shopping-cart-fill mr-2"></i>Ekle
+                                            </button>
+                                            {cartItem && (
+                                                <span className="absolute -top-2 -right-2 bg-yellow-400 text-red-900 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                                                    {cartItem.quantity}
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </div>
