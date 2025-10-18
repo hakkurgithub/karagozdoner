@@ -16,3 +16,8 @@ out/
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Backup ve geçici dosyalar
+backup_old_files/
+*.backup
+*.old
