@@ -3,12 +3,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { useContent } from '@/hooks/useContent';
-import { useCart } from '@/components/CartProvider';
-import WhatsAppOrderModal from '@/components/WhatsAppOrderModal';
-import ReservationModal from '@/components/ReservationModal';
-import AdminPanel from '@/components/AdminPanel';
-import { adminConfig } from '@/lib/admin';
+import { useContent } from '../hooks/useContent';
+import { useCart } from '../components/CartProvider';
+import WhatsAppOrderModal from '../components/WhatsAppOrderModal';
+import ReservationModal from '../components/ReservationModal';
+import AdminPanel from '../components/AdminPanel';
+import { adminConfig } from '../lib/admin';
 
 export default function Home() {
   const { content } = useContent();

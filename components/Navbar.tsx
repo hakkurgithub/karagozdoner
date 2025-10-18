@@ -5,14 +5,17 @@ import { useCart } from "./CartProvider";
 import { useContent } from "../hooks/useContent";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu, X, Phone, MessageCircle } from "lucide-react";
+import { Menu, X, Phone, MessageCircle, User, Settings } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 export default function Navbar() {
   const { content } = useContent();
   const { getTotalItems } = useCart();
+  const { data: session, status } = useSession();
   const [itemCount, setItemCount] = useState(0);
   const [animate, setAnimate] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -56,6 +59,65 @@ export default function Navbar() {
               </span>
             )}
           </Link>
+
+          {/* User Menu */}
+          {status === "loading" ? (
+            <div className="w-8 h-8 bg-white/20 rounded-full animate-pulse"></div>
+          ) : session ? (
+            <div className="relative">
+              <button
+                onClick={() => setUserMenuOpen(!userMenuOpen)}
+                className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-red-600 transition-colors"
+              >
+                <User size={20} />
+                <span className="text-sm">{session.user.name?.split(' ')[0]}</span>
+              </button>
+
+              {userMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg border py-2 z-50">
+                  <div className="px-3 py-2 border-b">
+                    <p className="text-sm font-medium">{session.user.name}</p>
+                    <p className="text-xs text-gray-600">{session.user.email}</p>
+                  </div>
+                  
+                  {session.user.role === 'manager' ? (
+                    <Link
+                      href="/manager"
+                      className="flex items-center space-x-2 px-3 py-2 hover:bg-gray-100 transition-colors"
+                      onClick={() => setUserMenuOpen(false)}
+                    >
+                      <Settings size={16} />
+                      <span className="text-sm">Yönetim Paneli</span>
+                    </Link>
+                  ) : (
+                    <Link
+                      href="/dashboard"
+                      className="flex items-center space-x-2 px-3 py-2 hover:bg-gray-100 transition-colors"
+                      onClick={() => setUserMenuOpen(false)}
+                    >
+                      <User size={16} />
+                      <span className="text-sm">Hesabım</span>
+                    </Link>
+                  )}
+                  
+                  <Link
+                    href="/api/auth/signout"
+                    className="flex items-center space-x-2 px-3 py-2 hover:bg-gray-100 transition-colors text-red-600"
+                  >
+                    <span className="text-sm">Çıkış</span>
+                  </Link>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link
+              href="/api/auth/signin"
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-red-700 rounded-lg font-semibold hover:bg-gray-100 hover:shadow-md transition-all duration-200 transform hover:scale-105"
+            >
+              <User size={18} />
+              <span>Giriş</span>
+            </Link>
+          )}
         </div>
 
         <button
@@ -87,6 +149,57 @@ export default function Navbar() {
               </span>
             )}
           </Link>
+
+          {/* Mobile User Menu */}
+          {status === "loading" ? (
+            <div className="w-full bg-white/20 rounded-lg p-3 animate-pulse text-center">
+              Yükleniyor...
+            </div>
+          ) : session ? (
+            <div className="space-y-2">
+              <div className="bg-red-700 p-3 rounded-lg">
+                <p className="font-medium">{session.user.name}</p>
+                <p className="text-sm text-red-200">{session.user.email}</p>
+              </div>
+              
+              {session.user.role === 'manager' ? (
+                <Link
+                  href="/manager"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center space-x-2 bg-white text-red-700 p-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                >
+                  <Settings size={18} />
+                  <span>Yönetim Paneli</span>
+                </Link>
+              ) : (
+                <Link
+                  href="/dashboard"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center space-x-2 bg-white text-red-700 p-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                >
+                  <User size={18} />
+                  <span>Hesabım</span>
+                </Link>
+              )}
+              
+              <Link
+                href="/api/auth/signout"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-center bg-red-600 text-white p-3 rounded-lg font-semibold hover:bg-red-500 transition-colors"
+              >
+                Çıkış Yap
+              </Link>
+            </div>
+          ) : (
+            <Link
+              href="/api/auth/signin"
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center justify-center space-x-2 bg-white text-red-700 p-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+            >
+              <User size={18} />
+              <span>Giriş Yap</span>
+            </Link>
+          )}
         </div>
       )}
 

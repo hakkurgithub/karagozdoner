@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { useCart } from "@/components/CartProvider";
-import { useContent } from "@/hooks/useContent";
+import { useCart } from "../../components/CartProvider";
+import { useContent } from "../../hooks/useContent";
 import Image from "next/image";
 
 export default function MenuPage() {

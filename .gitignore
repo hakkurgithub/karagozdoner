@@ -1,20 +1,18 @@
-# Dependencies
-node_modules/
+node_modules
 
-# Next.js build & cache
+# Ortam değişkenleri - güvenlik için GitHub'a yüklenmesin
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Next.js build çıktıları
 .next/
 out/
 
-# Env files (gizli)
-.env
-.env.*
+# Vercel
+.vercel
 
-# OS & logs & editor
-.DS_Store
-Thumbs.db
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-.vscode/
-.idea/
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts

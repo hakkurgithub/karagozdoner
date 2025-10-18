@@ -2,8 +2,9 @@
 import type { Metadata } from 'next';
 import { Inter, Pacifico } from 'next/font/google';
 import './globals.css';
-import { CartProvider } from '@/components/CartProvider';
-import Navbar from '@/components/Navbar';
+import { CartProvider } from '../components/CartProvider';
+import Navbar from '../components/Navbar';
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ['latin'] });
 const pacifico = Pacifico({
@@ -62,10 +63,12 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
-        <CartProvider>
-          <Navbar />
-          <main>{children}</main>
-        </CartProvider>
+        <SessionProvider>
+          <CartProvider>
+            <Navbar />
+            <main>{children}</main>
+          </CartProvider>
+        </SessionProvider>
       </body>
     </html>
   );
