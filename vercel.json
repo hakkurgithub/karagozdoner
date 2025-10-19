@@ -5,9 +5,9 @@
   "installCommand": "npm install",
   "functions": {
     "app/api/**/*.ts": {
-      "runtime": "nodejs", // Çalışma zamanının adını 'nodejs' olarak güncelledik
+      "runtime": "nodejs",
       "config": {
-        "runtime": "nodejs18.x" // İstediğimiz sürümü bu 'config' bloğuna taşıdık
+        "runtime": "nodejs18.x"
       }
     }
   },
