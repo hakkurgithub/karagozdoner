@@ -8,6 +8,7 @@ node_modules
 
 # Next.js build çıktıları
 .next/
+build/
 out/
 
 # Vercel

@@ -20,6 +20,10 @@ const nextConfig: NextConfig = {
   typescript: {
     // ignoreBuildErrors: true,
   },
+  // Vercel deployment için eklenen ayarlar
+  serverExternalPackages: ['@vercel/postgres'],
+  // Dosya yolu hatalarını çözmek için output directory değişikliği
+  distDir: 'build',
 };
 
 export default nextConfig;
