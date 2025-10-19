@@ -2,5 +2,19 @@
   "framework": "nextjs",
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "functions": {
+    "app/api/**/*.ts": {
+      "runtime": "nodejs", // Çalışma zamanının adını 'nodejs' olarak güncelledik
+      "config": {
+        "runtime": "nodejs18.x" // İstediğimiz sürümü bu 'config' bloğuna taşıdık
+      }
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
 }
