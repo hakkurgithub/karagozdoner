@@ -9,6 +9,14 @@ export default async function ManagerPage() {
   // if (session?.user?.role !== "manager") {
   //   redirect("/");
   // }
+  
+  // Mock session for testing without auth
+  const session = {
+    user: {
+      name: "Test Manager",
+      role: "manager"
+    }
+  };
 
   // Database connection and data fetching with proper error handling
   let allOrders: any[] = [];
