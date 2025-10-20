@@ -20,6 +20,7 @@
     "@auth/drizzle-adapter": "^1.11.0",
     "@supabase/supabase-js": "^2.39.3",
     "@vercel/postgres": "^0.10.0",
+    "dotenv": "^17.2.3",
     "drizzle-orm": "^0.44.6",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.545.0",
