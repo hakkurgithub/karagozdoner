@@ -1,26 +1,32 @@
 // app/login/page.tsx  
-import { signIn } from "@/lib/auth"
-import { redirect } from "next/navigation"
+"use client"
 
-async function loginDemo() {
-  "use server"
-  await signIn("credentials", { 
-    username: "demo", 
-    password: "demo",
-    redirectTo: "/dashboard"
-  })
-}
-
-async function loginManager() {
-  "use server"
-  await signIn("credentials", { 
-    username: "manager", 
-    password: "manager",
-    redirectTo: "/manager"
-  })
-}
+import { useRouter } from "next/navigation"
 
 export default function LoginPage() {
+  const router = useRouter()
+
+  const handleLogin = (type: "demo" | "manager") => {
+    // Client-side yönlendirme
+    const redirectUrl = type === "manager" ? "/manager" : "/dashboard"
+    
+    // NextAuth credential sağlayıcısına POST isteği
+    fetch("/api/auth/callback/credentials", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: type,
+        password: type,
+        redirect: false
+      })
+    }).then(() => {
+      router.push(redirectUrl)
+      router.refresh()
+    }).catch((err) => {
+      console.error("Login error:", err)
+    })
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full space-y-8 p-6">
@@ -38,23 +44,19 @@ export default function LoginPage() {
             <h3 className="font-semibold text-blue-900 mb-4">Demo Hesaplar</h3>
             
             <div className="space-y-3">
-              <form action={loginDemo}>
-                <button 
-                  type="submit"
-                  className="w-full py-3 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
-                >
-                  👤 Demo Kullanıcı Girişi
-                </button>
-              </form>
+              <button 
+                onClick={() => handleLogin("demo")}
+                className="w-full py-3 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              >
+                👤 Demo Kullanıcı Girişi
+              </button>
               
-              <form action={loginManager}>
-                <button 
-                  type="submit"
-                  className="w-full py-3 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
-                >
-                  🔑 Manager (Admin) Girişi
-                </button>
-              </form>
+              <button 
+                onClick={() => handleLogin("manager")}
+                className="w-full py-3 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+              >
+                🔑 Manager (Admin) Girişi
+              </button>
             </div>
 
             <div className="mt-4 text-sm text-blue-800 space-y-1">
@@ -65,7 +67,6 @@ export default function LoginPage() {
 
           <div className="text-center text-xs text-gray-500">
             <p>Test amaçlı demo hesaplar</p>
-            <p>Gerçek üretim ortamında kaldırılmalıdır</p>
           </div>
         </div>
       </div>
