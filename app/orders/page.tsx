@@ -1,7 +1,7 @@
-// app/(dashboard)/orders/page.tsx
-import { auth } from "../../../lib/auth";
+// app/orders/page.tsx
+import { auth } from "../../lib/auth";
 import { redirect } from "next/navigation";
-import { getUserOrders } from "../../../lib/products";
+import { getUserOrders } from "../../lib/products";
 
 export default async function OrdersPage() {
   const session = await auth();

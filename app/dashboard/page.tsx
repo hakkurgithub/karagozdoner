@@ -1,8 +1,8 @@
-// app/(dashboard)/dashboard/page.tsx
-import { auth } from "../../../lib/auth";
+// app/dashboard/page.tsx
+import { auth } from "../../lib/auth";
 import { redirect } from "next/navigation";
-import { getOrdersByUser } from "../../../lib/products";
-import { Order } from "../../../db/schema";
+import { getOrdersByUser } from "../../lib/products";
+import { Order } from "../../db/schema";
 
 export default async function DashboardPage() {
   const session = await auth();

@@ -1,7 +1,7 @@
-// app/(dashboard)/profile/page.tsx
-import { auth } from "../../../lib/auth";
+// app/profile/page.tsx
+import { auth } from "../../lib/auth";
 import { redirect } from "next/navigation";
-import { getUserOrders } from "../../../lib/products";
+import { getUserOrders } from "../../lib/products";
 import Link from "next/link";
 
 export default async function ProfilePage() {

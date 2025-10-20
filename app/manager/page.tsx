@@ -1,7 +1,7 @@
-// app/(manager)/manager/page.tsx
-import { auth } from "../../../lib/auth";
+// app/manager/page.tsx
+import { auth } from "../../lib/auth";
 import { redirect } from "next/navigation";
-import { getAllOrders, getAllProducts } from "../../../lib/products";
+import { getAllOrders, getAllProducts } from "../../lib/products";
 
 export default async function ManagerPage() {
   const session = await auth();
