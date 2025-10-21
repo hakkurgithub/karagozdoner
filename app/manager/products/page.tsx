@@ -9,35 +9,50 @@ import { redirect } from "next/navigation"
 async function updateProduct(formData: FormData) {
   "use server"
   
-  const id = parseInt(formData.get("id") as string)
-  const name = formData.get("name") as string
-  const price = parseInt(formData.get("price") as string) * 100 // TL to kuruş
-  const category = formData.get("category") as string
-  const description = formData.get("description") as string
-  
-  await db.update(products)
-    .set({ 
-      name, 
-      price, 
-      category,
-      description 
-    })
-    .where(eq(products.id, id))
-  
-  revalidatePath("/manager/products")
+  try {
+    const id = parseInt(formData.get("id") as string)
+    const name = formData.get("name") as string
+    const priceStr = formData.get("price") as string
+    const price = Math.round(parseFloat(priceStr) * 100) // TL to kuruş
+    const category = formData.get("category") as string
+    const description = formData.get("description") as string || ''
+    
+    console.log('✅ Updating product:', { id, name, price, category })
+    
+    await db.update(products)
+      .set({ 
+        name, 
+        price, 
+        category,
+        description 
+      })
+      .where(eq(products.id, id))
+    
+    console.log('✅ Product updated successfully:', id)
+    revalidatePath("/manager/products")
+  } catch (error) {
+    console.error('❌ Error updating product:', error)
+  }
 }
 
 async function toggleProductStatus(formData: FormData) {
   "use server"
   
-  const id = parseInt(formData.get("id") as string)
-  const currentStatus = formData.get("currentStatus") === "true"
-  
-  await db.update(products)
-    .set({ isActive: currentStatus ? 0 : 1 })
-    .where(eq(products.id, id))
-  
-  revalidatePath("/manager/products")
+  try {
+    const id = parseInt(formData.get("id") as string)
+    const currentStatus = formData.get("currentStatus") === "true"
+    
+    console.log('🔄 Toggling product status:', { id, currentStatus, newStatus: !currentStatus })
+    
+    await db.update(products)
+      .set({ isActive: currentStatus ? 0 : 1 })
+      .where(eq(products.id, id))
+    
+    console.log('✅ Product status toggled successfully:', id)
+    revalidatePath("/manager/products")
+  } catch (error) {
+    console.error('❌ Error toggling product status:', error)
+  }
 }
 
 export default async function ManagerProductsPage() {
