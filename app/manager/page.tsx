@@ -69,11 +69,21 @@ export default async function ManagerPage() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold text-gray-800">Yönetici Paneli</h1>
-      <p className="mt-2 text-gray-600">
-        Hoş geldiniz, {session.user.name}. Rolünüz: 
-        <span className="font-semibold text-blue-600 ml-1">{session.user.role}</span>
-      </p>
+      <div className="flex justify-between items-center mb-4">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-800">Yönetici Paneli</h1>
+          <p className="mt-2 text-gray-600">
+            Hoş geldiniz, {session.user.name}. Rolünüz: 
+            <span className="font-semibold text-blue-600 ml-1">{session.user.role}</span>
+          </p>
+        </div>
+        <a 
+          href="/manager/products" 
+          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold shadow-lg transition-colors"
+        >
+          📦 Ürünleri Düzenle
+        </a>
+      </div>
       
       {/* Database Status Indicator */}
       {dbError && (
