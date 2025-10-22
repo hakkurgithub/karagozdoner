@@ -16,15 +16,17 @@ async function updateProduct(formData: FormData) {
     const price = Math.round(parseFloat(priceStr) * 100) // TL to kuruş
     const category = formData.get("category") as string
     const description = formData.get("description") as string || ''
+    const image = formData.get("image") as string || ''
     
-    console.log('✅ Updating product:', { id, name, price, category })
+    console.log('✅ Updating product:', { id, name, price, category, image })
     
     await db.update(products)
       .set({ 
         name, 
         price, 
         category,
-        description 
+        description,
+        image 
       })
       .where(eq(products.id, id))
     
@@ -121,9 +123,13 @@ export default async function ManagerProductsPage() {
                       defaultValue={product.category || 'Döner'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
+                      <option value="Kebaplar & Izgaralar">Kebaplar & Izgaralar</option>
+                      <option value="Pide & Lahmacun">Pide & Lahmacun</option>
                       <option value="Döner">Döner</option>
-                      <option value="Kebap">Kebap</option>
-                      <option value="Pide">Pide</option>
+                      <option value="Dürüm">Dürüm</option>
+                      <option value="Çorbalar">Çorbalar</option>
+                      <option value="Yan Ürünler">Yan Ürünler</option>
+                      <option value="Tatlılar">Tatlılar</option>
                       <option value="İçecekler">İçecekler</option>
                     </select>
                   </div>
@@ -142,6 +148,29 @@ export default async function ManagerProductsPage() {
                       </span>
                     </div>
                   </div>
+                </div>
+                
+                <div>
+                  <label htmlFor={`image-${product.id}`} className="block text-sm font-medium text-gray-700 mb-1">
+                    Resim URL
+                  </label>
+                  <input
+                    id={`image-${product.id}`}
+                    type="url"
+                    name="image"
+                    defaultValue={product.image || ''}
+                    placeholder="https://raw.githubusercontent.com/..."
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  {product.image && (
+                    <div className="mt-2">
+                      <img 
+                        src={product.image} 
+                        alt={product.name}
+                        className="h-20 w-20 object-cover rounded-lg border"
+                      />
+                    </div>
+                  )}
                 </div>
                 
                 <div>
