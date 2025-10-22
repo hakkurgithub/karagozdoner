@@ -2,17 +2,41 @@
 
 import { useState, useEffect } from "react";
 import { useCart } from "../../components/CartProvider";
-import { useContent } from "../../hooks/useContent";
 import Image from "next/image";
 
+interface Product {
+    id: number;
+    name: string;
+    description: string | null;
+    price: number;
+    category: string | null;
+    image: string | null;
+    isActive: number;
+}
+
 export default function MenuPage() {
-    const { content } = useContent();
-    const { addItem, items } = useCart(); // ✅ Sepet içeriğini de alıyoruz
+    const { addItem, items } = useCart();
     const [activeCategory, setActiveCategory] = useState("all");
     const [isClient, setIsClient] = useState(false);
+    const [products, setProducts] = useState<Product[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         setIsClient(true);
+        
+        // Fetch products from API
+        fetch('/api/products')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    setProducts(data.data);
+                }
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Error loading products:', error);
+                setLoading(false);
+            });
     }, []);
 
     const categories = [
@@ -27,20 +51,24 @@ export default function MenuPage() {
         "İçecekler"
     ];
 
-    const filteredItems = content.allMenuItems?.filter((item: any) =>
+    const filteredItems = products.filter((item) =>
         activeCategory === "all" ? true : item.category === activeCategory
     );
 
-    const handleAddToCart = (item: any) => {
+    const handleAddToCart = (item: Product) => {
         addItem({
-            id: item.id,
+            id: String(item.id),
             name: item.name,
-            price: item.price,
+            price: item.price / 100, // Database'de kuruş cinsinden
         });
     };
 
-    if (!isClient) {
-        return null;
+    if (!isClient || loading) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="text-2xl text-gray-600">Yükleniyor...</div>
+            </div>
+        );
     }
 
     return (
@@ -69,9 +97,9 @@ export default function MenuPage() {
 
                 {/* Menu Items Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredItems?.map((item: any) => {
+                    {filteredItems.map((item) => {
                         // ✅ Sepette bu ürünün olup olmadığını kontrol et
-                        const cartItem = items.find(cartItem => cartItem.id === item.id);
+                        const cartItem = items.find(cartItem => cartItem.id === String(item.id));
                         
                         return (
                             <div
@@ -80,7 +108,7 @@ export default function MenuPage() {
                             >
                                 <div className="relative w-full h-48">
                                     <Image
-                                        src={item.image}
+                                        src={item.image || '/images/placeholder.jpg'}
                                         alt={item.name}
                                         fill
                                         className="object-cover"
@@ -91,7 +119,7 @@ export default function MenuPage() {
                                     <p className="text-gray-600 text-sm flex-1">{item.description}</p>
                                     <div className="flex justify-between items-center mt-4">
                                         <span className="text-2xl font-bold text-red-600">
-                                            {item.price}₺
+                                            {(item.price / 100).toFixed(2)}₺
                                         </span>
                                         <div className="relative">
                                             <button

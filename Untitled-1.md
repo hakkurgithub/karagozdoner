@@ -1,0 +1,1 @@
+https://karagozdoner-aiqbkwwuf-borcan-kebap.vercel.app/manager/products
