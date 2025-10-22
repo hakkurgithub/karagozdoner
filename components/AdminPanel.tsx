@@ -77,7 +77,10 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
       <div className="bg-white p-6 rounded-lg shadow mb-6">
         <h2 className="text-xl font-semibold mb-4">Menü Yönetimi</h2>
         <button
-          onClick={() => setShowAddMenu(!showAddMenu)}
+          onClick={() => {
+            setShowAddMenu(!showAddMenu);
+            setEditingMenuItem(null);
+          }}
           className="bg-blue-600 text-white px-4 py-2 rounded mb-4"
         >
           {showAddMenu ? "Kapat" : "Yeni Ürün Ekle"}
@@ -90,14 +93,19 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
               type="text"
               placeholder="Ürün Adı"
               className="w-full border rounded p-2 mb-2"
+              value={editingMenuItem?.name || ""}
               onChange={(e) =>
-                setEditingMenuItem({ ...(editingMenuItem || ({} as MenuItem)), name: e.target.value })
+                setEditingMenuItem({
+                  ...(editingMenuItem || ({} as MenuItem)),
+                  name: e.target.value,
+                })
               }
             />
             <input
               type="number"
               placeholder="Fiyat"
               className="w-full border rounded p-2 mb-2"
+              value={editingMenuItem?.price ?? ""}
               onChange={(e) =>
                 setEditingMenuItem({
                   ...(editingMenuItem || ({} as MenuItem)),
@@ -109,6 +117,7 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
               type="text"
               placeholder="Kategori"
               className="w-full border rounded p-2 mb-2"
+              value={editingMenuItem?.category || ""}
               onChange={(e) =>
                 setEditingMenuItem({
                   ...(editingMenuItem || ({} as MenuItem)),
@@ -116,17 +125,45 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
                 })
               }
             />
+            <input
+              type="text"
+              placeholder="Resim Linki"
+              className="w-full border rounded p-2 mb-2"
+              value={editingMenuItem?.image || ""}
+              onChange={(e) =>
+                setEditingMenuItem({
+                  ...(editingMenuItem || ({} as MenuItem)),
+                  image: e.target.value,
+                })
+              }
+            />
             <button
               className="bg-green-600 text-white px-4 py-2 rounded"
               onClick={() => {
-                if (editingMenuItem) {
+                if (
+                  editingMenuItem &&
+                  editingMenuItem.name &&
+                  editingMenuItem.price &&
+                  editingMenuItem.category &&
+                  editingMenuItem.image
+                ) {
                   const updatedMenu = [
                     ...(localContent.allMenuItems || []),
-                    editingMenuItem,
+                    {
+                      ...editingMenuItem,
+                      id:
+                        editingMenuItem.id ||
+                        `${editingMenuItem.category?.slice(0, 2).toLowerCase() || "m"}-${
+                          Date.now()
+                        }`,
+                      rating: 5, // default rating, opsiyonel
+                    },
                   ];
                   setLocalContent({ ...localContent, allMenuItems: updatedMenu });
                   setEditingMenuItem(null);
                   setShowAddMenu(false);
+                } else {
+                  alert("Lütfen tüm alanları doldurun!");
                 }
               }}
             >
@@ -144,6 +181,13 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
               <span className="font-semibold text-lg">{item.name}</span>
               <span className="text-sm text-gray-600">{item.category}</span>
               <span className="font-medium text-red-600">{item.price} ₺</span>
+              {item.image && (
+                <img
+                  className="mt-2 max-h-24 object-contain rounded"
+                  src={item.image}
+                  alt={item.name}
+                />
+              )}
             </div>
           ))}
         </div>
