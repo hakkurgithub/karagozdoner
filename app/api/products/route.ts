@@ -17,11 +17,11 @@ export async function GET(request: NextRequest) {
       products = await getAllProducts()
     }
     
-    // Fiyatları formatla (zaten TL cinsinden, numeric tipinde string olarak gelir)
+    // Fiyatları formatla (TL cinsinden tam sayı olarak)
     const productsWithFormattedPrices = products.map((product: Product) => ({
       ...product,
-      priceInLira: parseFloat(product.price as any), // String'den number'a çevir
-      formattedPrice: `${parseFloat(product.price as any).toFixed(2)} ₺`
+      priceInLira: parseFloat(product.price as any), // 450
+      formattedPrice: `${Math.round(parseFloat(product.price as any))} ₺` // "450 ₺"
     }))
     
     return NextResponse.json({
