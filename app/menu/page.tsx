@@ -59,7 +59,7 @@ export default function MenuPage() {
         addItem({
             id: String(item.id),
             name: item.name,
-            price: item.price / 100, // Database'de kuruş cinsinden
+            price: item.price, // Fiyat zaten TL cinsinden
         });
     };
 
@@ -119,7 +119,7 @@ export default function MenuPage() {
                                     <p className="text-gray-600 text-sm flex-1">{item.description}</p>
                                     <div className="flex justify-between items-center mt-4">
                                         <span className="text-2xl font-bold text-red-600">
-                                            {(item.price / 100).toFixed(2)}₺
+                                            {Math.round(item.price)}₺
                                         </span>
                                         <div className="relative">
                                             <button
