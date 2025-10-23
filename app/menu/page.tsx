@@ -8,7 +8,9 @@ interface Product {
     id: number;
     name: string;
     description: string | null;
-    price: number;
+    price: number | string; // API'den numeric string veya number gelebilir
+    priceInLira?: number; // API'den gelen formatlanmış fiyat
+    formattedPrice?: string; // API'den gelen formatlanmış string
     category: string | null;
     image: string | null;
     isActive: number;
@@ -56,10 +58,11 @@ export default function MenuPage() {
     );
 
     const handleAddToCart = (item: Product) => {
+        const price = item.priceInLira || parseFloat(String(item.price));
         addItem({
             id: String(item.id),
             name: item.name,
-            price: item.price, // Fiyat zaten TL cinsinden
+            price: price, // TL cinsinden number
         });
     };
 
@@ -119,7 +122,7 @@ export default function MenuPage() {
                                     <p className="text-gray-600 text-sm flex-1">{item.description}</p>
                                     <div className="flex justify-between items-center mt-4">
                                         <span className="text-2xl font-bold text-red-600">
-                                            {Math.round(item.price)}₺
+                                            {Math.round(item.priceInLira || parseFloat(String(item.price)))}₺
                                         </span>
                                         <div className="relative">
                                             <button
