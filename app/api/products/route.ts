@@ -17,11 +17,11 @@ export async function GET(request: NextRequest) {
       products = await getAllProducts()
     }
     
-    // Fiyatları lira cinsine çevir (frontend için)
+    // Fiyatları formatla (zaten TL cinsinden geliyor)
     const productsWithFormattedPrices = products.map((product: Product) => ({
       ...product,
-      priceInLira: product.price / 100,
-      formattedPrice: `${(product.price / 100).toFixed(2)} ₺`
+      priceInLira: product.price,
+      formattedPrice: `${product.price.toFixed(2)} ₺`
     }))
     
     return NextResponse.json({
