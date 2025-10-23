@@ -21,7 +21,7 @@ async function checkProducts() {
     result.rows.forEach((product: any) => {
       console.log(`ID: ${product.id}`)
       console.log(`  İsim: ${product.name}`)
-      console.log(`  Fiyat: ${(product.price / 100).toFixed(2)} ₺`)
+      console.log(`  Fiyat: ${parseFloat(product.price).toFixed(2)} ₺`)
       console.log(`  Kategori: ${product.category}`)
       console.log(`  Resim: ${product.image}`)
       console.log(`  Aktif: ${product.is_active ? 'Evet' : 'Hayır'}`)

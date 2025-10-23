@@ -13,7 +13,7 @@ async function updateProduct(formData: FormData) {
     const id = parseInt(formData.get("id") as string)
     const name = formData.get("name") as string
     const priceStr = formData.get("price") as string
-    const price = Math.round(parseFloat(priceStr) * 100) // TL to kuruş
+    const price = priceStr // Direkt TL cinsinden string olarak kaydet (numeric type)
     const category = formData.get("category") as string
     const description = formData.get("description") as string || ''
     const image = formData.get("image") as string || ''
@@ -106,7 +106,7 @@ export default async function ManagerProductsPage() {
                       id={`price-${product.id}`}
                       type="number"
                       name="price"
-                      defaultValue={(product.price / 100).toFixed(2)}
+                      defaultValue={parseFloat(product.price as any).toFixed(2)}
                       step="0.01"
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required

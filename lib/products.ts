@@ -48,7 +48,7 @@ export async function getProductsByCategory(category: string) {
 export async function createProduct(productData: {
   name: string
   description?: string
-  price: number
+  price: string // numeric tipinde string olarak
   category?: string
   image?: string
 }) {
@@ -63,7 +63,7 @@ export async function createProduct(productData: {
 export async function updateProduct(id: number, productData: Partial<{
   name: string
   description: string
-  price: number
+  price: string // numeric tipinde string olarak
   category: string
   image: string
   isActive: number

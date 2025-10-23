@@ -1,5 +1,5 @@
 // db/schema.ts
-import { pgTable, serial, text, varchar, integer, timestamp, pgEnum, primaryKey } from 'drizzle-orm/pg-core';
+import { pgTable, serial, text, varchar, integer, timestamp, pgEnum, primaryKey, numeric } from 'drizzle-orm/pg-core';
 import type { AdapterAccount } from "next-auth/adapters"
 
 // Kullanıcı rolleri için bir enum tanımlıyoruz
@@ -68,7 +68,7 @@ export const products = pgTable('products', {
   id: serial('id').primaryKey(),
   name: varchar('name', { length: 255 }).notNull(),
   description: text('description'),
-  price: integer('price').notNull(), // Fiyatı kuruş olarak saklamak en iyisidir
+  price: numeric('price', { precision: 10, scale: 2 }).notNull(), // TL cinsinden (örn: 450.00)
   category: varchar('category', { length: 100 }),
   image: varchar('image', { length: 500 }),
   isActive: integer('is_active').default(1).notNull(), // 1: aktif, 0: pasif
