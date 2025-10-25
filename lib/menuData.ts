@@ -27,7 +27,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 450,
     description: "Özel baharatlı Adana kebap, pilav ve közlenmiş sebzelerle.",
     category: "Kebaplar & Izgaralar",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Adanaporsiyon.jpg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/adana-porsiyon.jpg",
     rating: 5,
   },
   {
@@ -36,7 +36,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 450,
     description: "Acısız ve aromatik Urfa kebap; pilav ve garnitürle.",
     category: "Kebaplar & Izgaralar",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Urfa-kebap-Porsiyon.jpg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/urfa-porsiyon.jpg",
     rating: 5,
   },
   {
@@ -45,7 +45,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 600,
     description: "Lavaş içinde beyti kebap; yoğurt ve tereyağı sosla.",
     category: "Kebaplar & Izgaralar",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Beyti%20Sarma.jpg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/beyti-sarma.jpg",
     rating: 5,
   },
   {
@@ -54,7 +54,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 500,
     description: "Domates sosuyla zenginleştirilmiş kebap, pilav ve salatayla.",
     category: "Kebaplar & Izgaralar",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Domatesli-kebap.jpg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/domatesli-kebap.jpg",
     rating: 5,
   },
   {
@@ -63,7 +63,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 500,
     description: "Köz patlıcanla servis edilen kebap.",
     category: "Kebaplar & Izgaralar",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Patlicanli-Kebap-porsiyon.jpg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/patlicanli-kebap-porsiyon.jpg",
     rating: 5,
   },
   {
@@ -81,7 +81,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 350,
     description: "Izgarada pişmiş el yapımı köfte, pilav ve yeşillikle.",
     category: "Kebaplar & Izgaralar",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/izgara%20k%C3%B6fte.jpeg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/izgara-kofte.jpeg",
     rating: 4,
   },
   {
@@ -99,7 +99,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 550,
     description: "Bol porsiyon çöp şiş, pilav ve garnitürle.",
     category: "Kebaplar & Izgaralar",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/cop-sis-porsiyon.jpg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/cop-sis-porsiyon.jpeg",
     rating: 5,
   },
   {
@@ -108,7 +108,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 450,
     description: "Izgarada yürek; sumaklı soğan ve yeşillikle.",
     category: "Kebaplar & Izgaralar",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Yurek-porsiyon.jpeg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yurek-porsiyon.jpeg",
     rating: 5,
   },
   {
@@ -117,7 +117,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 450,
     description: "Taze ciğer; ızgarada lokum kıvamında.",
     category: "Kebaplar & Izgaralar",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Ciger-porsiyon.jpg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/ciger-porsiyon.jpg",
     rating: 5,
   },
   {
@@ -126,7 +126,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 500,
     description: "Tereyağı ve yoğurtla zenginleştirilmiş klasik iskender.",
     category: "Kebaplar & Izgaralar",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/iskender%20Kebap.jpeg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/iskender-kebap.jpeg",
     rating: 5,
   },
   {
@@ -135,7 +135,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 400,
     description: "Marine tavuk şiş; pilav ve salata ile.",
     category: "Kebaplar & Izgaralar",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Tavuk%20%C5%9Ei%C5%9F%20Porsiyon.jpg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/tavuk-sis-porsiyon.jpg",
     rating: 4,
   },
   {
@@ -144,7 +144,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 300,
     description: "Izgarada pişmiş tavuk kanat porsiyonu.",
     category: "Kebaplar & Izgaralar",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/kanatporsiyon.jpeg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/kanat-porsiyon.jpeg",
     rating: 4,
   },
   {
@@ -163,7 +163,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 250,
     description: "Lavaşta urfa kebap.",
     category: "Dürüm",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/adana-durum.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/urfa-durum.jpeg",
     rating: 4,
   },
   {
@@ -199,7 +199,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 240,
     description: "Izgara yürek ile dürüm.",
     category: "Dürüm",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yurek-durum.jpeg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yure-durum.jpeg",
     rating: 5,
   },
   {
@@ -208,7 +208,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 250,
     description: "Marine tavuk şiş ile dürüm.",
     category: "Dürüm",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Tavuk%20sis%20durum.png",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/tavuk-sis-durum.png",
     rating: 5,
   },
   {
@@ -217,7 +217,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 350,
     description: "Et şiş ile hazırlanan dürüm.",
     category: "Dürüm",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Et-sis-Durum.png",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/et-sis-durum.png",
     rating: 5,
   },
   {
@@ -226,7 +226,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 200,
     description: "Tavuk kanat ile hazırlanan dürüm.",
     category: "Dürüm",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Tavuk%20Kanat%20Durum.png",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/tavuk-kanat-durum.png",
     rating: 4,
   },
   {
@@ -235,25 +235,17 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 300,
     description: "Lavaşta döner; sos ve yeşillikle.",
     category: "Dürüm",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Durum-doner.png",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/durum-doner.png",
     rating: 5,
   },
-  {
-    id: "dr-12",
-    name: "Tavuk Şiş Dürüm (Türkçe İmlalı)",
-    price: 250,
-    description: "Alternatif görsel ile tavuk şiş dürüm.",
-    category: "Dürüm",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Tavuk%20%C5%9Ei%C5%9F%20d%C3%BCr%C3%BCm.jpg",
-    rating: 5,
-  },
+  
   {
     id: "d-01",
     name: "Porsiyon Et Döner",
     price: 500,
     description: "Seçme etlerden döner; pilav ve salatayla.",
     category: "Döner",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Porsiyon-et-doner.jpg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/porsiyon-et-doner.jpg",
     rating: 5,
   },
   {
@@ -263,6 +255,15 @@ export const MENU_ITEMS: MenuItem[] = [
     description: "Pilav üzerinde nefis et döner.",
     category: "Döner",
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/pilav-ustu-et-doner.jpg",
+    rating: 5,
+  },
+  {
+    id: "d-02a",
+    name: "Klasik Döner",
+    price: 300,
+    description: "Geleneksel döner usulü hazırlanmış porsiyon.",
+    category: "Döner",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/doner-kebap.jpg",
     rating: 5,
   },
   {
@@ -280,7 +281,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 400,
     description: "Tavuk döner; pilav ve garnitürle.",
     category: "Döner",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Tavuk-Doner.jpg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/tavuk-doner.jpg",
     rating: 5,
   },
   {
@@ -298,7 +299,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 130,
     description: "İnce hamurda özel kıymalı harç.",
     category: "Pide & Lahmacun",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Lahmacun.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/lahmacun.jpg",
     rating: 5,
   },
   {
@@ -307,7 +308,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 160,
     description: "Kıymalı harca ceviz dokunuşu.",
     category: "Pide & Lahmacun",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Cevizli-Lahmacun.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/cevizli-lahmacun.jpg",
     rating: 5,
   },
   {
@@ -316,7 +317,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 170,
     description: "Ceviz ve nar ekşisiyle zenginleştirilmiş.",
     category: "Pide & Lahmacun",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Cevizli-Nar-Eksili-Lahmacun.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/cevizli-nar-eksili-lahmacun.jpg",
     rating: 5,
   },
   {
@@ -352,7 +353,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 420,
     description: "Baharatlı kıyma ile hazırlanan klasik pide.",
     category: "Pide & Lahmacun",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/K%C4%B1ymal%C4%B1-Pide.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/kiymali-pide.jpg",
     rating: 5,
   },
   {
@@ -361,7 +362,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 450,
     description: "Kıyma ve kaşar, zengin içerik.",
     category: "Pide & Lahmacun",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/K%C4%B1yma-Kasarl%C4%B1-Pide.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/kiyma-kasarli-pide.jpg",
     rating: 5,
   },
   {
@@ -370,7 +371,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 450,
     description: "Bol kavurmalı, doyurucu pide.",
     category: "Pide & Lahmacun",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Kavurmal%C4%B1-Pide.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/kavurmali-pide.jpg",
     rating: 5,
   },
   {
@@ -379,7 +380,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 470,
     description: "Kavurma ve kaşarın eşsiz birlikteliği.",
     category: "Pide & Lahmacun",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Kavurma-Kasarl%C4%B1-Pide.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/kavurma-kasarli-pide.jpg",
     rating: 5,
   },
   {
@@ -388,7 +389,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 450,
     description: "Kuşbaşı et ile hazırlanan pide.",
     category: "Pide & Lahmacun",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Ku%C5%9Fba%C5%9F%C4%B1l%C4%B1-Pide.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/kusbasili-pide.jpg",
     rating: 5,
   },
  
@@ -398,7 +399,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 470,
     description: "Kuşbaşı et + kaşar.",
     category: "Pide & Lahmacun",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Kusbas%C4%B1-Kasarl%C4%B1-Pide.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/kusbasi-kasarli-pide.jpg",
     rating: 5,
   },
 
@@ -417,7 +418,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 50,
     description: "Taze sebzelerle hafif ve ferah.",
     category: "Yan Ürünler",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Salata.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/mevsim-salatasi.jpeg",
     rating: 5,
   },
   {
@@ -426,7 +427,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 80,
     description: "Dışı çıtır, içi bol kıymalı.",
     category: "Yan Ürünler",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/iclikofte.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/icli-kofte.jpg",
     rating: 5,
   },
   {
@@ -444,7 +445,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 90,
     description: "Peynirli tel kadayıf tatlısı; sıcak servis.",
     category: "Tatlılar",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Kunefe.jpeg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/kunefe.jpeg",
     rating: 5,
   },
   {
@@ -462,7 +463,16 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 25,
     description: "Ferahlatan ev yapımı ayran.",
     category: "İçecekler",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/ac%C4%B1k-ayran.jpg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/acik-ayran.jpg",
+    rating: 5,
+  },
+  {
+    id: "i-01a",
+    name: "Çay",
+    price: 15,
+    description: "Geleneksel ince belli bardakta sıcak çay.",
+    category: "İçecekler",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/acik-ayran.jpg",
     rating: 5,
   },
   {
@@ -471,7 +481,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 20,
     description: "Doğal maden suyu.",
     category: "İçecekler",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Sade-Soda.jpeg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/sade-soda.jpeg",
     rating: 5,
   },
   {
@@ -481,6 +491,15 @@ export const MENU_ITEMS: MenuItem[] = [
     description: "Adana usulü; acılı/acıssız seçenek.",
     category: "İçecekler",
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/salgam.jpg",
+    rating: 5,
+  },
+  {
+    id: "i-03a",
+    name: "Kola",
+    price: 20,
+    description: "Sade kola servisi.",
+    category: "İçecekler",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/cola-fanta-sprite.jpeg",
     rating: 5,
   },
   {
@@ -498,7 +517,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 25,
     description: "Çeşitli aromalarda ferahlatıcı soda.",
     category: "İçecekler",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/meyveli-soda.jpeg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/meyvelisoda.jpeg",
     rating: 5,
   },
   {
@@ -516,7 +535,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 25,
     description: "Popüler gazlı içecekler.",
     category: "İçecekler",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Cola-Fanta-Sprite.jpeg",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/cola-fanta-sprite.jpeg",
     rating: 5,
   }
 ];
