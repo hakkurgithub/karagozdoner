@@ -194,7 +194,7 @@ const defaultAllMenuItems = [
     price: 420,
     category: "Pide & Lahmacun" as const,
     rating: 5,
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/Kıymalı Pide.jpg", 
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/K%C4%B1ymal%C4%B1%20Pide.jpg", 
   },
   {
     id: "p-08",
@@ -203,7 +203,7 @@ const defaultAllMenuItems = [
     price: 25,
     category: "Pide & Lahmacun" as const,
     rating: 4,
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/acık ayran.jpg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/ac%C4%B1k%20ayran.jpg",
   },
 
   // Döner (6 adet)
@@ -214,7 +214,7 @@ const defaultAllMenuItems = [
     price: 500,
     category: "Döner" as const,
     rating: 5,
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/Porsiyon et döner.jpg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Porsiyon%20et%20d%C3%B6ner.jpg",
   },
   {
     id: "d-02",
@@ -232,7 +232,7 @@ const defaultAllMenuItems = [
     price: 300,
     category: "Döner" as const,
     rating: 4,
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/Durum doner.png",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Durum%20doner.png",
   },
   {
     id: "d-04",
@@ -241,7 +241,7 @@ const defaultAllMenuItems = [
     price: 400,
     category: "Döner" as const,
     rating: 4,
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/Tavuk Doner.jpg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Tavuk%20Doner.jpg",
   },
   {
     id: "d-05",
@@ -250,7 +250,7 @@ const defaultAllMenuItems = [
     price: 250,
     category: "Döner" as const,
     rating: 4,
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/ekmek arasi doner.jpg",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/ekmek%20arasi%20doner.jpg",
   },
   {
     id: "d-06",
@@ -259,7 +259,7 @@ const defaultAllMenuItems = [
     price: 550,
     category: "Döner" as const,
     rating: 5,
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/cifte doner.png",
+  image: "https://raw.githubusercontent.com/hakkurgithub/images/main/cifte%20doner.png",
   },
 
   // Dürüm (6 adet)
@@ -564,7 +564,7 @@ const defaultContent: ContentData = {
       price: 500,
       description: 'Taze döner eti, pilav ve salata ile servis',
       category: 'Kebaplar',
-      image: 'https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/Porsiyon et döner.jpg'
+  image: 'https://raw.githubusercontent.com/hakkurgithub/images/main/Porsiyon%20et%20d%C3%B6ner.jpg'
     }
   ],
   allMenuItems: defaultAllMenuItems,

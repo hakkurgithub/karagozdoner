@@ -30,16 +30,16 @@ const priceUpdates = [
   { name: "Karışık Pide", price: 400.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/karisikpide.jpeg" },
   { name: "Sucuklu Pide", price: 380.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/sucuklu-kasarli-pide.jpg" },
   { name: "Yumurtalı Pide", price: 350.00, image: "https://readdy.ai/api/search-image?query=Turkish%20pide%20bread%20with%20egg%20and%20cheese%20boat%20shaped%20golden%20brown%20crust%20breakfast%20style%20on%20white%20background%20professional%20food%20photography&width=400&height=300&seq=yumurtali1&orientation=landscape" },
-  { name: "Kıymalı Pide", price: 420.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/Kıymalı Pide.jpg" },
-  { name: "Açık Ayran", price: 25.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/acık ayran.jpg" },
+  { name: "Kıymalı Pide", price: 420.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/K%C4%B1ymal%C4%B1%20Pide.jpg" },
+  { name: "Açık Ayran", price: 25.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/ac%C4%B1k%20ayran.jpg" },
 
   // Döner
-  { name: "Porsiyon Et Döner", price: 500.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/Porsiyon et döner.jpg" },
+  { name: "Porsiyon Et Döner", price: 500.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Porsiyon%20et%20d%C3%B6ner.jpg" },
   { name: "Pilav Üstü Döner", price: 450.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/pilav ustu et doner.jpg" },
-  { name: "Dürüm Döner", price: 300.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/Durum doner.png" },
-  { name: "Tavuk Döner", price: 400.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/Tavuk Doner.jpg" },
-  { name: "Ekmek Arası Döner", price: 250.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/ekmek arasi doner.jpg" },
-  { name: "Çifte Döner", price: 550.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/yemek resimleri/cifte doner.png" },
+  { name: "Dürüm Döner", price: 300.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Durum%20doner.png" },
+  { name: "Tavuk Döner", price: 400.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Tavuk%20Doner.jpg" },
+  { name: "Ekmek Arası Döner", price: 250.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/ekmek%20arasi%20doner.jpg" },
+  { name: "Çifte Döner", price: 550.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/cifte%20doner.png" },
 
   // Dürüm
   { name: "Adana Dürüm", price: 250.00, image: "https://raw.githubusercontent.com/hakkurgithub/images/main/adana durum.jpg" },
