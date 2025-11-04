@@ -6,16 +6,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     // Demo credentials provider
     Credentials({
-      name: "Demo",
+      // === DİL GÜNCELLEMESİ ===
+      name: "Demó",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "demo" },
-        password: { label: "Password", type: "password", placeholder: "demo" }
+        username: { label: "Felhasználónév", type: "text", placeholder: "demo" },
+        password: { label: "Jelszó", type: "password", placeholder: "demo" }
       },
       async authorize(credentials) {
         if (credentials?.username === "demo" && credentials?.password === "demo") {
           return {
             id: "1",
-            name: "Demo User",
+            // === DİL GÜNCELLEMESİ ===
+            name: "Demó Felhasználó",
             email: "demo@karagozdoner.com",
             role: "b2b" as const,
           }
@@ -23,7 +25,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (credentials?.username === "manager" && credentials?.password === "manager") {
           return {
             id: "2", 
-            name: "Manager Demo",
+            // === DİL GÜNCELLEMESİ ===
+            name: "Demó Menedzser",
             email: "manager@karagozdoner.com",
             role: "manager" as const,
           }
@@ -31,7 +34,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return null
       }
     }),
-    // GitHub OAuth (gerçek credentials gerekli)
+    // GitHub OAuth (valódi hitelesítő adatok szükségesek)
     GitHub({
       clientId: process.env.AUTH_GITHUB_ID!,
       clientSecret: process.env.AUTH_GITHUB_SECRET!,
@@ -45,7 +48,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.role = user.role || 'b2b' // User objesinden role alıyoruz
+        token.role = user.role || 'b2b' // Szerepkör átvétele a User objektumból
       }
       return token
     },

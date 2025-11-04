@@ -2,7 +2,7 @@ import { db } from '../db/drizzle'
 import { products, orders, orderItems, users, reservations } from '../db/schema'
 import { eq, and, desc, asc } from 'drizzle-orm'
 
-// Ürün yönetimi fonksiyonları
+// Termékkezelő funkciók
 export async function getAllProducts() {
   try {
     const data = await db
@@ -13,16 +13,17 @@ export async function getAllProducts() {
     
     return data;
   } catch (error) {
-    console.error("Database Error: Failed to fetch all products.", error);
-    console.error("Error details:", {
+    // === DİL GÜNCELLEMESİ ===
+    console.error("Adatbázis Hiba: Nem sikerült lekérni az összes terméket.", error);
+    console.error("Hiba részletei:", {
       message: error instanceof Error ? error.message : String(error),
       stack: error instanceof Error ? error.stack : undefined
     });
     
     throw new Error(
       process.env.NODE_ENV === 'development' 
-        ? `Failed to fetch products: ${error instanceof Error ? error.message : String(error)}`
-        : 'Failed to fetch products. Please try again later.'
+        ? `Nem sikerült lekérni a termékeket: ${error instanceof Error ? error.message : String(error)}`
+        : 'Nem sikerült lekérni a termékeket. Kérjük, próbálja újra később.'
     );
   }
 }
@@ -48,13 +49,19 @@ export async function getProductsByCategory(category: string) {
 export async function createProduct(productData: {
   name: string
   description?: string
-  price: string // numeric tipinde string olarak
+  price: string // Ár string-ként (pl. "4500")
   category?: string
   image?: string
 }) {
+  // === FİYAT DÖNÜŞÜMÜ DÜZELTMESİ (string -> number) ===
+  const priceAsNumber = parseInt(productData.price, 10);
+  
   const result = await db
     .insert(products)
-    .values(productData)
+    .values({
+      ...productData,
+      price: priceAsNumber // Itt már 'number' típusként
+    })
     .returning()
   
   return result[0]
@@ -63,21 +70,29 @@ export async function createProduct(productData: {
 export async function updateProduct(id: number, productData: Partial<{
   name: string
   description: string
-  price: string // numeric tipinde string olarak
+  price: string // Ár string-ként (pl. "4500")
   category: string
   image: string
   isActive: number
 }>) {
+  
+  // === FİYAT DÖNÜŞÜMÜ DÜZELTMESİ (string -> number) ===
+  // Kopyasını oluştur ve 'price' varsa dönüştür
+  const dataToUpdate: any = { ...productData };
+  if (productData.price) {
+    dataToUpdate.price = parseInt(productData.price, 10);
+  }
+
   const result = await db
     .update(products)
-    .set(productData)
+    .set(dataToUpdate) // A javított adatot küldjük
     .where(eq(products.id, id))
     .returning()
   
   return result[0] || null
 }
 
-// Sipariş yönetimi fonksiyonları
+// Rendeléskezelő funkciók
 export async function createOrder(orderData: {
   userId: number
   customerName?: string
@@ -91,10 +106,10 @@ export async function createOrder(orderData: {
   unitPrice: number
   notes?: string
 }>) {
-  // Toplam tutarı hesapla
+  // Végösszeg kiszámítása
   const total = items.reduce((sum, item) => sum + (item.quantity * item.unitPrice), 0)
   
-  // Siparişi oluştur
+  // Rendelés létrehozása
   const orderResult = await db
     .insert(orders)
     .values({
@@ -105,12 +120,12 @@ export async function createOrder(orderData: {
   
   const order = orderResult[0]
   
-  // Sipariş kalemlerini ekle
+  // Rendelési tételek hozzáadása
   const orderItemsData = items.map(item => ({
     orderId: order.id,
     productId: item.productId,
     quantity: item.quantity,
-    price: item.unitPrice, // schema'da price olarak tanımlı
+    price: item.unitPrice, // a séma 'price'-ként definiálja
   }))
   
   await db.insert(orderItems).values(orderItemsData)
@@ -137,7 +152,7 @@ export async function getOrderById(id: number) {
   
   if (!orderResult[0]) return null
   
-  // Sipariş kalemlerini getir
+  // Rendelési tételek lekérése
   const items = await db
     .select({
       id: orderItems.id,
@@ -194,8 +209,9 @@ export async function getUserOrders(userId: string) {
     
     return data;
   } catch (error) {
-    console.error(`Database Error: Failed to fetch orders for user ${userId}.`, error);
-    console.error("Error details:", {
+    // === DİL GÜNCELLEMESİ ===
+    console.error(`Adatbázis Hiba: Nem sikerült lekérni a rendeléseket a ${userId} felhasználóhoz.`, error);
+    console.error("Hiba részletei:", {
       message: error instanceof Error ? error.message : String(error),
       userId,
       stack: error instanceof Error ? error.stack : undefined
@@ -203,8 +219,8 @@ export async function getUserOrders(userId: string) {
     
     throw new Error(
       process.env.NODE_ENV === 'development' 
-        ? `Failed to fetch user orders: ${error instanceof Error ? error.message : String(error)}`
-        : 'Failed to fetch your orders. Please try again later.'
+        ? `Nem sikerült lekérni a felhasználói rendeléseket: ${error instanceof Error ? error.message : String(error)}`
+        : 'Nem sikerült lekérni a rendeléseit. Kérjük, próbálja újra később.'
     );
   }
 }
@@ -230,30 +246,31 @@ export async function getAllOrders() {
     
     return data;
   } catch (error) {
-    // Detaylı error logging
-    console.error("Database Error: Failed to fetch all orders.", error);
-    console.error("Error details:", {
+    // Részletes hibanaplózás
+    // === DİL GÜNCELLEMESİ ===
+    console.error("Adatbázis Hiba: Nem sikerült lekérni az összes rendelést.", error);
+    console.error("Hiba részletei:", {
       message: error instanceof Error ? error.message : String(error),
       stack: error instanceof Error ? error.stack : undefined,
       cause: error instanceof Error ? error.cause : undefined
     });
     
-    // Environment variable kontrolü
+    // Környezeti változó ellenőrzése
     if (!process.env.POSTGRES_URL || process.env.POSTGRES_URL === "Vercel projenizden aldığınız veritabanı bağlantı adresi") {
-      console.error("❌ POSTGRES_URL environment variable is missing or not configured properly");
-      console.error("💡 Please set POSTGRES_URL in your .env.local file with a valid Vercel Postgres connection string");
+      console.error("❌ A POSTGRES_URL környezeti változó hiányzik vagy nincs megfelelően beállítva");
+      console.error("💡 Kérjük, állítsa be a POSTGRES_URL-t a .env.local fájlban egy érvényes Vercel Postgres kapcsolati karakterlánccal");
     }
     
-    // Production'da friendly error, development'ta gerçek error
+    // Production-barát hiba, fejlesztéskor részletes hiba
     throw new Error(
       process.env.NODE_ENV === 'development' 
-        ? `Database connection failed: ${error instanceof Error ? error.message : String(error)}`
-        : 'Failed to fetch orders. Please check your database connection.'
+        ? `Adatbázis kapcsolati hiba: ${error instanceof Error ? error.message : String(error)}`
+        : 'Nem sikerült lekérni a rendeléseket. Kérjük, ellenőrizze az adatbázis kapcsolatát.'
     );
   }
 }
 
-// Rezervasyon fonksiyonları
+// Foglalási funkciók
 export async function createReservation(reservationData: {
   customerName: string
   customerPhone: string
@@ -287,7 +304,7 @@ export async function updateReservationStatus(id: number, status: string) {
   return result[0] || null
 }
 
-// Kullanıcı fonksiyonları
+// Felhasználói funkciók
 export async function createUser(userData: {
   name?: string
   email: string
@@ -321,11 +338,13 @@ export async function getUserById(id: number) {
   return result[0] || null
 }
 
-// Yardımcı fonksiyonlar
-export function formatPrice(priceInCents: number): string {
-  return `${(priceInCents / 100).toFixed(2)} ₺`
+// === YARDIMCI FONKSİYONLAR GÜNCELLENDİ (Ft için) ===
+export function formatPrice(priceInForint: number): string {
+  // Formázás Ft-ként (pl. "4 500 Ft")
+  return `${priceInForint.toLocaleString('hu-HU')} Ft`
 }
 
+/* // A régi Kuruş/Lira logika elavult
 export function priceToLira(priceInCents: number): number {
   return priceInCents / 100
 }
@@ -333,3 +352,4 @@ export function priceToLira(priceInCents: number): number {
 export function lirahToCents(priceInLira: number): number {
   return Math.round(priceInLira * 100)
 }
+*/

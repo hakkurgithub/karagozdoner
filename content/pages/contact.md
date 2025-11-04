@@ -1,47 +1,42 @@
 ---
-title: "İletişim"
-phone: "+90 (212) 555 0123"
-whatsapp: "+90 (532) 555 0123"
+title: "Elérhetőség"
+phone: "06 20 934 1537"
+whatsapp: "+36209341537"
 address: |
-  Şişli Mah. Cumhuriyet Cad. No: 45/A
-  Şişli/İstanbul
+  2500, Esztergom
+  Kossuth Lajos utca 30.
 email: "info@karagozdoner.com"
 workingHours: |
-  Pazartesi - Pazar: 10:00 - 23:00
-  Hafta içi öğle arası: 12:00 - 14:00 yoğun saatler
-mapUrl: "https://goo.gl/maps/example"
+  Hétfő - Vasárnap: 10:00 - 23:00
+  Hétköznap ebédidő: 12:00 - 14:00 csúcsidő
+mapUrl: "https://www.google.com/maps/place/Esztergom,+Kossuth+Lajos+u.+30,+2500+Hungary"
 ---
 
-# İletişim Bilgileri
+# Elérhetőségeink
 
-Bize ulaşmak için aşağıdaki iletişim kanallarını kullanabilirsiniz.
+Az alábbi elérhetőségeken léphet velünk kapcsolatba.
 
-## 📍 Adres
-**Şişli Mah. Cumhuriyet Cad. No: 45/A**  
-Şişli/İstanbul
+## 📍 Cím
+**2500, Esztergom** Kossuth Lajos utca 30.
 
-## 📞 Telefon
-**Sabit Hat**: +90 (212) 555 0123  
-**WhatsApp**: +90 (532) 555 0123
+## 📞 Telefonszám
+**Vezetékes**: 06 20 934 1537  
+**WhatsApp**: +36 20 934 1537
 
-## 📧 E-posta
+## 📧 E-mail
 info@karagozdoner.com
 
-## 🕒 Çalışma Saatleri
-- **Pazartesi - Pazar**: 10:00 - 23:00
-- **Öğle Yoğunluğu**: 12:00 - 14:00
-- **Akşam Yoğunluğu**: 19:00 - 21:00
+## 🕒 Nyitvatartás
+- **Hétfő - Vasárnap**: 10:00 - 23:00
+- **Ebédidő Csúcs**: 12:00 - 14:00
+- **Esti Csúcs**: 19:00 - 21:00
 
-## 🚗 Ulaşım
-- **Metro**: Şişli-Mecidiyeköy Metro İstasyonu (5 dk yürüme)
-- **Otobüs**: Cumhuriyet Caddesi durağı
-- **Otopark**: Yakınında ücretli otopark mevcuttur
+## 🚗 Megközelítés
+- **Parkolás**: A közelben fizetős parkoló áll rendelkezésre
 
-## 📱 Sosyal Medya
-- **Instagram**: @karagozdoner
-- **Facebook**: Karagöz Döner Resmi
-- **Twitter**: @karagozdoner
+## 📱 Közösségi Média
+- **Facebook**: Karagöz Döner Hivatalos Oldala
 
 ---
 
-*Sorularınız için 7/24 WhatsApp hattımızdan bize ulaşabilirsiniz!*
+*Kérdéseivel 0-24 óráig elérhető WhatsApp vonalunkon is fordulhat hozzánk!*

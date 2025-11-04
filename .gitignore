@@ -1,12 +1,13 @@
 node_modules
 
-# Ortam değişkenleri - güvenlik için GitHub'a yüklenmesin
+# === DİL GÜNCELLEMESİ (Yorumlar) ===
+# Környezeti változók - biztonsági okokból ne töltsd fel a GitHubra
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# Next.js build çıktıları
+# Next.js build kimenetek
 .next/
 build/
 out/
@@ -18,7 +19,7 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 
-# Backup ve geçici dosyalar
+# Backup és ideiglenes fájlok
 backup_old_files/
 *.backup
 *.old

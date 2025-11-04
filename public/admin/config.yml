@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: hakkurgithub/GitHubmimari # GitHub kullanıcı adı ve repo adı
+  repo: hakkurgithub/GitHubmimari # GitHub felhasználónév és repo neve
   branch: main
   auth_type: "oauth"
 
@@ -9,66 +9,87 @@ public_folder: "/images/uploads"
 
 collections:
   - name: "menu"
-    label: "Menü Ürünleri"
+    # === DİL GÜNCELLEMESİ ===
+    label: "Menü Termékek"
     folder: "content/menu"
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Ürün Adı", name: "name", widget: "string" }
-      - { label: "Açıklama", name: "description", widget: "text" }
-      - { label: "Fiyat (₺)", name: "price", widget: "number" }
-      - { label: "Kategori", name: "category", widget: "select", options: ["Döner", "Kebap", "Pide", "İçecekler", "Tatlılar"] }
-      - { label: "Resim", name: "image", widget: "image", required: false }
-      - { label: "Kalori", name: "calories", widget: "number", required: false }
-      - { label: "Vegetaryen", name: "isVegetarian", widget: "boolean", default: false }
-      - { label: "Vegan", name: "isVegan", widget: "boolean", default: false }
-      - { label: "Glutensiz", name: "isGlutenFree", widget: "boolean", default: false }
-      - { label: "Aktif", name: "isActive", widget: "boolean", default: true }
+      - { label: "Termék Neve", name: "name", widget: "string" }
+      - { label: "Leírás", name: "description", widget: "text" }
+      # === PARA BİRİMİ GÜNCELLEMESİ ===
+      - { label: "Ár (Ft)", name: "price", widget: "number" }
+      # === DİL VE KATEGORİ GÜNCELLEMESİ (Wix menü dahil) ===
+      - { label: "Kategória", name: "category", widget: "select", options: [
+          "Gyros tálak", 
+          "Gyros piták", 
+          "Hamburgerek", 
+          "Döner", 
+          "Dürüm", 
+          "Kebapok és Grillek", 
+          "Pide és Lahmacun", 
+          "Tészták", 
+          "Levesek", 
+          "Köretek", 
+          "Saláták", 
+          "Közkedvelt ételek", 
+          "Desszertek", 
+          "Italok"
+        ]}
+      - { label: "Kép", name: "image", widget: "image", required: false }
+      - { label: "Kalória", name: "calories", widget: "number", required: false }
+      - { label: "Vegetáriánus", name: "isVegetarian", widget: "boolean", default: false }
+      - { label: "Vegán", name: "isVegan", widget: "boolean", default: false }
+      - { label: "Gluténmentes", name: "isGlutenFree", widget: "boolean", default: false }
+      - { label: "Aktív", name: "isActive", widget: "boolean", default: true }
   
   - name: "pages"
-    label: "Sayfalar"
+    # === DİL GÜNCELLEMESİ ===
+    label: "Oldalak"
     files:
-      - label: "Hakkımızda Sayfası"
+      - label: "Rólunk Oldal"
         name: "about"
         file: "content/pages/about.md"
         fields:
-          - { label: "Başlık", name: "title", widget: "string" }
-          - { label: "İçerik", name: "body", widget: "markdown" }
-          - { label: "Resim", name: "image", widget: "image", required: false }
+          - { label: "Cím", name: "title", widget: "string" }
+          - { label: "Tartalom", name: "body", widget: "markdown" }
+          - { label: "Kép", name: "image", widget: "image", required: false }
       
-      - label: "İletişim Sayfası"
+      - label: "Elérhetőség Oldal"
         name: "contact"
         file: "content/pages/contact.md"
         fields:
-          - { label: "Başlık", name: "title", widget: "string" }
-          - { label: "Telefon", name: "phone", widget: "string" }
+          - { label: "Cím", name: "title", widget: "string" }
+          - { label: "Telefonszám", name: "phone", widget: "string" }
           - { label: "WhatsApp", name: "whatsapp", widget: "string" }
-          - { label: "Adres", name: "address", widget: "text" }
+          - { label: "Cím", name: "address", widget: "text" }
           - { label: "Email", name: "email", widget: "string" }
-          - { label: "Çalışma Saatleri", name: "workingHours", widget: "text" }
-          - { label: "Harita URL", name: "mapUrl", widget: "string", required: false }
+          - { label: "Nyitvatartás", name: "workingHours", widget: "text" }
+          - { label: "Térkép URL", name: "mapUrl", widget: "string", required: false }
       
-      - label: "Ana Sayfa"
+      - label: "Kezdőlap"
         name: "home"
         file: "content/pages/home.md"
         fields:
-          - { label: "Hero Başlık", name: "heroTitle", widget: "string" }
-          - { label: "Hero Alt Başlık", name: "heroSubtitle", widget: "text" }
-          - { label: "Hero Resim", name: "heroImage", widget: "image" }
-          - { label: "Özellikler", name: "features", widget: "list", fields: [
-              { label: "Başlık", name: "title", widget: "string" },
-              { label: "Açıklama", name: "description", widget: "text" },
-              { label: "İkon", name: "icon", widget: "string" }
+          - { label: "Hero Cím", name: "heroTitle", widget: "string" }
+          - { label: "Hero Alcím", name: "heroSubtitle", widget: "text" }
+          - { label: "Hero Kép", name: "heroImage", widget: "image" }
+          - { label: "Jellemzők", name: "features", widget: "list", fields: [
+              { label: "Cím", name: "title", widget: "string" },
+              { label: "Leírás", name: "description", widget: "text" },
+              { label: "Ikon", name: "icon", widget: "string" }
             ]}
   
   - name: "announcements"
-    label: "Duyurular"
+    # === DİL GÜNCELLEMESİ ===
+    label: "Közlemények"
     folder: "content/announcements"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "Başlık", name: "title", widget: "string" }
-      - { label: "İçerik", name: "body", widget: "markdown" }
-      - { label: "Tarih", name: "date", widget: "datetime" }
-      - { label: "Aktif", name: "isActive", widget: "boolean", default: true }
-      - { label: "Öncelik", name: "priority", widget: "select", options: ["düşük", "orta", "yüksek"], default: "orta" }
+      - { label: "Cím", name: "title", widget: "string" }
+      - { label: "Tartalom", name: "body", widget: "markdown" }
+      - { label: "Dátum", name: "date", widget: "datetime" }
+      - { label: "Aktív", name: "isActive", widget: "boolean", default: true }
+      # === DİL GÜNCELLEMESİ (Priority) ===
+      - { label: "Prioritás", name: "priority", widget: "select", options: ["alacsony", "közepes", "magas"], default: "közepes" }

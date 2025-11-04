@@ -21,9 +21,8 @@ function normalizeImageUrl(urlString: string): string | null {
       return null;
     }
 
-    const cleanedSegments = segments.filter(
-      (segment) => segment.toLowerCase() !== 'yemek resimleri'
-    );
+    // === DİL MANTIĞI GÜNCELLEMESİ (Türkçe "yemek resimleri" filtresi kaldırıldı) ===
+    const cleanedSegments = segments; // Artık özel bir filtreleme yok
 
     if (cleanedSegments.length === 0) {
       return null;
@@ -40,14 +39,16 @@ function normalizeImageUrl(urlString: string): string | null {
 
     return `${url.origin}${normalizedPath}/${normalizedFileName}`;
   } catch (error) {
-    console.error('⚠️ Could not normalize URL:', urlString, error);
+    // === DİL GÜNCELLEMESİ ===
+    console.error('⚠️ Nem sikerült normalizálni az URL-t:', urlString, error);
     return null;
   }
 }
 
 async function normalizeProductImages() {
   if (!process.env.POSTGRES_URL) {
-    throw new Error('POSTGRES_URL environment variable not found.');
+    // === DİL GÜNCELLEMESİ ===
+    throw new Error('A POSTGRES_URL környezeti változó nem található.');
   }
 
   const sql = neon(process.env.POSTGRES_URL);
@@ -59,7 +60,8 @@ async function normalizeProductImages() {
 
   const productRows = rows as ProductRow[];
 
-  console.log(`🔍 Checking ${rows.length} product images for normalization...`);
+  // === DİL GÜNCELLEMESİ ===
+  console.log(`🔍 ${rows.length} db termékkép ellenőrzése normalizálásra...`);
 
   let updatedCount = 0;
 
@@ -80,21 +82,25 @@ async function normalizeProductImages() {
     `;
 
     updatedCount++;
-    console.log(`✅ Updated image for #${row.id} ${row.name}`);
+    // === DİL GÜNCELLEMESİ ===
+    console.log(`✅ Kép frissítve: #${row.id} ${row.name}`);
     console.log(`   ${row.image} -> ${normalized}`);
   }
 
   if (updatedCount === 0) {
-    console.log('ℹ️ All product image URLs are already normalized.');
+    // === DİL GÜNCELLEMESİ ===
+    console.log('ℹ️ Minden termékkép URL már normalizálva van.');
   } else {
+    // === DİL GÜNCELLEMESİ ===
     console.log(`
-🎉 Normalized ${updatedCount} product image URL(s).`);
+🎉 ${updatedCount} db termékkép URL normalizálva.`);
   }
 }
 
 normalizeProductImages()
   .then(() => process.exit(0))
   .catch((error) => {
-    console.error('❌ Failed to normalize product images:', error);
+    // === DİL GÜNCELLEMESİ ===
+    console.error('❌ Hiba a termékképek normalizálása során:', error);
     process.exit(1);
   });

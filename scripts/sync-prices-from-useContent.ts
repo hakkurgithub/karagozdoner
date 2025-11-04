@@ -3,34 +3,29 @@ import { drizzle } from 'drizzle-orm/neon-http';
 import { neon } from '@neondatabase/serverless';
 import { products } from '../db/schema';
 import { eq } from 'drizzle-orm';
-import { MENU_ITEMS } from '../lib/menuData';
+import { MENU_ITEMS } from '../lib/menuData'; // <-- Wix menüsü zaten burada
 
-// .env.local dosyasını yükle
+// .env.local fájl betöltése
 dotenv.config({ path: '.env.local' });
 
 const priceUpdates = MENU_ITEMS.map((item) => ({
   name: item.name,
-  price: Number(item.price),
+  price: Number(item.price), // Már 'number' (Ft)
   image: item.image,
 }));
 
 function normalizeName(raw: string): string {
   return raw
     .toLowerCase()
-    .normalize('NFD')
+    .normalize('NFD') // Eltávolítja az összes ékezetet (magyart is)
     .replace(/[\u0300-\u036f]/g, '')
-    .replace(/ç/g, 'c')
-    .replace(/ğ/g, 'g')
-    .replace(/ı/g, 'i')
-    .replace(/ö/g, 'o')
-    .replace(/ş/g, 's')
-    .replace(/ü/g, 'u')
-    .replace(/[^a-z0-9]+/g, '');
+    .replace(/[^a-z0-9]+/g, ''); // Eltávolítja a nem alfanumerikus karaktereket
 }
 
 if (!process.env.POSTGRES_URL) {
-  console.error('❌ POSTGRES_URL environment variable bulunamadı!');
-  console.log('💡 .env.local dosyasını kontrol edin.');
+  // === DİL GÜNCELLEMESİ ===
+  console.error('❌ A POSTGRES_URL környezeti változó nem található!');
+  console.log('💡 Ellenőrizze a .env.local fájlt.');
   process.exit(1);
 }
 
@@ -38,7 +33,8 @@ const sql = neon(process.env.POSTGRES_URL);
 const db = drizzle(sql);
 
 async function syncPricesFromUseContent() {
-  console.log('🔄 useContent.ts fiyatlarını database\'e senkronize ediliyor...\n');
+  // === DİL GÜNCELLEMESİ ===
+  console.log('🔄 Árak szinkronizálása a menuData.ts-ből az adatbázisba...\n');
 
   let updated = 0;
   let notFound = 0;
@@ -70,34 +66,41 @@ async function syncPricesFromUseContent() {
           .update(products)
           .set({
             name: item.name,
-            price: item.price.toString(),
+            // === HATA DÜZELTMESİ (toString() kaldırıldı, Ft (number) gönderiliyor) ===
+            price: item.price, 
             image: item.image,
           })
           .where(eq(products.id, matchingProduct.id));
 
-        console.log(`✅ ${matchingProduct.name} → ${item.price}₺ (ID: ${matchingProduct.id})`);
+        // === DİL VE PARA BİRİMİ GÜNCELLEMESİ ===
+        console.log(`✅ ${matchingProduct.name} → ${item.price} Ft (ID: ${matchingProduct.id})`);
         updated++;
       } else {
-        console.log(`⚠️  "${item.name}" database'de bulunamadı`);
+        // === DİL GÜNCELLEMESİ ===
+        console.log(`⚠️  "${item.name}" nem található az adatbázisban`);
         notFound++;
       }
     } catch (error) {
-      console.error(`❌ ${item.name} güncellenirken hata:`, error);
+      // === DİL GÜNCELLEMESİ ===
+      console.error(`❌ Hiba a(z) ${item.name} frissítése során:`, error);
     }
   }
 
-  console.log(`\n📊 Özet:`);
-  console.log(`   ✅ Güncellenen: ${updated}`);
-  console.log(`   ⚠️  Bulunamayan: ${notFound}`);
-  console.log(`   📦 Toplam: ${priceUpdates.length}`);
+  // === DİL GÜNCELLEMESİ ===
+  console.log(`\n📊 Összegzés:`);
+  console.log(`   ✅ Frissítve: ${updated}`);
+  console.log(`   ⚠️  Nem található: ${notFound}`);
+  console.log(`   📦 Összesen: ${priceUpdates.length}`);
 }
 
 syncPricesFromUseContent()
   .then(() => {
-    console.log('\n✅ Senkronizasyon tamamlandı!');
+    // === DİL GÜNCELLEMESİ ===
+    console.log('\n✅ Szinkronizálás befejeződött!');
     process.exit(0);
   })
   .catch((error) => {
-    console.error('❌ Hata oluştu:', error);
+    // === DİL GÜNCELLEMESİ ===
+    console.error('❌ Hiba történt:', error);
     process.exit(1);
   });

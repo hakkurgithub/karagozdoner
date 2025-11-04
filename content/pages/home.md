@@ -1,22 +1,22 @@
 ---
-heroTitle: "Karagöz Döner'e Hoş Geldiniz"
-heroSubtitle: "1985'ten beri geleneksel lezzetleri modern sunum anlayışıyla buluşturuyoruz. Taze malzemeler, özenli hazırlık ve unutulmaz tatlar için doğru adrestesiniz."
+heroTitle: "Üdvözöljük a Karagöz Döner-nél"
+heroSubtitle: "1985 óta ötvözzük a hagyományos ízeket a modern tálalási szemlélettel. A friss alapanyagok, a gondos előkészítés és a felejthetetlen ízek a megfelelő helyen."
 heroImage: "/images/hero-doner.jpg"
 features:
-  - title: "Taze ve Kaliteli"
-    description: "Günlük taze malzemelerle hazırlanan döner ve kebaplarımız"
+  - title: "Friss és Minőségi"
+    description: "Naponta friss alapanyagokból készült döner és kebabjaink"
     icon: "🥩"
-  - title: "Geleneksel Lezzet"
-    description: "Üç kuşaktır sürdürülen aile tarifleriyle özgün tatlar"
+  - title: "Hagyományos Íz"
+    description: "Eredeti ízek három generáció óta tartó családi receptekkel"
     icon: "👨‍🍳"
-  - title: "Hızlı Servis"
-    description: "Sipariş ve paket servis seçenekleriyle hızlı teslimat"
+  - title: "Gyors Kiszolgálás"
+    description: "Gyors szállítás rendelési és elviteli lehetőségekkel"
     icon: "⚡"
-  - title: "Hijyenik Ortam"
-    description: "En yüksek temizlik standartlarında hazırlık ve sunum"
+  - title: "Higiénikus Környezet"
+    description: "Előkészítés és tálalás a legmagasabb tisztasági követelményeknek megfelelően"
     icon: "✨"
 ---
 
-# Ana Sayfa İçeriği
+# Főoldal Tartalma
 
-Bu içerik CMS üzerinden yönetilmektedir.
+Ezt a tartalmat a CMS kezeli.

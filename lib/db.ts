@@ -2,88 +2,90 @@ import { drizzle } from 'drizzle-orm/vercel-postgres'
 import { sql } from '@vercel/postgres'
 import * as schema from '../db/schema'
 
-// Enhanced environment variable validation with diagnostic information
+// Bővített környezeti változó validáció diagnosztikai információkkal
 function validateDatabaseConfig() {
   const postgresUrl = process.env.POSTGRES_URL;
   
-  console.log("🔍 DATABASE CONFIGURATION DIAGNOSTIC:");
+  // === DİL GÜNCELLEMESİ (Teşhis mesajları) ===
+  console.log("🔍 ADATBÁZIS KONFIGURÁCIÓS DIAGNOSZTIKA:");
   console.log("   NODE_ENV:", process.env.NODE_ENV);
-  console.log("   POSTGRES_URL exists:", !!postgresUrl);
-  console.log("   POSTGRES_URL length:", postgresUrl?.length || 0);
-  console.log("   POSTGRES_URL preview:", postgresUrl?.substring(0, 30) + "..." || "NOT_SET");
+  console.log("   POSTGRES_URL létezik:", !!postgresUrl);
+  console.log("   POSTGRES_URL hossza:", postgresUrl?.length || 0);
+  console.log("   POSTGRES_URL előnézet:", postgresUrl?.substring(0, 30) + "..." || "NINCS_BEÁLLÍTVA");
   
   if (!postgresUrl) {
-    console.error("❌ POSTGRES_URL environment variable is completely missing");
-    console.error("💡 Create a .env.local file with: POSTGRES_URL=\"your_vercel_postgres_url\"");
+    console.error("❌ A POSTGRES_URL környezeti változó teljesen hiányzik");
+    console.error("💡 Hozzon létre egy .env.local fájlt a következő tartalommal: POSTGRES_URL=\"az_ön_vercel_postgres_url-je\"");
     return false;
   }
   
   if (postgresUrl === "Vercel projenizden aldığınız veritabanı bağlantı adresi") {
-    console.error("❌ POSTGRES_URL is still a placeholder value");
-    console.error("💡 Replace with actual Vercel Postgres connection string");
+    console.error("❌ A POSTGRES_URL még mindig egy helykitöltő érték");
+    console.error("💡 Cserélje le a valódi Vercel Postgres kapcsolati karakterláncra");
     return false;
   }
   
   if (postgresUrl.includes("test") || postgresUrl.includes("placeholder") || postgresUrl.length < 20) {
-    console.error("❌ POSTGRES_URL appears to be invalid or a test value");
-    console.error("💡 Ensure you're using a real Vercel Postgres connection string");
+    console.error("❌ A POSTGRES_URL érvénytelennek vagy tesztértéknek tűnik");
+    console.error("💡 Győződjön meg róla, hogy valódi Vercel Postgres kapcsolati karakterláncot használ");
     return false;
   }
   
   if (!postgresUrl.startsWith("postgres://") && !postgresUrl.startsWith("postgresql://")) {
-    console.error("❌ POSTGRES_URL doesn't appear to be a valid PostgreSQL connection string");
-    console.error("💡 Should start with 'postgres://' or 'postgresql://'");
+    console.error("❌ A POSTGRES_URL nem tűnik érvényes PostgreSQL kapcsolati karakterláncnak");
+    console.error("💡 'postgres://' vagy 'postgresql://' kezdetűnek kell lennie");
     return false;
   }
   
-  console.log("✅ POSTGRES_URL format appears valid");
+  console.log("✅ A POSTGRES_URL formátuma érvényesnek tűnik");
   return true;
 }
 
-// Check database configuration on module load
+// Adatbázis konfiguráció ellenőrzése a modul betöltésekor
 const isDatabaseConfigured = validateDatabaseConfig();
 
-// Vercel Postgres ile Drizzle ORM bağlantısı
+// Vercel Postgres kapcsolat a Drizzle ORM-mel
 export const db = drizzle(sql, { schema })
 
-// Database configuration status
+// Adatbázis konfigurációs állapota
 export const isDatabaseReady = isDatabaseConfigured;
 
-// Enhanced database connection test with detailed diagnostics
+// Bővített adatbázis-kapcsolati teszt részletes diagnosztikával
 export async function testConnection() {
-  console.log("🔄 Testing database connection...");
+  // === DİL GÜNCELLEMESİ (Test mesajları) ===
+  console.log("🔄 Adatbázis-kapcsolat tesztelése...");
   
   if (!isDatabaseReady) {
-    console.error("❌ Database configuration is invalid. Skipping connection test.");
+    console.error("❌ Az adatbázis konfigurációja érvénytelen. A kapcsolati teszt kihagyva.");
     return false;
   }
   
   try {
     const result = await sql`SELECT NOW() as current_time, version() as pg_version`
-    console.log('✅ Database connection successful!');
-    console.log('   Server time:', result.rows[0].current_time);
-    console.log('   PostgreSQL version:', result.rows[0].pg_version?.substring(0, 50) + "...");
+    console.log('✅ Adatbázis-kapcsolat sikeres!');
+    console.log('   Szerveridő:', result.rows[0].current_time);
+    console.log('   PostgreSQL verzió:', result.rows[0].pg_version?.substring(0, 50) + "...");
     return true;
   } catch (error) {
-    console.error('❌ Database connection failed:');
-    console.error('   Error type:', error instanceof Error ? error.constructor.name : typeof error);
-    console.error('   Error message:', error instanceof Error ? error.message : String(error));
-    console.error('   Error code:', (error as any)?.code || 'NO_CODE');
+    console.error('❌ Adatbázis-kapcsolat sikertelen:');
+    console.error('   Hiba típusa:', error instanceof Error ? error.constructor.name : typeof error);
+    console.error('   Hibaüzenet:', error instanceof Error ? error.message : String(error));
+    console.error('   Hibakód:', (error as any)?.code || 'NINCS_KÓD');
     
-    // Specific error guidance
+    // Specifikus hibajavaslatok (DİL GÜNCELLEMESİ)
     const errorMessage = error instanceof Error ? error.message : String(error);
     if (errorMessage.includes('invalid_connection_string')) {
-      console.error('💡 SOLUTION: Your POSTGRES_URL is meant for direct connections.');
-      console.error('   Try using the POOLED connection string from Vercel instead.');
+      console.error('💡 MEGOLDÁS: A POSTGRES_URL közvetlen kapcsolathoz való.');
+      console.error('   Próbálja meg a POOLED kapcsolati karakterláncot használni a Vercelből.');
     } else if (errorMessage.includes('authentication')) {
-      console.error('💡 SOLUTION: Check your database credentials in POSTGRES_URL');
+      console.error('💡 MEGOLDÁS: Ellenőrizze az adatbázis hitelesítő adatait a POSTGRES_URL-ben');
     } else if (errorMessage.includes('connection')) {
-      console.error('💡 SOLUTION: Check if your database server is running and accessible');
+      console.error('💡 MEGOLDÁS: Ellenőrizze, hogy az adatbázis-szerver fut-e és elérhető-e');
     }
     
     return false;
   }
 }
 
-// Tip güvenliği için
+// Típusbiztonság érdekében
 export type DB = typeof db

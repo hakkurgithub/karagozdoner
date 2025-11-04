@@ -9,8 +9,6 @@ interface Product {
     name: string;
     description: string | null;
     price: number | string; // API'den numeric string veya number gelebilir
-    priceInLira?: number; // API'den gelen formatlanmış fiyat
-    formattedPrice?: string; // API'den gelen formatlanmış string
     category: string | null;
     image: string | null;
     isActive: number;
@@ -41,16 +39,17 @@ export default function MenuPage() {
             });
     }, []);
 
+    // === DİL GÜNCELLEMESİ (Kategoriler) ===
     const categories = [
         "all",
-        "Kebaplar & Izgaralar",
-        "Pide & Lahmacun",
+        "Kebapok és Grillek",
+        "Pide és Lahmacun",
         "Döner",
         "Dürüm",
-        "Çorbalar",
-        "Yan Ürünler",
-        "Tatlılar",
-        "İçecekler"
+        "Levesek",
+        "Köretek",
+        "Desszertek",
+        "Italok"
     ];
 
     const filteredItems = products.filter((item) =>
@@ -58,18 +57,20 @@ export default function MenuPage() {
     );
 
     const handleAddToCart = (item: Product) => {
-        const price = item.priceInLira || parseFloat(String(item.price));
+        // === FİYAT MANTIĞI GÜNCELLEMESİ (Sadece 'price' kullan) ===
+        const price = Math.round(parseFloat(String(item.price)));
         addItem({
             id: String(item.id),
             name: item.name,
-            price: price, // TL cinsinden number
+            price: price, // Ft cinsinden number
         });
     };
 
     if (!isClient || loading) {
         return (
             <div className="flex items-center justify-center min-h-screen">
-                <div className="text-2xl text-gray-600">Yükleniyor...</div>
+                {/* === DİL GÜNCELLEMESİ === */}
+                <div className="text-2xl text-gray-600">Betöltés...</div>
             </div>
         );
     }
@@ -78,6 +79,7 @@ export default function MenuPage() {
         <div className="bg-gray-50 min-h-screen">
             <div className="container mx-auto px-4 sm:px-6 py-12">
                 <h1 className="text-4xl font-bold text-center text-red-600 mb-8">
+                    {/* === DİL GÜNCELLEMESİ (Aynı kaldı) === */}
                     Menü
                 </h1>
 
@@ -93,7 +95,8 @@ export default function MenuPage() {
                                     : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                             }`}
                         >
-                            {category === "all" ? "Tümü" : category}
+                            {/* === DİL GÜNCELLEMESİ === */}
+                            {category === "all" ? "Mind" : category}
                         </button>
                     ))}
                 </div>
@@ -122,14 +125,16 @@ export default function MenuPage() {
                                     <p className="text-gray-600 text-sm flex-1">{item.description}</p>
                                     <div className="flex justify-between items-center mt-4">
                                         <span className="text-2xl font-bold text-red-600">
-                                            {Math.round(item.priceInLira || parseFloat(String(item.price)))}₺
+                                            {/* === FİYAT VE PARA BİRİMİ GÜNCELLEMESİ === */}
+                                            {Math.round(parseFloat(String(item.price)))} Ft
                                         </span>
                                         <div className="relative">
                                             <button
                                                 onClick={() => handleAddToCart(item)}
                                                 className="bg-red-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors"
                                             >
-                                                <i className="ri-shopping-cart-fill mr-2"></i>Ekle
+                                                {/* === DİL GÜNCELLEMESİ === */}
+                                                <i className="ri-shopping-cart-fill mr-2"></i>Hozzáad
                                             </button>
                                             {cartItem && (
                                                 <span className="absolute -top-2 -right-2 bg-yellow-400 text-red-900 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">

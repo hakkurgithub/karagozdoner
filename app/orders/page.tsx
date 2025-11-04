@@ -15,27 +15,31 @@ export default async function OrdersPage() {
   try {
     orders = await getUserOrders(session.user.id);
   } catch (error) {
-    console.log("DB bağlantısı yok, mock data kullanılıyor:", error);
+    // === DİL GÜNCELLEMESİ (Hata mesajı) ===
+    console.log("DB kapcsolat nincs, mock adat használatban:", error);
     // Mock orders data
     orders = [
       {
         id: 1,
-        totalPrice: 3500, // 35 TL (kuruş cinsinden)
+        // === FİYAT MANTIĞI GÜNCELLEMESİ (Yorum) ===
+        totalPrice: 3500, // 3500 Ft
         status: "completed",
         orderType: "dine-in",
         customerName: session.user.name,
-        customerPhone: "+90 555 123 4567",
+        // === DİL GÜNCELLEMESİ (Mock telefon) ===
+        customerPhone: "+36 20 123 4567",
         createdAt: new Date().toISOString(),
-        notes: "Acısız olsun lütfen"
+        // === DİL GÜNCELLEMESİ (Mock not) ===
+        notes: "Kérem, ne legyen csípős"
       },
       {
         id: 2,
-        totalPrice: 2800, // 28 TL
+        totalPrice: 2800, // 2800 Ft
         status: "preparing",
         orderType: "takeaway",
         customerName: session.user.name,
-        customerPhone: "+90 555 123 4567",
-        createdAt: new Date(Date.now() - 3600000).toISOString(), // 1 saat önce
+        customerPhone: "+36 20 123 4567",
+        createdAt: new Date(Date.now() - 3600000).toISOString(), // 1 órával ezelőtt
         notes: null
       }
     ];
@@ -44,22 +48,25 @@ export default async function OrdersPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Siparişlerim</h1>
-        <p className="text-gray-600 mt-1">Tüm siparişlerinizi buradan takip edebilirsiniz</p>
+        {/* === DİL GÜNCELLEMESİ === */}
+        <h1 className="text-2xl font-bold text-gray-900">Rendeléseim</h1>
+        <p className="text-gray-600 mt-1">Itt követheti nyomon az összes rendelését</p>
       </div>
 
       {orders.length === 0 ? (
         <div className="bg-white p-8 rounded-lg shadow-sm border text-center">
           <div className="text-4xl mb-4">📋</div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Henüz sipariş yok</h3>
+          {/* === DİL GÜNCELLEMESİ === */}
+          <h3 className="text-lg font-medium text-gray-900 mb-2">Még nincsenek rendelései</h3>
           <p className="text-gray-600 mb-4">
-            İlk siparişinizi vermek için menümüzü inceleyin.
+            Tekintse meg a menüt az első rendelés leadásához.
           </p>
           <a 
             href="/menu" 
             className="inline-block px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
           >
-            Menüyü İncele
+            {/* === DİL DEĞİŞİKLİĞİ === */}
+            Menü Megtekintése
           </a>
         </div>
       ) : (
@@ -69,10 +76,12 @@ export default async function OrdersPage() {
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900">
-                    Sipariş #{order.id}
+                    {/* === DİL DEĞİŞİKLİĞİ === */}
+                    Rendelés #{order.id}
                   </h3>
                   <p className="text-sm text-gray-600">
-                    {new Date(order.createdAt).toLocaleDateString('tr-TR', {
+                    {/* === DİL GÜNCELLEMESİ (Tarih formatı) === */}
+                    {new Date(order.createdAt).toLocaleDateString('hu-HU', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric',
@@ -84,7 +93,8 @@ export default async function OrdersPage() {
                 
                 <div className="text-right">
                   <p className="text-2xl font-bold text-gray-900">
-                    ₺{(order.totalPrice / 100).toFixed(2)}
+                    {/* === FİYAT VE PARA BİRİMİ GÜNCELLEMESİ (/100 kaldırıldı) === */}
+                    {order.totalPrice} Ft
                   </p>
                   <span className={`inline-block px-3 py-1 text-sm font-medium rounded-full ${
                     order.status === 'completed' 
@@ -95,9 +105,10 @@ export default async function OrdersPage() {
                       ? 'bg-red-100 text-red-800'
                       : 'bg-gray-100 text-gray-800'
                   }`}>
-                    {order.status === 'completed' ? 'Tamamlandı' :
-                     order.status === 'preparing' ? 'Hazırlanıyor' :
-                     order.status === 'cancelled' ? 'İptal Edildi' : 'Bekliyor'}
+                    {/* === DİL DEĞİŞİKLİĞİ (Durumlar) === */}
+                    {order.status === 'completed' ? 'Teljesítve' :
+                     order.status === 'preparing' ? 'Készül' :
+                     order.status === 'cancelled' ? 'Törölve' : 'Függőben'}
                   </span>
                 </div>
               </div>
@@ -105,21 +116,30 @@ export default async function OrdersPage() {
               <div className="border-t pt-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <h4 className="font-medium text-gray-900 mb-2">Sipariş Detayları</h4>
+                    {/* === DİL DEĞİŞİKLİĞİ === */}
+                    <h4 className="font-medium text-gray-900 mb-2">Rendelés Részletei</h4>
                     <div className="space-y-1 text-sm text-gray-600">
-                      <p><span className="font-medium">Tip:</span> {order.orderType || 'Restoran'}</p>
+                      {/* === DİL DEĞİŞİKLİĞİ (Tipler) === */}
+                      <p><span className="font-medium">Típus:</span> {
+                        order.orderType === 'dine-in' ? 'Helyben' :
+                        order.orderType === 'takeaway' ? 'Elvitel' :
+                        order.orderType === 'delivery' ? 'Kiszállítás' : 'Helyben'
+                      }</p>
                       {order.customerName && (
-                        <p><span className="font-medium">Ad:</span> {order.customerName}</p>
+                        /* === DİL DEĞİŞİKLİĞİ === */
+                        <p><span className="font-medium">Név:</span> {order.customerName}</p>
                       )}
                       {order.customerPhone && (
-                        <p><span className="font-medium">Telefon:</span> {order.customerPhone}</p>
+                        /* === DİL DEĞİŞİKLİĞİ === */
+                        <p><span className="font-medium">Telefonszám:</span> {order.customerPhone}</p>
                       )}
                     </div>
                   </div>
                   
                   {order.notes && (
                     <div>
-                      <h4 className="font-medium text-gray-900 mb-2">Notlar</h4>
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      <h4 className="font-medium text-gray-900 mb-2">Megjegyzések</h4>
                       <p className="text-sm text-gray-600">{order.notes}</p>
                     </div>
                   )}
@@ -130,10 +150,12 @@ export default async function OrdersPage() {
                 <div className="border-t pt-4 mt-4">
                   <div className="flex space-x-3">
                     <button className="px-4 py-2 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700 transition-colors">
-                      Siparişi İptal Et
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Rendelés Törlése
                     </button>
                     <button className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors">
-                      Sipariş Detayları
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Rendelés Részletei
                     </button>
                   </div>
                 </div>

@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -18,28 +17,30 @@ export default function ReservationPage() {
     '17:00', '17:30', '18:00', '18:30', '19:00', '19:30',
     '20:00', '20:30', '21:00', '21:30', '22:00', '22:30'
   ];
+  
   const handleQuickReservation = () => {
-    // 1) Tarih veya saat seçilmediyse eski modalı aç (isteğe bağlı)
+    // 1) Dátum vagy időpont hiányában a régi modalt nyissa meg (opcionális)
     if (!selectedDate || !selectedTime) {
       setShowReservationModal(true);
       return;
     }
 
-    // 2) Seçili değerleri Türkçe formatla
-    const dateTr = new Date(selectedDate).toLocaleDateString('tr-TR', {
+    // 2) === DİL GÜNCELLEMESİ (Tarih formatı) ===
+    const dateHu = new Date(selectedDate).toLocaleDateString('hu-HU', {
       day: '2-digit',
       month: 'long',
       year: 'numeric'
     });
 
-    const message = `Merhaba!
-Borcan Kebap'tan masa rezervasyonu istiyorum:
-📅 Tarih: ${dateTr}
-🕒 Saat: ${selectedTime}
-👥 Kişi sayısı: ${guests}
-Teşekkürler!`;
+    // === DİL, İSİM VE TELEFON GÜNCELLEMESİ ===
+    const message = `Helló!
+Asztalfoglalást szeretnék a Karagöz Döner-nél:
+📅 Dátum: ${dateHu}
+🕒 Időpont: ${selectedTime}
+👥 Vendégek száma: ${guests}
+Köszönöm!`;
 
-    const phone = '905455093462'; // uluslararası format (+-sız)
+    const phone = '36209341537'; // Új Magyar telefonszám
     const waURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(waURL, '_blank');
   };
@@ -52,34 +53,37 @@ Teşekkürler!`;
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <Link href="/" className="flex items-center space-x-3">
+                {/* === İSİM GÜNCELLEMESİ (Logo) === */}
                 <div className="w-12 h-12 bg-yellow-400 rounded-lg flex items-center justify-center font-bold text-black text-xl border-2 border-black">
-                  BK
+                  KD
                 </div>
                 <span className="text-2xl font-bold text-red-600 font-[\'Pacifico\']">
-                  Borcan Kebap
+                  Karagöz Döner
                 </span>
               </Link>
             </div>
+            {/* === DİL GÜNCELLEMESİ (Navigasyon) === */}
             <nav className="hidden md:flex space-x-8">
               <Link href="/" className="text-gray-700 hover:text-red-600 font-medium transition-colors cursor-pointer">
-                Ana Sayfa
+                Kezdőlap
               </Link>
               <Link href="/menu" className="text-gray-700 hover:text-red-600 font-medium transition-colors cursor-pointer">
                 Menü
               </Link>
               <Link href="/about" className="text-gray-700 hover:text-red-600 font-medium transition-colors cursor-pointer">
-                Hakkımızda
+                Rólunk
               </Link>
               <Link href="/contact" className="text-gray-700 hover:text-red-600 font-medium transition-colors cursor-pointer">
-                İletişim
+                Elérhetőség
               </Link>
               <Link href="/reservation" className="text-red-600 hover:text-red-700 font-medium transition-colors cursor-pointer">
-                Rezervasyon
+                Foglalás
               </Link>
             </nav>
             <div className="flex items-center space-x-4">
               <button onClick={handleQuickReservation} className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors font-medium whitespace-nowrap cursor-pointer">
-                Rezervasyon
+                {/* === DİL GÜNCELLEMESİ === */}
+                Foglalás
               </button>
               <OrderChannelDropdown />
               <button className="md:hidden w-6 h-6 flex items-center justify-center cursor-pointer">
@@ -100,9 +104,10 @@ Teşekkürler!`;
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="relative z-10 flex items-center justify-center h-full">
           <div className="text-center text-white px-4">
-            <h1 className="text-5xl font-bold mb-4">Rezervasyon</h1>
+            {/* === DİL VE İSİM GÜNCELLEMESİ === */}
+            <h1 className="text-5xl font-bold mb-4">Asztalfoglalás</h1>
             <p className="text-xl max-w-2xl mx-auto">
-              Borcan Kebap&apos;ta unutulmaz bir yemek deneyimi için masanızı ayırtın
+              Foglaljon asztalt a Karagöz Döner-nél egy felejthetetlen gasztronómiai élményért
             </p>
           </div>
         </div>
@@ -114,14 +119,16 @@ Teşekkürler!`;
           <div className="bg-white rounded-xl shadow-lg p-8">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">
               <i className="ri-calendar-line mr-3 text-red-600"></i>
-              Masa Rezervasyonu
+              {/* === DİL GÜNCELLEMESİ === */}
+              Asztalfoglalás
             </h2>
             
             <div className="space-y-6">
               {/* Date Selection */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Tarih Seçin
+                  {/* === DİL GÜNCELLEMESİ === */}
+                  Dátum
                 </label>
                 <input
                   type="date"
@@ -135,7 +142,8 @@ Teşekkürler!`;
               {/* Guest Count */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Kişi Sayısı
+                  {/* === DİL GÜNCELLEMESİ === */}
+                  Vendégek száma
                 </label>
                 <div className="flex items-center space-x-4">
                   <button
@@ -152,13 +160,15 @@ Teşekkürler!`;
                     <i className="ri-add-line"></i>
                   </button>
                 </div>
-                <p className="text-sm text-gray-500 mt-1">Maksimum 12 kişi</p>
+                {/* === DİL GÜNCELLEMESİ === */}
+                <p className="text-sm text-gray-500 mt-1">Maximum 12 fő</p>
               </div>
 
               {/* Time Selection */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Saat Seçin
+                  {/* === DİL GÜNCELLEMESİ === */}
+                  Időpont
                 </label>
                 <div className="grid grid-cols-4 gap-2">
                   {timeSlots.map((time) => (
@@ -183,7 +193,8 @@ Teşekkürler!`;
                 className="w-full bg-red-600 text-white py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors cursor-pointer flex items-center justify-center"
               >
                 <i className="ri-calendar-check-line mr-2 text-lg"></i>
-                Rezervasyon Yap
+                {/* === DİL GÜNCELLEMESİ === */}
+                Foglalás Most
               </button>
             </div>
           </div>
@@ -193,7 +204,8 @@ Teşekkürler!`;
             {/* Restaurant Info */}
             <div className="bg-white rounded-xl shadow-lg p-8">
               <h3 className="text-2xl font-bold text-gray-800 mb-6">
-                Rezervasyon Bilgileri
+                {/* === DİL GÜNCELLEMESİ === */}
+                Foglalási Információk
               </h3>
               
               <div className="space-y-4">
@@ -202,9 +214,10 @@ Teşekkürler!`;
                     <i className="ri-time-line text-xl text-red-600"></i>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800 mb-1">Çalışma Saatleri</h4>
-                    <p className="text-gray-600">Her gün 11:00 - 23:00</p>
-                    <p className="text-sm text-green-600">Kesintisiz servis</p>
+                    {/* === DİL GÜNCELLEMESİ === */}
+                    <h4 className="font-semibold text-gray-800 mb-1">Nyitvatartás</h4>
+                    <p className="text-gray-600">Minden nap 11:00 - 23:00</p>
+                    <p className="text-sm text-green-600">Folyamatos kiszolgálás</p>
                   </div>
                 </div>
 
@@ -213,9 +226,10 @@ Teşekkürler!`;
                     <i className="ri-phone-line text-xl text-red-600"></i>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800 mb-1">Rezervasyon Hattı</h4>
-                    <p className="text-gray-600">0212 423 3727</p>
-                    <p className="text-gray-600">0545 509 3462</p>
+                    {/* === DİL GÜNCELLEMESİ === */}
+                    <h4 className="font-semibold text-gray-800 mb-1">Foglalási Vonal</h4>
+                    {/* === TELEFON GÜNCELLEMESİ === */}
+                    <p className="text-gray-600">06 20 934 1537</p>
                   </div>
                 </div>
 
@@ -224,10 +238,12 @@ Teşekkürler!`;
                     <i className="ri-map-pin-line text-xl text-red-600"></i>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800 mb-1">Adres</h4>
+                    {/* === DİL GÜNCELLEMESİ === */}
+                    <h4 className="font-semibold text-gray-800 mb-1">Cím</h4>
+                    {/* === ADRES GÜNCELLEMESİ === */}
                     <p className="text-gray-600">
-                      Beyoğlu Caddesi No: 35/A<br/>
-                      Parseller, Avcılar/İstanbul
+                      2500, Esztergom<br/>
+                      Kossuth Lajos utca 30.
                     </p>
                   </div>
                 </div>
@@ -237,9 +253,10 @@ Teşekkürler!`;
                     <i className="ri-user-line text-xl text-red-600"></i>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800 mb-1">Kapasite</h4>
-                    <p className="text-gray-600">120 kişilik salon</p>
-                    <p className="text-gray-600">Grup rezervasyonları mevcut</p>
+                    {/* === DİL GÜNCELLEMESİ === */}
+                    <h4 className="font-semibold text-gray-800 mb-1">Kapacitás</h4>
+                    <p className="text-gray-600">Tágas étterem</p>
+                    <p className="text-gray-600">Csoportos foglalás lehetséges</p>
                   </div>
                 </div>
               </div>
@@ -249,28 +266,32 @@ Teşekkürler!`;
             <div className="bg-gradient-to-br from-red-600 to-orange-600 text-white rounded-xl p-8">
               <h3 className="text-2xl font-bold mb-6">
                 <i className="ri-gift-line mr-2"></i>
-                Özel Teklifler
+                {/* === DİL GÜNCELLEMESİ === */}
+                Különleges Ajánlatok
               </h3>
               
               <div className="space-y-4">
                 <div className="bg-white/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-2">🎂 Doğum Günü Sürprizi</h4>
+                  {/* === DİL GÜNCELLEMESİ === */}
+                  <h4 className="font-semibold mb-2">🎂 Születésnapi Meglepetés</h4>
                   <p className="text-sm opacity-90">
-                    Doğum günü rezervasyonlarında ücretsiz pasta ve sürpriz
+                    Ingyenes torta és meglepetés születésnapi foglalások esetén
                   </p>
                 </div>
                 
                 <div className="bg-white/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-2">👨👩👧👦 Aile Menüsü</h4>
+                  {/* === DİL GÜNCELLEMESİ === */}
+                  <h4 className="font-semibold mb-2">👨👩👧👦 Családi Menü</h4>
                   <p className="text-sm opacity-90">
-                    4+ kişilik rezervasyonlarda %15 indirim
+                    15% kedvezmény 4+ fős foglalások esetén
                   </p>
                 </div>
                 
                 <div className="bg-white/10 rounded-lg p-4">
-                  <h4 className="font-semibold mb-2">🎵 Canlı Müzik</h4>
+                  {/* === DİL GÜNCELLEMESİ === */}
+                  <h4 className="font-semibold mb-2">🎵 Élő Zene</h4>
                   <p className="text-sm opacity-90">
-                    Cuma ve Cumartesi akşamları canlı Türk müziği
+                    Péntek és szombat este élő török zene
                   </p>
                 </div>
               </div>
@@ -279,21 +300,25 @@ Teşekkürler!`;
             {/* Quick Contact */}
             <div className="bg-white rounded-xl shadow-lg p-8">
               <h3 className="text-2xl font-bold text-gray-800 mb-6">
-                Hızlı İletişim
+                {/* === DİL GÜNCELLEMESİ === */}
+                Gyors Elérhetőség
               </h3>
               
               <div className="grid grid-cols-2 gap-4">
-                <button className="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                {/* === TELEFON GÜNCELLEMESİ === */}
+                <a href="tel:06209341537" className="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
                   <i className="ri-phone-fill text-2xl text-green-600 mb-2"></i>
-                  <span className="font-medium">Ara</span>
-                  <span className="text-xs text-gray-500">0212 423 3727</span>
-                </button>
+                  {/* === DİL GÜNCELLEMESİ === */}
+                  <span className="font-medium">Hívás</span>
+                  <span className="text-xs text-gray-500">06 20 934 1537</span>
+                </a>
                 
-                <button className="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                {/* === TELEFON VE LİNK GÜNCELLEMESİ === */}
+                <a href="https://wa.me/36209341537?text=Helló!%20Asztalfoglalást%20szeretnék." target="_blank" rel="noopener noreferrer" className="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
                   <i className="ri-whatsapp-fill text-2xl text-green-600 mb-2"></i>
                   <span className="font-medium">WhatsApp</span>
-                  <span className="text-xs text-gray-500">0545 509 3462</span>
-                </button>
+                  <span className="text-xs text-gray-500">06 20 934 1537</span>
+                </a>
               </div>
             </div>
           </div>
@@ -303,7 +328,8 @@ Teşekkürler!`;
         <div className="mt-12 bg-white rounded-xl shadow-lg p-8">
           <h3 className="text-2xl font-bold text-gray-800 mb-6">
             <i className="ri-information-line mr-2 text-blue-600"></i>
-            Rezervasyon Kuralları
+            {/* === DİL GÜNCELLEMESİ === */}
+            Foglalási Szabályzat
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -312,8 +338,9 @@ Teşekkürler!`;
                 <i className="ri-time-line text-blue-600"></i>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-800 mb-1">Geç Kalma</h4>
-                <p className="text-sm text-gray-600">15 dakikadan fazla geç kalınması durumunda rezervasyon iptal edilebilir.</p>
+                {/* === DİL GÜNCELLEMESİ === */}
+                <h4 className="font-semibold text-gray-800 mb-1">Késés</h4>
+                <p className="text-sm text-gray-600">15 percnél hosszabb késés esetén a foglalás törlésre kerülhet.</p>
               </div>
             </div>
             
@@ -322,8 +349,9 @@ Teşekkürler!`;
                 <i className="ri-close-circle-line text-blue-600"></i>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-800 mb-1">İptal</h4>
-                <p className="text-sm text-gray-600">Rezervasyon iptali en az 2 saat öncesinden bildirilmelidir.</p>
+                {/* === DİL GÜNCELLEMESİ === */}
+                <h4 className="font-semibold text-gray-800 mb-1">Lemondás</h4>
+                <p className="text-sm text-gray-600">A foglalás lemondását legalább 2 órával korábban jelezni kell.</p>
               </div>
             </div>
             
@@ -332,8 +360,9 @@ Teşekkürler!`;
                 <i className="ri-user-3-line text-blue-600"></i>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-800 mb-1">Grup Rezervasyonu</h4>
-                <p className="text-sm text-gray-600">8+ kişilik grup rezervasyonları için önceden arayınız.</p>
+                {/* === DİL GÜNCELLEMESİ === */}
+                <h4 className="font-semibold text-gray-800 mb-1">Csoportos foglalás</h4>
+                <p className="text-sm text-gray-600">8+ fős csoportos foglalás esetén kérjük, hívjon minket.</p>
               </div>
             </div>
             
@@ -342,8 +371,9 @@ Teşekkürler!`;
                 <i className="ri-calendar-check-line text-blue-600"></i>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-800 mb-1">Onay</h4>
-                <p className="text-sm text-gray-600">Rezervasyonunuz telefon ile teyit edilecektir.</p>
+                {/* === DİL GÜNCELLEMESİ === */}
+                <h4 className="font-semibold text-gray-800 mb-1">Visszaigazolás</h4>
+                <p className="text-sm text-gray-600">Foglalását telefonon erősítjük meg.</p>
               </div>
             </div>
             
@@ -352,8 +382,9 @@ Teşekkürler!`;
                 <i className="ri-restaurant-line text-blue-600"></i>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-800 mb-1">Özel Menü</h4>
-                <p className="text-sm text-gray-600">Özel diyet ihtiyaçlarınızı rezervasyon sırasında belirtiniz.</p>
+                {/* === DİL GÜNCELLEMESİ === */}
+                <h4 className="font-semibold text-gray-800 mb-1">Különleges étrend</h4>
+                <p className="text-sm text-gray-600">Kérjük, foglaláskor jelezze különleges étrendi igényeit.</p>
               </div>
             </div>
             
@@ -362,43 +393,43 @@ Teşekkürler!`;
                 <i className="ri-gift-line text-blue-600"></i>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-800 mb-1">Özel Günler</h4>
-                <p className="text-sm text-gray-600">Doğum günü ve özel günlerinizi rezervasyon sırasında belirtiniz.</p>
+                {/* === DİL GİNCELLEMESİ === */}
+                <h4 className="font-semibold text-gray-800 mb-1">Különleges alkalmak</h4>
+                <p className="text-sm text-gray-600">Kérjük, foglaláskor jelezze a születésnapokat és különleges alkalmakat.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Footer */}
+      {/* Footer (Wix siteye göre güncellendi) */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4 flex items-center space-x-3">
+                {/* === İSİM GÜNCELLEMESİ (Logo) === */}
                 <div className="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center font-bold text-black text-lg border-2 border-black">
-                  BK
+                  KD
                 </div>
-                <span className="font-[\'Pacifico\']">Borcan Kebap</span>
+                <span className="font-[\'Pacifico\']">Karagöz Döner</span>
               </h3>
+              {/* === DİL GÜNCELLEMESİ === */}
               <p className="text-gray-400 mb-4">
-                Geleneksel Türk mutfağının eşsiz lezzetlerini modern sunum ile buluşturuyoruz.
+                A hagyományos török konyha egyedülálló ízei Esztergomban.
               </p>
               <div className="flex space-x-4">
-                <a href="https://www.facebook.com/brcnkbp" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-colors">
+                {/* === SOSYAL MEDYA GÜNCELLEMESİ (Facebook) === */}
+                <a href="https://www.facebook.com/profile.php?id=61560428630473" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-colors">
                   <i className="ri-facebook-fill text-lg"></i>
                 </a>
-                <a href="https://www.instagram.com/borcankebap/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-600 rounded-full flex items-center justify-center cursor-pointer hover:from-purple-700 hover:via-pink-700 hover:to-orange-700 transition-all">
-                  <i className="ri-instagram-fill text-lg"></i>
-                </a>
-                <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-red-700 transition-colors">
-                  <i className="ri-twitter-fill text-sm"></i>
-                </div>
+                {/* Diğerleri kaldırıldı */}
               </div>
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-4">Hızlı Linkler</h4>
+              {/* === DİL GÜNCELLEMESİ (Hızlı Linkler) === */}
+              <h4 className="text-lg font-semibold mb-4">Gyors linkek</h4>
               <ul className="space-y-2">
                 <li>
                   <Link href="/menu" className="text-gray-400 hover:text-white transition-colors cursor-pointer">
@@ -407,45 +438,40 @@ Teşekkürler!`;
                 </li>
                 <li>
                   <Link href="/about" className="text-gray-400 hover:text-white transition-colors cursor-pointer">
-                    Hakkımızda
+                    Rólunk
                   </Link>
                 </li>
                 <li>
                   <Link href="/contact" className="text-gray-400 hover:text-white transition-colors cursor-pointer">
-                    İletişim
+                    Elérhetőség
                   </Link>
                 </li>
                 <li>
                   <Link href="/reservation" className="text-gray-400 hover:text-white transition-colors cursor-pointer">
-                    Rezervasyon
+                    Foglalás
                   </Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-4">Online Sipariş</h4>
+              {/* === DİL VE SİPARİŞ KANALI GÜNCELLEMESİ === */}
+              <h4 className="text-lg font-semibold mb-4">Online Rendelés</h4>
               <ul className="space-y-2">
                 <li>
-                  <a href="https://www.yemeksepeti.com/restaurant/kw28/borcan-kebap-pide-lahmacun-salonu" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center">
-                    <i className="ri-restaurant-line mr-2 text-orange-600"></i>
-                    Yemeksepeti
+                  <a href="#" /* Foodora linki buraya */ target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center">
+                    <i className="ri-restaurant-line mr-2 text-pink-600"></i>
+                    Foodora
                   </a>
                 </li>
                 <li>
-                  <a href="https://getir.com/yemek/restoran/borcan-kebap-pide-lahmacun-salonu-mustafa-kemalpasa-mah-avcilar-istanbul/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center">
-                    <i className="ri-truck-line mr-2 text-orange-600"></i>
-                    Getir
+                  <a href="#" /* Wolt linki buraya */ target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center">
+                    <i className="ri-truck-line mr-2 text-blue-500"></i>
+                    Wolt
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.trendyol.com/yemek" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center">
-                    <i className="ri-restaurant-line mr-2 text-purple-600"></i>
-                    Trendyol Yemek
-                  </a>
-                </li>
-                <li>
-                  <a href="https://wa.me/905455093462?text=Merhaba! Borcan Kebap'tan sipariş vermek istiyorum." target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center">
+                  <a href="https://wa.me/36209341537?text=Helló!%20Karagöz%20Döner-től%20szeretnék%20rendelni." target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center">
                     <i className="ri-whatsapp-line mr-2 text-green-600"></i>
                     WhatsApp
                   </a>
@@ -454,35 +480,28 @@ Teşekkürler!`;
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-4">İletişim</h4>
+              {/* === DİL, TELEFON, E-POSTA VE ADRES GÜNCELLEMESİ === */}
+              <h4 className="text-lg font-semibold mb-4">Elérhetőség</h4>
               <ul className="space-y-2 text-gray-400">
                 <li className="flex items-center">
                   <i className="ri-phone-line mr-2"></i>
-                  0212 423 3727
-                </li>
-                <li className="flex items-center">
-                  <i className="ri-phone-line mr-2"></i>
-                  0545 509 3462
-                </li>
-                <li className="flex items-center">
-                  <i className="ri-whatsapp-line mr-2"></i>
-                  0545 509 3462 (WhatsApp)
+                  06 20 934 1537
                 </li>
                 <li className="flex items-center">
                   <i className="ri-mail-line mr-2"></i>
-                  info@borcankebap.com
+                  info@karagozdoner.com
                 </li>
                 <li className="flex items-start">
                   <i className="ri-map-pin-line mr-2 mt-1"></i>
                   <a
-                    href="https://maps.app.goo.gl/rQdBMCqk5GMwdVSM7"
+                    href="https://www.google.com/maps/place/Esztergom,+Kossuth+Lajos+u.+30,+2500+Hungary" // Esztergom harita linki
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white transition-colors cursor-pointer"
                   >
-                    Beyoğlu Caddesi No: 35/A
+                    2500, Esztergom
                     <br />
-                    Parseller, Avcılar/İstanbul
+                    Kossuth Lajos utca 30.
                   </a>
                 </li>
               </ul>
@@ -490,7 +509,8 @@ Teşekkürler!`;
           </div>
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Borcan Kebap. Tüm hakları saklıdır.</p>
+            {/* === İSİM GÜNCELLEMESİ === */}
+            <p>© 2024 Karagöz Döner. Minden jog fenntartva.</p>
           </div>
         </div>
       </footer>

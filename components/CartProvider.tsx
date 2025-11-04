@@ -76,19 +76,23 @@ export function CartProvider({ children }: CartProviderProps) {
 
   // ✅ WhatsApp sipariş gönderme fonksiyonu eklendi
   const sendOrderToWhatsApp = (address?: string, phone?: string, notes?: string) => {
+    
+    // === FİYAT DEĞİŞİKLİĞİ ₺ -> Ft ===
     const orderItemsText = items.map(item => 
-      `${item.name} x${item.quantity} - ${(item.price * item.quantity).toFixed(0)}₺`
+      `${item.name} x${item.quantity} - ${(item.price * item.quantity).toFixed(0)} Ft`
     ).join('\n');
     
-    const totalPriceText = `\n\nToplam: ${getTotalPrice().toFixed(0)}₺`;
+    const totalPriceText = `\n\nVégösszeg: ${getTotalPrice().toFixed(0)} Ft`;
     
-    let message = `Merhaba! Borcan Kebap'tan sipariş vermek istiyorum:\n\n${orderItemsText}${totalPriceText}`;
+    // === İSİM VE DİL DEĞİŞİKLİĞİ ===
+    let message = `Helló! A Karagöz Döner-től szeretnék rendelni:\n\n${orderItemsText}${totalPriceText}`;
     
-    if (address) message += `\n\nAdres: ${address}`;
-    if (phone) message += `\nTelefon: ${phone}`;
-    if (notes) message += `\nNot: ${notes}`;
+    if (address) message += `\n\nCím: ${address}`;
+    if (phone) message += `\nTelefonszám: ${phone}`;
+    if (notes) message += `\nMegjegyzés: ${notes}`;
     
-    const phoneNumber = '905455093462'; // Kendi telefon numaranız
+    // === TELEFON NUMARASI DEĞİŞİKLİĞİ ===
+    const phoneNumber = '36209341537'; // Macaristan numarası
     const encodedMessage = encodeURIComponent(message);
     
     const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;

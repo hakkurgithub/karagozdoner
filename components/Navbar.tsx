@@ -27,8 +27,10 @@ export default function Navbar() {
     }
   }, [getTotalItems, itemCount]);
 
+  // !! ÖNEMLİ !! Bu kısım "content" den (Yönetim Panelinden) gelir.
+  // Lütfen Yönetim Panelinden telefonu 36209341537 veya 06209341537 olarak güncelleyin.
   const phoneNumber = content.phone.replace(/[^0-9]/g, "");
-  const whatsappMessage = encodeURIComponent("Merhaba, sipariş vermek istiyorum.");
+  const whatsappMessage = encodeURIComponent("Helló, rendelni szeretnék!");
 
   return (
     <nav className="bg-red-700 text-white py-4 shadow-md sticky top-0 z-50">
@@ -37,14 +39,14 @@ export default function Navbar() {
           href="/"
           className="text-2xl font-bold tracking-wide hover:text-yellow-300 transition"
         >
-          {content.restaurantName}
+          {content.restaurantName} {/* <-- Bu, Yönetim Panelinden gelir */}
         </Link>
 
         <div className="hidden md:flex space-x-6 items-center">
-          <NavLink href="/" label="Ana Sayfa" active={pathname === "/"} />
+          <NavLink href="/" label="Kezdőlap" active={pathname === "/"} />
           <NavLink href="/menu" label="Menü" active={pathname === "/menu"} />
-          <NavLink href="/about" label="Hakkımızda" active={pathname === "/about"} />
-          <NavLink href="/contact" label="İletişim" active={pathname === "/contact"} />
+          <NavLink href="/about" label="Rólunk" active={pathname === "/about"} />
+          <NavLink href="/contact" label="Elérhetőség" active={pathname === "/contact"} />
 
           <Link
             href="/cart"
@@ -52,7 +54,7 @@ export default function Navbar() {
               animate ? "scale-110 transition-transform" : ""
             }`}
           >
-            🛒 Sepetim
+            🛒 Kosaram
             {itemCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                 {itemCount}
@@ -87,7 +89,7 @@ export default function Navbar() {
                       onClick={() => setUserMenuOpen(false)}
                     >
                       <Settings size={16} />
-                      <span className="text-sm">Yönetim Paneli</span>
+                      <span className="text-sm">Kezelőpanel</span>
                     </Link>
                   ) : (
                     <Link
@@ -96,7 +98,7 @@ export default function Navbar() {
                       onClick={() => setUserMenuOpen(false)}
                     >
                       <User size={16} />
-                      <span className="text-sm">Hesabım</span>
+                      <span className="text-sm">Fiókom</span>
                     </Link>
                   )}
                   
@@ -104,7 +106,7 @@ export default function Navbar() {
                     href="/api/auth/signout"
                     className="flex items-center space-x-2 px-3 py-2 hover:bg-gray-100 transition-colors text-red-600"
                   >
-                    <span className="text-sm">Çıkış</span>
+                    <span className="text-sm">Kijelentkezés</span>
                   </Link>
                 </div>
               )}
@@ -115,7 +117,7 @@ export default function Navbar() {
               className="flex items-center space-x-2 px-4 py-2 bg-white text-red-700 rounded-lg font-semibold hover:bg-gray-100 hover:shadow-md transition-all duration-200 transform hover:scale-105"
             >
               <User size={18} />
-              <span>Giriş</span>
+              <span>Bejelentkezés</span>
             </Link>
           )}
         </div>
@@ -130,10 +132,10 @@ export default function Navbar() {
 
       {menuOpen && (
         <div className="md:hidden bg-red-800 text-white px-4 py-4 space-y-4 pb-20">
-          <MobileLink href="/" label="Ana Sayfa" setMenuOpen={setMenuOpen} />
+          <MobileLink href="/" label="Kezdőlap" setMenuOpen={setMenuOpen} />
           <MobileLink href="/menu" label="Menü" setMenuOpen={setMenuOpen} />
-          <MobileLink href="/about" label="Hakkımızda" setMenuOpen={setMenuOpen} />
-          <MobileLink href="/contact" label="İletişim" setMenuOpen={setMenuOpen} />
+          <MobileLink href="/about" label="Rólunk" setMenuOpen={setMenuOpen} />
+          <MobileLink href="/contact" label="Elérhetőség" setMenuOpen={setMenuOpen} />
 
           <Link
             href="/cart"
@@ -142,7 +144,7 @@ export default function Navbar() {
               animate ? "scale-110 transition-transform" : ""
             }`}
           >
-            🛒 Sepetim
+            🛒 Kosaram
             {itemCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                 {itemCount}
@@ -153,7 +155,7 @@ export default function Navbar() {
           {/* Mobile User Menu */}
           {status === "loading" ? (
             <div className="w-full bg-white/20 rounded-lg p-3 animate-pulse text-center">
-              Yükleniyor...
+              Betöltés...
             </div>
           ) : session ? (
             <div className="space-y-2">
@@ -169,7 +171,7 @@ export default function Navbar() {
                   className="flex items-center space-x-2 bg-white text-red-700 p-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
                 >
                   <Settings size={18} />
-                  <span>Yönetim Paneli</span>
+                  <span>Kezelőpanel</span>
                 </Link>
               ) : (
                 <Link
@@ -178,7 +180,7 @@ export default function Navbar() {
                   className="flex items-center space-x-2 bg-white text-red-700 p-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
                 >
                   <User size={18} />
-                  <span>Hesabım</span>
+                  <span>Fiókom</span>
                 </Link>
               )}
               
@@ -187,7 +189,7 @@ export default function Navbar() {
                 onClick={() => setMenuOpen(false)}
                 className="flex items-center justify-center bg-red-600 text-white p-3 rounded-lg font-semibold hover:bg-red-500 transition-colors"
               >
-                Çıkış Yap
+                Kijelentkezés
               </Link>
             </div>
           ) : (
@@ -197,18 +199,19 @@ export default function Navbar() {
               className="flex items-center justify-center space-x-2 bg-white text-red-700 p-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
               <User size={18} />
-              <span>Giriş Yap</span>
+              <span>Bejelentkezés</span>
             </Link>
           )}
         </div>
       )}
 
+      {/* !! ÖNEMLİ !! Bu linkler Yönetim Panelindeki "Telefon" alanından beslenir */}
       <div className="fixed bottom-4 left-0 right-0 flex justify-center space-x-4 md:hidden z-50">
         <a
           href={`tel:${phoneNumber}`}
           className="bg-green-600 text-white flex items-center gap-2 px-5 py-3 rounded-full shadow-lg hover:bg-green-500 transition"
         >
-          <Phone size={18} /> Ara
+          <Phone size={18} /> Hívás
         </a>
 
         <a

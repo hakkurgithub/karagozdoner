@@ -2,10 +2,10 @@
 import { pgTable, serial, text, varchar, integer, timestamp, pgEnum, primaryKey, numeric } from 'drizzle-orm/pg-core';
 import type { AdapterAccount } from "next-auth/adapters"
 
-// Kullanıcı rolleri için bir enum tanımlıyoruz
+// Enum definíció a felhasználói szerepkörökhöz
 export const userRoleEnum = pgEnum('user_role', ['b2b', 'manager']);
 
-// Kullanıcılar tablosu (NextAuth uyumlu ama role ile genişletilmiş)
+// Felhasználók tábla (NextAuth kompatibilis, szerepkörrel kiterjesztve)
 export const users = pgTable('users', {
   id: serial('id').primaryKey(),
   name: varchar('name', { length: 255 }),
@@ -16,7 +16,7 @@ export const users = pgTable('users', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
-// NextAuth için gerekli accounts tablosu
+// NextAuth-hoz szükséges 'accounts' tábla
 export const accounts = pgTable(
   "accounts",
   {
@@ -41,7 +41,7 @@ export const accounts = pgTable(
   })
 )
 
-// NextAuth için gerekli sessions tablosu
+// NextAuth-hoz szükséges 'sessions' tábla
 export const sessions = pgTable("sessions", {
   sessionToken: text("sessionToken").notNull().primaryKey(),
   userId: integer("userId")
@@ -50,7 +50,7 @@ export const sessions = pgTable("sessions", {
   expires: timestamp("expires", { mode: "date" }).notNull(),
 })
 
-// NextAuth için gerekli verification tokens tablosu
+// NextAuth-hoz szükséges 'verificationTokens' tábla
 export const verificationTokens = pgTable(
   "verificationTokens",
   {
@@ -63,19 +63,20 @@ export const verificationTokens = pgTable(
   })
 )
 
-// Ürünler (Menü) tablosu
+// Termékek (Menü) tábla
 export const products = pgTable('products', {
   id: serial('id').primaryKey(),
   name: varchar('name', { length: 255 }).notNull(),
   description: text('description'),
-  price: numeric('price', { precision: 10, scale: 2 }).notNull(), // TL cinsinden (örn: 450.00)
+  // === KRİTİK FİYAT MANTIĞI DEĞİŞİKLİĞİ (Decimal -> Integer Ft için) ===
+  price: integer('price').notNull(), // Ft cinsinden (örn: 4500)
   category: varchar('category', { length: 100 }),
   image: varchar('image', { length: 500 }),
-  isActive: integer('is_active').default(1).notNull(), // 1: aktif, 0: pasif
+  isActive: integer('is_active').default(1).notNull(), // 1: aktív, 0: passzív
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
-// Siparişler tablosu
+// Rendelések tábla
 export const orders = pgTable('orders', {
   id: serial('id').primaryKey(),
   userId: integer('user_id').references(() => users.id).notNull(),
@@ -83,21 +84,21 @@ export const orders = pgTable('orders', {
   customerPhone: varchar('customer_phone', { length: 20 }),
   status: varchar('status', { length: 50 }).default('pending').notNull(),
   orderType: varchar('order_type', { length: 50 }).default('dine-in').notNull(), // dine-in, takeaway, delivery
-  total: integer('total').notNull(), // Toplam fiyat (kuruş)
+  total: integer('total').notNull(), // Végösszeg (Ft)
   notes: text('notes'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
-// Sipariş kalemleri tablosu
+// Rendelési tételek tábla
 export const orderItems = pgTable('order_items', {
   id: serial('id').primaryKey(),
   orderId: integer('order_id').references(() => orders.id, { onDelete: 'cascade' }).notNull(),
   productId: integer('product_id').references(() => products.id).notNull(),
   quantity: integer('quantity').notNull(),
-  price: integer('price').notNull(), // O anki ürün fiyatı (kuruş)
+  price: integer('price').notNull(), // A termék akkori ára (Ft)
 });
 
-// Rezervasyonlar tablosu
+// Foglalások tábla
 export const reservations = pgTable('reservations', {
   id: serial('id').primaryKey(),
   customerName: varchar('customer_name', { length: 255 }).notNull(),
@@ -110,7 +111,7 @@ export const reservations = pgTable('reservations', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
-// TypeScript tip tanımları
+// TypeScript típusdefiníciók
 export type User = typeof users.$inferSelect
 export type NewUser = typeof users.$inferInsert
 export type Account = typeof accounts.$inferSelect

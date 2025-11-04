@@ -1,4 +1,4 @@
-// eslint yapılandırması
+// ESLint konfiguráció
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
@@ -9,9 +9,9 @@ const __dirname = dirname(__filename);
 const compat = new FlatCompat({ baseDirectory: __dirname });
 
 export default [
-  // Next.js ve TypeScript için önerilen kuralları kullan
+  // Javasolt szabályok használata a Next.js-hez és a TypeScript-hez
   ...compat.extends("next/core-web-vitals", "next/typescript"),
-  // 👇 Bu satırları ekle (lint kurallarını kapatıyoruz)
+  // 👇 Adja hozzá ezeket a sorokat (lint szabályok kikapcsolása)
   {
     rules: {
       "@typescript-eslint/no-explicit-any": "off",

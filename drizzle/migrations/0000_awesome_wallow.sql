@@ -38,7 +38,7 @@ CREATE TABLE "products" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"name" varchar(255) NOT NULL,
 	"description" text,
-	"price" numeric(10, 2) NOT NULL,
+	"price" integer NOT NULL, -- === FİYAT TİPİ GÜNCELLEMESİ (numeric -> integer) ===
 	"category" varchar(100),
 	"image" varchar(500),
 	"is_active" integer DEFAULT 1 NOT NULL,

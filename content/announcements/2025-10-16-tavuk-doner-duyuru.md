@@ -1,24 +1,24 @@
 ---
-title: "Yeni Lezzet: Tavuk Döner!"
+title: "Új Íz: Csirkedöner!"
 date: "2025-10-16T10:00:00.000Z"
 isActive: true
-priority: "yüksek"
+priority: "magas"
 ---
 
-# Yeni Lezzet: Tavuk Döner Menümüzde!
+# Új Íz: Csirkedöner az Étlapunkon!
 
-Sevgili müşterilerimiz,
+Kedves vendégeink,
 
-Marine edilmiş tavuk göğsünden hazırlanan **sağlıklı döner alternatifimiz** artık menümüzde!
+Pácolt csirkemellből készült **egészséges döner alternatívánk** már elérhető az étlapon!
 
-## Özellikler
-- ✅ Daha az kalorili
-- ✅ Protein açısından zengin
-- ✅ Özel marine sosumuzla lezzetli
-- ✅ Taze sebzelerle servis
+## Jellemzők
+- ✅ Kevesebb kalória
+- ✅ Fehérjében gazdag
+- ✅ Különleges pácunkkal ízletes
+- ✅ Friss zöldségekkel tálalva
 
-**Fiyat**: Sadece 40₺
+**Ár**: Csak 4000 Ft
 
-Hemen deneyin ve görüşlerinizi bizimle paylaşın!
+Próbálja ki most, és ossza meg velünk véleményét!
 
-*Karagöz Döner Ailesi*
+*A Karagöz Döner Családja*

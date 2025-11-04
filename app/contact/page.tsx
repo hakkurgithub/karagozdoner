@@ -26,7 +26,8 @@ export default function ContactPage() {
     setTimeout(() => {
       setSubmitMessage({
         type: 'success',
-        text: 'Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.',
+        // === DİL DEĞİŞİKLİĞİ ===
+        text: 'Üzenetét sikeresen elküldtük! Hamarosan válaszolunk.',
       });
       setIsSubmitting(false);
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
@@ -56,20 +57,35 @@ export default function ContactPage() {
     setShowOrderDropdown(false);
   };
 
+  // === BİLGİ VE DİL GÜNCELLEMESİ (Wix siteye göre) ===
   const orderChannels = [
     {
       id: 'whatsapp',
       name: 'WhatsApp',
       icon: 'ri-whatsapp-line',
       color: 'text-green-600',
-      url: 'https://wa.me/905455093462?text=Merhaba! Borcan Kebap\'tan sipariş vermek istiyorum.',
+      url: 'https://wa.me/36209341537?text=Helló!%20Karagöz%20Döner-től%20szeretnék%20rendelni.',
     },
     {
       id: 'phone',
-      name: 'Telefon: 0212 423 3727',
+      name: 'Telefon: 06 20 934 1537',
       icon: 'ri-phone-line',
       color: 'text-blue-600',
-      url: 'tel:02124233727',
+      url: 'tel:06209341537',
+    },
+    {
+      id: 'foodora',
+      name: 'Foodora',
+      icon: 'ri-restaurant-line',
+      color: 'text-pink-600',
+      url: '#', // Buraya Foodora linkiniz gelecek
+    },
+    {
+      id: 'wolt',
+      name: 'Wolt',
+      icon: 'ri-truck-line',
+      color: 'text-blue-500',
+      url: '#', // Buraya Wolt linkiniz gelecek
     },
   ];
 
@@ -79,14 +95,16 @@ export default function ContactPage() {
       <section
         className="relative h-96 bg-cover bg-center"
         style={{
-          backgroundImage: `url('https://readdy.ai/api/search-image?query=Turkish%20restaurant%20storefront%20with%20elegant%20Borcan%20Kebap%20sign%20in%20beautiful%20calligraphy%2C%20warm%20evening%20lighting%20illuminating%20the%20restaurant%20entrance%2C%20traditional%20Ottoman-style%20architecture%2C%20professional%20photography%20showcasing%20authentic%20Turkish%20dining%20establishment&width=1200&height=400&seq=contact-hero-borcan&orientation=landscape')`,
+          // === RESİM VE İSİM GÜNCELLEMESİ ===
+          backgroundImage: `url('https://readdy.ai/api/search-image?query=Hungarian%20restaurant%20storefront%20with%20elegant%20Karagoz%20Döner%20sign%20in%20beautiful%20calligraphy%2C%20warm%20evening%20lighting%20illuminating%20the%20restaurant%20entrance%2C%20traditional%20style%20architecture%2C%20professional%20photography%20showcasing%20authentic%20Turkish%20dining%20establishment&width=1200&height=400&seq=contact-hero-karagoz&orientation=landscape')`,
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="relative z-10 flex items-center justify-center h-full">
           <div className="text-center text-white px-4">
-            <h1 className="text-5xl font-bold mb-4">İletişim</h1>
-            <p className="text-xl max-w-2xl mx-auto">Bizimle iletişime geçin</p>
+            {/* === DİL DEĞİŞİKLİĞİ === */}
+            <h1 className="text-5xl font-bold mb-4">Elérhetőség</h1>
+            <p className="text-xl max-w-2xl mx-auto">Lépjen kapcsolatba velünk</p>
           </div>
         </div>
       </section>
@@ -97,7 +115,8 @@ export default function ContactPage() {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-xl shadow-lg p-8">
               <h2 className="text-3xl font-bold text-gray-800 mb-6">
-                Mesaj Gönderin
+                {/* === DİL DEĞİŞİKLİĞİ === */}
+                Üzenetküldés
               </h2>
 
               {submitMessage && (
@@ -129,7 +148,8 @@ export default function ContactPage() {
                       htmlFor="name"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Ad Soyad *
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Név *
                     </label>
                     <input
                       type="text"
@@ -139,7 +159,8 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                      placeholder="Adınız ve soyadınız"
+                      // === DİL DEĞİŞİKLİĞİ ===
+                      placeholder="Az Ön neve"
                     />
                   </div>
 
@@ -148,7 +169,8 @@ export default function ContactPage() {
                       htmlFor="email"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      E-posta *
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      E-mail *
                     </label>
                     <input
                       type="email"
@@ -169,7 +191,8 @@ export default function ContactPage() {
                       htmlFor="phone"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Telefon
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Telefonszám
                     </label>
                     <input
                       type="tel"
@@ -178,7 +201,8 @@ export default function ContactPage() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                      placeholder="+90 5xx xxx xx xx"
+                      // === DİL DEĞİŞİKLİĞİ ===
+                      placeholder="+36 20 xxx xxxx"
                     />
                   </div>
 
@@ -187,7 +211,8 @@ export default function ContactPage() {
                       htmlFor="subject"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Konu *
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Tárgy *
                     </label>
                     <select
                       id="subject"
@@ -197,12 +222,13 @@ export default function ContactPage() {
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 pr-8"
                     >
-                      <option value="">Konu seçiniz</option>
-                      <option value="reservation">Rezervasyon</option>
-                      <option value="complaint">Şikayet</option>
-                      <option value="suggestion">Öneri</option>
-                      <option value="catering">Catering Hizmetleri</option>
-                      <option value="other">Diğer</option>
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      <option value="">Válasszon tárgyat</option>
+                      <option value="reservation">Asztalfoglalás</option>
+                      <option value="complaint">Panasz</option>
+                      <option value="suggestion">Javaslat</option>
+                      <option value="catering">Catering</option>
+                      <option value="other">Egyéb</option>
                     </select>
                   </div>
                 </div>
@@ -212,7 +238,8 @@ export default function ContactPage() {
                     htmlFor="message"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Mesaj *
+                    {/* === DİL DEĞİŞİKLİĞİ === */}
+                    Üzenet *
                   </label>
                   <textarea
                     id="message"
@@ -223,9 +250,11 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 resize-none"
-                    placeholder="Mesajınızı buraya yazın..."
+                    // === DİL DEĞİŞİKLİĞİ ===
+                    placeholder="Írja ide az üzenetét..."
                   />
                   <div className="text-right text-xs text-gray-500 mt-1">
+                    {/* === DİL DEĞİŞİKLİĞİ === */}
                     {formData.message.length}/500 karakter
                   </div>
                 </div>
@@ -237,13 +266,15 @@ export default function ContactPage() {
                 >
                   {isSubmitting ? (
                     <>
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
                       <i className="ri-loader-line animate-spin mr-2"></i>
-                      Gönderiliyor...
+                      Küldés...
                     </>
                   ) : (
                     <>
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
                       <i className="ri-send-plane-line mr-2"></i>
-                      Mesajı Gönder
+                      Üzenet küldése
                     </>
                   )}
                 </button>
@@ -256,7 +287,8 @@ export default function ContactPage() {
             {/* Restaurant Info */}
             <div className="bg-white rounded-xl shadow-lg p-8">
               <h3 className="text-2xl font-bold text-gray-800 mb-6">
-                İletişim Bilgileri
+                {/* === DİL DEĞİŞİKLİĞİ === */}
+                Elérhetőségek
               </h3>
 
               <div className="space-y-6">
@@ -266,14 +298,14 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-1">
-                      Adres
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Cím
                     </h4>
+                    {/* === ADRES GÜNCELLEMESİ === */}
                     <p className="text-gray-600">
-                      Beyoğlu Mahallesi
+                      2500, Esztergom
                       <br />
-                      Kebap Sokak No: 123
-                      <br />
-                      34400 Beyoğlu, İstanbul
+                      Kossuth Lajos utca 30.
                     </p>
                   </div>
                 </div>
@@ -284,10 +316,11 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-1">
-                      Telefon
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Telefonszám
                     </h4>
-                    <p className="text-gray-600">+90 212 555 0123</p>
-                    <p className="text-gray-600">+90 212 555 0124</p>
+                    {/* === TELEFON GÜNCELLEMESİ === */}
+                    <p className="text-gray-600">06 20 934 1537</p>
                   </div>
                 </div>
 
@@ -297,10 +330,12 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-1">
-                      E-posta
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      E-mail
                     </h4>
-                    <p className="text-gray-600">info@borcankebap.com</p>
-                    <p className="text-gray-600">rezervasyon@borcankebap.com</p>
+                    {/* === E-POSTA GÜNCELLEMESİ === */}
+                    <p className="text-gray-600">info@karagozdoner.com</p>
+                    <p className="text-gray-600">foglalas@karagozdoner.com</p>
                   </div>
                 </div>
 
@@ -310,12 +345,14 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-1">
-                      Çalışma Saatleri
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Nyitvatartás
                     </h4>
-                    <p className="text-gray-600">Pazartesi - Pazar</p>
+                    {/* (Varsayılan olarak bırakıldı, Wix sitesinde yoktu) */}
+                    <p className="text-gray-600">Hétfő - Vasárnap</p>
                     <p className="text-gray-600">11:00 - 23:00</p>
                     <p className="text-sm text-green-600 mt-1">
-                      Kesintisiz servis
+                      Folyamatos kiszolgálás
                     </p>
                   </div>
                 </div>
@@ -325,44 +362,34 @@ export default function ContactPage() {
             {/* Social Media */}
             <div className="bg-white rounded-xl shadow-lg p-8">
               <h3 className="text-2xl font-bold text-gray-800 mb-6">
-                Sosyal Medya
+                {/* === DİL DEĞİŞİKLİĞİ === */}
+                Közösségi Média
               </h3>
               <div className="grid grid-cols-2 gap-4">
+                {/* === SOSYAL MEDYA GÜNCELLEMESİ (Wix siteye göre) === */}
                 <button
-                  onClick={() => window.open('https://www.facebook.com/profile.php?id=61579514506784&locale=tr_TR', '_blank')}
+                  onClick={() => window.open('https://www.facebook.com/profile.php?id=61560428630473', '_blank')}
                   className="flex items-center justify-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
                 >
                   <i className="ri-facebook-fill text-2xl text-blue-600 mr-3"></i>
                   <span className="font-medium">Facebook</span>
                 </button>
-                <button
-                  onClick={() => window.open('https://www.instagram.com/borcan_kebap_pide_lahmacun?utm_source=qr&igsh=d2twdW0yZ2FqaGJl', '_blank')}
-                  className="flex items-center justify-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
-                >
-                  <i className="ri-instagram-fill text-2xl text-pink-600 mr-3"></i>
-                  <span className="font-medium">Instagram</span>
-                </button>
-                <button className="flex items-center justify-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
-                  <i className="ri-twitter-fill text-2xl text-blue-400 mr-3"></i>
-                  <span className="font-medium">Twitter</span>
-                </button>
-                <button className="flex items-center justify-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
-                  <i className="ri-youtube-fill text-2xl text-red-600 mr-3"></i>
-                  <span className="font-medium">YouTube</span>
-                </button>
+                {/* Diğer sosyal medya butonları kaldırıldı (Wix sitesinde yok) */}
               </div>
             </div>
 
             {/* Quick Actions */}
             <div className="bg-red-600 text-white rounded-xl p-8">
-              <h3 className="text-2xl font-bold mb-4">Hızlı İşlemler</h3>
+              {/* === DİL DEĞİŞİKLİĞİ === */}
+              <h3 className="text-2xl font-bold mb-4">Gyors Műveletek</h3>
               <div className="space-y-4">
                 <Link
                   href="/reservation"
                   className="w-full bg-white text-red-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-pointer flex items-center justify-center"
                 >
                   <i className="ri-calendar-line mr-2"></i>
-                  Rezervasyon Yap
+                  {/* === DİL DEĞİŞİKLİĞİ === */}
+                  Asztalfoglalás
                 </Link>
                 <div className="relative">
                   <button
@@ -370,7 +397,8 @@ export default function ContactPage() {
                     className="w-full bg-white text-red-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-pointer flex items-center justify-center"
                   >
                     <i className="ri-shopping-cart-line mr-2"></i>
-                    Online Sipariş Ver
+                    {/* === DİL DEĞİŞİKLİĞİ === */}
+                    Online Rendelés
                     <i
                       className={`ri-arrow-down-s-line ml-2 transition-transform ${
                         showOrderDropdown ? 'rotate-180' : ''
@@ -400,7 +428,8 @@ export default function ContactPage() {
                   className="w-full bg-white text-red-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-pointer flex items-center justify-center"
                 >
                   <i className="ri-restaurant-line mr-2"></i>
-                  Menüyü İncele
+                  {/* === DİL DEĞİŞİKLİĞİ === */}
+                  Menü Megtekintése
                 </Link>
               </div>
             </div>
@@ -410,31 +439,36 @@ export default function ContactPage() {
         {/* Map Section */}
         <div className="mt-12 bg-white rounded-xl shadow-lg overflow-hidden">
           <div className="p-8 border-b">
-            <h3 className="text-2xl font-bold text-gray-800">Konum</h3>
+            {/* === DİL DEĞİŞİKLİĞİ === */}
+            <h3 className="text-2xl font-bold text-gray-800">Helyszín</h3>
             <p className="text-gray-600 mt-2">
-              Bizi haritada bulabilirsiniz <br />
-              <span className="text-sm text-gray-500">Plus Code: 2P33+29 Avcılar, İstanbul</span>
+              {/* === DİL DEĞİŞİKLİĞİ === */}
+              Találjon meg minket a térképen
             </p>
           </div>
           <div className="h-96">
+            {/* === HARİTA GÜNCELLEMESİ (Esztergom) === */}
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.684813083507!2d28.69428587609204!3d41.03362141872166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14e0ae5c6c06a925%3A0xc3f1737e8c3b7a7c!2sBeyo%C4%9Flu%20Cad.%2C%20Parseller%2C%20Avc%C4%B1lar%2FIstanbul!5e0!3m2!1sen!2str!4v1709405629168!5m2!1sen!2str"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2678.786523173356!2d18.73977821563815!3d47.79152007919747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476a617631a29c1d%3A0xadeba8fea0603e1a!2sEsztergom%2C%20Kossuth%20Lajos%20u.%2030%2C%202500%20Hungary!5e0!3m2!1sen!2sus!4v1675865432109!5m2!1sen!2sus"
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Borcan Kebap Konum"
+              // === İSİM GÜNCELLEMESİ ===
+              title="Karagöz Döner Helyszín"
             ></iframe>
             <div className="p-4 text-center">
               <a
-                href="https://www.google.com/maps/place/Borcan+Kebap+Pide+Lahmacun+Salonu/@41.0336214,28.6942859,17z/data=!3m1!4b1!4m6!3m5!1s0x14e0ae5c6c06a925:0xc3f1737e8c3b7a7c!8m2!3d41.0336214!4d28.6968608!16s%2Fg%2F11b3w4m_w1?entry=ttu"
+                // === HARİTA LİNK GÜNCELLEMESİ (Esztergom) ===
+                href="https://www.google.com/maps/place/Esztergom,+Kossuth+Lajos+u.+30,+2500+Hungary"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-red-600 hover:underline"
               >
-                Google Haritalarda Aç
+                {/* === DİL DEĞİŞİKLİĞİ === */}
+                Megnyitás Google Térképen
               </a>
             </div>
           </div>

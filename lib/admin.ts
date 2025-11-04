@@ -1,6 +1,6 @@
 // lib/admin.ts
-// Bu dosya admin panel yapılandırması içindir.
-// Buradaki bilgiler sadece geliştirme ortamında test amaçlı kullanılmalıdır.
+// Ez a fájl az admin panel konfigurációját tartalmazza.
+// Az itt található információk csak fejlesztési környezetben, tesztelési célokra használhatók.
 
 export interface AdminConfig {
   username: string;
@@ -11,7 +11,7 @@ export interface AdminConfig {
 
 export const adminConfig = {
   username: process.env.ADMIN_USERNAME || "admin",
-  password: process.env.ADMIN_PASSWORD || "Borcan2025",
-  sessionKey: "borcan_admin_session",
-  showAdminPanel: false // 👈 Başlangıçta false olmalı
+  password: process.env.ADMIN_PASSWORD || "karagozdoner2025",
+  sessionKey: "karagoz_admin_session", // === İSİM GÜNCELLEMESİ ===
+  showAdminPanel: false // 👈 Alapértelmezetten false kell legyen
 };

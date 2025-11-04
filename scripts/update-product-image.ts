@@ -7,7 +7,8 @@ type Nullable<T> = T | null;
 
 async function updateProductImage() {
   if (!process.env.POSTGRES_URL) {
-    throw new Error('POSTGRES_URL environment variable not found');
+    // === DİL GÜNCELLEMESİ ===
+    throw new Error('A POSTGRES_URL környezeti változó nem található');
   }
 
   const sql = neon(process.env.POSTGRES_URL);
@@ -20,14 +21,17 @@ async function updateProductImage() {
   }[]>`
     UPDATE products
     SET image = ${newImageUrl}
-    WHERE name = 'Tavuk Şiş Dürüm (Türkçe İmlalı)'
+    /* === İSİM GÜNCELLEMESİ (Türkçe -> Macarca) === */
+    WHERE name = 'Csirke Saslik Dürüm'
     RETURNING id, name, image
   `;
 
   if (result.length === 0) {
-    console.log('ℹ️ No rows updated. Check if the product name exists in the database.');
+    // === DİL GÜNCELLEMESİ ===
+    console.log('ℹ️ Nem frissült egyetlen sor sem. Ellenőrizze, hogy a termék neve létezik-e az adatbázisban.');
   } else {
-    console.log('✅ Product image updated:');
+    // === DİL GÜNCELLEMESİ ===
+    console.log('✅ A termék képe frissítve:');
     result.forEach((row) => {
       console.log(`  #${row.id} ${row.name} -> ${row.image}`);
     });
@@ -37,6 +41,7 @@ async function updateProductImage() {
 updateProductImage()
   .then(() => process.exit(0))
   .catch((error) => {
-    console.error('❌ Failed to update product image:', error);
+    // === DİL GÜNCELLEMESİ ===
+    console.error('❌ Hiba a termékkép frissítése során:', error);
     process.exit(1);
   });

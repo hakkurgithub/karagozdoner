@@ -1,37 +1,37 @@
 ---
-title: "Hakkımızda"
+title: "Rólunk"
 image: "/images/about-hero.jpg"
 ---
 
-# Karagöz Döner Hakkında
+# A Karagöz Döner-ről
 
-**Karagöz Döner**, 1985 yılından beri geleneksel Türk lezzetlerini modern sunum anlayışıyla buluşturan bir aile işletmesidir.
+**A Karagöz Döner** egy családi vállalkozás, amely 1985 óta ötvözi a hagyományos török ízeket a modern tálalási szemlélettel.
 
-## Hikayemiz
+## Történetünk
 
-Üç kuşaktır sürdürdüğümüz lezzet geleneğimiz, kaliteli malzeme seçimi ve özenli hazırlık süreçlerimizle müşterilerimize unutulmaz tatlar sunuyoruz.
+Három generáció óta tartó ízhagyományunkkal, minőségi alapanyag-választásunkkal és gondos előkészítési folyamatainkkal felejthetetlen ízeket kínálunk vendégeinknek.
 
-## Misyonumuz
+## Küldetésünk
 
-- **Kalite**: En taze malzemelerle hazırlanan lezzetler
-- **Geleneksellik**: Özgün tariflerin korunması
-- **Müşteri Memnuniyeti**: Her zaman önceliğimiz
-- **Hijyen**: En yüksek temizlik standartları
+- **Minőség**: A legfrissebb alapanyagokból készült ízek
+- **Hagyomány**: Az eredeti receptek megőrzése
+- **Vendégelégedettség**: Mindig az első helyen
+- **Higiénia**: A legmagasabb tisztasági követelmények
 
-## Özelliklerimiz
+## Jellemzőink
 
-### 🥩 Taze Et
-Günlük olarak tedarik edilen, seçilmiş kaliteli etler.
+### 🥩 Friss Hús
+Naponta beszerzett, válogatott minőségű húsok.
 
-### 🔥 Geleneksel Pişirme
-Odun ateşinde, geleneksel yöntemlerle pişirilen dönerler.
+### 🔥 Hagyományos Sütés
+Tűzifán, hagyományos módszerekkel sütött dönerek.
 
-### 🏪 Aile İşletmesi
-Üç kuşaktır sürdürülen aile geleneği ve deneyimi.
+### 🏪 Családi Vállalkozás
+Három generáció óta tartó családi hagyomány és tapasztalat.
 
-### 📍 Merkezi Konum
-Şehrin kalbinde, ulaşımı kolay konumumuz.
+### 📍 Központi Elhelyezkedés
+A város szívében, könnyen megközelíthető helyen.
 
 ---
 
-*Karagöz Döner ailesi olarak, sizleri lezzet dolu bir deneyim için bekliyoruz!* 
+*A Karagöz Döner családjaként várjuk Önt egy ízekkel teli élményre!*

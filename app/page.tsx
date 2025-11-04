@@ -23,15 +23,18 @@ export default function Home() {
   }, []);
 
   const handleAddToCart = (item: any) => {
-    addItem({ id: item.id, name: item.name, price: item.price });
+    // === FİYAT MANTIĞI GÜNCELLEMESİ (Ft için) ===
+    const price = Math.round(parseFloat(String(item.price)));
+    addItem({ id: item.id, name: item.name, price: price });
   };
 
+  // === DİL GÜNCELLEMESİ (Admin uyarıları) ===
   const handleAdminClick = () => {
-    const password = prompt("Yönetici paneline erişim için şifreyi girin:");
+    const password = prompt("Kérjük, adja meg a jelszót a kezelőpanel eléréséhez:");
     if (password === adminConfig.password) {
       setShowAdminPanel(true);
     } else {
-      alert("Hatalı şifre. Lütfen tekrar deneyin.");
+      alert("Hibás jelszó. Kérjük, próbálja újra.");
     }
   };
 
@@ -41,7 +44,8 @@ export default function Home() {
 
   const popularItems = (content.allMenuItems || []).slice(0, 4);
 
-  const aboutText = content.aboutText || "Borcan Kebap, 1985 yılından beri geleneksel Türk mutfağının eşsiz lezzetlerini sunmaktadır. Aileden gelen 40 yıllık deneyimimizle, her yemeğimizde kaliteyi ve tazeliği hissedersiniz.";
+  // === DİL, İSİM VE İÇERİK GÜNCELLEMESİ (Varsayılan metin) ===
+  const aboutText = content.aboutText || "Üdvözöljük a Karagöz Döner-nél! Autentikus török ízeket kínálunk Esztergom szívében. Több évtizedes tapasztalattal és a minőség iránti elkötelezettséggel minden ételünkben érezheti a minőséget és a frissességet.";
 
   return (
     <div className="bg-gray-50 text-gray-800">
@@ -49,7 +53,8 @@ export default function Home() {
       <section
         className="relative w-full h-[500px] flex items-center justify-center text-white text-center overflow-hidden"
         style={{
-          backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/Borcan-kebap-personeli.png')`,
+          // === İSİM GÜNCELLEMESİ (Resim yolu) ===
+          backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/Karagoz-doner-exterior.png')`,
         }}
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -65,13 +70,15 @@ export default function Home() {
               href="/menu"
               className="bg-red-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-red-700 transition-transform transform hover:scale-105 shadow-lg"
             >
-              Menüyü Gör
+              {/* === DİL GÜNCELLEMESİ === */}
+              Menü Megtekintése
             </Link>
             <button
               onClick={() => setShowReservationModal(true)}
               className="bg-white text-red-600 px-6 py-3 rounded-full text-lg font-semibold hover:bg-gray-100 transition-transform transform hover:scale-105 shadow-lg"
             >
-              Rezervasyon Yap
+              {/* === DİL GÜNCELLEMESİ === */}
+              Asztalfoglalás
             </button>
           </div>
         </div>
@@ -81,7 +88,8 @@ export default function Home() {
       <section className="py-16 px-4">
         <div className="container mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12">
-            Popüler Lezzetler
+            {/* === DİL GÜNCELLEMESİ === */}
+            Népszerű Ízeink
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {popularItems.map((item: any) => (
@@ -102,13 +110,15 @@ export default function Home() {
                   <p className="text-gray-600 text-sm flex-1">{item.description}</p>
                   <div className="flex justify-between items-center mt-4">
                     <span className="text-2xl font-bold text-red-600">
-                      {item.price}₺
+                      {/* === FİYAT VE PARA BİRİMİ GÜNCELLEMESİ === */}
+                      {Math.round(parseFloat(String(item.price)))} Ft
                     </span>
                     <button
                       onClick={() => handleAddToCart(item)}
                       className="bg-red-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors"
                     >
-                      <i className="ri-shopping-cart-fill mr-2"></i>Ekle
+                      {/* === DİL GÜNCELLEMESİ === */}
+                      <i className="ri-shopping-cart-fill mr-2"></i>Hozzáad
                     </button>
                   </div>
                 </div>
@@ -123,15 +133,16 @@ export default function Home() {
         <div className="container mx-auto flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/2 relative h-[350px] rounded-xl overflow-hidden shadow-lg">
             <Image
-              src="/images/about.jpg"
-              alt="Hakkımızda"
+              src="/images/about.jpg" // Bu resim 404 veriyordu, /public/images/ altına eklediğinizden emin olun
+              alt="Rólunk"
               fill
               className="object-cover"
             />
           </div>
           <div className="md:w-1/2">
             <h2 className="text-4xl font-bold mb-6">
-              Hakkımızda
+              {/* === DİL GÜNCELLEMESİ === */}
+              Rólunk
             </h2>
             <p className="text-gray-700 leading-relaxed mb-6">
               {aboutText}
@@ -140,7 +151,8 @@ export default function Home() {
               href="/about"
               className="bg-red-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-red-700 transition-colors shadow-md"
             >
-              Daha Fazla Oku
+              {/* === DİL GÜNCELLEMESİ === */}
+              Tovább
             </Link>
           </div>
         </div>
@@ -149,26 +161,36 @@ export default function Home() {
       {/* İletişim Section */}
       <section className="py-16 px-4 bg-gray-100">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12">İletişim</h2>
+          <h2 className="text-4xl font-bold text-center mb-12">
+            {/* === DİL GÜNCELLEMESİ === */}
+            Elérhetőség
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-xl shadow-lg text-center">
               <i className="ri-map-pin-line text-4xl text-red-600 mb-4"></i>
-              <h3 className="text-xl font-semibold mb-2">Adres</h3>
+              <h3 className="text-xl font-semibold mb-2">
+                {/* === DİL GÜNCELLEMESİ === */}
+                Cím
+              </h3>
               <p className="text-gray-700">
-                {content.address}
+                {content.address} {/* <-- Bu, Yönetim Panelinden gelir */}
               </p>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-lg text-center">
               <i className="ri-phone-line text-4xl text-red-600 mb-4"></i>
-              <h3 className="text-xl font-semibold mb-2">Telefon</h3>
+              <h3 className="text-xl font-semibold mb-2">
+                {/* === DİL GÜNCELLEMESİ === */}
+                Telefonszám
+              </h3>
               <p className="text-gray-700">
-                {content.phone}
+                {content.phone} {/* <-- Bu, Yönetim Panelinden gelir */}
               </p>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-lg text-center">
               <i className="ri-mail-line text-4xl text-red-600 mb-4"></i>
-              <h3 className="text-xl font-semibold mb-2">E-posta</h3>
-              <p className="text-gray-700">info@borcankebap.com</p>
+              <h3 className="text-xl font-semibold mb-2">E-mail</h3>
+              {/* === E-POSTA GÜNCELLEMESİ === */}
+              <p className="text-gray-700">info@karagozdoner.com</p>
             </div>
           </div>
         </div>
@@ -180,14 +202,16 @@ export default function Home() {
           <a
             href="/manager/products"
             className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors shadow-lg"
-            title="Ürün Yönetimi"
+            // === DİL GÜNCELLEMESİ ===
+            title="Termékkezelés"
           >
             <i className="ri-shopping-bag-line text-lg"></i>
           </a>
           <button
             onClick={handleAdminClick}
             className="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors shadow-lg"
-            title="Admin Paneli"
+            // === DİL GÜNCELLEMESİ ===
+            title="Kezelőpanel"
           >
             <i className="ri-admin-line text-lg"></i>
           </button>

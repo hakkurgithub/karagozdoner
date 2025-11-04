@@ -1,7 +1,7 @@
 ---
-name: "Klasik Döner"
-description: "Geleneksel döner usulü hazırlanmış, taze sebzelerle servis edilen klasik dönerimiz"
-price: 45
+name: "Klasszikus Döner"
+description: "Hagyományos döner, friss zöldségekkel tálalva"
+price: 4500
 category: "Döner"
 image: "/images/menu/klasik-doner.jpg"
 calories: 420
@@ -11,14 +11,14 @@ isGlutenFree: false
 isActive: true
 ---
 
-# Klasik Döner
+# Klasszikus Döner
 
-Geleneksel döner usulü hazırlanmış, taze sebzelerle servis edilen klasik dönerimiz.
+Hagyományos döner, friss zöldségekkel tálalva.
 
-## İçindekiler
-- Kuzu ve dana karışımı döner eti
-- Taze salata
-- Domates
-- Soğan
-- Turşu
-- Özel sos
+## Hozzávalók
+- Bárány és marha vegyes döner hús
+- Friss saláta
+- Paradicsom
+- Hagyma
+- Savanyúság
+- Különleges szósz

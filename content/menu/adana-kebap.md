@@ -1,8 +1,8 @@
 ---
 name: "Adana Kebap"
-description: "Acılı kıyma ile hazırlanmış geleneksel Adana kebabı"
-price: 65
-category: "Kebap"
+description: "Hagyományos Adana kebap, fűszeres darált húsból"
+price: 6500
+category: "Kebapok és Grillek"
 image: "/images/menu/adana-kebap.jpg"
 calories: 480
 isVegetarian: false
@@ -13,11 +13,11 @@ isActive: true
 
 # Adana Kebap
 
-Acılı kıyma ile hazırlanmış geleneksel Adana kebabı.
+Hagyományos Adana kebap, fűszeres darált húsból.
 
-## İçindekiler
-- Acılı kuzu kıyması
-- Közlenmiş domates ve biber
-- Bulgur pilavı
-- Közlenmiş patlıcan
-- Acılı ezme
+## Hozzávalók
+- Fűszeres bárány darált hús
+- Grillezett paradicsom és paprika
+- Bulgur piláf
+- Grillezett padlizsán
+- Csípős ezme (paradicsomkrém)

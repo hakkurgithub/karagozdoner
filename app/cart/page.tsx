@@ -4,12 +4,14 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useCart } from '../../components/CartProvider';
 
-type FormData = { address: string; phone: string; payment: 'K.K.' | 'Nakit' };
+// Not: Ödeme tipi Macarcaya çevrildi
+type FormData = { address: string; phone: string; payment: 'Bankkártya' | 'Készpénz' };
 
 export default function CartPage() {
   const { items, updateQuantity, removeItem, getTotalPrice, clearCart } = useCart();
   const [isClient, setIsClient] = useState(false);
-  const [form, setForm] = useState<FormData>({ address: '', phone: '', payment: 'Nakit' });
+  // Varsayılan ödeme tipi Macarcaya çevrildi
+  const [form, setForm] = useState<FormData>({ address: '', phone: '', payment: 'Készpénz' });
 
   useEffect(() => {
     setIsClient(true);
@@ -24,19 +26,23 @@ export default function CartPage() {
     const orderItemsText = items
       .map(
         (item) =>
-          `${item.name} x${item.quantity} - ${(item.price * item.quantity).toFixed(0)}₺`
+          // === PARA BİRİMİ DEĞİŞİKLİĞİ (₺ -> Ft) ===
+          `${item.name} x${item.quantity} - ${(item.price * item.quantity).toFixed(0)} Ft`
       )
       .join('\n');
 
-    const totalPriceText = `\n\nToplam: ${getTotalPrice().toFixed(0)}₺`;
+    // === PARA BİRİMİ VE DİL DEĞİŞİKLİĞİ ===
+    const totalPriceText = `\n\nVégösszeg: ${getTotalPrice().toFixed(0)} Ft`;
 
-    let message = `Merhaba! Borcan Kebap'tan sipariş vermek istiyorum:\n\n${orderItemsText}${totalPriceText}`;
+    // === İSİM VE DİL DEĞİŞİKLİĞİ ===
+    let message = `Helló! A Karagöz Döner-től szeretnék rendelni:\n\n${orderItemsText}${totalPriceText}`;
 
-    if (address) message += `\n\nAdres: ${address}`;
-    if (phone) message += `\nTelefon: ${phone}`;
-    if (notes) message += `\nNot: ${notes}`;
+    if (address) message += `\n\nCím: ${address}`;
+    if (phone) message += `\nTelefonszám: ${phone}`;
+    if (notes) message += `\nMegjegyzés: ${notes}`;
 
-    const phoneNumber = '905455093462'; // İşletmenin WhatsApp numarası (sabit)
+    // === TELEFON NUMARASI DEĞİŞİKLİĞİ ===
+    const phoneNumber = '36209341537'; // Yeni Macaristan numarası
     const encodedMessage = encodeURIComponent(message);
 
     const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -56,16 +62,19 @@ export default function CartPage() {
   return (
     <div className="bg-gray-50 min-h-screen pt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-4xl font-bold text-center mb-8 text-red-600">Sepetim</h1>
+        {/* === DİL DEĞİŞİKLİĞİ === */}
+        <h1 className="text-4xl font-bold text-center mb-8 text-red-600">Kosaram</h1>
 
         {items.length === 0 ? (
           <div className="text-center p-8 bg-white rounded-lg shadow-md">
-            <p className="text-lg text-gray-700 mb-4">Sepetinizde ürün bulunmamaktadır.</p>
+            {/* === DİL DEĞİŞİKLİĞİ === */}
+            <p className="text-lg text-gray-700 mb-4">A kosár üres.</p>
             <Link
               href="/menu"
               className="bg-red-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-red-700 transition-colors"
             >
-              Menüye Geri Dön
+              {/* === DİL DEĞİŞİKLİĞİ === */}
+              Vissza a Menübe
             </Link>
           </div>
         ) : (
@@ -74,14 +83,16 @@ export default function CartPage() {
               {/* Sepet Öğeleri */}
               <div className="lg:col-span-2">
                 <div className="bg-white rounded-lg shadow-md p-6">
-                  <h2 className="text-2xl font-semibold mb-6 border-b pb-4 text-gray-800">Sipariş Listesi</h2>
+                  {/* === DİL DEĞİŞİKLİĞİ === */}
+                  <h2 className="text-2xl font-semibold mb-6 border-b pb-4 text-gray-800">Kosár Tartalma</h2>
                   {items.map((item) => (
                     <div key={item.id} className="flex items-center justify-between py-4 border-b">
                       <div className="flex items-center">
                         <span className="text-xl font-medium text-gray-800 w-8 text-center">{item.quantity}x</span>
                         <div className="ml-4">
                           <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
-                          <p className="text-gray-600 text-sm">{item.price} ₺</p>
+                          {/* === PARA BİRİMİ DEĞİŞİKLİĞİ === */}
+                          <p className="text-gray-600 text-sm">{item.price} Ft</p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-2">
@@ -111,18 +122,22 @@ export default function CartPage() {
                     </div>
                   ))}
                   <div className="flex justify-between items-center pt-4">
-                    <span className="text-xl font-bold text-gray-800">Toplam:</span>
-                    <span className="text-2xl font-bold text-red-600">{getTotalPrice()} ₺</span>
+                    {/* === DİL DEĞİŞİKLİĞİ === */}
+                    <span className="text-xl font-bold text-gray-800">Végösszeg:</span>
+                    {/* === PARA BİRİMİ DEĞİŞİKLİĞİ === */}
+                    <span className="text-2xl font-bold text-red-600">{getTotalPrice()} Ft</span>
                   </div>
                 </div>
               </div>
 
               {/* Sipariş Formu */}
               <div className="bg-white rounded-lg shadow-md p-6 h-fit">
-                <h2 className="text-2xl font-semibold mb-6 border-b pb-4 text-gray-800">Sipariş Bilgileri</h2>
+                {/* === DİL DEĞİŞİKLİĞİ === */}
+                <h2 className="text-2xl font-semibold mb-6 border-b pb-4 text-gray-800">Rendelés Adatai</h2>
                 <form>
                   <div className="mb-4">
-                    <label htmlFor="address" className="block text-sm font-medium text-gray-700">Adres</label>
+                    {/* === DİL DEĞİŞİKLİĞİ === */}
+                    <label htmlFor="address" className="block text-sm font-medium text-gray-700">Cím</label>
                     <input
                       type="text"
                       id="address"
@@ -134,7 +149,8 @@ export default function CartPage() {
                     />
                   </div>
                   <div className="mb-4">
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Telefon</label>
+                    {/* === DİL DEĞİŞİKLİĞİ === */}
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Telefonszám</label>
                     <input
                       type="tel"
                       id="phone"
@@ -146,7 +162,8 @@ export default function CartPage() {
                     />
                   </div>
                   <div className="mb-4">
-                    <label htmlFor="payment" className="block text-sm font-medium text-gray-700">Ödeme Şekli</label>
+                    {/* === DİL DEĞİŞİKLİĞİ === */}
+                    <label htmlFor="payment" className="block text-sm font-medium text-gray-700">Fizetési Mód</label>
                     <select
                       id="payment"
                       name="payment"
@@ -155,8 +172,9 @@ export default function CartPage() {
                       className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500"
                       required
                     >
-                      <option value="Nakit">Nakit</option>
-                      <option value="K.K.">Kredi Kartı</option>
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      <option value="Készpénz">Készpénz</option>
+                      <option value="Bankkártya">Bankkártya</option>
                     </select>
                   </div>
                   <button
@@ -164,7 +182,8 @@ export default function CartPage() {
                     onClick={handleCheckout}
                     className="w-full bg-red-600 text-white py-2 rounded-md font-semibold hover:bg-red-700 transition-colors"
                   >
-                    Siparişi Tamamla
+                    {/* === DİL DEĞİŞİKLİĞİ === */}
+                    Rendelés Leadása
                   </button>
                 </form>
               </div>

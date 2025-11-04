@@ -1,17 +1,22 @@
 {
-  "restaurantName": "Borcan Kebap",
-  "heroTitle": "Lezzetin Adresi",
-  "heroSubtitle": "Gelenekten Geleceğe, Hakiki Kebap Deneyimi",
-  "aboutText": "Borcan Kebap, taze malzemeler ve ustalıkla hazırlanmış menüsüyle Adana kebabının gerçek lezzetini sunar.",
-  "phone": "0545 509 3462",
-  "address": "Beyoğlu Mahallesi\nKebap Sokak No: 123\n34400 Beyoğlu, İstanbul",
+  "restaurantName": "Karagöz Döner",
+  "heroTitle": "Az Ízek Címe",
+  "heroSubtitle": "Hagyománytól a Jövőig, Valódi Kebap Élmény",
+  "aboutText": "A Karagöz Döner friss alapanyagokkal és mesterien elkészített menüvel kínálja az Adana kebap valódi ízét Esztergomban.",
+  "phone": "06 20 934 1537",
+  "address": "2500, Esztergom\nKossuth Lajos utca 30.",
   "socialMedia": {
-    "facebook": "https://www.facebook.com/people/Borcan-Pide-Kebap/61579514506784/?locale=tr_TR",
-    "instagram": "https://www.instagram.com/borcan_kebap_pide_lahmacun/?utm_source=qr&igsh=d2twdW0yZ2FqaGJl#"
+    "facebook": "https://www.facebook.com/profile.php?id=61560428630473"
   },
   "orderChannels": {
     "whatsapp": {
-      "url": "https://wa.me/905455093462?text=Merhaba%2C%20sipariş%20vermek%20istiyorum."
+      "url": "https://wa.me/36209341537?text=Helló!%20Rendelni%20szeretnék."
+    },
+    "foodora": {
+      "url": "#"
+    },
+    "wolt": {
+      "url": "#"
     }
   }
 }

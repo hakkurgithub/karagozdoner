@@ -5,7 +5,8 @@ dotenv.config({ path: '.env.local' });
 
 async function removeDuplicateProducts() {
   if (!process.env.POSTGRES_URL) {
-    throw new Error('POSTGRES_URL environment variable not found.');
+    // === DİL GÜNCELLEMESİ ===
+    throw new Error('A POSTGRES_URL környezeti változó nem található.');
   }
 
   const sql = neon(process.env.POSTGRES_URL);
@@ -21,13 +22,15 @@ async function removeDuplicateProducts() {
   const duplicateRows = duplicates as Array<{ name: string; ids: number[]; count: string }>;
 
   if (duplicateRows.length === 0) {
-    console.log('✅ No duplicate product names found.');
+    // === DİL GÜNCELLEMESİ ===
+    console.log('✅ Nem találhatóak dupla terméknevek.');
     return;
   }
 
-  console.log('⚠️ Duplicate product names detected:');
+  // === DİL GÜNCELLEMESİ ===
+  console.log('⚠️ Dupla terméknevek észlelve:');
   duplicateRows.forEach((dup) => {
-    console.log(`  • ${dup.name} (count: ${dup.count}) -> ids: [${dup.ids.join(', ')}]`);
+    console.log(`  • ${dup.name} (darab: ${dup.count}) -> ID-k: [${dup.ids.join(', ')}]`);
   });
 
   const deleted = await sql`
@@ -47,20 +50,24 @@ async function removeDuplicateProducts() {
   const deletedRows = deleted as Array<{ id: number; name: string }>;
 
   if (deletedRows.length === 0) {
-    console.log('ℹ️ Nothing deleted.');
+    // === DİL GÜNCELLEMESİ ===
+    console.log('ℹ️ Nem történt törlés.');
   } else {
-    console.log('\n🗑️ Deleted duplicate rows:');
+    // === DİL GÜNCELLEMESİ ===
+    console.log('\n🗑️ Törölt dupla sorok:');
     deletedRows.forEach((row) => {
       console.log(`  • #${row.id} ${row.name}`);
     });
   }
 
-  console.log('\n✅ Duplicate cleanup completed.');
+  // === DİL GÜNCELLEMESİ ===
+  console.log('\n✅ A duplikátumok eltávolítása befejeződött.');
 }
 
 removeDuplicateProducts()
   .then(() => process.exit(0))
   .catch((error) => {
-    console.error('❌ Failed to remove duplicates:', error);
+    // === DİL GÜNCELLEMESİ ===
+    console.error('❌ Hiba a duplikátumok eltávolítása során:', error);
     process.exit(1);
   });

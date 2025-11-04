@@ -1,8 +1,8 @@
 ---
 name: "Ayran"
-description: "Geleneksel Türk ayranı - serinletici ve sağlıklı"
-price: 8
-category: "İçecekler"
+description: "Hagyományos török ayran - frissítő és egészséges"
+price: 800
+category: "Italok"
 image: "/images/menu/ayran.jpg"
 calories: 60
 isVegetarian: true
@@ -13,9 +13,9 @@ isActive: true
 
 # Ayran
 
-Geleneksel Türk ayranı - serinletici ve sağlıklı.
+Hagyományos török ayran - frissítő és egészséges.
 
-## İçindekiler
-- Taze yoğurt
-- Su
-- Tuz
+## Hozzávalók
+- Friss joghurt
+- Víz
+- Só

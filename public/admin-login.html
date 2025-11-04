@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karaköz Döner - Admin Girişi</title>
+    <title>Karagöz Döner - Kezelőpanel Belépés</title>
     <style>
         * {
             margin: 0;
@@ -140,34 +140,34 @@
 </head>
 <body>
     <div class="container">
-        <h1>🥙 Karaköz Döner</h1>
-        <p class="subtitle">Admin Paneline Giriş</p>
+        <h1>🥙 Karagöz Döner</h1>
+        <p class="subtitle">Kezelőpanel Belépés</p>
         
         <div class="demo-section">
-            <div class="demo-title">Demo Hesaplar</div>
+            <div class="demo-title">Demó Fiókok</div>
             
             <button class="button btn-demo" onclick="login('demo')">
                 <span>👤</span>
-                <span>Demo Kullanıcı Girişi</span>
+                <span>Demó Felhasználói Belépés</span>
             </button>
             
             <button class="button btn-manager" onclick="login('manager')">
                 <span>🔑</span>
-                <span>Manager (Admin) Girişi</span>
+                <span>Menedzser (Admin) Belépés</span>
             </button>
             
             <div class="info">
-                <p><strong>👤 Demo:</strong> Kullanıcı dashboard erişimi</p>
-                <p><strong>🔑 Manager:</strong> Ürün düzenleme yetkisi</p>
+                <p><strong>👤 Demó:</strong> Felhasználói fiók hozzáférés</p>
+                <p><strong>🔑 Menedzser:</strong> Termékszerkesztési jogosultság</p>
             </div>
         </div>
         
         <div class="footer">
-            Test amaçlı demo hesaplar
+            Demó fiókok tesztelési célokra
         </div>
         
         <div id="loading" class="loading">
-            <p>Giriş yapılıyor...</p>
+            <p>Bejelentkezés...</p>
         </div>
     </div>
     
@@ -178,7 +178,7 @@
             
             const redirectUrl = type === 'manager' ? '/manager' : '/dashboard';
             
-            // NextAuth credentials endpoint'ine istek gönder
+            // NextAuth credentials végpontra küldés
             fetch('/api/auth/signin/credentials', {
                 method: 'POST',
                 headers: {
@@ -193,13 +193,14 @@
             })
             .then(response => response.json())
             .then(data => {
-                // Başarılı giriş sonrası yönlendir
+                // Sikeres bejelentkezés után átirányítás
                 window.location.href = redirectUrl;
             })
             .catch(error => {
                 console.error('Login error:', error);
                 loading.classList.remove('active');
-                alert('Giriş hatası. Lütfen tekrar deneyin.');
+                // === DİL GÜNCELLEMESİ ===
+                alert('Bejelentkezési hiba. Kérjük, próbálja újra.');
             });
         }
     </script>

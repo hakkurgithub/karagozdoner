@@ -11,25 +11,30 @@ async function checkProducts() {
   
   try {
     await client.connect()
-    console.log('🔗 Database bağlantısı başarılı\n')
+    // === DİL GÜNCELLEMESİ ===
+    console.log('🔗 Adatbázis-kapcsolat sikeres\n')
     
     // Tüm ürünleri listele
     const result = await client.query('SELECT * FROM products ORDER BY id')
     
-    console.log(`📦 Toplam ${result.rows.length} ürün bulundu:\n`)
+    // === DİL GÜNCELLEMESİ ===
+    console.log(`📦 Összesen ${result.rows.length} termék található:\n`)
     
     result.rows.forEach((product: any) => {
       console.log(`ID: ${product.id}`)
-      console.log(`  İsim: ${product.name}`)
-      console.log(`  Fiyat: ${parseFloat(product.price).toFixed(2)} ₺`)
-      console.log(`  Kategori: ${product.category}`)
-      console.log(`  Resim: ${product.image}`)
-      console.log(`  Aktif: ${product.is_active ? 'Evet' : 'Hayır'}`)
+      // === DİL GÜNCELLEMESİ ===
+      console.log(`  Név: ${product.name}`)
+      // === FİYAT MANTIĞI VE DİL GÜNCELLEMESİ (Ft, Tam Sayı) ===
+      console.log(`  Ár: ${product.price} Ft`) 
+      console.log(`  Kategória: ${product.category}`)
+      console.log(`  Kép: ${product.image}`)
+      console.log(`  Aktív: ${product.is_active ? 'Igen' : 'Nem'}`)
       console.log('---')
     })
     
   } catch (error) {
-    console.error('❌ Hata:', error)
+    // === DİL GÜNCELLEMESİ ===
+    console.error('❌ Hiba:', error)
   } finally {
     await client.end()
   }

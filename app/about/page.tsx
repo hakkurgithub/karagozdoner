@@ -1,442 +1,479 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
 
-export default function AboutPage() {
+export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<
+    { type: 'success' | 'error'; text: string } | null
+  >(null);
+  const [showOrderDropdown, setShowOrderDropdown] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Form gönderimini simüle et
+    setTimeout(() => {
+      setSubmitMessage({
+        type: 'success',
+        // === DİL DEĞİŞİKLİĞİ ===
+        text: 'Üzenetét sikeresen elküldtük! Hamarosan válaszolunk.',
+      });
+      setIsSubmitting(false);
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    }, 2000);
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleOrderClick = () => {
+    setShowOrderDropdown(!showOrderDropdown);
+  };
+
+  const handleChannelClick = (channel: any) => {
+    if (channel.url) {
+      window.open(channel.url, '_blank');
+    }
+    setShowOrderDropdown(false);
+  };
+
+  // === BİLGİ VE DİL GÜNCELLEMESİ (Wix siteye göre) ===
+  const orderChannels = [
+    {
+      id: 'whatsapp',
+      name: 'WhatsApp',
+      icon: 'ri-whatsapp-line',
+      color: 'text-green-600',
+      url: 'https://wa.me/36209341537?text=Helló!%20Karagöz%20Döner-től%20szeretnék%20rendelni.',
+    },
+    {
+      id: 'phone',
+      name: 'Telefon: 06 20 934 1537',
+      icon: 'ri-phone-line',
+      color: 'text-blue-600',
+      url: 'tel:06209341537',
+    },
+    {
+      id: 'foodora',
+      name: 'Foodora',
+      icon: 'ri-restaurant-line',
+      color: 'text-pink-600',
+      url: '#', // Buraya Foodora linkiniz gelecek
+    },
+    {
+      id: 'wolt',
+      name: 'Wolt',
+      icon: 'ri-truck-line',
+      color: 'text-blue-500',
+      url: '#', // Buraya Wolt linkiniz gelecek
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <section
         className="relative h-96 bg-cover bg-center"
         style={{
-          backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/Borcan-kebap-personeli.png')`,
+          // === RESİM VE İSİM GÜNCELLEMESİ ===
+          backgroundImage: `url('https://readdy.ai/api/search-image?query=Hungarian%20restaurant%20storefront%20with%20elegant%20Karagoz%20Döner%20sign%20in%20beautiful%20calligraphy%2C%20warm%20evening%20lighting%20illuminating%20the%20restaurant%20entrance%2C%20traditional%20style%20architecture%2C%20professional%20photography%20showcasing%20authentic%20Turkish%20dining%20establishment&width=1200&height=400&seq=contact-hero-karagoz&orientation=landscape')`,
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="relative z-10 flex items-center justify-center h-full">
           <div className="text-center text-white px-4">
-            <h1 className="text-5xl font-bold mb-4">Hakkımızda</h1>
-            <p className="text-xl max-w-2xl mx-auto">40 yıllık geleneksel lezzet hikayemiz</p>
+            {/* === DİL DEĞİŞİKLİĞİ === */}
+            <h1 className="text-5xl font-bold mb-4">Elérhetőség</h1>
+            <p className="text-xl max-w-2xl mx-auto">Lépjen kapcsolatba velünk</p>
           </div>
         </div>
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Story Section */}
-        <section className="mb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-800 mb-6">Hikayemiz</h2>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                1985 yılından bu yana İstanbul&apos;un Avcılar ilçesinde hizmet veren Borcan Kebap,
-                geleneksel Türk mutfağının eşsiz lezzetlerini modern sunum ile buluşturuyor. Ailemizin 40
-                yıllık deneyimi ve özel tariflerimizle her lokmada otantik tatları yaşayacaksınız.
-              </p>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Babadan oğula geçen geleneksel tariflerin yanı sıra, günümüz damak zevkine uygun yeni lezzetler
-                de menümüzde yerini alıyor. Her gün taze malzemelerle hazırlanan kebaplarımız, özel baharatlarımız
-                ve mangal ateşimizin verdiği eşsiz aroma ile misafirlerimize unutulmaz bir yemek deneyimi sunuyoruz.
-              </p>
-              <div className="grid grid-cols-2 gap-6 mb-8">
-                <div className="text-center p-6 bg-red-50 rounded-lg">
-                  <div className="text-3xl font-bold text-red-600 mb-2">40+</div>
-                  <div className="text-gray-600">Yıllık Deneyim</div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Contact Form */}
+          <div className="lg:col-span-2">
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <h2 className="text-3xl font-bold text-gray-800 mb-6">
+                {/* === DİL DEĞİŞİKLİĞİ === */}
+                Üzenetküldés
+              </h2>
+
+              {submitMessage && (
+                <div
+                  className={`mb-6 p-4 rounded-lg ${
+                    submitMessage.type === 'success'
+                      ? 'bg-green-50 border border-green-200 text-green-700'
+                      : 'bg-red-50 border border-red-200 text-red-700'
+                  }`}
+                >
+                  <div className="flex items-center">
+                    <i
+                      className={`${submitMessage.type === 'success' ? 'ri-check-circle-line' : 'ri-error-warning-line'
+                        } mr-2`}
+                    ></i>
+                    {submitMessage.text}
+                  </div>
                 </div>
-                <div className="text-center p-6 bg-red-50 rounded-lg">
-                  <div className="text-3xl font-bold text-red-600 mb-2">50K+</div>
-                  <div className="text-gray-600">Mutlu Müşteri</div>
+              )}
+
+              <form
+                id="contact-form"
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Név *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                      // === DİL DEĞİŞİKLİĞİ ===
+                      placeholder="Az Ön neve"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      E-mail *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                      placeholder="email@example.com"
+                    />
+                  </div>
                 </div>
-                <div className="text-center p-6 bg-red-50 rounded-lg">
-                  <div className="text-3xl font-bold text-red-600 mb-2">100+</div>
-                  <div className="text-gray-600">Menü Çeşidi</div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Telefonszám
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                      // === DİL DEĞİŞİKLİĞİ ===
+                      placeholder="+36 20 xxx xxxx"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="subject"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Tárgy *
+                    </label>
+                    <select
+                      id="subject"
+                      name="subject"
+                      required
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 pr-8"
+                    >
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      <option value="">Válasszon tárgyat</option>
+                      <option value="reservation">Asztalfoglalás</option>
+                      <option value="complaint">Panasz</option>
+                      <option value="suggestion">Javaslat</option>
+                      <option value="catering">Catering</option>
+                      <option value="other">Egyéb</option>
+                    </select>
+                  </div>
                 </div>
-                <div className="text-center p-6 bg-red-50 rounded-lg">
-                  <div className="text-3xl font-bold text-red-600 mb-2">5</div>
-                  <div className="text-gray-600">Şube</div>
+
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    {/* === DİL DEĞİŞİKLİĞİ === */}
+                    Üzenet *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={6}
+                    maxLength={500}
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 resize-none"
+                    // === DİL DEĞİŞİKLİĞİ ===
+                    placeholder="Írja ide az üzenetét..."
+                  />
+                  <div className="text-right text-xs text-gray-500 mt-1">
+                    {/* === DİL DEĞİŞİKLİĞİ === */}
+                    {formData.message.length}/500 karakter
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div
-              className="w-full h-96 bg-cover bg-center rounded-lg shadow-lg"
-              style={{
-                backgroundImage: `url('https://readdy.ai/api/search-image?query=Traditional%20Turkish%20chef%20preparing%20kebab%20in%20authentic%20restaurant%20kitchen%2C%20skilled%20cook%20grilling%20meat%2C%20professional%20kitchen%20setup%2C%20warm%20lighting%2C%20spacious%20dining%20room%2C%20professional%20restaurant%20photography%2C%20welcoming%20atmosphere&width=600&height=400&seq=chef-about&orientation=landscape')`,
-              }}
-            ></div>
-          </div>
-        </section>
 
-        {/* Values Section */}
-        <section className="mb-16 bg-white rounded-xl shadow-lg p-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Değerlerimiz</h2>
-            <p className="text-xl text-gray-600">Bizi özel kılan değerler</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i className="ri-restaurant-line text-2xl text-red-600"></i>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Kalite</h3>
-              <p className="text-gray-600">
-                Her gün taze seçilen en kaliteli malzemelerle hazırlanan yemeklerimiz,
-                lezzet standartlarımızdan asla ödün vermez.
-              </p>
-            </div>
-
-            <div className="text-center p-6">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i className="ri-heart-line text-2xl text-red-600"></i>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Geleneksellik</h3>
-              <p className="text-gray-600">
-                Geçmişten günümüze aktarılan geleneksel tariflerimiz ve pişirme yöntemlerimiz
-                otantik lezzetlerin anahtarıdır.
-              </p>
-            </div>
-
-            <div className="text-center p-6">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i className="ri-user-smile-line text-2xl text-red-600"></i>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Müşteri Memnuniyeti</h3>
-              <p className="text-gray-600">
-                Misafirlerimizin memnuniyeti bizim için en önemli önceliktir.
-                Her müşterimizi ailemizin bir ferdi olarak görürüz.
-              </p>
+                <button
+                  type="submit"
+                  disabled={isSubmitting || formData.message.length > 500}
+                  className="w-full bg-red-600 text-white py-4 rounded-lg font-semibold hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                >
+                  {isSubmitting ? (
+                    <>
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      <i className="ri-loader-line animate-spin mr-2"></i>
+                      Küldés...
+                    </>
+                  ) : (
+                    <>
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      <i className="ri-send-plane-line mr-2"></i>
+                      Üzenet küldése
+                    </>
+                  )}
+                </button>
+              </form>
             </div>
           </div>
-        </section>
 
-        {/* Team Section */}
-        <section className="mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Ekibimiz</h2>
-            <p className="text-xl text-gray-600">Deneyimli ve tutkulu ekibimiz</p>
-          </div>
+          {/* Contact Info */}
+          <div className="space-y-8">
+            {/* Restaurant Info */}
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">
+                {/* === DİL DEĞİŞİKLİĞİ === */}
+                Elérhetőségek
+              </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-              <div
-                className="w-24 h-24 bg-cover bg-center rounded-full mx-auto mb-4"
-                style={{
-                  backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/Erhan-Deniz.jpg')`,
-                }}
-              ></div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Erhan Deniz</h3>
-              <p className="text-red-600 font-medium mb-3">Baş Aşçı</p>
-              <p className="text-gray-600 text-sm">
-                35 yıllık deneyimi ile geleneksel kebap ustası.
-                Özel baharat karışımları ve mangal teknikleri konusunda uzman.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-              <div
-                className="w-24 h-24 bg-cover bg-center rounded-full mx-auto mb-4"
-                style={{
-                  backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/faruk-deniz.jpg')`,
-                }}
-              ></div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Faruk Deniz</h3>
-              <p className="text-red-600 font-medium mb-3">Pide Ustası</p>
-              <p className="text-gray-600 text-sm">
-                20 yıldır pide ve lahmacun konusunda uzman.
-                İnce hamur teknikleri ve geleneksel fırın kullanımında usta.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-              <div
-                className="w-24 h-24 bg-cover bg-center rounded-full mx-auto mb-4"
-                style={{
-                  backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/oktay-deniz .jpg')`,
-                }}
-              ></div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Oktay Deniz</h3>
-              <p className="text-red-600 font-medium mb-3">Restoran Müdürü</p>
-              <p className="text-gray-600 text-sm">
-                15 yıldır misafir ağırlama konusunda uzman.
-                Müşteri memnuniyeti ve servis kalitesi sorumlusu.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Location Section */}
-        <section className="mb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-800 mb-6">Konumumuz</h2>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                İstanbul&apos;un Avcılar ilçesinde, Beyoğlu Caddesinde yer alan restoranımız
-                kolay ulaşım imkanları ile misafirlerini ağırlıyor. Geniş ve ferah salonumuz
-                120 kişilik kapasitesi ile aileniz ve arkadaşlarınızla keyifli vakit geçirmeniz
-                için ideal bir ortam sunuyor.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-center">
+              <div className="space-y-6">
+                <div className="flex items-start">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
                     <i className="ri-map-pin-line text-xl text-red-600"></i>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">Adres</h4>
-                    <p className="text-gray-600">Beyoğlu Caddesi No: 35/A, Parseller, Avcılar/İstanbul</p>
+                    <h4 className="font-semibold text-gray-800 mb-1">
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Cím
+                    </h4>
+                    {/* === ADRES GÜNCELLEMESİ === */}
+                    <p className="text-gray-600">
+                      2500, Esztergom
+                      <br />
+                      Kossuth Lajos utca 30.
+                    </p>
                   </div>
                 </div>
 
-                <div className="flex items-center">
+                <div className="flex items-start">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                    <i className="ri-car-line text-xl text-red-600"></i>
+                    <i className="ri-phone-line text-xl text-red-600"></i>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">Park Yeri</h4>
-                    <p className="text-gray-600">Ücretsiz müşteri park alanı mevcut</p>
+                    <h4 className="font-semibold text-gray-800 mb-1">
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Telefonszám
+                    </h4>
+                    {/* === TELEFON GÜNCELLEMESİ === */}
+                    <p className="text-gray-600">06 20 934 1537</p>
                   </div>
                 </div>
 
-                <div className="flex items-center">
+                <div className="flex items-start">
                   <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                    <i className="ri-user-line text-xl text-red-600"></i>
+                    <i className="ri-mail-line text-xl text-red-600"></i>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">Kapasite</h4>
-                    <p className="text-gray-600">120 kişilik salon, grup rezervasyonları mevcut</p>
+                    <h4 className="font-semibold text-gray-800 mb-1">
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      E-mail
+                    </h4>
+                    {/* === E-POSTA GÜNCELLEMESİ === */}
+                    <p className="text-gray-600">info@karagozdoner.com</p>
+                    <p className="text-gray-600">foglalas@karagozdoner.com</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <i className="ri-time-line text-xl text-red-600"></i>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800 mb-1">
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Nyitvatartás
+                    </h4>
+                    {/* (Varsayılan olarak bırakıldı, Wix sitesinde yoktu) */}
+                    <p className="text-gray-600">Hétfő - Vasárnap</p>
+                    <p className="text-gray-600">11:00 - 23:00</p>
+                    <p className="text-sm text-green-600 mt-1">
+                      Folyamatos kiszolgálás
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div
-              className="w-full h-96 bg-cover bg-center rounded-lg shadow-lg"
-              style={{
-                backgroundImage: `url('https://readdy.ai/api/search-image?query=Modern%20Turkish%20restaurant%20interior%20dining%20area%2C%20elegant%20tables%20and%20chairs%20setup%2C%20warm%20ambient%20lighting%2C%20spacious%20dining%20room%2C%20professional%20restaurant%20photography%2C%20welcoming%20atmosphere&width=600&height=400&seq=restaurant-interior&orientation=landscape')`,
-              }}
-            ></div>
-          </div>
-        </section>
 
-        {/* Awards Section */}
-        <section className="mb-16 bg-gradient-to-r from-red-600 to-orange-600 rounded-xl p-8 text-white">
-          <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold mb-4">Ödüllerimiz ve Sertifikalarımız</h2>
-            <p className="text-xl text-red-100">Kalitemizin tescili</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6 bg-white/10 rounded-lg">
-              <div className="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i className="ri-award-line text-2xl text-yellow-800"></i>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">2023 Lezzet Ödülü</h3>
-              <p className="text-red-100 text-sm">İstanbul Gastronomi Derneği tarafından verilen en iyi kebap ödülü</p>
-            </div>
-
-            <div className="text-center p-6 bg-white/10 rounded-lg">
-              <div className="w-16 h-16 bg-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i className="ri-shield-check-line text-2xl text-green-800"></i>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Hijyen Sertifikası</h3>
-              <p className="text-red-100 text-sm">Sağlık Bakanlığı onaylı A+ hijyen ve gıda güvenliği sertifikası</p>
-            </div>
-
-            <div className="text-center p-6 bg-white/10 rounded-lg">
-              <div className="w-16 h-16 bg-blue-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i className="ri-star-line text-2xl text-blue-800"></i>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">5 Yıldız Değerlendirme</h3>
-              <p className="text-red-100 text-sm">TripAdvisor ve Google&apos;da 4.8+ puan ile mükemmellik sertifikası</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Mission & Vision */}
-        <section className="mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Social Media */}
             <div className="bg-white rounded-xl shadow-lg p-8">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                  <i className="ri-target-line text-xl text-red-600"></i>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-800">Misyonumuz</h3>
-              </div>
-              <p className="text-gray-600 leading-relaxed">
-                Geleneksel Türk mutfağının eşsiz lezzetlerini, modern sunum teknikleri ile birleştirerek
-                misafirlerimize unutulmaz bir gastronomi deneyimi sunmak. Her tabakta otantik tatları
-                yaşatırken, kalite ve hijyen standartlarımızdan asla ödün vermemek.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-xl shadow-lg p-8">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                  <i className="ri-eye-line text-xl text-red-600"></i>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-800">Vizyonumuz</h3>
-              </div>
-              <p className="text-gray-600 leading-relaxed">
-                Türk mutfağını en iyi temsil eden, ulusal ve uluslararası alanda tanınan,
-                geleneksel lezzetlerin koruyucusu ve yenilikçi sunum tekniklerinin öncüsü
-                bir restoran zinciri olmak. Gelecek nesillere bu değerli mirası aktarmak.
-              </p>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4 flex items-center space-x-3">
-                <div className="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center font-bold text-black text-lg border-2 border-black">
-                  BK
-                </div>
-                <span className="font-[`Pacifico`]">Borcan Kebap</span>
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">
+                {/* === DİL DEĞİŞİKLİĞİ === */}
+                Közösségi Média
               </h3>
-              <p className="text-gray-400 mb-4">
-                Geleneksel Türk mutfağının eşsiz lezzetlerini modern sunum ile buluşturuyoruz.
-              </p>
-              <div className="flex space-x-4">
-                <a
-                  href="https://www.facebook.com/brcnkbp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-colors"
+              <div className="grid grid-cols-2 gap-4">
+                {/* === SOSYAL MEDYA GÜNCELLEMESİ (Wix siteye göre) === */}
+                <button
+                  onClick={() => window.open('https://www.facebook.com/profile.php?id=61560428630473', '_blank')}
+                  className="flex items-center justify-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
                 >
-                  <i className="ri-facebook-fill text-lg"></i>
-                </a>
-                <a
-                  href="https://www.instagram.com/borcankebap/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-600 rounded-full flex items-center justify-center cursor-pointer hover:from-purple-700 hover:via-pink-700 hover:to-orange-700 transition-all"
-                >
-                  <i className="ri-instagram-fill text-lg"></i>
-                </a>
-                <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-red-700 transition-colors">
-                  <i className="ri-twitter-fill text-sm"></i>
-                </div>
+                  <i className="ri-facebook-fill text-2xl text-blue-600 mr-3"></i>
+                  <span className="font-medium">Facebook</span>
+                </button>
+                {/* Diğer sosyal medya butonları kaldırıldı (Wix sitesinde yok) */}
               </div>
             </div>
 
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Hızlı Linkler</h4>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/menu" className="text-gray-400 hover:text-white transition-colors cursor-pointer">
-                    Menü
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about" className="text-gray-400 hover:text-white transition-colors cursor-pointer">
-                    Hakkımızda
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact" className="text-gray-400 hover:text-white transition-colors cursor-pointer">
-                    İletişim
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/reservation" className="text-gray-400 hover:text-white transition-colors cursor-pointer">
-                    Rezervasyon
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            {/* Quick Actions */}
+            <div className="bg-red-600 text-white rounded-xl p-8">
+              {/* === DİL DEĞİŞİKLİĞİ === */}
+              <h3 className="text-2xl font-bold mb-4">Gyors Műveletek</h3>
+              <div className="space-y-4">
+                <Link
+                  href="/reservation"
+                  className="w-full bg-white text-red-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-pointer flex items-center justify-center"
+                >
+                  <i className="ri-calendar-line mr-2"></i>
+                  {/* === DİL DEĞİŞİKLİĞİ === */}
+                  Asztalfoglalás
+                </Link>
+                <div className="relative">
+                  <button
+                    onClick={handleOrderClick}
+                    className="w-full bg-white text-red-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-pointer flex items-center justify-center"
+                  >
+                    <i className="ri-shopping-cart-line mr-2"></i>
+                    {/* === DİL DEĞİŞİKLİĞİ === */}
+                    Online Rendelés
+                    <i
+                      className={`ri-arrow-down-s-line ml-2 transition-transform ${
+                        showOrderDropdown ? 'rotate-180' : ''
+                      }`}
+                    ></i>
+                  </button>
 
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Online Sipariş</h4>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="https://www.yemeksepeti.com/restaurant/kw28/borcan-kebap-pide-lahmacun-salonu"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center"
-                  >
-                    <i className="ri-restaurant-line mr-2 text-orange-600"></i>
-                    Yemeksepeti
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://getir.com/yemek/restoran/borcan-kebap-pide-lahmacun-salonu-mustafa-kemalpasa-mah-avcilar-istanbul/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center"
-                  >
-                    <i className="ri-truck-line mr-2 text-orange-600"></i>
-                    Getir
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.trendyol.com/yemek"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center"
-                  >
-                    <i className="ri-restaurant-line mr-2 text-purple-600"></i>
-                    Trendyol Yemek
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://wa.me/905455093462?text=Merhaba!%20Borcan%20Kebap&apos;tan%20sipariş%20vermek%20istiyorum."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center"
-                  >
-                    <i className="ri-whatsapp-line mr-2 text-green-600"></i>
-                    WhatsApp
-                  </a>
-                </li>
-              </ul>
+                  {showOrderDropdown && (
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-white border rounded-lg shadow-lg z-10">
+                      {orderChannels.map((channel) => (
+                        <button
+                          key={channel.id}
+                          onClick={() => handleChannelClick(channel)}
+                          className="w-full px-4 py-3 text-left hover:bg-gray-50 flex items-center space-x-3 first:rounded-t-lg last:rounded-b-lg cursor-pointer text-gray-800"
+                        >
+                          <i
+                            className={`${channel.icon} ${channel.color} text-lg w-5 h-5 flex items-center justify-center`}
+                          ></i>
+                          <span>{channel.name}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <Link
+                  href="/menu"
+                  className="w-full bg-white text-red-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-pointer flex items-center justify-center"
+                >
+                  <i className="ri-restaurant-line mr-2"></i>
+                  {/* === DİL DEĞİŞİKLİĞİ === */}
+                  Menü Megtekintése
+                </Link>
+              </div>
             </div>
-
-            <div>
-              <h4 className="text-lg font-semibold mb-4">İletişim</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li className="flex items-center">
-                  <i className="ri-phone-line mr-2"></i>
-                  0212 423 3727
-                </li>
-                <li className="flex items-center">
-                  <i className="ri-phone-line mr-2"></i>
-                  0545 509 3462
-                </li>
-                <li className="flex items-center">
-                  <i className="ri-whatsapp-line mr-2"></i>
-                  0545 509 3462 (WhatsApp)
-                </li>
-                <li className="flex items-center">
-                  <i className="ri-mail-line mr-2"></i>
-                  info@borcankebap.com
-                </li>
-                <li className="flex items-start">
-                  <i className="ri-map-pin-line mr-2 mt-1"></i>
-                  <a
-                    href="https://maps.app.goo.gl/rQdBMCqk5GMwdVSM7"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer"
-                  >
-                    Beyoğlu Caddesi No: 35/A
-                    <br />
-                    Parseller, Avcılar/İstanbul
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>© 2024 Borcan Kebap. Tüm hakları saklıdır.</p>
           </div>
         </div>
-      </footer>
+
+        {/* Map Section */}
+        <div className="mt-12 bg-white rounded-xl shadow-lg overflow-hidden">
+          <div className="p-8 border-b">
+            {/* === DİL DEĞİŞİKLİĞİ === */}
+            <h3 className="text-2xl font-bold text-gray-800">Helyszín</h3>
+            <p className="text-gray-600 mt-2">
+              {/* === DİL DEĞİŞİKLİĞİ === */}
+              Találjon meg minket a térképen
+            </p>
+          </div>
+          <div className="h-96">
+            {/* === HARİTA GÜNCELLEMESİ (Esztergom) === */}
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2678.786523173356!2d18.73977821563815!3d47.79152007919747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476a617631a29c1d%3A0xadeba8fea0603e1a!2sEsztergom%2C%20Kossuth%20Lajos%20u.%2030%2C%202500%20Hungary!5e0!3m2!1sen!2sus!4v1675865432109!5m2!1sen!2sus"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              // === İSİM GÜNCELLEMESİ ===
+              title="Karagöz Döner Helyszín"
+            ></iframe>
+            <div className="p-4 text-center">
+              <a
+                // === HARİTA LİNK GÜNCELLEMESİ (Esztergom) ===
+                href="https://www.google.com/maps/place/Esztergom,+Kossuth+Lajos+u.+30,+2500+Hungary"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-600 hover:underline"
+              >
+                {/* === DİL DEĞİŞİKLİĞİ === */}
+                Megnyitás Google Térképen
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

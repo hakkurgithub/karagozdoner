@@ -283,7 +283,7 @@
         },
         "price": {
           "name": "price",
-          "type": "numeric(10, 2)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },

@@ -1,8 +1,8 @@
 ---
-name: "Karışık Pide"
-description: "Kaşar peyniri, sucuk, yumurta ve sebzelerle hazırlanmış nefis pide"
-price: 55
-category: "Pide"
+name: "Vegyes Pide"
+description: "Ízletes pide kashkaval sajt, sucuk (török kolbász), tojás és zöldségekkel"
+price: 5500
+category: "Pide és Lahmacun"
 image: "/images/menu/karisik-pide.jpg"
 calories: 520
 isVegetarian: false
@@ -11,14 +11,14 @@ isGlutenFree: false
 isActive: true
 ---
 
-# Karışık Pide
+# Vegyes Pide
 
-Kaşar peyniri, sucuk, yumurta ve sebzelerle hazırlanmış nefis pide.
+Ízletes pide kashkaval sajt, sucuk (török kolbász), tojás és zöldségekkel.
 
-## İçindekiler
-- Kaşar peyniri
-- Sucuk
-- Yumurta
-- Domates
-- Biber
-- Soğan
+## Hozzávalók
+- Kashkaval sajt
+- Sucuk (török kolbász)
+- Tojás
+- Paradicsom
+- Paprika
+- Hagyma

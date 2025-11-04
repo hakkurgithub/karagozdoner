@@ -13,32 +13,37 @@ const pacifico = Pacifico({
   variable: '--font-pacifico'
 });
 
+// === TÜM METADATA GÜNCELLENDİ (DİL, İSİM, KONUM, URL) ===
 export const metadata: Metadata = {
-  title: 'Borcan Kebap - Geleneksel Türk Mutfağı',
-  description: '1985\'ten beri İstanbul\'da hizmet veren Borcan Kebap\'ta geleneksel Türk mutfağının eşsiz lezzetlerini keşfedin. Adana kebap, pide, lahmacun ve daha fazlası.',
-  keywords: 'borcan kebap, türk mutfağı, adana kebap, pide, lahmacun, istanbul restoran',
+  title: 'Karagöz Döner - Hagyományos Török Konyha',
+  description: 'Fedezze fel a hagyományos török konyha egyedülálló ízeit a Karagöz Döner-nél Esztergomban. Adana kebap, pide, lahmacun és még sok más.',
+  keywords: 'karagöz döner, török konyha, adana kebap, pide, lahmacun, esztergom étterem',
   robots: 'index, follow',
   openGraph: {
-    title: 'Borcan Kebap - Geleneksel Türk Mutfağı',
-    description: '1985\'ten beri İstanbul\'da hizmet veren Borcan Kebap\'ta geleneksel Türk mutfağının eşsiz lezzetlerini keşfedin.',
-    url: 'https://borcan-kebap.com',
-    siteName: 'Borcan Kebap',
+    title: 'Karagöz Döner - Hagyományos Török Konyha',
+    description: 'Fedezze fel a hagyományos török konyha egyedülálló ízeit a Karagöz Döner-nél Esztergomban.',
+    url: 'https://karagozdoner.vercel.app', // Site URL'si güncellendi
+    siteName: 'Karagöz Döner', // İsim güncellendi
     images: [
       {
-        url: 'https://readdy.ai/api/search-image?query=Turkish%20restaurant%20logo%20Borcan%20Kebap%20traditional%20cuisine%20branding&width=1200&height=630&seq=og&orientation=landscape',
+        // Resim arama sorgusu güncellendi
+        url: 'https://readdy.ai/api/search-image?query=Turkish%20restaurant%20logo%20Karagoz%20Döner%20traditional%20cuisine%20branding&width=1200&height=630&seq=og&orientation=landscape',
         width: 1200,
         height: 630,
-        alt: 'Borcan Kebap'
+        alt: 'Karagöz Döner' // Alt metin güncellendi
       }
     ],
-    locale: 'tr_TR',
+    locale: 'hu_HU', // Bölge kodu güncellendi
     type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Borcan Kebap - Geleneksel Türk Mutfağı',
-    description: '1985\'ten beri İstanbul\'da hizmet veren Borcan Kebap\'ta geleneksel Türk mutfağının eşsiz lezzetlerini keşfedin.',
-    images: ['https://readdy.ai/api/search-image?query=Turkish%20restaurant%20logo%20Borcan%20Kebap%20traditional%20cuisine%20branding&width=1200&height=630&seq=twitter&orientation=landscape']
+    title: 'Karagöz Döner - Hagyományos Török Konyha',
+    description: 'Fedezze fel a hagyományos török konyha egyedülálló ízeit a Karagöz Döner-nél Esztergomban.',
+    images: [
+      // Resim arama sorgusu güncellendi
+      'https://readdy.ai/api/search-image?query=Turkish%20restaurant%20logo%20Karagoz%20Döner%20traditional%20cuisine%20branding&width=1200&height=630&seq=twitter&orientation=landscape'
+    ]
   }
 };
 
@@ -54,7 +59,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="tr" className={`${inter.className} ${pacifico.variable}`}>
+    // === DİL GÜNCELLEMESİ (tr -> hu) ===
+    <html lang="hu" className={`${inter.className} ${pacifico.variable}`}>
       <head>
         <link
           href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css"

@@ -5,23 +5,26 @@ import { eq } from 'drizzle-orm'
 
 async function checkAndUpdateAdmin() {
   try {
-    console.log('🔍 Admin kullanıcıları kontrol ediliyor...')
+    // === DİL GÜNCELLEMESİ ===
+    console.log('🔍 Admin felhasználók ellenőrzése...')
     
-    // Tüm kullanıcıları listele
+    // Összes felhasználó listázása
     const allUsers = await db.select().from(users)
-    console.log('\n📋 Mevcut kullanıcılar:')
+    // === DİL GÜNCELLEMESİ ===
+    console.log('\n📋 Jelenlegi felhasználók:')
     allUsers.forEach(user => {
-      console.log(`- ${user.name} (${user.email}) - Role: ${user.role}`)
+      console.log(`- ${user.name} (${user.email}) - Szerepkör: ${user.role}`)
     })
     
-    // Admin kullanıcısını ara
+    // Admin felhasználó keresése
     const adminUser = await db.select()
       .from(users)
       .where(eq(users.email, 'kurt.hakki@gmail.com'))
       .limit(1)
     
     if (adminUser.length === 0) {
-      console.log('\n⚠️  Admin kullanıcısı bulunamadı. Oluşturuluyor...')
+      // === DİL GÜNCELLEMESİ ===
+      console.log('\n⚠️  Admin felhasználó nem található. Létrehozás...')
       
       const newAdmin = await db.insert(users).values({
         name: 'Hakkı Kurt',
@@ -29,38 +32,46 @@ async function checkAndUpdateAdmin() {
         role: 'manager'
       }).returning()
       
-      console.log('✅ Admin kullanıcısı oluşturuldu:', newAdmin[0])
+      // === DİL GÜNCELLEMESİ ===
+      console.log('✅ Admin felhasználó létrehozva:', newAdmin[0])
     } else {
-      console.log(`\n✅ Admin kullanıcısı bulundu: ${adminUser[0].name} (${adminUser[0].role})`)
+      // === DİL GÜNCELLEMESİ ===
+      console.log(`\n✅ Admin felhasználó megtalálva: ${adminUser[0].name} (${adminUser[0].role})`)
       
       if (adminUser[0].role !== 'manager') {
-        console.log('🔧 Admin rolü güncelleniyor...')
+        // === DİL GÜNCELLEMESİ ===
+        console.log('🔧 Admin szerepkör frissítése...')
         
         await db.update(users)
           .set({ role: 'manager' })
           .where(eq(users.email, 'kurt.hakki@gmail.com'))
         
-        console.log('✅ Admin rolü "manager" olarak güncellendi!')
+        // === DİL GÜNCELLEMESİ ===
+        console.log('✅ Admin szerepkör "manager"-re frissítve!')
       }
     }
     
-    console.log('\n🎉 Admin kontrolü tamamlandı!')
+    // === DİL GÜNCELLEMESİ ===
+    console.log('\n🎉 Admin ellenőrzés befejeződött!')
     
   } catch (error) {
-    console.error('❌ Hata:', error)
+    // === DİL GÜNCELLEMESİ ===
+    console.error('❌ Hiba:', error)
     throw error
   }
 }
 
-// Script'i çalıştır
+// Script futtatása
 if (require.main === module) {
   checkAndUpdateAdmin()
     .then(() => {
-      console.log('İşlem tamamlandı')
+      // === DİL GÜNCELLEMESİ ===
+      console.log('A művelet befejeződött')
       process.exit(0)
     })
     .catch((error) => {
-      console.error('İşlem başarısız:', error)
+      // === DİL GÜNCELLEMESİ ===
+      console.error('A művelet sikertelen:', error)
       process.exit(1)
     })
 }

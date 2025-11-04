@@ -30,8 +30,8 @@ export interface ContentData {
   address: string;
   socialMedia?: {
     facebook?: string;
-    instagram?: string;
-    twitter?: string;
+    instagram?: string; // (Kaldırıldı ama tipte durabilir)
+    twitter?: string; // (Kaldırıldı ama tipte durabilir)
   };
   orderChannels?: Record<string, OrderChannel>;
   menuItems?: MenuItem[];
@@ -40,72 +40,72 @@ export interface ContentData {
   features?: FeatureCard[];
 }
 
+// Varsayılan menü öğeleri (lib/menuData.ts dosyasından gelir - Zaten Macarca)
 const defaultAllMenuItems: MenuItem[] = MENU_ITEMS.map((item) => ({ ...item }));
 
-const highlightedMenuIds = ["k-01", "p-04", "p-01", "d-01"] as const;
+// Vurgulanan menü ID'leri (lib/menuData.ts dosyasındaki Macarca ID'lere göre güncellendi)
+const highlightedMenuIds = ["wix-g-01", "wix-h-02", "wix-gp-01", "k-12"] as const;
 
 const defaultMenuItems: MenuItem[] = highlightedMenuIds
   .map((id) => defaultAllMenuItems.find((item) => item.id === id))
   .filter((item): item is MenuItem => Boolean(item));
 
+// === DİL, İSİM, İLETİŞİM, SOSYAL MEDYA VE SİPARİŞ KANALLARI GÜNCELLENDİ ===
 const defaultContent: ContentData = {
-  restaurantName: "Borcan Kebap",
-  heroTitle: "Geleneksel Türk Lezzetleri",
+  restaurantName: "Karagöz Döner",
+  heroTitle: "Hagyományos Török Ízek",
   heroSubtitle:
-    "En taze malzemeler ile hazırlanan nefis kebaplarımızı denemeye davetlisiniz",
+    "Kóstolja meg a legfrissebb alapanyagokból készült ízletes kebabjainkat",
   aboutText:
-    "Ailemizin 40 yıllık deneyimi ile size en lezzetli kebapları sunuyoruz.",
-  phone: "+90 212 423 3727",
-  address: "Beyoğlu Caddesi No: 35/A, Parseller, Avcılar/İstanbul",
+    "Családunk 40 éves tapasztalatával a legfinomabb kebabokat kínáljuk Önnek Esztergomban.",
+  phone: "06 20 934 1537",
+  address: "2500, Esztergom\nKossuth Lajos utca 30.",
   orderChannels: {
-    tgoyemek: {
-      active: false,
-      url: "",
-      text: "TGOYemek'ten Sipariş Ver",
-    },
-    yemeksepeti: {
-      active: true,
-      url: "https://www.yemeksepeti.com/restaurant/kw28/borcan-kebap-pide-lahmacun-salonu",
-    },
-    getir: {
-      active: true,
-      url: "https://getir.com/yemek/restoran/borcan-kebap-pide-lahmacun-salonu-mustafa-kemalpasa-mah-avcilar-istanbul/",
-    },
     whatsapp: {
       active: true,
-      url: "https://wa.me/905455093462?text=Merhaba! Borcan Kebap'tan sipariş vermek istiyorum.",
+      url: "https://wa.me/36209341537?text=Helló!%20Rendelni%20szeretnék.",
     },
+    // === YENİ KANALLAR EKLENDİ (Wix) ===
+    foodora: {
+      active: true,
+      url: "#" // Foodora linkinizi buraya ekleyin
+    },
+    wolt: {
+      active: true,
+      url: "#" // Wolt linkinizi buraya ekleyin
+    }
   },
   socialMedia: {
-    facebook: "https://www.facebook.com/brcnkbp",
-    instagram: "https://www.instagram.com/borcan_kebap_pide_lahmacun/",
-    twitter: "#",
+    // === SOSYAL MEDYA GÜNCELLENDİ (Wix) ===
+    facebook: "https://www.facebook.com/profile.php?id=61560428630473"
+    // Instagram ve Twitter kaldırıldı
   },
   menuItems: defaultMenuItems,
   allMenuItems: defaultAllMenuItems,
   aboutStats: {
-    experience: "40+",
-    customers: "50K+",
-    menuCount: "100+",
-    branches: "5",
+    experience: "10+", // (Güncellendi)
+    customers: "10K+", // (Güncellendi)
+    menuCount: "50+", // (Güncellendi)
+    branches: "1", // (Güncellendi)
   },
+  // === DİL GÜNCELLEMESİ (Özellikler) ===
   features: [
     {
       id: "1",
-      title: "Taze Malzemeler",
-      description: "Her gün taze seçilen kaliteli malzemelerle hazırlanan lezzetli yemekler",
+      title: "Friss Alapanyagok",
+      description: "Minden nap frissen válogatott, minőségi alapanyagokból készült ételek",
       icon: "ri-restaurant-line",
     },
     {
       id: "2",
-      title: "Mangal Lezzeti",
-      description: "Geleneksel mangal ateşinde pişirilen eşsiz kebap lezzetleri",
+      title: "Grill Íz",
+      description: "Hagyományos faszénparázson sült egyedi kebab ízek",
       icon: "ri-fire-line",
     },
     {
       id: "3",
-      title: "Hızlı Teslimat",
-      description: "Online siparişlerinizi kısa sürede sıcak olarak adresinize ulaştırıyoruz",
+      title: "Gyors Kiszolgálás",
+      description: "Online rendeléseit rövid időn belül, forrón szállítjuk címére",
       icon: "ri-truck-line",
     },
   ],
@@ -137,7 +137,8 @@ export function useContent() {
           allMenuItems: data.allMenuItems ?? defaultAllMenuItems,
         });
       } catch (error) {
-        console.error("İçerik yüklenirken hata oluştu:", error);
+        // === DİL GÜNCELLEMESİ ===
+        console.error("Hiba történt a tartalom betöltése közben:", error);
       }
     }
 

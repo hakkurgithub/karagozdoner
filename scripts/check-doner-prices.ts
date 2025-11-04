@@ -13,9 +13,11 @@ async function checkPrices() {
     ORDER BY name
   `;
   
-  console.log('\n🍖 DÖNER ÜRÜNLERİ:\n');
+  // === DİL GÜNCELLEMESİ ===
+  console.log('\n🍖 DÖNER TERMÉKEK:\n');
   result.forEach(row => {
-    console.log(`${row.name}: ${row.price}₺`);
+    // === FİYAT MANTIĞI VE DİL GÜNCELLEMESİ (Ft, Tam Sayı) ===
+    console.log(`${row.name}: ${row.price} Ft`);
   });
 }
 

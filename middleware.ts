@@ -6,12 +6,14 @@ export default auth((req) => {
   const { pathname } = req.nextUrl;
   const userRole = req.auth?.user?.role;
 
-  // /manager rotasını sadece 'manager' rolündeki kullanıcılar görebilir
+  // === DİL GÜNCELLEMESİ (Yorum) ===
+  // A /manager útvonalat csak 'manager' szerepkörű felhasználók láthatják
   if (pathname.startsWith("/manager") && userRole !== "manager") {
     return NextResponse.redirect(new URL("/", req.url));
   }
   
-  // /dashboard rotasını sadece giriş yapmış kullanıcılar görebilir
+  // === DİL GÜNCELLEMESİ (Yorum) ===
+  // A /dashboard útvonalat csak bejelentkezett felhasználók láthatják
   if (pathname.startsWith("/dashboard") && !req.auth) {
     return NextResponse.redirect(new URL("/api/auth/signin", req.url));
   }

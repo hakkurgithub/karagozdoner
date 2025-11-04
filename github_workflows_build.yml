@@ -1,4 +1,5 @@
-name: CI Build
+# === DİL GÜNCELLEMESİ ===
+name: CI Build (Folyamatos Integrációs Build)
 on:
   workflow_dispatch:
   push:
@@ -19,23 +20,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      # === DİL GÜNCELLEMESİ ===
+      - name: Node.js telepítése
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
           cache-dependency-path: package-lock.json
 
-      - name: Install dependencies
+      # === DİL GÜNCELLEMESİ ===
+      - name: Függőségek telepítése
         run: npm ci
 
-      - name: Run tests (if present)
+      # === DİL GÜNCELLEMESİ ===
+      - name: Tesztek futtatása (ha van)
         run: npm run test --if-present
 
-      - name: Build
+      # === DİL GÜNCELLEMESİ ===
+      - name: Build (Oldal építése)
         run: npm run build
 
-      - name: Upload build artifacts
+      # === DİL GÜNCELLEMESİ ===
+      - name: Build artefaktumok feltöltése
         uses: actions/upload-artifact@v4
         with:
           name: build-${{ matrix.node-version }}

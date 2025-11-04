@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // raw.githubusercontent.com'dan resim çekmek için izin
+  // === DİL GÜNCELLEMESİ (Yorum) ===
+  // Engedély képek betöltésére a raw.githubusercontent.com-ról
   images: {
     remotePatterns: [
       {

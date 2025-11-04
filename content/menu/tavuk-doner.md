@@ -1,7 +1,7 @@
 ---
-name: "Tavuk Döner"
-description: "Marine edilmiş tavuk göğsünden hazırlanan sağlıklı döner alternatifi"
-price: 40
+name: "Csirkedöner"
+description: "Egészséges döner alternatíva pácolt csirkemellből"
+price: 4000
 category: "Döner"
 image: "/images/menu/tavuk-doner.jpg"
 calories: 350
@@ -11,13 +11,13 @@ isGlutenFree: false
 isActive: true
 ---
 
-# Tavuk Döner
+# Csirkedöner
 
-Marine edilmiş tavuk göğsünden hazırlanan sağlıklı döner alternatifi.
+Egészséges döner alternatíva pácolt csirkemellből.
 
-## İçindekiler
-- Marine edilmiş tavuk göğsü
-- Taze yeşillikler
-- Domates
-- Salatalık
-- Özel yoğurt sosu
+## Hozzávalók
+- Pácolt csirkemell
+- Friss zöldségek
+- Paradicsom
+- Uborka
+- Különleges joghurtos szósz

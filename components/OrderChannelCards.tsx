@@ -8,32 +8,32 @@ export default function OrderChannelCards({ onChannelSelect }: OrderChannelCards
   const channels = [
     {
       id: 'whatsapp',
-      name: 'WhatsApp Sipariş',
-      description: 'Hızlı ve kolay sipariş',
+      name: 'WhatsApp Rendelés',
+      description: 'Gyors és egyszerű rendelés',
       icon: 'ri-whatsapp-line',
       color: 'bg-green-50 border-green-200',
       iconColor: 'text-green-600'
     },
     {
       id: 'phone',
-      name: 'Telefon Sipariş',
-      description: 'Doğrudan arayın',
+      name: 'Telefonos Rendelés',
+      description: 'Hívjon minket',
       icon: 'ri-phone-line',
       color: 'bg-blue-50 border-blue-200',
       iconColor: 'text-blue-600'
     },
     {
-      id: 'yemeksepeti',
-      name: 'Yemeksepeti',
-      description: 'Online sipariş platformu',
+      id: 'foodora',
+      name: 'Foodora',
+      description: 'Online rendelési platform',
       icon: 'ri-restaurant-line',
       color: 'bg-purple-50 border-purple-200',
       iconColor: 'text-purple-600'
     },
     {
-      id: 'getir',
-      name: 'Getir Yemek',
-      description: 'Hızlı teslimat',
+      id: 'wolt',
+      name: 'Wolt',
+      description: 'Gyors kiszállítás',
       icon: 'ri-truck-line',
       color: 'bg-yellow-50 border-yellow-200',
       iconColor: 'text-yellow-600'

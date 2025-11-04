@@ -4,8 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-
-// Mock data for reviews since we don't have the lib file
+// === DİL GÜNCELLEMESİ (Mock veriler Macarcaya çevrildi) ===
 interface GoogleReview {
   id?: string;
   author_name: string;
@@ -21,61 +20,61 @@ interface RestaurantInfo {
   total_reviews: number;
 }
 
-// Mock reviews data
+// Mock reviews data (Magyar)
 const mockReviews: GoogleReview[] = [
   {
     id: '1',
-    author_name: 'Ahmet Yılmaz',
+    author_name: 'Nagy Péter',
     rating: 5,
-    review_text: 'Harika bir deneyimdi! Adana kebabı muhteşemdi, et çok lezzetli ve tazeydi. Personel çok ilgili. Kesinlikle tekrar geleceğim.',
+    review_text: 'Nagyszerű élmény volt! Az Adana kebab csodálatos volt, a hús nagyon ízletes és friss. A személyzet nagyon segítőkész. Biztosan visszatérek még.',
     review_date: new Date().toISOString(),
-    relative_time_description: '2 gün önce',
-    profile_photo_url: `https://ui-avatars.com/api/?name=${encodeURIComponent('Ahmet Yılmaz')}&size=60&background=f59e0b&color=ffffff`
+    relative_time_description: '2 nappal ezelőtt',
+    profile_photo_url: `https://ui-avatars.com/api/?name=${encodeURIComponent('Nagy Péter')}&size=60&background=f59e0b&color=ffffff`
   },
   {
     id: '2',
-    author_name: 'Fatma Özkan',
+    author_name: 'Kovács Anna',
     rating: 4,
-    review_text: 'Pideleri çok güzel, özellikle kuşbaşılı pide ve tavuk dürümü de lezizdi. Fiyatlar makul, ortam sıcak.',
+    review_text: 'A pidéjük nagyon finom, különösen a húsos pide, és a csirkés dürüm is ízletes volt. Az árak mérsékeltek, a hangulat barátságos.',
     review_date: new Date().toISOString(),
-    relative_time_description: '3 hafta önce',
-    profile_photo_url: `https://ui-avatars.com/api/?name=${encodeURIComponent('Fatma Özkan')}&size=60&background=f59e0b&color=ffffff`
+    relative_time_description: '3 héttel ezelőtt',
+    profile_photo_url: `https://ui-avatars.com/api/?name=${encodeURIComponent('Kovács Anna')}&size=60&background=f59e0b&color=ffffff`
   },
   {
     id: '3',
-    author_name: 'Mehmet Kara',
+    author_name: 'Tóth Gábor',
     rating: 5,
-    review_text: 'Dört dörtlük bir kebapçı. Temizlik, lezzet ve hizmet konusunda hiçbir eksiği yok. Herkese tavsiye ederim.',
+    review_text: 'Tökéletes kebabozó. Tisztaság, íz és kiszolgálás tekintetében nincs hiányosság. Mindenkinek ajánlom.',
     review_date: new Date().toISOString(),
-    relative_time_description: '1 ay önce',
-    profile_photo_url: `https://ui-avatars.com/api/?name=${encodeURIComponent('Mehmet Kara')}&size=60&background=f59e0b&color=ffffff`
+    relative_time_description: '1 hónappal ezelőtt',
+    profile_photo_url: `https://ui-avatars.com/api/?name=${encodeURIComponent('Tóth Gábor')}&size=60&background=f59e0b&color=ffffff`
   },
   {
     id: '4',
-    author_name: 'Ayşe Demir',
+    author_name: 'Szabó Eszter',
     rating: 3,
-    review_text: 'Lezzet fena değil, ancak servis biraz yavaştı. Yoğun bir saatte gittik, belki ondandır.',
+    review_text: 'Az íze nem rossz, de a kiszolgálás kicsit lassú volt. Csúcsidőben mentünk, talán emiatt.',
     review_date: new Date().toISOString(),
-    relative_time_description: '2 ay önce',
-    profile_photo_url: `https://ui-avatars.com/api/?name=${encodeURIComponent('Ayşe Demir')}&size=60&background=f59e0b&color=ffffff`
+    relative_time_description: '2 hónappal ezelőtt',
+    profile_photo_url: `https://ui-avatars.com/api/?name=${encodeURIComponent('Szabó Eszter')}&size=60&background=f59e0b&color=ffffff`
   },
   {
     id: '5',
-    author_name: 'Can Vural',
+    author_name: 'Varga János',
     rating: 5,
-    review_text: 'Geleneksel lezzetleri arayanlar için doğru adres. Lavaşları, ezmesi ve mezeleri harika. Puanım 5/5.',
+    review_text: 'Aki a hagyományos ízeket keresi, annak ez a megfelelő hely. A lavaş, az ezme és a mezzék is fantasztikusak. 5/5 pont.',
     review_date: new Date().toISOString(),
-    relative_time_description: '3 ay önce',
-    profile_photo_url: `https://ui-avatars.com/api/?name=${encodeURIComponent('Can Vural')}&size=60&background=f59e0b&color=ffffff`
+    relative_time_description: '3 hónappal ezelőtt',
+    profile_photo_url: `https://ui-avatars.com/api/?name=${encodeURIComponent('Varga János')}&size=60&background=f59e0b&color=ffffff`
   },
   {
     id: '6',
-    author_name: 'Gizem Aksoy',
+    author_name: 'Molnár Zsófia',
     rating: 4,
-    review_text: 'Ailecek geldik ve çok memnun kaldık. Çocuklar için de uygun menü seçenekleri var. Teşekkürler.',
+    review_text: 'Családdal érkeztünk és nagyon elégedettek voltunk. Gyerekeknek is vannak megfelelő menü opciók. Köszönjük.',
     review_date: new Date().toISOString(),
-    relative_time_description: '3 ay önce',
-    profile_photo_url: `https://ui-avatars.com/api/?name=${encodeURIComponent('Gizem Aksoy')}&size=60&background=f59e0b&color=ffffff`
+    relative_time_description: '3 hónappal ezelőtt',
+    profile_photo_url: `https://ui-avatars.com/api/?name=${encodeURIComponent('Molnár Zsófia')}&size=60&background=f59e0b&color=ffffff`
   },
 ];
 
@@ -125,20 +124,35 @@ export default function ReviewsPage() {
     setShowOrderDropdown(false);
   };
 
+  // === İLETİŞİM VE SİPARİŞ KANALI GÜNCELLEMESİ (Macaristan) ===
   const orderChannels = [
     {
       id: 'whatsapp',
       name: 'WhatsApp',
       icon: 'ri-whatsapp-line',
       color: 'text-green-600',
-      url: 'https://wa.me/905455093462?text=Merhaba! Borcan Kebap\'tan sipariş vermek istiyorum.',
+      url: 'https://wa.me/36209341537?text=Helló!%20Karagöz%20Döner-től%20szeretnék%20rendelni.',
     },
     {
       id: 'phone',
-      name: 'Telefon: 0212 423 3727',
+      name: 'Telefon: 06 20 934 1537',
       icon: 'ri-phone-line',
       color: 'text-blue-600',
-      url: 'tel:02124233727',
+      url: 'tel:06209341537',
+    },
+    {
+      id: 'foodora',
+      name: 'Foodora',
+      icon: 'ri-restaurant-line',
+      color: 'text-pink-600',
+      url: '#', // Buraya Foodora linkiniz gelecek
+    },
+    {
+      id: 'wolt',
+      name: 'Wolt',
+      icon: 'ri-truck-line',
+      color: 'text-blue-500',
+      url: '#', // Buraya Wolt linkiniz gelecek
     },
   ];
 
@@ -154,9 +168,10 @@ export default function ReviewsPage() {
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="relative z-10 flex items-center justify-center h-full">
           <div className="text-center text-white px-4">
-            <h1 className="text-5xl font-bold mb-4">Müşteri Yorumları</h1>
+            {/* === DİL VE İSİM GÜNCELLEMESİ === */}
+            <h1 className="text-5xl font-bold mb-4">Vendégértékelések</h1>
             <p className="text-xl max-w-2xl mx-auto">
-              Misafirlerimizin Borcan Kebap hakkındaki düşünceleri
+              Vendégeink véleménye a Karagöz Döner-ről
             </p>
           </div>
         </div>
@@ -169,7 +184,8 @@ export default function ReviewsPage() {
             <div className="bg-white rounded-xl shadow-lg p-8">
               <div className="flex items-center justify-between mb-8">
                 <h2 className="text-3xl font-bold text-gray-800">
-                  Misafir Yorumları
+                  {/* === DİL GÜNCELLEMESİ === */}
+                  Vendégértékelések
                 </h2>
                 <div className="flex items-center space-x-2">
                   <span className="text-xl font-bold text-red-600">
@@ -177,7 +193,8 @@ export default function ReviewsPage() {
                   </span>
                   <StarRating rating={mockRestaurantInfo.rating} />
                   <span className="text-gray-500 text-sm">
-                    ({mockRestaurantInfo.total_reviews} yorum)
+                    {/* === DİL GÜNCELLEMESİ === */}
+                    ({mockRestaurantInfo.total_reviews} értékelés)
                   </span>
                 </div>
               </div>
@@ -223,7 +240,8 @@ export default function ReviewsPage() {
             <div className="bg-white rounded-xl shadow-lg p-8">
               <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center space-x-3">
                 <i className="ri-google-fill text-2xl text-blue-500"></i>
-                <span>Google Yorumları</span>
+                {/* === DİL GÜNCELLEMESİ === */}
+                <span>Google Értékelések</span>
               </h3>
               <div className="flex items-center space-x-4 mb-4">
                 <div className="text-6xl font-bold text-red-600">
@@ -232,35 +250,40 @@ export default function ReviewsPage() {
                 <div>
                   <StarRating rating={mockRestaurantInfo.rating} />
                   <p className="text-gray-500 mt-1">
-                    {mockRestaurantInfo.total_reviews} yorum
+                    {/* === DİL GÜNCELLEMESİ === */}
+                    {mockRestaurantInfo.total_reviews} értékelés
                   </p>
                 </div>
               </div>
               <p className="text-gray-600">
-                Misafirlerimizin bize verdiği puanları ve yorumları
-                inceleyebilirsiniz.
+                {/* === DİL GÜNCELLEMESİ === */}
+                Megtekintheti vendégeink értékeléseit és véleményeit.
               </p>
               <a
-                href="https://www.google.com/maps/place/Borcan+Kebap+Pide+Lahmacun+Salonu/@41.0028292,28.7061732,17z/data=!4m8!3m7!1s0x14c0a514d4e21a81:0x51480f8365111100!8m2!3d41.0028292!4d28.7083619!9m1!1b1!16s%2Fg%2F1tf70s22?entry=ttu"
+                // === HARİTA LİNK GÜNCELLEMESİ (Esztergom) ===
+                href="https://www.google.com/maps/place/Esztergom,+Kossuth+Lajos+u.+30,+2500+Hungary"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center mt-4 text-red-600 font-semibold hover:underline"
               >
-                Tüm Yorumları Gör
+                {/* === DİL GÜNCELLEMESİ === */}
+                Összes értékelés megtekintése
                 <i className="ri-arrow-right-line ml-1"></i>
               </a>
             </div>
 
             {/* Quick Actions */}
             <div className="bg-red-600 text-white rounded-xl p-8">
-              <h3 className="text-2xl font-bold mb-4">Hızlı İşlemler</h3>
+              {/* === DİL GÜNCELLEMESİ === */}
+              <h3 className="text-2xl font-bold mb-4">Gyors Műveletek</h3>
               <div className="space-y-4">
                 <Link
                   href="/reservation"
                   className="w-full bg-white text-red-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-pointer flex items-center justify-center"
                 >
                   <i className="ri-calendar-line mr-2"></i>
-                  Rezervasyon Yap
+                  {/* === DİL GÜNCELLEMESİ === */}
+                  Asztalfoglalás
                 </Link>
                 <div className="relative">
                   <button
@@ -268,7 +291,8 @@ export default function ReviewsPage() {
                     className="w-full bg-white text-red-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-pointer flex items-center justify-center"
                   >
                     <i className="ri-shopping-cart-line mr-2"></i>
-                    Online Sipariş Ver
+                    {/* === DİL GÜNCELLEMESİ === */}
+                    Online Rendelés
                     <i
                       className={`ri-arrow-down-s-line ml-2 transition-transform ${
                         showOrderDropdown ? 'rotate-180' : ''
@@ -298,7 +322,8 @@ export default function ReviewsPage() {
                   className="w-full bg-white text-red-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-pointer flex items-center justify-center"
                 >
                   <i className="ri-restaurant-line mr-2"></i>
-                  Menüyü İncele
+                  {/* === DİL GÜNCELLEMESİ === */}
+                  Menü Megtekintése
                 </Link>
               </div>
             </div>
@@ -306,125 +331,76 @@ export default function ReviewsPage() {
         </div>
       </div>
 
-      {/* Footer */}
+      {/* Footer (Wix siteye göre güncellendi) */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4 flex items-center space-x-3">
+                {/* === İSİM GÜNCELLEMESİ (Logo) === */}
                 <div className="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center font-bold text-black text-lg border-2 border-black">
-                  BK
+                  KD
                 </div>
-                <span className="font-[`Pacifico`]">Borcan Kebap</span>
+                <span className="font-[\'Pacifico\']">Karagöz Döner</span>
               </h3>
+              {/* === DİL GÜNCELLEMESİ === */}
               <p className="text-gray-400 mb-4">
-                Geleneksel Türk mutfağının eşsiz lezzetlerini modern sunum ile
-                buluşturuyoruz.
+                A hagyományos török konyha egyedülálló ízei Esztergomban.
               </p>
               <div className="flex space-x-4">
-                <a
-                  href="https://www.facebook.com/profile.php?id=61579514506784&locale=tr_TR"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-colors"
-                >
+                {/* === SOSYAL MEDYA GÜNCELLEMESİ (Facebook) === */}
+                <a href="https://www.facebook.com/profile.php?id=61560428630473" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-colors">
                   <i className="ri-facebook-fill text-lg"></i>
                 </a>
-                <a
-                  href="https://www.instagram.com/borcan_kebap_pide_lahmacun?utm_source=qr&igsh=d2twdW0yZ2FqaGJl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-600 rounded-full flex items-center justify-center cursor-pointer hover:from-purple-700 hover:via-pink-700 hover:to-orange-700 transition-all"
-                >
-                  <i className="ri-instagram-fill text-lg"></i>
-                </a>
-                <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-red-700 transition-colors">
-                  <i className="ri-twitter-fill text-sm"></i>
-                </div>
+                {/* Diğerleri kaldırıldı */}
               </div>
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-4">Hızlı Linkler</h4>
+              {/* === DİL GÜNCELLEMESİ (Hızlı Linkler) === */}
+              <h4 className="text-lg font-semibold mb-4">Gyors linkek</h4>
               <ul className="space-y-2">
                 <li>
-                  <Link
-                    href="/menu"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer"
-                  >
+                  <Link href="/menu" className="text-gray-400 hover:text-white transition-colors cursor-pointer">
                     Menü
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/about"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer"
-                  >
-                    Hakkımızda
+                  <Link href="/about" className="text-gray-400 hover:text-white transition-colors cursor-pointer">
+                    Rólunk
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/contact"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer"
-                  >
-                    İletişim
+                  <Link href="/contact" className="text-gray-400 hover:text-white transition-colors cursor-pointer">
+                    Elérhetőség
                   </Link>
                 </li>
                 <li>
-                  <a
-                    href="/reservation"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer"
-                  >
-                    Rezervasyon
+                  <a href="/reservation" className="text-gray-400 hover:text-white transition-colors cursor-pointer">
+                    Foglalás
                   </a>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-4">Online Sipariş</h4>
+              {/* === DİL VE SİPARİŞ KANALI GÜNCELLEMESİ === */}
+              <h4 className="text-lg font-semibold mb-4">Online Rendelés</h4>
               <ul className="space-y-2">
                 <li>
-                  <a
-                    href="https://www.yemeksepeti.com/restaurant/kw28/borcan-kebap-pide-lahmacun-salonu"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center"
-                  >
-                    <i className="ri-restaurant-line mr-2 text-orange-600"></i>
-                    Yemeksepeti
+                  <a href="#" /* Foodora linki buraya */ target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center">
+                    <i className="ri-restaurant-line mr-2 text-pink-600"></i>
+                    Foodora
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="https://getir.com/yemek/restoran/borcan-kebap-pide-lahmacun-salonu-mustafa-kemalpasa-mah-avcilar-istanbul/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center"
-                  >
-                    <i className="ri-truck-line mr-2 text-orange-600"></i>
-                    Getir
+                  <a href="#" /* Wolt linki buraya */ target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center">
+                    <i className="ri-truck-line mr-2 text-blue-500"></i>
+                    Wolt
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="https://tgoyemek.com/arama?searchQuery=borcan%20kebap"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center"
-                  >
-                    <i className="ri-restaurant-line mr-2 text-purple-600"></i>
-                    Trendyol Yemek
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://wa.me/905455093462?text=Merhaba! Borcan Kebap'tan sipariş vermek istiyorum."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center"
-                  >
+                  <a href="https://wa.me/36209341537?text=Helló!%20Karagöz%20Döner-től%20szeretnék%20rendelni." target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center">
                     <i className="ri-whatsapp-line mr-2 text-green-600"></i>
                     WhatsApp
                   </a>
@@ -433,35 +409,28 @@ export default function ReviewsPage() {
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-4">İletişim</h4>
+              {/* === DİL, TELEFON, E-POSTA VE ADRES GÜNCELLEMESİ === */}
+              <h4 className="text-lg font-semibold mb-4">Elérhetőség</h4>
               <ul className="space-y-2 text-gray-400">
                 <li className="flex items-center">
                   <i className="ri-phone-line mr-2"></i>
-                  0212 423 3727
-                </li>
-                <li className="flex items-center">
-                  <i className="ri-phone-line mr-2"></i>
-                  0545 509 3462
-                </li>
-                <li className="flex items-center">
-                  <i className="ri-whatsapp-line mr-2"></i>
-                  0545 509 3462 (WhatsApp)
+                  06 20 934 1537
                 </li>
                 <li className="flex items-center">
                   <i className="ri-mail-line mr-2"></i>
-                  info@borcankebap.com
+                  info@karagozdoner.com
                 </li>
                 <li className="flex items-start">
                   <i className="ri-map-pin-line mr-2 mt-1"></i>
                   <a
-                    href="https://maps.app.goo.gl/rQdBMCqk5GMwdVSM7"
+                    href="https://www.google.com/maps/place/Esztergom,+Kossuth+Lajos+u.+30,+2500+Hungary" // Esztergom harita linki
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white transition-colors cursor-pointer"
                   >
-                    Beyoğlu Caddesi No: 35/A
+                    2500, Esztergom
                     <br />
-                    Parseller, Avcılar/İstanbul
+                    Kossuth Lajos utca 30.
                   </a>
                 </li>
               </ul>
@@ -469,7 +438,8 @@ export default function ReviewsPage() {
           </div>
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>© 2024 Borcan Kebap. Tüm hakları saklıdır.</p>
+            {/* === İSİM GÜNCELLEMESİ === */}
+            <p>© 2024 Karagöz Döner. Minden jog fenntartva.</p>
           </div>
         </div>
       </footer>

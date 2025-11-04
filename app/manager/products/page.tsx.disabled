@@ -12,8 +12,11 @@ async function updateProduct(formData: FormData) {
   try {
     const id = parseInt(formData.get("id") as string)
     const name = formData.get("name") as string
+    
+    // === DÜZELTME: Fiyatı metinden (string) sayıya (integer) çevir ===
     const priceStr = formData.get("price") as string
-    const price = priceStr // Direkt TL cinsinden string olarak kaydet (numeric type)
+    const price = parseInt(priceStr, 10) // Hata burada düzeltildi
+    
     const category = formData.get("category") as string
     const description = formData.get("description") as string || ''
     const image = formData.get("image") as string || ''
@@ -23,7 +26,7 @@ async function updateProduct(formData: FormData) {
     await db.update(products)
       .set({ 
         name, 
-        price, 
+        price, // Artık 'number' tipinde
         category,
         description,
         image 
@@ -64,12 +67,14 @@ export default async function ManagerProductsPage() {
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">Ürün Yönetimi</h1>
+        {/* === DİL DEĞİŞİKLİĞİ === */}
+        <h1 className="text-3xl font-bold text-gray-800">Termékkezelés</h1>
         <a 
           href="/manager" 
           className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
         >
-          ← Panele Dön
+          {/* === DİL DEĞİŞİKLİĞİ === */}
+          ← Vissza a Panelra
         </a>
       </div>
       
@@ -86,7 +91,8 @@ export default async function ManagerProductsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor={`name-${product.id}`} className="block text-sm font-medium text-gray-700 mb-1">
-                      Ürün Adı
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Termék Neve
                     </label>
                     <input
                       id={`name-${product.id}`}
@@ -99,15 +105,17 @@ export default async function ManagerProductsPage() {
                   </div>
                   
                   <div>
+                    {/* === DİL VE PARA BİRİMİ DEĞİŞİKLİĞİ === */}
                     <label htmlFor={`price-${product.id}`} className="block text-sm font-medium text-gray-700 mb-1">
-                      Fiyat (₺)
+                      Ár (Ft)
                     </label>
                     <input
                       id={`price-${product.id}`}
                       type="number"
                       name="price"
-                      defaultValue={parseFloat(product.price as any).toFixed(2)}
-                      step="0.01"
+                      // === FİYAT MANTIK DEĞİŞİKLİĞİ (Ondalık kaldırıldı) ===
+                      defaultValue={product.price as any}
+                      step="1" // Ft için 1'lik artış
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
                     />
@@ -115,7 +123,8 @@ export default async function ManagerProductsPage() {
                   
                   <div>
                     <label htmlFor={`category-${product.id}`} className="block text-sm font-medium text-gray-700 mb-1">
-                      Kategori
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Kategória
                     </label>
                     <select
                       id={`category-${product.id}`}
@@ -123,20 +132,22 @@ export default async function ManagerProductsPage() {
                       defaultValue={product.category || 'Döner'}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                      <option value="Kebaplar & Izgaralar">Kebaplar & Izgaralar</option>
-                      <option value="Pide & Lahmacun">Pide & Lahmacun</option>
+                      {/* === DİL DEĞİŞİKLİĞİ (Kategoriler) === */}
+                      <option value="Kebapok és Grillek">Kebapok és Grillek</option>
+                      <option value="Pide és Lahmacun">Pide és Lahmacun</option>
                       <option value="Döner">Döner</option>
                       <option value="Dürüm">Dürüm</option>
-                      <option value="Çorbalar">Çorbalar</option>
-                      <option value="Yan Ürünler">Yan Ürünler</option>
-                      <option value="Tatlılar">Tatlılar</option>
-                      <option value="İçecekler">İçecekler</option>
+                      <option value="Levesek">Levesek</option>
+                      <option value="Köretek">Köretek</option>
+                      <option value="Desszertek">Desszertek</option>
+                      <option value="Italok">Italok</option>
                     </select>
                   </div>
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Durum
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      Állapot
                     </label>
                     <div className="flex items-center space-x-2">
                       <span className={`px-3 py-2 rounded-lg font-medium ${
@@ -144,7 +155,8 @@ export default async function ManagerProductsPage() {
                           ? 'bg-green-100 text-green-800' 
                           : 'bg-red-100 text-red-800'
                       }`}>
-                        {product.isActive ? '✓ Aktif' : '✗ Pasif'}
+                        {/* === DİL DEĞİŞİKLİĞİ === */}
+                        {product.isActive ? '✓ Aktív' : '✗ Passzív'}
                       </span>
                     </div>
                   </div>
@@ -152,7 +164,8 @@ export default async function ManagerProductsPage() {
                 
                 <div>
                   <label htmlFor={`image-${product.id}`} className="block text-sm font-medium text-gray-700 mb-1">
-                    Resim URL
+                    {/* === DİL DEĞİŞİKLİĞİ === */}
+                    Kép URL
                   </label>
                   <input
                     id={`image-${product.id}`}
@@ -175,7 +188,8 @@ export default async function ManagerProductsPage() {
                 
                 <div>
                   <label htmlFor={`description-${product.id}`} className="block text-sm font-medium text-gray-700 mb-1">
-                    Açıklama
+                    {/* === DİL DEĞİŞİKLİĞİ === */}
+                    Leírás
                   </label>
                   <textarea
                     id={`description-${product.id}`}
@@ -191,7 +205,8 @@ export default async function ManagerProductsPage() {
                     type="submit"
                     className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
                   >
-                    💾 Kaydet
+                    {/* === DİL DEĞİŞİKLİĞİ === */}
+                    💾 Mentés
                   </button>
                   
                   <form action={toggleProductStatus} className="inline">
@@ -205,7 +220,8 @@ export default async function ManagerProductsPage() {
                           : 'bg-green-600 text-white hover:bg-green-700'
                       }`}
                     >
-                      {product.isActive ? '🔴 Pasif Yap' : '🟢 Aktif Yap'}
+                      {/* === DİL DEĞİŞİKLİĞİ === */}
+                      {product.isActive ? '🔴 Passzívvá tétel' : '🟢 Aktívvá tétel'}
                     </button>
                   </form>
                 </div>

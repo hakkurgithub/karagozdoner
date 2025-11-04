@@ -4,56 +4,64 @@ import { db } from '../db/drizzle'
 import { products } from '../db/schema'
 import { MENU_ITEMS } from '../lib/menuData'
 
-// Load environment variables
+// Környezeti változók betöltése
 dotenv.config({ path: '.env.local' })
 dotenv.config({ path: '.env' })
 
 async function syncMenuToDatabase() {
-  // Check database connection
+  // Adatbázis-kapcsolat ellenőrzése
   if (!process.env.POSTGRES_URL) {
-    console.error('❌ POSTGRES_URL environment variable not found!')
-    console.error('💡 Make sure .env.local file exists with POSTGRES_URL')
+    // === DİL GÜNCELLEMESİ ===
+    console.error('❌ A POSTGRES_URL környezeti változó nem található!')
+    console.error('💡 Ellenőrizze, hogy létezik-e a .env.local fájl a POSTGRES_URL-lel')
     process.exit(1)
   }
   
-  console.log('✅ Database connection configured')
+  // === DİL GÜNCELLEMESİ ===
+  console.log('✅ Az adatbázis-kapcsolat konfigurálva')
   
-  console.log('🔄 Syncing menu items to database...')
-  console.log(`📦 Total items to sync: ${MENU_ITEMS.length}`)
+  console.log('🔄 Menüelemek szinkronizálása az adatbázisba...')
+  console.log(`📦 Összesen szinkronizálandó elem: ${MENU_ITEMS.length}`)
   
   try {
-    // Her menü öğesini database'e ekle
+    // Minden menüelemet adjon hozzá az adatbázishoz
     for (const item of MENU_ITEMS) {
       await db.insert(products).values({
         name: item.name,
         description: item.description,
-        price: item.price, // Zaten kuruş cinsinden
+        price: item.price, // === YORUM GÜNCELLEMESİ (Artık Ft (tam sayı)) ===
         category: item.category,
         image: item.image,
         isActive: 1
-      }).onConflictDoNothing() // Eğer varsa skip et
+      }).onConflictDoNothing() // Ha már létezik, hagyja ki
       
-      console.log(`✅ Added: ${item.name} - ${item.category}`)
+      // === DİL GÜNCELLEMESİ ===
+      console.log(`✅ Hozzáadva: ${item.name} - ${item.category}`)
     }
     
-    console.log('✅ All menu items synced successfully!')
+    // === DİL GÜNCELLEMESİ ===
+    console.log('✅ Az összes menüelem sikeresen szinkronizálva!')
     
-    // Toplam ürün sayısını göster
+    // Összes termékszám megjelenítése
     const allProducts = await db.select().from(products)
-    console.log(`📊 Total products in database: ${allProducts.length}`)
+    // === DİL GÜNCELLEMESİ ===
+    console.log(`📊 Összes termék az adatbázisban: ${allProducts.length}`)
     
   } catch (error) {
-    console.error('❌ Error syncing menu:', error)
+    // === DİL GÜNCELLEMESİ ===
+    console.error('❌ Hiba a menü szinkronizálása közben:', error)
     throw error
   }
 }
 
 syncMenuToDatabase()
   .then(() => {
-    console.log('✅ Sync completed!')
+    // === DİL GÜNCELLEMESİ ===
+    console.log('✅ A szinkronizálás befejeződött!')
     process.exit(0)
   })
   .catch((error) => {
-    console.error('❌ Sync failed:', error)
+    // === DİL GÜNCELLEMESİ ===
+    console.error('❌ A szinkronizálás sikertelen:', error)
     process.exit(1)
   })

@@ -21,11 +21,11 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
 
   const handleSave = () => {
     updateContent(localContent);
-    alert("İçerik başarıyla güncellendi ✅");
+    alert("Tartalom sikeresen frissítve ✅");
   };
 
   const handleReset = () => {
-    if (window.confirm("Tüm içerik varsayılan değerlere döndürülecek. Emin misiniz?")) {
+    if (window.confirm("Minden tartalom visszaáll az alapértelmezett értékekre. Biztos vagy benne?")) {
       resetContent();
     }
   };
@@ -35,13 +35,13 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
       <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
-        🛠️ Yönetim Paneli (AdminPanel)
+        🛠️ Kezelőpanel (Admin Panel)
       </h1>
 
       {/* Genel Bilgiler */}
       <div className="bg-white p-6 rounded-lg shadow mb-6">
-        <h2 className="text-xl font-semibold mb-4">Restoran Bilgileri</h2>
-        <label className="block mb-2 font-medium">Restoran Adı</label>
+        <h2 className="text-xl font-semibold mb-4">Étterem Információk</h2>
+        <label className="block mb-2 font-medium">Étterem Neve</label>
         <input
           type="text"
           className="w-full border rounded p-2 mb-4"
@@ -49,14 +49,14 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
           onChange={(e) => setLocalContent({ ...localContent, restaurantName: e.target.value })}
         />
 
-        <label className="block mb-2 font-medium">Açıklama</label>
+        <label className="block mb-2 font-medium">Leírás (Rólunk)</label>
         <textarea
           className="w-full border rounded p-2 mb-4"
           value={localContent.aboutText}
           onChange={(e) => setLocalContent({ ...localContent, aboutText: e.target.value })}
         />
 
-        <label className="block mb-2 font-medium">Adres</label>
+        <label className="block mb-2 font-medium">Cím</label>
         <input
           type="text"
           className="w-full border rounded p-2 mb-4"
@@ -64,7 +64,7 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
           onChange={(e) => setLocalContent({ ...localContent, address: e.target.value })}
         />
 
-        <label className="block mb-2 font-medium">Telefon</label>
+        <label className="block mb-2 font-medium">Telefonszám</label>
         <input
           type="text"
           className="w-full border rounded p-2 mb-4"
@@ -75,7 +75,7 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
 
       {/* Menü Yönetimi */}
       <div className="bg-white p-6 rounded-lg shadow mb-6">
-        <h2 className="text-xl font-semibold mb-4">Menü Yönetimi</h2>
+        <h2 className="text-xl font-semibold mb-4">Menü Kezelése</h2>
         <button
           onClick={() => {
             setShowAddMenu(!showAddMenu);
@@ -83,15 +83,15 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
           }}
           className="bg-blue-600 text-white px-4 py-2 rounded mb-4"
         >
-          {showAddMenu ? "Kapat" : "Yeni Ürün Ekle"}
+          {showAddMenu ? "Bezárás" : "Új Termék Hozzáadása"}
         </button>
 
         {showAddMenu && (
           <div className="border p-4 rounded mb-6 bg-gray-50">
-            <h3 className="font-semibold mb-2">Yeni Menü Ürünü</h3>
+            <h3 className="font-semibold mb-2">Új Menü Elem</h3>
             <input
               type="text"
-              placeholder="Ürün Adı"
+              placeholder="Termék Neve"
               className="w-full border rounded p-2 mb-2"
               value={editingMenuItem?.name || ""}
               onChange={(e) =>
@@ -103,7 +103,7 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
             />
             <input
               type="number"
-              placeholder="Fiyat"
+              placeholder="Ár"
               className="w-full border rounded p-2 mb-2"
               value={editingMenuItem?.price ?? ""}
               onChange={(e) =>
@@ -115,7 +115,7 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
             />
             <input
               type="text"
-              placeholder="Kategori"
+              placeholder="Kategória"
               className="w-full border rounded p-2 mb-2"
               value={editingMenuItem?.category || ""}
               onChange={(e) =>
@@ -127,7 +127,7 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
             />
             <input
               type="text"
-              placeholder="Resim Linki"
+              placeholder="Kép URL"
               className="w-full border rounded p-2 mb-2"
               value={editingMenuItem?.image || ""}
               onChange={(e) =>
@@ -163,11 +163,11 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
                   setEditingMenuItem(null);
                   setShowAddMenu(false);
                 } else {
-                  alert("Lütfen tüm alanları doldurun!");
+                  alert("Kérjük, töltse ki az összes mezőt!");
                 }
               }}
             >
-              Kaydet
+              Mentés
             </button>
           </div>
         )}
@@ -180,7 +180,8 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
             >
               <span className="font-semibold text-lg">{item.name}</span>
               <span className="text-sm text-gray-600">{item.category}</span>
-              <span className="font-medium text-red-600">{item.price} ₺</span>
+              {/* === FİYAT DEĞİŞİKLİĞİ ₺ -> Ft === */}
+              <span className="font-medium text-red-600">{item.price} Ft</span>
               {item.image && (
                 <img
                   className="mt-2 max-h-24 object-contain rounded"
@@ -199,20 +200,20 @@ export default function AdminPanel({ isOpen = true, onClose }: AdminPanelProps) 
           onClick={handleSave}
           className="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700"
         >
-          Kaydet
+          Mentés
         </button>
         <button
           onClick={handleReset}
           className="bg-red-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-700"
         >
-          Sıfırla
+          Visszaállítás
         </button>
         {onClose && (
           <button
             onClick={onClose}
             className="bg-gray-400 text-white px-6 py-2 rounded-lg font-semibold hover:bg-gray-500"
           >
-            Kapat
+            Bezárás
           </button>
         )}
       </div>
