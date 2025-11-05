@@ -43,8 +43,8 @@ export interface ContentData {
 // Varsayılan menü öğeleri (lib/menuData.ts dosyasından gelir - Zaten Macarca)
 const defaultAllMenuItems: MenuItem[] = MENU_ITEMS.map((item) => ({ ...item }));
 
-// Vurgulanan menü ID'leri (lib/menuData.ts dosyasındaki Macarca ID'lere göre güncellendi)
-const highlightedMenuIds = ["wix-g-01", "wix-h-02", "wix-gp-01", "k-12"] as const;
+// Vurgulanan menü ID'leri (lib/menuData.ts dosyasındaki mevcut ID'lere göre güncellendi)
+const highlightedMenuIds = ["k-01", "k-03", "d-01", "p-01"] as const;
 
 const defaultMenuItems: MenuItem[] = highlightedMenuIds
   .map((id) => defaultAllMenuItems.find((item) => item.id === id))
