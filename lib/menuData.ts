@@ -47,7 +47,7 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 4290, // Gerçek Ft fiyatı
     description: "Gyros tál borjúhússal, friss zöldségekkel és sült krumplival.",
     category: "Gyros tálak",
-    image: "https://static.wixstatic.com/media/2beacd_004c283ddc304ad992708b90e4b32cd3~mv2.jpg", // Örnek resim
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/porsiyon-et-doner.jpg",
     rating: 5,
   },
   {
