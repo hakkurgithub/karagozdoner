@@ -37,7 +37,7 @@ export default function About() {
             
             <div className="relative h-[400px] rounded-xl overflow-hidden shadow-lg">
               <Image
-                src="https://raw.githubusercontent.com/hakkurgithub/images/main/Karagoz-doner-exterior.png"
+                src="https://raw.githubusercontent.com/hakkurgithub/images/main/porsiyon-et-doner.jpg"
                 alt="Karagöz Döner Étterem"
                 fill
                 className="object-cover"
