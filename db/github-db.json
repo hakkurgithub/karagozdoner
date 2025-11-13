@@ -1,0 +1,512 @@
+{
+  "products": [
+    {
+      "id": "gt-01",
+      "name": "Csirke Gyros Tál",
+      "description": "Gyros tál csirkehússal, friss zöldségekkel és sült krumplival.",
+      "price": 3990,
+      "category": "Gyros Tálak",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/gyros-tal.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.466Z"
+    },
+    {
+      "id": "gt-02",
+      "name": "Borjú Gyros Tál",
+      "description": "Gyros tál borjúhússal, friss zöldségekkel és sült krumplival.",
+      "price": 4290,
+      "category": "Gyros Tálak",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/Borju-gyros-tal.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "gt-03",
+      "name": "Vegyes Gyros Tál",
+      "description": "Gyros tál csirke- és borjúhússal, friss zöldségekkel.",
+      "price": 4190,
+      "category": "Gyros Tálak",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/cifte-doner.png",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "gp-01",
+      "name": "Csirke Gyros Pita",
+      "description": "Gyros pita csirkehússal és friss zöldségekkel.",
+      "price": 1990,
+      "category": "Gyros Piták",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/gyros-pita.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "gp-02",
+      "name": "Borjú Gyros Pita",
+      "description": "Gyros pita borjúhússal és friss zöldségekkel.",
+      "price": 2190,
+      "category": "Gyros Piták",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/borju-gyros-pita.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "gp-03",
+      "name": "Gyros Pita Menü",
+      "description": "Gyros pita menü pitaval és körettel.",
+      "price": 2490,
+      "category": "Gyros Piták",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/gyros-pita-menu.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "h-01",
+      "name": "Classic Burger",
+      "description": "Klasszikus hamburger marhahússal, sajttal és friss zöldségekkel.",
+      "price": 3190,
+      "category": "Hamburgerek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/classic-burger.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "h-02",
+      "name": "Sajt Burger",
+      "description": "Hamburger marhahússal és dupla sajttal.",
+      "price": 3390,
+      "category": "Hamburgerek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/Sajt-burger.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "s-01",
+      "name": "Görög Saláta",
+      "description": "Friss görög saláta fetasajttal és olivaolajjal.",
+      "price": 2490,
+      "category": "Saláták",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/gorog-salata.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "s-02",
+      "name": "Évszakos Saláta",
+      "description": "Friss zöldségekből készült könnyű és frissítő saláta.",
+      "price": 1890,
+      "category": "Saláták",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/mevsim-salatasi.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "t-01",
+      "name": "Bolognai Spagetti",
+      "description": "Klasszikus bolognai spagetti gazdag húsos szósszal.",
+      "price": 3490,
+      "category": "Tészták",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/Bolognai spagetti.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "ke-01",
+      "name": "Rántott Sajt",
+      "description": "Rántott sajt rizzsel és tartármártással.",
+      "price": 3290,
+      "category": "Közkedvelt Ételek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/Rántott sajt rizzsel és tartármártással.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "k-02",
+      "name": "Adana Kebap",
+      "description": "Különleges fűszerezésű Adana kebap, rizzsel és grillezett zöldségekkel.",
+      "price": 4500,
+      "category": "Kebapok és Grillek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/adana-porsiyon.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "k-03",
+      "name": "Urfa Kebap",
+      "description": "Nem csípős, aromás Urfa kebap rizzsel és körettel.",
+      "price": 4500,
+      "category": "Kebapok és Grillek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/urfa-porsiyon.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "k-04",
+      "name": "Beyti Sarma",
+      "description": "Beyti kebap lavasba tekerve joghurttal és vajas öntettel.",
+      "price": 5500,
+      "category": "Kebapok és Grillek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/beyti-sarma.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "k-05",
+      "name": "İskender Kebap",
+      "description": "Vajjal és joghurttal gazdagított klasszikus iskender.",
+      "price": 5200,
+      "category": "Kebapok és Grillek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/iskender-kebap.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "k-06",
+      "name": "Grillezett Köfte",
+      "description": "Grillezett házi készítésű köfte, rizzsel és zöldekkel.",
+      "price": 3800,
+      "category": "Kebapok és Grillek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/izgara-kofte.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "k-07",
+      "name": "Csirke Şiş",
+      "description": "Pácolt csirke şiş rizzsel és salátával.",
+      "price": 4200,
+      "category": "Kebapok és Grillek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/tavuk-sis-porsiyon.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "k-08",
+      "name": "Çöp Şiş",
+      "description": "Vékony pálcán pácolt hús parázson sütve.",
+      "price": 5200,
+      "category": "Kebapok és Grillek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/cop-sis-porsiyon.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "k-09",
+      "name": "Vegyes Grilltál",
+      "description": "Adana, urfa, şiş és köfte keveréke gazdag tálon.",
+      "price": 7500,
+      "category": "Kebapok és Grillek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/karisik-izgara.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "d-01",
+      "name": "Et Döner Porsiyon",
+      "description": "Válogatott húsokból döner rizzsel és salátával.",
+      "price": 4800,
+      "category": "Döner",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/porsiyon-et-doner.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "d-02",
+      "name": "Tavuk Döner",
+      "description": "Csirkadöner rizzsel és körettel.",
+      "price": 4200,
+      "category": "Döner",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/tavuk-doner.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "d-03",
+      "name": "Çifte Döner",
+      "description": "Marha és csirke döner keveréke.",
+      "price": 5200,
+      "category": "Döner",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/cifte-doner.png",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "d-04",
+      "name": "Pilav Üstü Döner",
+      "description": "Ízletes döner rizságyon.",
+      "price": 4500,
+      "category": "Döner",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/pilav-ustu-et-doner.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "dr-01",
+      "name": "Adana Dürüm",
+      "description": "Csípős Adana kebap lavasban, friss zöldekkel.",
+      "price": 2500,
+      "category": "Dürüm",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/adana-durum.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "dr-02",
+      "name": "Urfa Dürüm",
+      "description": "Urfa kebap lavasban.",
+      "price": 2500,
+      "category": "Dürüm",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/urfa-durum.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "dr-03",
+      "name": "Köfte Dürüm",
+      "description": "Grillezett köftével készített dürüm.",
+      "price": 2200,
+      "category": "Dürüm",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/kofte-durum.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "dr-04",
+      "name": "Çöp Şiş Dürüm",
+      "description": "Çöp şiş hússal készített dürüm.",
+      "price": 2600,
+      "category": "Dürüm",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/cop-sis-durum.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "dr-05",
+      "name": "Tavuk Şiş Dürüm",
+      "description": "Pácolt csirke şişsel dürüm.",
+      "price": 2400,
+      "category": "Dürüm",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/tavuk-sis-durum.png",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "dr-06",
+      "name": "Döner Dürüm",
+      "description": "Döner lavasban öntettel és zöldekkel.",
+      "price": 2800,
+      "category": "Dürüm",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/durum-doner.png",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "p-01",
+      "name": "Lahmacun",
+      "description": "Vékony tésztán különleges darált húsos töltelék.",
+      "price": 1300,
+      "category": "Pide és Lahmacun",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/lahmacun.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "p-02",
+      "name": "Diós Lahmacun",
+      "description": "Darált húsos töltelék dióval gazdagítva.",
+      "price": 1600,
+      "category": "Pide és Lahmacun",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/cevizli-lahmacun.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "p-03",
+      "name": "Kıymalı Pide",
+      "description": "Fűszeres darált hússal készített klasszikus pide.",
+      "price": 4200,
+      "category": "Pide és Lahmacun",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/kiymali-pide.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "p-04",
+      "name": "Kaşarlı Pide",
+      "description": "Bőséges kaşar sajttal, ropogós szélekkel.",
+      "price": 3800,
+      "category": "Pide és Lahmacun",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/kasarli-peynirli-pide.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "p-05",
+      "name": "Karışık Pide",
+      "description": "Sucuk, kaşar sajt, darált hús és tojás keveréke.",
+      "price": 4500,
+      "category": "Pide és Lahmacun",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/karisik-pide.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "p-06",
+      "name": "Kuşbaşılı Pide",
+      "description": "Kockázott hússal készített pide.",
+      "price": 4400,
+      "category": "Pide és Lahmacun",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/kusbasili-pide.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "c-01",
+      "name": "Mercimek Çorbası",
+      "description": "Hagyományos vörös lencseleves.",
+      "price": 800,
+      "category": "Levesek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/mercimek-corbasi.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "y-01",
+      "name": "Hummus Pita",
+      "description": "Házi hummus friss pitával.",
+      "price": 1800,
+      "category": "Köretek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/hummus-pitaval.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "y-02",
+      "name": "İçli Köfte",
+      "description": "Kívül ropogós, belül gazdagon darált húsos.",
+      "price": 1200,
+      "category": "Köretek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/icli-kofte.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "y-03",
+      "name": "Çiğ Köfte",
+      "description": "Házi készítésű çiğ köfte, zöldekkel.",
+      "price": 1800,
+      "category": "Köretek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/cig-kofte-porsiyon.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "des-01",
+      "name": "Künefe",
+      "description": "Sajtos cérnametélt desszert melegen tálalva.",
+      "price": 1400,
+      "category": "Desszertek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/kunefe.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "des-02",
+      "name": "Fırın Sütlaç",
+      "description": "Klasszikus sütőben sült tejberizs fahéjjal.",
+      "price": 900,
+      "category": "Desszertek",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/firin-sutlac.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "i-01",
+      "name": "Ayran",
+      "description": "Frissítő házi készítésű ayran.",
+      "price": 450,
+      "category": "Italok",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/acik-ayran.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "i-02",
+      "name": "Türk Çayı",
+      "description": "Hagyományos török tea vékony pohárban.",
+      "price": 300,
+      "category": "Italok",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/turk-cayi.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "i-03",
+      "name": "Coca-Cola",
+      "description": "Coca-Cola üdítőital (0,33l).",
+      "price": 550,
+      "category": "Italok",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/cola-fanta-sprite.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "i-04",
+      "name": "Şalgam",
+      "description": "Adana stílusú céklalé csípős vagy enyhe változatban.",
+      "price": 480,
+      "category": "Italok",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/salgam.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "i-05",
+      "name": "Su",
+      "description": "Szénsavmentes ivóvíz.",
+      "price": 350,
+      "category": "Italok",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/su.jpg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "i-06",
+      "name": "Meyve Suyu",
+      "description": "Friss gyümölcslevek.",
+      "price": 480,
+      "category": "Italok",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/meyve-suyu.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    },
+    {
+      "id": "i-07",
+      "name": "Meyveli Soda",
+      "description": "Ízesített ásványvíz különböző ízekben.",
+      "price": 450,
+      "category": "Italok",
+      "image": "https://raw.githubusercontent.com/hakkurgithub/images/main/meyvelisoda.jpeg",
+      "isActive": 1,
+      "createdAt": "2025-11-13T20:49:35.468Z"
+    }
+  ],
+  "orders": [],
+  "reservations": [],
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin",
+      "email": "admin@karagozdoner.com",
+      "role": "manager",
+      "createdAt": "2025-11-13T00:00:00Z"
+    }
+  ],
+  "settings": {
+    "restaurantName": "Karagöz Döner",
+    "address": "Esztergom, Magyarország",
+    "phone": "+36 20 934 1537",
+    "email": "info@karagozdoner.com"
+  },
+  "lastUpdated": "2025-11-13T20:49:35.468Z"
+}
