@@ -13,7 +13,7 @@ export interface GitHubDatabase {
 }
 
 export interface Product {
-  id: number;
+  id: string; // MenuItem ile uyumlu olması için string
   name: string;
   description?: string;
   price: number; // Ft cinsinden
@@ -24,8 +24,8 @@ export interface Product {
 }
 
 export interface Order {
-  id: number;
-  userId: number;
+  id: string;
+  userId: string;
   customerName?: string;
   customerPhone?: string;
   status: string;
@@ -37,14 +37,14 @@ export interface Order {
 }
 
 export interface OrderItem {
-  id: number;
-  productId: number;
+  id: string;
+  productId: string;
   quantity: number;
   price: number; // Ft
 }
 
 export interface Reservation {
-  id: number;
+  id: string;
   customerName: string;
   customerPhone: string;
   customerEmail?: string;
@@ -56,7 +56,7 @@ export interface Reservation {
 }
 
 export interface User {
-  id: number;
+  id: string;
   name?: string;
   email: string;
   role: 'b2b' | 'manager';
@@ -116,7 +116,7 @@ class GitHubDB {
       reservations: [],
       users: [
         {
-          id: 1,
+          id: "u-001",
           name: "Admin",
           email: "admin@karagozdoner.com",
           role: "manager",
@@ -143,9 +143,11 @@ class GitHubDB {
 
   async addProduct(product: Omit<Product, 'id' | 'createdAt'>): Promise<Product> {
     const db = await this.readDatabase();
+    const existingIds = db.products.map(p => parseInt(p.id.replace(/[^0-9]/g, '')) || 0);
+    const nextNumericId = Math.max(0, ...existingIds) + 1;
     const newProduct: Product = {
       ...product,
-      id: Math.max(0, ...db.products.map(p => p.id)) + 1,
+      id: `p-${nextNumericId.toString().padStart(3, '0')}`,
       createdAt: new Date().toISOString()
     };
     
@@ -154,7 +156,7 @@ class GitHubDB {
     return newProduct;
   }
 
-  async updateProduct(id: number, updates: Partial<Product>): Promise<Product | null> {
+  async updateProduct(id: string, updates: Partial<Product>): Promise<Product | null> {
     const db = await this.readDatabase();
     const index = db.products.findIndex(p => p.id === id);
     
@@ -165,7 +167,7 @@ class GitHubDB {
     return db.products[index];
   }
 
-  async deleteProduct(id: number): Promise<boolean> {
+  async deleteProduct(id: string): Promise<boolean> {
     const db = await this.readDatabase();
     const index = db.products.findIndex(p => p.id === id);
     
@@ -185,9 +187,11 @@ class GitHubDB {
 
   async addOrder(order: Omit<Order, 'id' | 'createdAt'>): Promise<Order> {
     const db = await this.readDatabase();
+    const existingIds = db.orders.map(o => parseInt(o.id.replace(/[^0-9]/g, '')) || 0);
+    const nextNumericId = Math.max(0, ...existingIds) + 1;
     const newOrder: Order = {
       ...order,
-      id: Math.max(0, ...db.orders.map(o => o.id)) + 1,
+      id: `o-${nextNumericId.toString().padStart(3, '0')}`,
       createdAt: new Date().toISOString()
     };
     
@@ -196,7 +200,7 @@ class GitHubDB {
     return newOrder;
   }
 
-  async updateOrderStatus(id: number, status: string): Promise<Order | null> {
+  async updateOrderStatus(id: string, status: string): Promise<Order | null> {
     const db = await this.readDatabase();
     const index = db.orders.findIndex(o => o.id === id);
     
@@ -215,9 +219,11 @@ class GitHubDB {
 
   async addReservation(reservation: Omit<Reservation, 'id' | 'createdAt'>): Promise<Reservation> {
     const db = await this.readDatabase();
+    const existingIds = db.reservations.map(r => parseInt(r.id.replace(/[^0-9]/g, '')) || 0);
+    const nextNumericId = Math.max(0, ...existingIds) + 1;
     const newReservation: Reservation = {
       ...reservation,
-      id: Math.max(0, ...db.reservations.map(r => r.id)) + 1,
+      id: `r-${nextNumericId.toString().padStart(3, '0')}`,
       createdAt: new Date().toISOString()
     };
     
@@ -226,7 +232,7 @@ class GitHubDB {
     return newReservation;
   }
 
-  async updateReservationStatus(id: number, status: string): Promise<Reservation | null> {
+  async updateReservationStatus(id: string, status: string): Promise<Reservation | null> {
     const db = await this.readDatabase();
     const index = db.reservations.findIndex(r => r.id === id);
     

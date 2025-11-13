@@ -89,7 +89,7 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    const success = await githubDB.deleteProduct(parseInt(id));
+    const success = await githubDB.deleteProduct(id);
     
     if (!success) {
       return NextResponse.json(

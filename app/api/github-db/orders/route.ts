@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     }
 
     const order = await githubDB.addOrder({
-      userId: userId || 1,
+      userId: userId || "u-001",
       customerName,
       customerPhone,
       status: 'pending',
