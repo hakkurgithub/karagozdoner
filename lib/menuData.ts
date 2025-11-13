@@ -16,7 +16,13 @@ export type MenuCategory =
   | "Gyros piták"
   | "Saláták"
   | "Tészták"
-  | "Közkedvelt ételek";
+  | "Közkedvelt ételek"
+  | "Gyros"
+  | "Falafel"
+  | "Kebap"
+  | "Hummus"
+  | "Menüben"
+  | "Leves";
 
 export interface MenuItem {
   id: string;
@@ -31,104 +37,273 @@ export interface MenuItem {
 // === DİL, FİYAT (x10) VE YENİ ÜRÜNLER (Wix) GÜNCELLENDİ ===
 // === SÖZDİZİMİ HATASI (fazladan '}') DÜZELTİLDİ ===
 export const MENU_ITEMS: MenuItem[] = [
-  // --- YENİ EKLENENLER (Wix Menü) ---
+  // --- YENİ EKLENENLER (karagoz) ---
+  // --- Gyros ---
   {
-    id: "wix-g-01",
-    name: "Csirke gyros tál",
-    price: 3990, // Gerçek Ft fiyatı
-    description: "Gyros tál csirkehússal, friss zöldségekkel és sült krumplival.",
-    category: "Gyros tálak",
-    image: "https://static.wixstatic.com/media/2beacd_004c283ddc304ad992708b90e4b32cd3~mv2.jpg", // Örnek resim
+    id: "karagoz-g-01",
+    name: "Gyros Pita",
+    price: 2200, // Fiyat tahmini
+    description: "Friss pitában, bőséges hússal és zöldségekkel.",
+    category: "Gyros",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/gyros-pita.jpg",
     rating: 5,
   },
   {
-    id: "wix-g-02",
-    name: "Borjú gyros tál",
-    price: 4290, // Gerçek Ft fiyatı
-    description: "Gyros tál borjúhússal, friss zöldségekkel és sült krumplival.",
-    category: "Gyros tálak",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/porsiyon-et-doner.jpg",
+    id: "karagoz-g-02",
+    name: "Gyros Tortila",
+    price: 2400, // Fiyat tahmini
+    description: "Tortillába tekerve, bőséges hússal és zöldségekkel.",
+    category: "Gyros",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/gyros-tortila.jpeg",
     rating: 5,
   },
   {
-    id: "wix-g-03",
-    name: "Vegyes gyros tál",
-    price: 4190, // Gerçek Ft fiyatı
-    description: "Gyros tál csirke- és borjúhússal, friss zöldségekkel.",
-    category: "Gyros tálak",
-    image: "https://static.wixstatic.com/media/2beacd_004c283ddc304ad992708b90e4b32cd3~mv2.jpg", // Örnek resim
+    id: "karagoz-g-03",
+    name: "Gyros Tál",
+    price: 4000, // Fiyat tahmini
+    description: "Bőséges adag gyros hús, friss zöldségekkel és körettel.",
+    category: "Gyros",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/gyros-tal.jpeg",
+    rating: 5,
+  },
+
+  // --- Falafel ---
+  {
+    id: "karagoz-f-01",
+    name: "Falafel Pita",
+    price: 2000, // Fiyat tahmini
+    description: "Házi készítésű falafel golyók pitában, friss zöldségekkel.",
+    category: "Falafel",
+     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/falafel-pita.jpeg",
     rating: 5,
   },
   {
-    id: "wix-h-01",
-    name: "Classic burger",
-    price: 3190, // Gerçek Ft fiyatı
-    description: "Klasszikus hamburger marhahússal.",
-    category: "Hamburgerek",
-    image: "https://static.wixstatic.com/media/2beacd_004c283ddc304ad992708b90e4b32cd3~mv2.jpg", // Örnek resim
+    id: "karagoz-f-02",
+    name: "Falafel Tortilla",
+    price: 2200, // Fiyat tahmini
+    description: "Házi készítésű falafel golyók tortillába tekerve.",
+    category: "Falafel",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/falafel-tortilla.jpeg",
+    rating: 5,
+  },
+  {
+    id: "karagoz-f-03",
+    name: "Falafel Tál",
+    price: 3500, // Fiyat tahmini
+    description: "Házi készítésű falafel golyó rizzsel és salátával.",
+    category: "Falafel",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/falafel-tal.jpeg",
+    rating: 5,
+  },
+
+  // --- Kebap ---
+  {
+    id: "karagoz-k-01",
+    name: "Adana Kebap",
+    price: 4500, // Fiyat tahmini
+    description: "Enyhén csípős darált húsos nyárs, körettel tálalva.",
+    category: "Kebap",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/adana-porsiyon.jpg",
+    rating: 5,
+  },
+  {
+    id: "karagoz-k-02",
+    name: "Kör Kebap", // (Köfte)
+    price: 3500, // Fiyat tahmini (Menü: 4200)
+    description: "Grillezett házi készítésű köfte, rizzsel és zöldekkel.",
+    category: "Kebap",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/izgara-kofte.jpeg",
     rating: 4,
   },
   {
-    id: "wix-h-02",
-    name: "Sajt burger",
-    price: 3390, // Gerçek Ft fiyatı
-    description: "Hamburger marhahússal és sajttal.",
-    category: "Hamburgerek",
-    image: "https://static.wixstatic.com/media/2beacd_004c283ddc304ad992708b90e4b32cd3~mv2.jpg", // Örnek resim
+    id: "karagoz-k-03",
+    name: "Sis Tavuk (Csirkenyárs)",
+    price: 3800, // Fiyat menü panosundan alındı
+    description: "Pácolt csirke saslik (Csirkenyárs).",
+    category: "Kebap",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/tavuk-sis-porsiyon.jpg",
+    rating: 4,
+  },
+
+  // --- Hummus ---
+  {
+    id: "karagoz-h-01",
+    name: "Hummus Pitával",
+    price: 1700, // Fiyat tahmini
+    description: "Házi készítésű hummusz, friss pitával vagy tortillával.",
+    category: "Hummus",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/hummus-pitaval.jpg",
+    rating: 4,
+  },
+
+  // --- Menüben (Combo Menüler) ---
+  {
+    id: "karagoz-m-01",
+    name: "Gyros Pita Menü",
+    price: 2900, // Fiyat tahmini
+    description: "Gyros Pita + Sült krumpli + 0,33l Üdítő.",
+    category: "Menüben",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/gyros-pita-menu.jpeg",
     rating: 5,
   },
   {
-    id: "wix-gp-01",
-    name: "Csirke gyros pita",
-    price: 1990, // Gerçek Ft fiyatı
-    description: "Gyros pita csirkehússal.",
-    category: "Gyros piták",
-    image: "https://static.wixstatic.com/media/2beacd_004c283ddc304ad992708b90e4b32cd3~mv2.jpg", // Örnek resim
+    id: "karagoz-m-02",
+    name: "Gyros Tortilla Menü",
+    price: 3100, // Fiyat tahmini
+    description: "Gyros Tortilla + Sült krumpli + 0,33l Üdítő.",
+    category: "Menüben",
+    image: "", // Resim GitHub listesinde yok
     rating: 5,
   },
   {
-    id: "wix-gp-02",
-    name: "Borjú gyros pita",
-    price: 2190, // Gerçek Ft fiyatı
-    description: "Gyros pita borjúhússal.",
-    category: "Gyros piták",
-    image: "https://static.wixstatic.com/media/2beacd_004c283ddc304ad992708b90e4b32cd3~mv2.jpg", // Örnek resim
+    id: "karagoz-m-03",
+    name: "Gyros Tál Menü",
+    price: 4600, // Fiyat tahmini
+    description: "Gyros Tál + 0,33l Üdítő.",
+    category: "Menüben",
+    image: "", // Resim GitHub listesinde yok
     rating: 5,
   },
   {
-    id: "wix-s-01",
-    name: "Görög saláta",
-    price: 2490, // Gerçek Ft fiyatı
-    description: "Friss görög saláta.",
-    category: "Saláták",
-    image: "https://static.wixstatic.com/media/2beacd_004c283ddc304ad992708b90e4b32cd3~mv2.jpg", // Örnek resim
+    id: "karagoz-m-04",
+    name: "Falafel Tortilla Menü",
+    price: 2900, // Fiyat tahmini
+    description: "Falafel Tortilla + Sült krumpli + 0,33l Üdítő.",
+    category: "Menüben",
+    image: "", // Resim GitHub listesinde yok
+    rating: 5,
+  },
+  {
+    id: "karagoz-m-05",
+    name: "Falafel Tál Menü",
+    price: 4000, // Fiyat tahmini
+    description: "Falafel Tál + 0,33l Üdítő.",
+    category: "Menüben",
+    image: "", // Resim GitHub listesinde yok
+    rating: 5,
+  },
+  {
+    id: "karagoz-m-06",
+    name: "Adana Kebap Menü",
+    price: 5000, // Fiyat tahmini
+    description: "Adana Kebap Tál + 0,33l Üdítő.",
+    category: "Menüben",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/adana-porsiyon.jpg",
+    rating: 5,
+  },
+  {
+    id: "karagoz-m-07",
+    name: "Kör Kebap Menü",
+    price: 4200, // Fiyat menü panosundan alındı
+    description: "Kör Kebap Tál + 0,33l Üdítő.",
+    category: "Menüben",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/izgara-kofte.jpeg",
     rating: 4,
   },
   {
-    id: "wix-t-01",
-    name: "Bolognai spagetti",
-    price: 3490, // Gerçek Ft fiyatı
-    description: "Klasszikus bolognai spagetti.",
-    category: "Tészták",
-    image: "https://static.wixstatic.com/media/2beacd_004c283ddc304ad992708b90e4b32cd3~mv2.jpg", // Örnek resim
+    id: "karagoz-m-08",
+    name: "Sis Tavuk Menü",
+    price: 4400, // Fiyat tahmini
+    description: "Sis Tavuk Tál + 0,33l Üdítő.",
+    category: "Menüben",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/tavuk-sis-porsiyon.jpg",
     rating: 4,
   },
+
+  // --- Leves (Çorba) ---
   {
-    id: "wix-k-01",
-    name: "Rántott sajt",
-    price: 3290, // Gerçek Ft fiyatı
-    description: "Rántott sajt rizzsel és tartármártással.",
-    category: "Közkedvelt ételek",
-    image: "https://static.wixstatic.com/media/2beacd_004c283ddc304ad992708b90e4b32cd3~mv2.jpg", // Örnek resim
+    id: "karagoz-l-01",
+    name: "Vörös Lencseleves",
+    price: 1000, // Fiyat tahmini
+    description: "Hagyományos vörös lencseleves.",
+    category: "Leves",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/mercimek-corbasi.jpg",
     rating: 5,
   },
   {
-    id: "wix-i-01",
+    id: "karagoz-l-02",
+    name: "Hideg Gyümölcsleves",
+    price: 1000, // Fiyat tahmini
+    description: "Frissítő, szezonális gyümölcsleves.",
+    category: "Leves",
+    image: "", // Resim GitHub listesinde yok
+    rating: 4,
+  },
+
+  // --- Köretek (Garnitür) ---
+  {
+    id: "karagoz-ko-01",
+    name: "Rizs",
+    price: 800, // Fiyat tahmini
+    description: "Párolt rizs köret.",
+    category: "Köretek",
+    image: "", // Resim GitHub listesinde yok
+    rating: 5,
+  },
+  {
+    id: "karagoz-ko-02",
+    name: "Sültkrumpli",
+    price: 1000, // Fiyat tahmini
+    description: "Ropogós sült krumpli köret.",
+    category: "Köretek",
+    image: "", // Resim GitHub listesinde yok
+    rating: 5,
+  },
+  {
+    id: "karagoz-ko-03",
+    name: "Bulgur (Török Bulgur)",
+    price: 800, // Fiyat tahmini
+    description: "Fűszeres török bulgur köret.",
+    category: "Köretek",
+    image: "", // Resim GitHub listesinde yok
+    rating: 5,
+  },
+  {
+    id: "karagoz-ko-04",
+    name: "Tepeta Sajt (Feltét)",
+    price: 350, // Fiyat menü panosundan alındı
+    description: "Extra feltét (Tepeta sajt).",
+    category: "Köretek",
+    image: "", // Resim GitHub listesinde yok
+    rating: 5,
+  },
+  
+  // --- Italok (İçecekler) ---
+  // (Fiyatlar eski menüden ve tahminlere göre güncellendi)
+  {
+    id: "karagoz-i-01",
     name: "Coca-Cola (0,33l)",
-    price: 650, // Gerçek Ft fiyatı
+    price: 650,
     description: "Coca-Cola üdítőital.",
     category: "Italok",
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/cola-fanta-sprite.jpeg",
+    rating: 5,
+  },
+  {
+    id: "karagoz-i-02",
+    name: "Házi Ayran",
+    price: 500, // Fiyat tahmini
+    description: "Frissítő házi készítésű ayran.",
+    category: "Italok",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/acik-ayran.jpg",
+    rating: 5,
+  },
+  {
+    id: "karagoz-i-03",
+    name: "Víz (Szénsavmentes)",
+    price: 450, // Fiyat tahmini
+    description: "Hideg ivóvíz.",
+    category: "Italok",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/su.jpg",
+    rating: 5,
+  },
+  {
+    id: "karagoz-i-04",
+    name: "Ásványvíz (Szénsavas)",
+    price: 450, // Fiyat tahmini
+    description: "Természetes ásványvíz.",
+    category: "Italok",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/sade-soda.jpeg",
     rating: 5,
   },
   
@@ -144,7 +319,7 @@ export const MENU_ITEMS: MenuItem[] = [
   },
   {
     id: "k-02",
-    name: "Urfa Kebap (Tál)",
+    name: "Urfa Kebap )",
     price: 4500, // 450 * 10
     description: "Nem csípős, aromás Urfa kebap; rizzsel és körettel.",
     category: "Kebapok és Grillek",
@@ -153,7 +328,7 @@ export const MENU_ITEMS: MenuItem[] = [
   },
   {
     id: "k-03",
-    name: "Beyti Sarma",
+    name: "Beyti Kanyargó",
     price: 6000, // 600 * 10
     description: "Beyti kebap lavasba tekerve; joghurttal és vajas öntettel.",
     category: "Kebapok és Grillek",
@@ -162,7 +337,7 @@ export const MENU_ITEMS: MenuItem[] = [
   },
   {
     id: "k-04",
-    name: "Domatesli Kebap",
+    name: "Paradicsomos kebab",
     price: 5000, // 500 * 10
     description: "Paradicsomszósszal gazdagított kebap, rizzsel és salátával.",
     category: "Kebapok és Grillek",
@@ -171,7 +346,7 @@ export const MENU_ITEMS: MenuItem[] = [
   },
   {
     id: "k-05",
-    name: "Patlıcanlı Kebap (Tál)",
+    name: "Patlıcanlı Kebap",
     price: 5000, // 500 * 10
     description: "Grillezett padlizsánnal tálalt kebap.",
     category: "Kebapok és Grillek",

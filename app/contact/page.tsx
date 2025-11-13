@@ -95,8 +95,7 @@ export default function ContactPage() {
       <section
         className="relative h-96 bg-cover bg-center"
         style={{
-          // === RESİM VE İSİM GÜNCELLEMESİ ===
-          backgroundImage: `url('https://readdy.ai/api/search-image?query=Hungarian%20restaurant%20storefront%20with%20elegant%20Karagoz%20Döner%20sign%20in%20beautiful%20calligraphy%2C%20warm%20evening%20lighting%20illuminating%20the%20restaurant%20entrance%2C%20traditional%20style%20architecture%2C%20professional%20photography%20showcasing%20authentic%20Turkish%20dining%20establishment&width=1200&height=400&seq=contact-hero-karagoz&orientation=landscape')`,
+          backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/karagoz-doner.jpg')`,
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>

@@ -2,75 +2,40 @@
 
 import { useState, useEffect } from "react";
 import { useCart } from "../../components/CartProvider";
+import { MENU_ITEMS, type MenuItem } from "../../lib/menuData";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import Image from "next/image";
-
-interface Product {
-    id: number;
-    name: string;
-    description: string | null;
-    price: number | string; // API'den numeric string veya number gelebilir
-    category: string | null;
-    image: string | null;
-    isActive: number;
-}
 
 export default function MenuPage() {
     const { addItem, items } = useCart();
     const [activeCategory, setActiveCategory] = useState("all");
     const [isClient, setIsClient] = useState(false);
-    const [products, setProducts] = useState<Product[]>([]);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         setIsClient(true);
-        
-        // Fetch products from API
-        fetch('/api/products')
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    setProducts(data.data);
-                }
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error('Error loading products:', error);
-                setLoading(false);
-            });
     }, []);
 
-    // === DİL GÜNCELLEMESİ (Kategoriler) ===
-    const categories = [
-        "all",
-        "Kebapok és Grillek",
-        "Pide és Lahmacun",
-        "Döner",
-        "Dürüm",
-        "Levesek",
-        "Köretek",
-        "Desszertek",
-        "Italok"
-    ];
+    // Get unique categories from menu items
+    const allCategories = Array.from(new Set(MENU_ITEMS.map(item => item.category)));
+    const categories = ["all", ...allCategories];
 
-    const filteredItems = products.filter((item) =>
+    const filteredItems = MENU_ITEMS.filter((item) =>
         activeCategory === "all" ? true : item.category === activeCategory
     );
 
-    const handleAddToCart = (item: Product) => {
-        // === FİYAT MANTIĞI GÜNCELLEMESİ (Sadece 'price' kullan) ===
+    const handleAddToCart = (item: MenuItem) => {
         const price = Math.round(parseFloat(String(item.price)));
         addItem({
-            id: String(item.id),
+            id: item.id,
             name: item.name,
-            price: price, // Ft cinsinden number
+            price: price,
         });
     };
 
-    if (!isClient || loading) {
+    if (!isClient) {
         return (
             <div className="flex items-center justify-center min-h-screen">
-                {/* === DİL GÜNCELLEMESİ === */}
-                <div className="text-2xl text-gray-600">Betöltés...</div>
+                <LoadingSpinner size="lg" text="Menü betöltése..." />
             </div>
         );
     }
@@ -105,7 +70,7 @@ export default function MenuPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredItems.map((item) => {
                         // ✅ Sepette bu ürünün olup olmadığını kontrol et
-                        const cartItem = items.find(cartItem => cartItem.id === String(item.id));
+                        const cartItem = items.find(cartItem => cartItem.id === item.id);
                         
                         return (
                             <div
@@ -114,7 +79,7 @@ export default function MenuPage() {
                             >
                                 <div className="relative w-full h-48">
                                     <Image
-                                        src={item.image || '/images/placeholder.jpg'}
+                                        src={item.image}
                                         alt={item.name}
                                         fill
                                         className="object-cover"
@@ -125,7 +90,6 @@ export default function MenuPage() {
                                     <p className="text-gray-600 text-sm flex-1">{item.description}</p>
                                     <div className="flex justify-between items-center mt-4">
                                         <span className="text-2xl font-bold text-red-600">
-                                            {/* === FİYAT VE PARA BİRİMİ GÜNCELLEMESİ === */}
                                             {Math.round(parseFloat(String(item.price)))} Ft
                                         </span>
                                         <div className="relative">
@@ -133,7 +97,6 @@ export default function MenuPage() {
                                                 onClick={() => handleAddToCart(item)}
                                                 className="bg-red-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors"
                                             >
-                                                {/* === DİL GÜNCELLEMESİ === */}
                                                 <i className="ri-shopping-cart-fill mr-2"></i>Hozzáad
                                             </button>
                                             {cartItem && (

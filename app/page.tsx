@@ -53,8 +53,7 @@ export default function Home() {
       <section
         className="relative w-full h-[500px] flex items-center justify-center text-white text-center overflow-hidden"
         style={{
-          // === İSİM GÜNCELLEMESİ (Resim yolu) ===
-          backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/Karagoz-doner-exterior.png')`,
+          backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/hero.jpg')`,
         }}
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -133,7 +132,7 @@ export default function Home() {
         <div className="container mx-auto flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/2 relative h-[350px] rounded-xl overflow-hidden shadow-lg">
             <Image
-              src="/images/about.jpg" // Bu resim 404 veriyordu, /public/images/ altına eklediğinizden emin olun
+              src="https://raw.githubusercontent.com/hakkurgithub/images/main/karagoz-doner.jpg"
               alt="Rólunk"
               fill
               className="object-cover"

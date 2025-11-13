@@ -162,7 +162,7 @@ export default function ReviewsPage() {
       <section
         className="relative h-96 bg-cover bg-center"
         style={{
-          backgroundImage: `url('https://readdy.ai/api/search-image?query=Turkish%20restaurant%20review%20page%20customer%20testimonials%20with%20authentic%20Turkish%20food%20photos%2C%20modern%20restaurant%20interior%2C%20warm%20lighting%2C%20social%20proof%20and%20high%20ratings%2C%20professional%20photography%2C%20user-generated%20content&width=1200&height=400&seq=reviews-hero&orientation=landscape')`,
+          backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/hero.jpg')`,
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>

@@ -4,6 +4,7 @@ import { Inter, Pacifico } from 'next/font/google';
 import './globals.css';
 import { CartProvider } from '../components/CartProvider';
 import Navbar from '../components/Navbar';
+import ErrorBoundary from '../components/ErrorBoundary';
 import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ['latin'] });
@@ -22,18 +23,17 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Karagöz Döner - Hagyományos Török Konyha',
     description: 'Fedezze fel a hagyományos török konyha egyedülálló ízeit a Karagöz Döner-nél Esztergomban.',
-    url: 'https://karagozdoner.vercel.app', // Site URL'si güncellendi
-    siteName: 'Karagöz Döner', // İsim güncellendi
+    url: 'https://karagozdoner.vercel.app',
+    siteName: 'Karagöz Döner',
     images: [
       {
-        // Resim arama sorgusu güncellendi
-        url: 'https://readdy.ai/api/search-image?query=Turkish%20restaurant%20logo%20Karagoz%20Döner%20traditional%20cuisine%20branding&width=1200&height=630&seq=og&orientation=landscape',
+        url: 'https://raw.githubusercontent.com/hakkurgithub/images/main/hero.jpg',
         width: 1200,
         height: 630,
-        alt: 'Karagöz Döner' // Alt metin güncellendi
+        alt: 'Karagöz Döner - Esztergom török étterem'
       }
     ],
-    locale: 'hu_HU', // Bölge kodu güncellendi
+    locale: 'hu_HU',
     type: 'website'
   },
   twitter: {
@@ -41,9 +41,13 @@ export const metadata: Metadata = {
     title: 'Karagöz Döner - Hagyományos Török Konyha',
     description: 'Fedezze fel a hagyományos török konyha egyedülálló ízeit a Karagöz Döner-nél Esztergomban.',
     images: [
-      // Resim arama sorgusu güncellendi
-      'https://readdy.ai/api/search-image?query=Turkish%20restaurant%20logo%20Karagoz%20Döner%20traditional%20cuisine%20branding&width=1200&height=630&seq=twitter&orientation=landscape'
+      'https://raw.githubusercontent.com/hakkurgithub/images/main/hero.jpg'
     ]
+  },
+  icons: {
+    icon: 'https://raw.githubusercontent.com/hakkurgithub/images/main/karagoz-doner.jpg',
+    shortcut: 'https://raw.githubusercontent.com/hakkurgithub/images/main/karagoz-doner.jpg',
+    apple: 'https://raw.githubusercontent.com/hakkurgithub/images/main/karagoz-doner.jpg',
   }
 };
 
@@ -70,10 +74,12 @@ export default function RootLayout({
       </head>
       <body>
         <SessionProvider>
-          <CartProvider>
-            <Navbar />
-            <main>{children}</main>
-          </CartProvider>
+          <ErrorBoundary>
+            <CartProvider>
+              <Navbar />
+              <main>{children}</main>
+            </CartProvider>
+          </ErrorBoundary>
         </SessionProvider>
       </body>
     </html>
