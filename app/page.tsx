@@ -53,7 +53,7 @@ export default function Home() {
       <section
         className="relative w-full h-[500px] flex items-center justify-center text-white text-center overflow-hidden"
         style={{
-          backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/hero.jpg')`,
+          backgroundImage: `url('https://raw.githubusercontent.com/hakkurgithub/images/main/gyros-pita-hero.jpg')`,
         }}
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>
