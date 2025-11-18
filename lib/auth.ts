@@ -13,30 +13,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         password: { label: "Jelszó", type: "password", placeholder: "demo" }
       },
       async authorize(credentials) {
-        // Demo hesaplar
-        if (credentials?.username === "demo" && credentials?.password === "demo") {
-          return {
-            id: "1",
-            name: "Demó Felhasználó",
-            email: "demo@karagozdoner.com",
-            role: "b2b" as const,
-          }
-        }
-        
-        if (credentials?.username === "manager" && credentials?.password === "manager") {
-          return {
-            id: "2", 
-            name: "Demó Menedzser",
-            email: "manager@karagozdoner.com",
-            role: "manager" as const,
-          }
-        }
-        
-        // Admin hesap (.env'den)
+        // Sadece Admin hesap (.env'den)
         if (credentials?.username === process.env.ADMIN_USERNAME && 
             credentials?.password === process.env.ADMIN_PASSWORD) {
           return {
-            id: "3",
+            id: "1",
             name: "Admin",
             email: "admin@karagozdoner.com", 
             role: "manager" as const,
