@@ -319,7 +319,9 @@ export default function ContactPage() {
                       Telefonszám
                     </h4>
                     {/* === TELEFON GÜNCELLEMESİ === */}
-                    <p className="text-gray-600">06 20 934 1537</p>
+                    <a href="tel:+36209341537" className="text-gray-600 hover:text-red-600 transition-colors">
+                      +36 20 934 1537
+                    </a>
                   </div>
                 </div>
 

@@ -174,9 +174,9 @@ export default function Home() {
                 {/* === DİL GÜNCELLEMESİ === */}
                 Telefonszám
               </h3>
-              <p className="text-gray-700">
-                {content.phone} {/* <-- Bu, Yönetim Panelinden gelir */}
-              </p>
+              <a href="tel:+36209341537" className="text-gray-700 hover:text-red-600 transition-colors">
+                +36 20 934 1537
+              </a>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-lg text-center">
               <i className="ri-mail-line text-4xl text-red-600 mb-4"></i>
