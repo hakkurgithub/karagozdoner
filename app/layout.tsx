@@ -5,7 +5,7 @@ import './globals.css';
 import { CartProvider } from '../components/CartProvider';
 import Navbar from '../components/Navbar';
 import ErrorBoundary from '../components/ErrorBoundary';
-import { SessionProvider } from "next-auth/react";
+import { Providers } from '../components/Providers';
 
 const inter = Inter({ subsets: ['latin'] });
 const pacifico = Pacifico({
@@ -73,14 +73,14 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
-        <SessionProvider>
+        <Providers>
           <ErrorBoundary>
             <CartProvider>
               <Navbar />
               <main>{children}</main>
             </CartProvider>
           </ErrorBoundary>
-        </SessionProvider>
+        </Providers>
       </body>
     </html>
   );
