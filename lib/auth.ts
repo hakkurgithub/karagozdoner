@@ -13,6 +13,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         password: { label: "Jelszó", type: "password", placeholder: "demo" }
       },
       async authorize(credentials) {
+        // Debug logs
+        console.log('Login attempt:', {
+          username: credentials?.username,
+          envUsername: process.env.ADMIN_USERNAME,
+          passwordMatch: credentials?.password === process.env.ADMIN_PASSWORD
+        });
+        
         // Sadece Admin hesap (.env'den)
         if (credentials?.username === process.env.ADMIN_USERNAME && 
             credentials?.password === process.env.ADMIN_PASSWORD) {

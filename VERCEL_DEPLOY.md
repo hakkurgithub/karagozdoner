@@ -9,6 +9,7 @@ Bu proje Vercel'da deploy edilmek için aşağıdaki environment variable'ların
 ADMIN_USERNAME = admin
 ADMIN_PASSWORD = YeniSifreniz123
 ```
+**ÖNEMLİ**: Tırnak işareti kullanmayın!
 
 ### Email Service (EmailJS)
 ```
