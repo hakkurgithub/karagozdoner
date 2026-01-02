@@ -135,7 +135,7 @@ export default function ReviewsPage() {
     },
     {
       id: 'phone',
-      name: 'Telefon: 06 20 934 1537',
+      name: 'Telefon: +36 20 934 1537',
       icon: 'ri-phone-line',
       color: 'text-blue-600',
       url: 'tel:06209341537',
@@ -414,7 +414,7 @@ export default function ReviewsPage() {
               <ul className="space-y-2 text-gray-400">
                 <li className="flex items-center">
                   <i className="ri-phone-line mr-2"></i>
-                  06 20 934 1537
+                  +36 20 934 1537
                 </li>
                 <li className="flex items-center">
                   <i className="ri-mail-line mr-2"></i>

@@ -229,7 +229,7 @@ Köszönöm!`;
                     {/* === DİL GÜNCELLEMESİ === */}
                     <h4 className="font-semibold text-gray-800 mb-1">Foglalási Vonal</h4>
                     {/* === TELEFON GÜNCELLEMESİ === */}
-                    <p className="text-gray-600">06 20 934 1537</p>
+                    <p className="text-gray-600">+36 20 934 1537</p>
                   </div>
                 </div>
 
@@ -310,14 +310,14 @@ Köszönöm!`;
                   <i className="ri-phone-fill text-2xl text-green-600 mb-2"></i>
                   {/* === DİL GÜNCELLEMESİ === */}
                   <span className="font-medium">Hívás</span>
-                  <span className="text-xs text-gray-500">06 20 934 1537</span>
+                  <span className="text-xs text-gray-500">+36 20 934 1537</span>
                 </a>
                 
                 {/* === TELEFON VE LİNK GÜNCELLEMESİ === */}
                 <a href="https://wa.me/36209341537?text=Helló!%20Asztalfoglalást%20szeretnék." target="_blank" rel="noopener noreferrer" className="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
                   <i className="ri-whatsapp-fill text-2xl text-green-600 mb-2"></i>
                   <span className="font-medium">WhatsApp</span>
-                  <span className="text-xs text-gray-500">06 20 934 1537</span>
+                  <span className="text-xs text-gray-500">+36 20 934 1537</span>
                 </a>
               </div>
             </div>
@@ -485,7 +485,7 @@ Köszönöm!`;
               <ul className="space-y-2 text-gray-400">
                 <li className="flex items-center">
                   <i className="ri-phone-line mr-2"></i>
-                  06 20 934 1537
+                  +36 20 934 1537
                 </li>
                 <li className="flex items-center">
                   <i className="ri-mail-line mr-2"></i>

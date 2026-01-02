@@ -58,7 +58,7 @@ const defaultContent: ContentData = {
     "Kóstolja meg a legfrissebb alapanyagokból készült ízletes kebabjainkat",
   aboutText:
     "Családunk 40 éves tapasztalatával a legfinomabb kebabokat kínáljuk Önnek Esztergomban.",
-  phone: "06 20 934 1537",
+  phone: "+36 20 934 1537",
   address: "2500, Esztergom\nKossuth Lajos utca 30.",
   orderChannels: {
     whatsapp: {

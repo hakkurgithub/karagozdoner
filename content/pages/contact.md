@@ -1,6 +1,6 @@
 ---
 title: "Elérhetőség"
-phone: "06 20 934 1537"
+phone: "+36 20 934 1537"
 whatsapp: "+36209341537"
 address: |
   2500, Esztergom
@@ -20,7 +20,7 @@ Az alábbi elérhetőségeken léphet velünk kapcsolatba.
 **2500, Esztergom** Kossuth Lajos utca 30.
 
 ## 📞 Telefonszám
-**Vezetékes**: 06 20 934 1537  
+**Vezetékes**: +36 20 934 1537  
 **WhatsApp**: +36 20 934 1537
 
 ## 📧 E-mail

@@ -1,44 +1,40 @@
 import NextAuth from "next-auth"
-import GitHub from "next-auth/providers/github"
 import Credentials from "next-auth/providers/credentials"
+import { createUser, getUserByEmail } from "./products" // Bu dosyanın db bağlantısını supabase.ts'den aldığından emin olun
 
-export const { handlers, auth, signIn, signOut } = NextAuth({  
+export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
-    // Demo credentials provider
     Credentials({
-      // === DİL GÜNCELLEMESİ ===
-      name: "Demó",
+      name: "Admin",
       credentials: {
-        username: { label: "Felhasználónév", type: "text", placeholder: "demo" },
-        password: { label: "Jelszó", type: "password", placeholder: "demo" }
+        username: { label: "Kullanıcı Adı", type: "text", placeholder: "admin" },
+        password: { label: "Şifre", type: "password", placeholder: "Şifre" }
       },
       async authorize(credentials) {
-        // Debug logs
-        console.log('Login attempt:', {
-          username: credentials?.username,
-          envUsername: process.env.ADMIN_USERNAME,
-          passwordMatch: credentials?.password === process.env.ADMIN_PASSWORD
-        });
-        
-        // Sadece Admin hesap (.env'den)
-        if (credentials?.username === process.env.ADMIN_USERNAME && 
-            credentials?.password === process.env.ADMIN_PASSWORD) {
-          return {
-            id: "1",
-            name: "Admin",
-            email: "admin@karagozdoner.com", 
-            role: "manager" as const,
+        if (
+          credentials?.username === process.env.ADMIN_USERNAME &&
+          credentials?.password === process.env.ADMIN_PASSWORD
+        ) {
+          // Admin user'ı veritabanında bul veya oluştur
+          const email = "admin@karagozdoner.com";
+          let user = await getUserByEmail(email);
+          if (!user) {
+            user = await createUser({
+              name: "Admin",
+              email,
+              role: "manager"
+            });
           }
+          return {
+            id: String(user.id),
+            name: user.name,
+            email: user.email,
+            role: user.role
+          };
         }
-        
-        return null
+        return null;
       }
-    }),
-    // GitHub OAuth (valódi hitelesítő adatok szükségesek)
-    GitHub({
-      clientId: process.env.AUTH_GITHUB_ID!,
-      clientSecret: process.env.AUTH_GITHUB_SECRET!,
-    }),
+    })
   ],
   
   session: {
@@ -48,19 +44,20 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.role = user.role || 'b2b' // Szerepkör átvétele a User objektumból
+        token.role = user.role || 'manager';
+        token.id = user.id;
       }
-      return token
+      return token;
     },
-    
     async session({ session, token }) {
       if (token) {
-        session.user.id = token.sub!
-        session.user.role = token.role as "b2b" | "manager"
+        // DÜZELTME: Token id veya sub yoksa boş string ata ve string olarak zorla
+        session.user.id = (token.id || token.sub || "") as string;
+        session.user.role = token.role as "b2b" | "manager";
       }
-      return session
+      return session;
     },
   },
   
   debug: process.env.NODE_ENV === "development",
-})
+});

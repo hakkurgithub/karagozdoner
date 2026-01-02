@@ -68,7 +68,7 @@ export default function ContactPage() {
     },
     {
       id: 'phone',
-      name: 'Telefon: 06 20 934 1537',
+      name: 'Telefon: +36 20 934 1537',
       icon: 'ri-phone-line',
       color: 'text-blue-600',
       url: 'tel:06209341537',

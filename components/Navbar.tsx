@@ -27,8 +27,6 @@ export default function Navbar() {
     }
   }, [getTotalItems, itemCount]);
 
-  // !! ÖNEMLİ !! Bu kısım "content" den (Yönetim Panelinden) gelir.
-  // Lütfen Yönetim Panelinden telefonu 36209341537 veya 06209341537 olarak güncelleyin.
   const phoneNumber = content.phone.replace(/[^0-9]/g, "");
   const whatsappMessage = encodeURIComponent("Helló, rendelni szeretnék!");
 
@@ -39,7 +37,7 @@ export default function Navbar() {
           href="/"
           className="text-2xl font-bold tracking-wide hover:text-yellow-300 transition"
         >
-          {content.restaurantName} {/* <-- Bu, Yönetim Panelinden gelir */}
+          {content.restaurantName}
         </Link>
 
         <div className="hidden md:flex space-x-6 items-center">
@@ -62,7 +60,7 @@ export default function Navbar() {
             )}
           </Link>
 
-          {/* User Menu */}
+          {/* User Menu - GİRİŞ BUTONU KALDIRILDI */}
           {status === "loading" ? (
             <div className="w-8 h-8 bg-white/20 rounded-full animate-pulse"></div>
           ) : session ? (
@@ -111,15 +109,7 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-          ) : (
-            <Link
-              href="/api/auth/signin"
-              className="flex items-center space-x-2 px-4 py-2 bg-white text-red-700 rounded-lg font-semibold hover:bg-gray-100 hover:shadow-md transition-all duration-200 transform hover:scale-105"
-            >
-              <User size={18} />
-              <span>Bejelentkezés</span>
-            </Link>
-          )}
+          ) : null /* <-- Giriş butonu burada silindi */}
         </div>
 
         <button
@@ -152,7 +142,7 @@ export default function Navbar() {
             )}
           </Link>
 
-          {/* Mobile User Menu */}
+          {/* Mobile User Menu - MOBİL GİRİŞ BUTONU KALDIRILDI */}
           {status === "loading" ? (
             <div className="w-full bg-white/20 rounded-lg p-3 animate-pulse text-center">
               Betöltés...
@@ -192,20 +182,10 @@ export default function Navbar() {
                 Kijelentkezés
               </Link>
             </div>
-          ) : (
-            <Link
-              href="/api/auth/signin"
-              onClick={() => setMenuOpen(false)}
-              className="flex items-center justify-center space-x-2 bg-white text-red-700 p-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-            >
-              <User size={18} />
-              <span>Bejelentkezés</span>
-            </Link>
-          )}
+          ) : null /* <-- Mobil Giriş butonu burada silindi */}
         </div>
       )}
 
-      {/* !! ÖNEMLİ !! Bu linkler Yönetim Panelindeki "Telefon" alanından beslenir */}
       <div className="fixed bottom-4 left-0 right-0 flex justify-center space-x-4 md:hidden z-50">
         <a
           href={`tel:${phoneNumber}`}
