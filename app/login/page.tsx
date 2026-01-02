@@ -1,82 +1,94 @@
-// app/login/page.tsx  
-"use client"
+"use client";
 
-import { useRouter } from "next/navigation"
+import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { Lock, User, AlertCircle } from "lucide-react";
 
 export default function LoginPage() {
-  const router = useRouter()
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const handleLogin = (type: "demo" | "manager") => {
-    // Client-side yönlendirme
-    const redirectUrl = type === "manager" ? "/manager" : "/dashboard"
-    
-    // NextAuth credential sağlayıcısına POST isteği
-    fetch("/api/auth/callback/credentials", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: type,
-        password: type,
-        redirect: false
-      })
-    }).then(() => {
-      router.push(redirectUrl)
-      router.refresh()
-    }).catch((err) => {
-      console.error("Login error:", err)
-    })
-  }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    // NextAuth üzerinden gerçek kimlik doğrulama
+    const result = await signIn("credentials", {
+      username,
+      password,
+      redirect: false,
+    });
+
+    if (result?.error) {
+      setError("Hatalı kullanıcı adı veya şifre!");
+      setLoading(false);
+    } else {
+      // Başarılı olursa yönlendir
+      router.push("/manager"); 
+      router.refresh();
+    }
+  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="max-w-md w-full space-y-8 p-6">
-        <div className="text-center">
-          {/* === İSİM DÜZELTMESİ === */}
-          <h1 className="text-3xl font-bold text-gray-900">
-            🥙 Karagöz Döner
-          </h1>
-          {/* === DİL DEĞİŞİKLİĞİ === */}
-          <p className="mt-2 text-gray-600">
-            Kezelőpanel Belépés
-          </p>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      <div className="max-w-md w-full bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div className="bg-red-700 p-6 text-center">
+          <h1 className="text-2xl font-bold text-white">Yönetici Girişi</h1>
+          <p className="text-red-100 text-sm mt-1">Lütfen bilgilerinizi giriniz</p>
         </div>
 
-        <div className="space-y-4">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-            {/* === DİL DEĞİŞİKLİĞİ === */}
-            <h3 className="font-semibold text-blue-900 mb-4">Demo Fiókok</h3>
-            
-            <div className="space-y-3">
-              <button 
-                onClick={() => handleLogin("demo")}
-                className="w-full py-3 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
-              >
-                {/* === DİL DEĞİŞİKLİĞİ === */}
-                👤 Demo Felhasználói Belépés
-              </button>
-              
-              <button 
-                onClick={() => handleLogin("manager")}
-                className="w-full py-3 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
-              >
-                {/* === DİL DEĞİŞİKLİĞİ === */}
-                🔑 Manager (Admin) Belépés
-              </button>
+        <form onSubmit={handleSubmit} className="p-8 space-y-6">
+          {error && (
+            <div className="bg-red-50 text-red-600 p-3 rounded-lg flex items-center text-sm">
+              <AlertCircle size={16} className="mr-2" />
+              {error}
             </div>
+          )}
 
-            <div className="mt-4 text-sm text-blue-800 space-y-1">
-              {/* === DİL DEĞİŞİKLİĞİ === */}
-              <p>👤 <strong>Demo:</strong> Felhasználói fiók hozzáférés</p>
-              <p>🔑 <strong>Manager:</strong> Termékszerkesztési jogosultság</p>
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-gray-700 block">Kullanıcı Adı</label>
+            <div className="relative">
+              <User className="absolute left-3 top-3 text-gray-400" size={20} />
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition"
+                placeholder="Kullanıcı adınız"
+                required
+              />
             </div>
           </div>
 
-          <div className="text-center text-xs text-gray-500">
-            {/* === DİL DEĞİŞİKLİĞİ === */}
-            <p>Demo fiókok tesztelési célokra</p>
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-gray-700 block">Şifre</label>
+            <div className="relative">
+              <Lock className="absolute left-3 top-3 text-gray-400" size={20} />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition"
+                placeholder="••••••••"
+                required
+              />
+            </div>
           </div>
-        </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-red-700 text-white py-3 rounded-lg font-semibold hover:bg-red-800 transition transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {loading ? "Giriş Yapılıyor..." : "Giriş Yap"}
+          </button>
+        </form>
       </div>
     </div>
-  )
+  );
 }
