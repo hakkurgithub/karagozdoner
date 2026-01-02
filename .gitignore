@@ -1,12 +1,16 @@
 node_modules
 
+node_modules
+
 # === DİL GÜNCELLEMESİ (Yorumlar) ===
 # Környezeti változók - biztonsági okokból ne töltsd fel a GitHubra
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
+# ... diğerleri aynı kalabilir
 # Next.js build kimenetek
 .next/
 build/
@@ -22,4 +26,5 @@ next-env.d.ts
 # Backup és ideiglenes fájlok
 backup_old_files/
 *.backup
+
 *.old
