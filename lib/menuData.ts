@@ -231,3 +231,4 @@ export const MENU_CATEGORIES: MenuCategory[] = [
   "Desszertek (Tatlılar)",
   "Italok (İçecekler)"
 ];
+ 
