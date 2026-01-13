@@ -1,241 +1,114 @@
 "use client";
 
 import Link from "next/link";
-import { useCart } from "./CartProvider";
-import { useContent } from "../hooks/useContent";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import { Menu, X, Phone, MessageCircle, User, Settings } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { ShoppingCart, Menu, X } from "lucide-react";
+import { useState } from "react";
+import { useCart } from "./CartProvider";
 
 export default function Navbar() {
-  const { content } = useContent();
-  const { getTotalItems } = useCart();
-  const { data: session, status } = useSession();
-  const [itemCount, setItemCount] = useState(0);
-  const [animate, setAnimate] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const { cartItems } = useCart();
 
-  useEffect(() => {
-    const count = getTotalItems();
-    if (count !== itemCount) {
-      setAnimate(true);
-      setTimeout(() => setAnimate(false), 300);
-      setItemCount(count);
-    }
-  }, [getTotalItems, itemCount]);
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-  const phoneNumber = content.phone.replace(/[^0-9]/g, "");
-  const whatsappMessage = encodeURIComponent("Helló, rendelni szeretnék!");
+  const isActive = (path: string) => pathname === path;
+
+  const navLinks = [
+    { name: "Kezdőlap", path: "/" },
+    { name: "Menü", path: "/menu" },
+    { name: "Rólunk", path: "/about" },
+    { name: "Elérhetőség", path: "/contact" },
+  ];
 
   return (
-    <nav className="bg-red-700 text-white py-4 shadow-md sticky top-0 z-50">
-      <div className="container mx-auto flex justify-between items-center px-4">
-        <Link
-          href="/"
-          className="text-2xl font-bold tracking-wide hover:text-yellow-300 transition"
-        >
-          {content.restaurantName}
-        </Link>
+    <nav className="bg-red-700 text-white shadow-lg sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Link href="/" className="text-2xl font-bold font-serif tracking-wider hover:text-red-100 transition">
+              Karagöz Döner
+            </Link>
+          </div>
 
-        <div className="hidden md:flex space-x-6 items-center">
-          <NavLink href="/" label="Kezdőlap" active={pathname === "/"} />
-          <NavLink href="/menu" label="Menü" active={pathname === "/menu"} />
-          <NavLink href="/about" label="Rólunk" active={pathname === "/about"} />
-          <NavLink href="/contact" label="Elérhetőség" active={pathname === "/contact"} />
-
-          <Link
-            href="/cart"
-            className={`relative bg-yellow-400 text-red-900 px-4 py-2 rounded-full font-semibold hover:bg-yellow-300 transition ${
-              animate ? "scale-110 transition-transform" : ""
-            }`}
-          >
-            🛒 Kosaram
-            {itemCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                {itemCount}
-              </span>
-            )}
-          </Link>
-
-          {/* User Menu - GİRİŞ BUTONU KALDIRILDI */}
-          {status === "loading" ? (
-            <div className="w-8 h-8 bg-white/20 rounded-full animate-pulse"></div>
-          ) : session ? (
-            <div className="relative">
-              <button
-                onClick={() => setUserMenuOpen(!userMenuOpen)}
-                className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-red-600 transition-colors"
-              >
-                <User size={20} />
-                <span className="text-sm">{session.user.name?.split(' ')[0]}</span>
-              </button>
-
-              {userMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg border py-2 z-50">
-                  <div className="px-3 py-2 border-b">
-                    <p className="text-sm font-medium">{session.user.name}</p>
-                    <p className="text-xs text-gray-600">{session.user.email}</p>
-                  </div>
-                  
-                  {session.user.role === 'manager' ? (
-                    <Link
-                      href="/manager"
-                      className="flex items-center space-x-2 px-3 py-2 hover:bg-gray-100 transition-colors"
-                      onClick={() => setUserMenuOpen(false)}
-                    >
-                      <Settings size={16} />
-                      <span className="text-sm">Kezelőpanel</span>
-                    </Link>
-                  ) : (
-                    <Link
-                      href="/dashboard"
-                      className="flex items-center space-x-2 px-3 py-2 hover:bg-gray-100 transition-colors"
-                      onClick={() => setUserMenuOpen(false)}
-                    >
-                      <User size={16} />
-                      <span className="text-sm">Fiókom</span>
-                    </Link>
-                  )}
-                  
-                  <Link
-                    href="/api/auth/signout"
-                    className="flex items-center space-x-2 px-3 py-2 hover:bg-gray-100 transition-colors text-red-600"
-                  >
-                    <span className="text-sm">Kijelentkezés</span>
-                  </Link>
-                </div>
-              )}
+          {/* Desktop Menü */}
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  href={link.path}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                    isActive(link.path)
+                      ? "bg-red-800 text-white"
+                      : "text-red-100 hover:bg-red-600 hover:text-white"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
             </div>
-          ) : null /* <-- Giriş butonu burada silindi */}
-        </div>
+          </div>
 
-        <button
-          className="md:hidden text-white text-3xl focus:outline-none"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+          {/* Sağ Taraf: Sepet */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Link 
+              href="/cart" 
+              className="relative p-2 bg-yellow-600 rounded-full hover:bg-yellow-500 transition-colors text-white group"
+            >
+              <ShoppingCart size={24} />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-white text-red-700 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-red-700">
+                  {totalItems}
+                </span>
+              )}
+              <span className="ml-2 font-medium hidden group-hover:inline-block">Kosaram</span>
+            </Link>
+          </div>
+
+          {/* Mobil Menü Butonu */}
+          <div className="-mr-2 flex md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="inline-flex items-center justify-center p-2 rounded-md text-red-100 hover:text-white hover:bg-red-600 focus:outline-none"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
       </div>
 
-      {menuOpen && (
-        <div className="md:hidden bg-red-800 text-white px-4 py-4 space-y-4 pb-20">
-          <MobileLink href="/" label="Kezdőlap" setMenuOpen={setMenuOpen} />
-          <MobileLink href="/menu" label="Menü" setMenuOpen={setMenuOpen} />
-          <MobileLink href="/about" label="Rólunk" setMenuOpen={setMenuOpen} />
-          <MobileLink href="/contact" label="Elérhetőség" setMenuOpen={setMenuOpen} />
-
-          <Link
-            href="/cart"
-            onClick={() => setMenuOpen(false)}
-            className={`relative bg-yellow-400 text-red-900 px-4 py-2 rounded-full font-semibold hover:bg-yellow-300 transition block text-center ${
-              animate ? "scale-110 transition-transform" : ""
-            }`}
-          >
-            🛒 Kosaram
-            {itemCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                {itemCount}
-              </span>
-            )}
-          </Link>
-
-          {/* Mobile User Menu - MOBİL GİRİŞ BUTONU KALDIRILDI */}
-          {status === "loading" ? (
-            <div className="w-full bg-white/20 rounded-lg p-3 animate-pulse text-center">
-              Betöltés...
-            </div>
-          ) : session ? (
-            <div className="space-y-2">
-              <div className="bg-red-700 p-3 rounded-lg">
-                <p className="font-medium">{session.user.name}</p>
-                <p className="text-sm text-red-200">{session.user.email}</p>
-              </div>
-              
-              {session.user.role === 'manager' ? (
-                <Link
-                  href="/manager"
-                  onClick={() => setMenuOpen(false)}
-                  className="flex items-center space-x-2 bg-white text-red-700 p-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-                >
-                  <Settings size={18} />
-                  <span>Kezelőpanel</span>
-                </Link>
-              ) : (
-                <Link
-                  href="/dashboard"
-                  onClick={() => setMenuOpen(false)}
-                  className="flex items-center space-x-2 bg-white text-red-700 p-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-                >
-                  <User size={18} />
-                  <span>Fiókom</span>
-                </Link>
-              )}
-              
+      {/* Mobil Açılır Menü */}
+      {isOpen && (
+        <div className="md:hidden bg-red-800 pb-4">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            {navLinks.map((link) => (
               <Link
-                href="/api/auth/signout"
-                onClick={() => setMenuOpen(false)}
-                className="flex items-center justify-center bg-red-600 text-white p-3 rounded-lg font-semibold hover:bg-red-500 transition-colors"
+                key={link.path}
+                href={link.path}
+                onClick={() => setIsOpen(false)}
+                className={`block px-3 py-2 rounded-md text-base font-medium ${
+                  isActive(link.path)
+                    ? "bg-red-900 text-white"
+                    : "text-red-100 hover:bg-red-600 hover:text-white"
+                }`}
               >
-                Kijelentkezés
+                {link.name}
               </Link>
-            </div>
-          ) : null /* <-- Mobil Giriş butonu burada silindi */}
+            ))}
+            <Link
+              href="/cart"
+              onClick={() => setIsOpen(false)}
+              className="block px-3 py-2 rounded-md text-base font-medium text-yellow-300 hover:bg-red-600"
+            >
+              Kosaram ({totalItems})
+            </Link>
+          </div>
         </div>
       )}
-
-      <div className="fixed bottom-4 left-0 right-0 flex justify-center space-x-4 md:hidden z-50">
-        <a
-          href={`tel:${phoneNumber}`}
-          className="bg-green-600 text-white flex items-center gap-2 px-5 py-3 rounded-full shadow-lg hover:bg-green-500 transition"
-        >
-          <Phone size={18} /> Hívás
-        </a>
-
-        <a
-          href={`https://wa.me/${phoneNumber}?text=${whatsappMessage}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-emerald-500 text-white flex items-center gap-2 px-5 py-3 rounded-full shadow-lg hover:bg-emerald-400 transition"
-        >
-          <MessageCircle size={18} /> WhatsApp
-        </a>
-      </div>
     </nav>
-  );
-}
-
-function NavLink({ href, label, active }: { href: string; label: string; active: boolean }) {
-  return (
-    <Link
-      href={href}
-      className={`hover:text-yellow-300 transition ${
-        active ? "text-yellow-300 font-semibold" : ""
-      }`}
-    >
-      {label}
-    </Link>
-  );
-}
-
-function MobileLink({
-  href,
-  label,
-  setMenuOpen,
-}: {
-  href: string;
-  label: string;
-  setMenuOpen: (open: boolean) => void;
-}) {
-  return (
-    <Link
-      href={href}
-      onClick={() => setMenuOpen(false)}
-      className="block hover:text-yellow-300 transition"
-    >
-      {label}
-    </Link>
   );
 }

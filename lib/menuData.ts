@@ -1,182 +1,233 @@
-// lib/menuData.ts - Comprehensive Menu Overhaul
-// === MACARISTAN DÖNER/KEBAB FİYAT ARAŞTIRMASI (2024) ===
-// Tál menüler: 3500-5500 Ft | Dürümler: 2000-3000 Ft | Pideler: 3500-4500 Ft | İçecekler: 400-600 Ft
+// lib/menuData.ts - Karagöz Döner Macaristan Menüsü (Clean)
 
 export type MenuCategory =
-  | "Gyros Tálak"
-  | "Gyros Piták"
-  | "Hamburgerek"
-  | "Saláták"
-  | "Tészták"
-  | "Közkedvelt Ételek"
-  | "Kebapok és Grillek"
-  | "Döner"
-  | "Dürüm"
-  | "Pide és Lahmacun"
-  | "Levesek"
-  | "Köretek"
-  | "Desszertek"
-  | "Italok";
+  | "Gyros & Döner"
+  | "Menük (Menüler)"
+  | "Kebap & Grill"
+  | "Falafel & Vega"
+  | "Levesek (Çorbalar)"
+  | "Köretek (Yan Ürünler)"
+  | "Desszertek (Tatlılar)"
+  | "Italok (İçecekler)";
 
-// Karagöz Döner Kebap - Görseldeki Güncel Menü Verileri (2026)
+export interface MenuItem {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+  category: MenuCategory;
+  image: string;
+}
+
 export const MENU_ITEMS: MenuItem[] = [
-  // === GYROS ===
+  // === GYROS & DÖNER ===
   {
     id: "gy-01",
     name: "Gyros Pita",
     price: 1900,
-    description: "Taze pitada servis edilen gyros.",
-    category: "Gyros Piták",
+    description: "Klasszikus gyros pitában, friss zöldségekkel és szósszal.",
+    category: "Gyros & Döner",
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/gyros-pita.jpg",
   },
   {
     id: "gy-02",
     name: "Gyros Tortilla",
     price: 2200,
-    description: "Lavaş (tortilla) içine sarılmış gyros.",
-    category: "Gyros Piták",
+    description: "Tortilla lapba tekert gyros hús zöldségekkel.",
+    category: "Gyros & Döner",
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/gyros-pita.jpg",
   },
   {
     id: "gy-03",
     name: "Gyros Tál",
     price: 3800,
-    description: "Tabakta servis edilen zengin gyros porsiyonu.",
-    category: "Gyros Tálak",
+    description: "Bőséges gyros hús tálon, körettel és salátával.",
+    category: "Gyros & Döner",
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/gyros-tal.jpeg",
   },
 
-  // === MENÜLER (İçecekli) ===
+  // === MENÜK ===
   {
-    id: "m-01",
+    id: "mn-01",
     name: "Gyros Pita Menü",
     price: 2350,
-    description: "Gyros Pita + 0,33l üdítő.",
-    category: "Gyros Piták",
+    description: "Gyros Pita + 0,33l Üdítő.",
+    category: "Menük (Menüler)",
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/gyros-pita-menu.jpeg",
   },
   {
-    id: "m-02",
+    id: "mn-02",
     name: "Gyros Tortilla Menü",
     price: 2650,
-    description: "Gyros Tortilla + 0,33l üdítő.",
-    category: "Gyros Piták",
+    description: "Gyros Tortilla + 0,33l Üdítő.",
+    category: "Menük (Menüler)",
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/gyros-pita-menu.jpeg",
   },
   {
-    id: "m-03",
+    id: "mn-03",
     name: "Gyros Tál Menü",
     price: 4250,
-    description: "Gyros Tál + 0,33l üdítő.",
-    category: "Gyros Tálak",
+    description: "Gyros Tál + 0,33l Üdítő.",
+    category: "Menük (Menüler)",
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/gyros-tal.jpeg",
   },
 
-  // === FALAFEL ===
-  {
-    id: "fa-01",
-    name: "Falafel Pita (6db)",
-    price: 1700,
-    description: "6 adet falafel topu içeren pita ekmeği.",
-    category: "Közkedvelt Ételek",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/falafel.jpg",
-  },
-  {
-    id: "fa-02",
-    name: "Falafel Tál (12db)",
-    price: 3200,
-    description: "12 adet falafel topu içeren zengin tabak.",
-    category: "Közkedvelt Ételek",
-    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/falafel-tal.jpg",
-  },
-
-  // === KEBAPOK ===
+  // === KEBAP & GRILL ===
   {
     id: "kb-01",
     name: "Adana Kebap",
     price: 4200,
-    description: "Geleneksel acılı zırh kıyması kebap.",
-    category: "Kebapok és Grillek",
+    description: "Csípős darált hús nyárson sütve.",
+    category: "Kebap & Grill",
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/adana-porsiyon.jpg",
   },
   {
     id: "kb-02",
     name: "Köfte Kebap",
     price: 4200,
-    description: "Izgara köfte porsiyon.",
-    category: "Kebapok és Grillek",
+    description: "Grillezett fűszeres húsgolyók (Köfte).",
+    category: "Kebap & Grill",
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/izgara-kofte.jpeg",
   },
   {
     id: "kb-03",
     name: "Sis Tavuk (Csirkenyárs)",
     price: 4000,
-    description: "Özel soslu tavuk şiş porsiyon.",
-    category: "Kebapok és Grillek",
+    description: "Pácolt csirkemell kockák nyárson.",
+    category: "Kebap & Grill",
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/tavuk-sis-porsiyon.jpg",
   },
 
-  // === LEVESEK (Çorbalar) ===
+  // === FALAFEL & VEGA ===
+  {
+    id: "fa-01",
+    name: "Falafel Pita",
+    price: 1700,
+    description: "6db falafel golyó pitában zöldségekkel.",
+    category: "Falafel & Vega",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/falafel.jpg",
+  },
+  {
+    id: "fa-02",
+    name: "Falafel Tál",
+    price: 3200,
+    description: "12db falafel golyó tálon, körettel.",
+    category: "Falafel & Vega",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/falafel-tal.jpg",
+  },
+  {
+    id: "fa-03",
+    name: "Hummus Pitával",
+    price: 1500,
+    description: "Házi csicseriborsó krém (Humus) pitával vagy tortillával.",
+    category: "Falafel & Vega",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/hummus-pitaval.jpg",
+  },
+  {
+    id: "fa-04",
+    name: "Rántott Sajt",
+    price: 1200,
+    description: "2db rántott sajt.",
+    category: "Falafel & Vega",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/Rántott sajt rizzsel és tartármártással.jpeg",
+  },
+
+  // === LEVESEK ===
   {
     id: "lv-01",
     name: "Vörös Lencseleves",
     price: 1200,
-    description: "Geleneksel süzme mercimek çorbası.",
-    category: "Levesek",
+    description: "Török vöröslencse leves (Mercimek).",
+    category: "Levesek (Çorbalar)",
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/mercimek-corbasi.jpg",
   },
   {
     id: "lv-02",
     name: "Hideg Gyümölcsleves",
     price: 1350,
-    description: "Soğuk meyve çorbası.",
-    category: "Levesek",
+    description: "Frissítő hideg gyümölcsleves.",
+    category: "Levesek (Çorbalar)",
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/gyumolcsleves.jpg",
   },
 
-  // === KÖRETEK VE DESSZERTEK ===
+  // === KÖRETEK ===
   {
     id: "ko-01",
     name: "Sültkrumpli",
     price: 1300,
-    description: "Çıtır patates kızartması.",
-    category: "Köretek",
+    description: "Friss hasábburgonya.",
+    category: "Köretek (Yan Ürünler)",
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/krumpli.jpg",
   },
   {
+    id: "ko-02",
+    name: "Rizs",
+    price: 990,
+    description: "Török rizs (Pilav).",
+    category: "Köretek (Yan Ürünler)",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/pilav-ustu-et-doner.jpg",
+  },
+  {
+    id: "ko-03",
+    name: "Bulgur",
+    price: 990,
+    description: "Török bulgur köret.",
+    category: "Köretek (Yan Ürünler)",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/icli-kofte.jpg",
+  },
+
+  // === DESSZERTEK ===
+  {
     id: "ds-01",
+    name: "Török Tejberizs (Sütlaç)",
+    price: 1100,
+    description: "Kemencében sült tejberizs.",
+    category: "Desszertek (Tatlılar)",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/firin-sutlac.jpeg",
+  },
+  {
+    id: "ds-02",
     name: "Baklava (Pisztáciás)",
     price: 900,
-    description: "Antep fıstıklı geleneksel baklava.",
-    category: "Desszertek",
+    description: "Antep fıstıklı baklava.",
+    category: "Desszertek (Tatlılar)",
     image: "https://raw.githubusercontent.com/hakkurgithub/images/main/baklava.jpg",
+  },
+
+  // === ITALOK ===
+  {
+    id: "it-01",
+    name: "Ayran",
+    price: 400,
+    description: "Török joghurtital (Poharas).",
+    category: "Italok (İçecekler)",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/acik-ayran.jpg",
+  },
+  {
+    id: "it-02",
+    name: "Türk Çayı",
+    price: 350,
+    description: "Hagyományos török tea.",
+    category: "Italok (İçecekler)",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/turk-cayi.jpg",
+  },
+  {
+    id: "it-03",
+    name: "Coca-Cola / Fanta",
+    price: 450,
+    description: "0,33l Dobozos üdítő.",
+    category: "Italok (İçecekler)",
+    image: "https://raw.githubusercontent.com/hakkurgithub/images/main/cola-fanta-sprite.jpeg",
   }
 ];
 
-// Menu category groupings for filtering
 export const MENU_CATEGORIES: MenuCategory[] = [
-  "Gyros Tálak",
-  "Gyros Piták", 
-  "Hamburgerek",
-  "Saláták",
-  "Tészták",
-  "Közkedvelt Ételek",
-  "Kebapok és Grillek",
-  "Döner",
-  "Dürüm",
-  "Pide és Lahmacun",
-  "Levesek",
-  "Köretek",
-  "Desszertek",
-  "Italok"
+  "Gyros & Döner",
+  "Menük (Menüler)",
+  "Kebap & Grill",
+  "Falafel & Vega",
+  "Levesek (Çorbalar)",
+  "Köretek (Yan Ürünler)",
+  "Desszertek (Tatlılar)",
+  "Italok (İçecekler)"
 ];
-
-// Popular items for homepage
-export const POPULAR_ITEMS = MENU_ITEMS.filter(item => 
-  ["gt-01", "k-02", "p-05", "dr-01", "d-01"].includes(item.id)
-);
-
-// Featured specials
-export const FEATURED_SPECIALS = MENU_ITEMS.filter(item =>
-  ["gt-03", "k-09", "p-01", "d-01"].includes(item.id)
-);

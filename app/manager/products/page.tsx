@@ -1,235 +1,26 @@
-// app/manager/products/page.tsx
-import { db } from "@/db/drizzle"
-import { products } from "@/db/schema"
-import { eq } from "drizzle-orm"
-import { revalidatePath } from "next/cache"
-import { redirect } from "next/navigation"
+import { getAllProducts } from "@/lib/products";
+import Link from "next/link";
+// Bu satir build hatasini engeller
+export const dynamic = 'force-dynamic';
 
-// Server Actions
-async function updateProduct(formData: FormData) {
-  "use server"
-  
+export default async function ProductsPage() {
+  let products = [];
   try {
-    const id = parseInt(formData.get("id") as string)
-    const name = formData.get("name") as string
-    
-    // === DÜZELTME: Fiyatı metinden (string) sayıya (integer) çevir ===
-    const priceStr = formData.get("price") as string
-    const price = parseInt(priceStr, 10) // Hata burada düzeltildi
-    
-    const category = formData.get("category") as string
-    const description = formData.get("description") as string || ''
-    const image = formData.get("image") as string || ''
-    
-    console.log('✅ Updating product:', { id, name, price, category, image })
-    
-    await db.update(products)
-      .set({ 
-        name, 
-        price, // Artık 'number' tipinde
-        category,
-        description,
-        image 
-      })
-      .where(eq(products.id, id))
-    
-    console.log('✅ Product updated successfully:', id)
-    revalidatePath("/manager/products")
+    products = await getAllProducts();
   } catch (error) {
-    console.error('❌ Error updating product:', error)
+    console.error("Urun hatasi:", error);
   }
-}
 
-async function toggleProductStatus(formData: FormData) {
-  "use server"
-  
-  try {
-    const id = parseInt(formData.get("id") as string)
-    const currentStatus = formData.get("currentStatus") === "true"
-    
-    console.log('🔄 Toggling product status:', { id, currentStatus, newStatus: !currentStatus })
-    
-    await db.update(products)
-      .set({ isActive: currentStatus ? 0 : 1 })
-      .where(eq(products.id, id))
-    
-    console.log('✅ Product status toggled successfully:', id)
-    revalidatePath("/manager/products")
-  } catch (error) {
-    console.error('❌ Error toggling product status:', error)
-  }
-}
-
-export default async function ManagerProductsPage() {
-  // Get all products from database
-  const allProducts = await db.select().from(products).orderBy(products.id)
-  
   return (
-    <div className="container mx-auto p-4">
+    <div className="p-6">
       <div className="flex justify-between items-center mb-6">
-        {/* === DİL DEĞİŞİKLİĞİ === */}
-        <h1 className="text-3xl font-bold text-gray-800">Termékkezelés</h1>
-        <a 
-          href="/manager" 
-          className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
-        >
-          {/* === DİL DEĞİŞİKLİĞİ === */}
-          ← Vissza a Panelra
-        </a>
+        <h1 className="text-2xl font-bold text-gray-800">Urun Yonetimi</h1>
+        <Link href="/manager" className="bg-gray-500 text-white px-4 py-2 rounded">Geri Don</Link>
       </div>
-      
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <div className="grid gap-6">
-          {allProducts.map((product) => (
-            <div 
-              key={product.id} 
-              className="border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow"
-            >
-              <form action={updateProduct} className="space-y-4">
-                <input type="hidden" name="id" value={product.id} />
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor={`name-${product.id}`} className="block text-sm font-medium text-gray-700 mb-1">
-                      {/* === DİL DEĞİŞİKLİĞİ === */}
-                      Termék Neve
-                    </label>
-                    <input
-                      id={`name-${product.id}`}
-                      type="text"
-                      name="name"
-                      defaultValue={product.name}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      required
-                    />
-                  </div>
-                  
-                  <div>
-                    {/* === DİL VE PARA BİRİMİ DEĞİŞİKLİĞİ === */}
-                    <label htmlFor={`price-${product.id}`} className="block text-sm font-medium text-gray-700 mb-1">
-                      Ár (Ft)
-                    </label>
-                    <input
-                      id={`price-${product.id}`}
-                      type="number"
-                      name="price"
-                      // === FİYAT MANTIK DEĞİŞİKLİĞİ (Ondalık kaldırıldı) ===
-                      defaultValue={product.price as any}
-                      step="1" // Ft için 1'lik artış
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      required
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor={`category-${product.id}`} className="block text-sm font-medium text-gray-700 mb-1">
-                      {/* === DİL DEĞİŞİKLİĞİ === */}
-                      Kategória
-                    </label>
-                    <select
-                      id={`category-${product.id}`}
-                      name="category"
-                      defaultValue={product.category || 'Döner'}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      {/* === DİL DEĞİŞİKLİĞİ (Kategoriler) === */}
-                      <option value="Kebapok és Grillek">Kebapok és Grillek</option>
-                      <option value="Pide és Lahmacun">Pide és Lahmacun</option>
-                      <option value="Döner">Döner</option>
-                      <option value="Dürüm">Dürüm</option>
-                      <option value="Levesek">Levesek</option>
-                      <option value="Köretek">Köretek</option>
-                      <option value="Desszertek">Desszertek</option>
-                      <option value="Italok">Italok</option>
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      {/* === DİL DEĞİŞİKLİĞİ === */}
-                      Állapot
-                    </label>
-                    <div className="flex items-center space-x-2">
-                      <span className={`px-3 py-2 rounded-lg font-medium ${
-                        product.isActive 
-                          ? 'bg-green-100 text-green-800' 
-                          : 'bg-red-100 text-red-800'
-                      }`}>
-                        {/* === DİL DEĞİŞİKLİĞİ === */}
-                        {product.isActive ? '✓ Aktív' : '✗ Passzív'}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div>
-                  <label htmlFor={`image-${product.id}`} className="block text-sm font-medium text-gray-700 mb-1">
-                    {/* === DİL DEĞİŞİKLİĞİ === */}
-                    Kép URL
-                  </label>
-                  <input
-                    id={`image-${product.id}`}
-                    type="url"
-                    name="image"
-                    defaultValue={product.image || ''}
-                    placeholder="https://raw.githubusercontent.com/..."
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                  {product.image && (
-                    <div className="mt-2">
-                      <img 
-                        src={product.image} 
-                        alt={product.name}
-                        className="h-20 w-20 object-cover rounded-lg border"
-                      />
-                    </div>
-                  )}
-                </div>
-                
-                <div>
-                  <label htmlFor={`description-${product.id}`} className="block text-sm font-medium text-gray-700 mb-1">
-                    {/* === DİL DEĞİŞİKLİĞİ === */}
-                    Leírás
-                  </label>
-                  <textarea
-                    id={`description-${product.id}`}
-                    name="description"
-                    defaultValue={product.description || ''}
-                    rows={2}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                
-                <div className="flex gap-3">
-                  <button
-                    type="submit"
-                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
-                  >
-                    {/* === DİL DEĞİŞİKLİĞİ === */}
-                    💾 Mentés
-                  </button>
-                  
-                  <form action={toggleProductStatus} className="inline">
-                    <input type="hidden" name="id" value={product.id} />
-                    <input type="hidden" name="currentStatus" value={product.isActive ? "true" : "false"} />
-                    <button
-                      type="submit"
-                      className={`px-6 py-2 rounded-lg font-medium ${
-                        product.isActive
-                          ? 'bg-red-600 text-white hover:bg-red-700'
-                          : 'bg-green-600 text-white hover:bg-green-700'
-                      }`}
-                    >
-                      {/* === DİL DEĞİŞİKLİĞİ === */}
-                      {product.isActive ? '🔴 Passzívvá tétel' : '🟢 Aktívvá tétel'}
-                    </button>
-                  </form>
-                </div>
-              </form>
-            </div>
-          ))}
-        </div>
+      <div className="bg-white rounded-lg shadow p-4">
+        <p className="text-gray-600">Urun listesi veritabanindan cekilecek.</p>
+        {/* Tablo buraya gelecek */}
       </div>
     </div>
-  )
+  );
 }
