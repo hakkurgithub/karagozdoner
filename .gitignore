@@ -27,3 +27,5 @@ backup_old_files/
 *.backup
 *.old.env
 .env
+
+.env*.local
