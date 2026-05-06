@@ -19,6 +19,8 @@ export default function Navbar() {
     { name: "Kezdőlap", path: "/" },
     { name: "Menü", path: "/menu" },
     { name: "Rólunk", path: "/about" },
+    { name: "Blog", path: "/blog" },
+    { name: "Galéria", path: "/galeria" },
     { name: "Elérhetőség", path: "/contact" },
   ];
 
@@ -26,16 +28,18 @@ export default function Navbar() {
     <nav className="bg-red-700 text-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="text-2xl font-bold font-serif tracking-wider hover:text-red-100 transition">
+            <Link
+              href="/"
+              className="text-2xl font-bold font-serif tracking-wider hover:text-red-100 transition"
+            >
               Karagöz Döner
             </Link>
           </div>
 
           {/* Desktop Menü */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <div className="ml-10 flex items-baseline space-x-4">
               {navLinks.map((link) => (
                 <Link
@@ -54,9 +58,9 @@ export default function Navbar() {
           </div>
 
           {/* Sağ Taraf: Sepet */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Link 
-              href="/cart" 
+          <div className="hidden lg:flex items-center space-x-4">
+            <Link
+              href="/cart"
               className="relative p-2 bg-yellow-600 rounded-full hover:bg-yellow-500 transition-colors text-white group"
             >
               <ShoppingCart size={24} />
@@ -65,12 +69,11 @@ export default function Navbar() {
                   {totalItems}
                 </span>
               )}
-              <span className="ml-2 font-medium hidden group-hover:inline-block">Kosaram</span>
             </Link>
           </div>
 
           {/* Mobil Menü Butonu */}
-          <div className="-mr-2 flex md:hidden">
+          <div className="-mr-2 flex lg:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-red-100 hover:text-white hover:bg-red-600 focus:outline-none"
@@ -83,7 +86,7 @@ export default function Navbar() {
 
       {/* Mobil Açılır Menü */}
       {isOpen && (
-        <div className="md:hidden bg-red-800 pb-4">
+        <div className="lg:hidden bg-red-800 pb-4">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((link) => (
               <Link
