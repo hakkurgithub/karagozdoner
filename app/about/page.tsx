@@ -1,13 +1,62 @@
-'use client';
+import type { Metadata } from "next";
+import { useContent } from "../../hooks/useContent";
+import Image from "next/image";
 
-import { useContent } from '../../hooks/useContent';
-import Image from 'next/image';
+export const metadata: Metadata = {
+  title: "Rólunk",
+  description:
+    "Ismerje meg a Karagöz Döner történetét! Autentikus török döner és kebab specialitásokat kínálunk Esztergom szívében, a Kossuth Lajos utca 30. alatt. Családi vállalkozásunk több mint egy évtizedes tapasztalattal várja vendégeit.",
+  keywords: [
+    "Karagöz Döner története",
+    "török étterem Esztergom",
+    "döner Esztergom",
+    "kebab története",
+    "családi vállalkozás",
+    "autentikus török konyha",
+  ],
+  openGraph: {
+    title: "Rólunk | Karagöz Döner",
+    description:
+      "Ismerje meg a Karagöz Döner történetét! Autentikus török döner és kebab specialitások Esztergom szívében.",
+    url: "https://www.karagozdoner.com/about",
+  },
+  alternates: {
+    canonical: "https://www.karagozdoner.com/about",
+  },
+};
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "Rólunk - Karagöz Döner",
+  description:
+    "A Karagöz Döner története és értékei. Autentikus török döner és kebab Esztergomban.",
+  url: "https://www.karagozdoner.com/about",
+  mainEntity: {
+    "@type": "Restaurant",
+    name: "Karagöz Döner",
+    description:
+      "Autentikus török döner és kebab étterem Esztergom szívében",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Kossuth Lajos utca 30",
+      addressLocality: "Esztergom",
+      postalCode: "2500",
+      addressCountry: "HU",
+    },
+  },
+};
 
 export default function About() {
   const { content } = useContent();
 
   return (
     <div className="bg-gray-50 text-gray-800">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+      />
+
       {/* Hero Section */}
       <section className="bg-red-600 text-white py-20">
         <div className="container mx-auto px-4 text-center">
@@ -23,22 +72,43 @@ export default function About() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold mb-6">Karagöz Döner</h2>
+              <h2 className="text-3xl font-bold mb-6">
+                Karagöz Döner - A Tradíció és az Ízek Találkozása
+              </h2>
               <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                {content.aboutText || "Üdvözöljük a Karagöz Döner-nél! Autentikus török ízeket kínálunk Esztergom szívében. Több évtizedes tapasztalattal és a minőség iránti elkötelezettséggel minden ételünkben érezheti a minőséget és a frissességet."}
+                {content.aboutText ||
+                  "A Karagöz Döner Esztergom szívében, a Kossuth Lajos utca 30. szám alatt hozza el Önnek az eredeti török ízeket. Családi vállalkozásunk több mint egy évtizedes tapasztalattal áll vendégeink rendelkezésére, hogy a legjobb minőségű döner, kebab és gyros specialitásokat kínáljuk."}
               </p>
               <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                Családi vállalkozásunk büszke arra, hogy eredeti török receptekkel és friss alapanyagokkal készíti el minden ételét. Dönerjeink naponta frissen készülnek, kebapjaink pedig a hagyományos török fűszerekkel marinálódnak.
+                Családi vállalkozásunk büszke arra, hogy eredeti török
+                receptekkel és friss alapanyagokkal készíti el minden ételét.
+                Dönerjeink naponta frissen készülnek, kebapjaink pedig a
+                hagyományos török fűszerekkel marinálódnak. Minden egyes
+                fogásunkban érezhető a szenvedély, amivel készítjük őket.
+              </p>
+              <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                Hisszük, hogy a minőségi étkezés nem csupán táplálékbevitel,
+                hanem egy élmény. Ezért törekszünk arra, hogy vendégeink ne
+                csupán jóllakjanak, hanem valódi gasztronómiai élményben is
+                részesüljenek. Az Adana kebap fűszeres aromái, az Iskender
+                kebab gazdag joghurtos öntete, vagy egy egyszerű, de tökéletesen
+                elkészített döner - mindegyik ételünk mögött történet és
+                hagyomány áll.
               </p>
               <p className="text-gray-700 text-lg leading-relaxed">
-                Célunk, hogy minden vendégünk otthonosan érezze magát, és valódi török vendégszeretetet tapasztaljon meg nálunk. Látogasson el hozzánk, és kóstolja meg Esztergom legjobb török specialitásait!
+                Célunk, hogy minden vendégünk otthonosan érezze magát, és
+                valódi török vendégszeretetet tapasztaljon meg nálunk. Látogasson
+                el hozzánk, és kóstolja meg Esztergom legjobb török
+                specialitásait! Legyen szó egy gyors ebédről munka közben,
+                egy családi vacsoráról vagy egy baráti összejövetelről - mi
+                mindig szeretettel várjuk.
               </p>
             </div>
-            
+
             <div className="relative h-[400px] rounded-xl overflow-hidden shadow-lg">
               <Image
                 src="https://raw.githubusercontent.com/hakkurgithub/images/main/porsiyon-et-doner.jpg"
-                alt="Karagöz Döner Étterem"
+                alt="Karagöz Döner Étterem belső tere és frissen készült döner"
                 fill
                 className="object-cover"
               />
@@ -47,56 +117,124 @@ export default function About() {
         </div>
       </section>
 
-      {/* Values Section */}
+      {/* History Section */}
       <section className="bg-white py-16 px-4">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-8">
+            A Karagöz Döner Története
+          </h2>
+          <div className="max-w-4xl mx-auto">
+            <p className="text-gray-700 text-lg leading-relaxed mb-6">
+              A Karagöz Döner története egy családi álom megvalósulásaként
+              kezdődött. Alapítóink célja az volt, hogy az autentikus török
+              ízeket közelebb hozzák az esztergomiak és a városba látogatók
+              számára. A tradicionális recepteket és elkészítési módokat
+              generációról generációra örökítve hoztuk el Magyarországra a
+              felejthetetlen kebab és döner élményt.
+            </p>
+            <p className="text-gray-700 text-lg leading-relaxed mb-6">
+              Kezdetben egy kis büfével indultunk, ahol a helyiek hamar
+              megszerették a frissen sütött pitákat és a mesterien fűszerezett
+              húsokat. Az évek során folyamatosan bővítettük étlapunkat,
+              miközben megőriztük az eredeti ízeket és a minőséget. Ma már
+              Esztergom egyik legnépszerűbb török éttermeként várjuk vendégeinket
+              egy tágas, barátságos környezetben.
+            </p>
+            <p className="text-gray-700 text-lg leading-relaxed">
+              Büszkék vagyunk arra, hogy sok vendégünk már évek óta hűségesen
+              visszatér hozzánk, és hogy egyre több turista is úticéljául
+              választja éttermünket, amikor Esztergomban jár. A Basilika
+              közelében, könnyen megközelíthető helyen várjuk Önt is, hogy
+              részese lehessen a Karagöz Döner élménynek.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="bg-gray-100 py-16 px-4">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Értékeink</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
+            <div className="text-center p-6 bg-white rounded-xl shadow-md">
               <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="ri-heart-line text-2xl text-white"></i>
               </div>
               <h3 className="text-xl font-semibold mb-3">Minőség</h3>
-              <p className="text-gray-600">
-                Csak a legfrissebb alapanyagokat használjuk, és minden ételünket nagy gondossággal készítjük el.
+              <p className="text-gray-600 leading-relaxed">
+                Csak a legfrissebb alapanyagokat használjuk, és minden ételünket
+                nagy gondossággal készítjük el. A húsokat naponta frissen
+                szeleteljük, a zöldségeket pedig minden reggel válogatjuk.
               </p>
             </div>
-            
-            <div className="text-center p-6">
+
+            <div className="text-center p-6 bg-white rounded-xl shadow-md">
               <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="ri-user-heart-line text-2xl text-white"></i>
               </div>
               <h3 className="text-xl font-semibold mb-3">Vendégszeretet</h3>
-              <p className="text-gray-600">
-                Minden vendégünket családtagként fogadjuk, és törekszünk a legjobb szolgáltatás nyújtására.
+              <p className="text-gray-600 leading-relaxed">
+                Minden vendégünket családtagként fogadjuk, és törekszünk a
+                legjobb szolgáltatás nyújtására. A mosolygós kiszolgálás és a
+                figyelmes személyzet nálunk alapvető elvárás.
               </p>
             </div>
-            
-            <div className="text-center p-6">
+
+            <div className="text-center p-6 bg-white rounded-xl shadow-md">
               <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="ri-restaurant-line text-2xl text-white"></i>
               </div>
               <h3 className="text-xl font-semibold mb-3">Hagyomány</h3>
-              <p className="text-gray-600">
-                Eredeti török recepteket követünk, és tiszteletben tartjuk a hagyományos ízeket.
+              <p className="text-gray-600 leading-relaxed">
+                Eredeti török recepteket követünk, és tiszteletben tartjuk a
+                hagyományos ízeket. Főszakácsaink török szakemberek, akik a
+                hazájukban szerzett tudásukat hozták el hozzánk.
               </p>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Quality Promise */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-8">
+            Minőségi Garancia
+          </h2>
+          <div className="max-w-4xl mx-auto space-y-6">
+            <p className="text-gray-700 text-lg leading-relaxed">
+              A Karagöz Dönernél kiemelt figyelmet fordítunk az élelmiszer-
+              biztonságra és a higiéniára. Konyhánk rendszeresen ellenőrzött,
+              dolgozóink egészségügyi kiskönyvvel rendelkeznek, és folyamatosan
+              képezzük őket a legjobb gyakorlatok terén.
+            </p>
+            <p className="text-gray-700 text-lg leading-relaxed">
+              Ha bármilyen okból nem elégedett ételeink minőségével, kérjük,
+              azonnal jelezze kollégáinknak, és mi kicseréljük vagy visszatérítjük
+              az árát. Vendégeink elégedettsége számunkra a legfontosabb
+              visszajelzés.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Info */}
-      <section className="bg-gray-100 py-16 px-4">
+      <section className="bg-red-600 text-white py-16 px-4">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-8">Látogasson el hozzánk!</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
             <div>
               <h3 className="text-xl font-semibold mb-2">Cím</h3>
-              <p className="text-gray-700">{content.address}</p>
+              <p>{content.address}</p>
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-2">Telefonszám</h3>
-              <p className="text-gray-700">{content.phone}</p>
+              <a
+                href={`tel:${content.phone?.replace(/\s/g, "")}`}
+                className="hover:underline"
+              >
+                {content.phone}
+              </a>
             </div>
           </div>
         </div>
