@@ -4,53 +4,59 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useCart } from '../../components/CartProvider';
 
-// Not: Ödeme tipi Macarcaya çevrildi
-type FormData = { address: string; phone: string; payment: 'Bankkártya' | 'Készpénz' };
+type FormData = {
+  address: string;
+  phone: string;
+  payment: 'Bankkártya' | 'Készpénz';
+};
 
 export default function CartPage() {
-  const { items, updateQuantity, removeItem, getTotalPrice, clearCart } = useCart();
+  const { cartItems, updateQuantity, removeFromCart, totalPrice, clearCart } = useCart();
   const [isClient, setIsClient] = useState(false);
-  // Varsayılan ödeme tipi Macarcaya çevrildi
-  const [form, setForm] = useState<FormData>({ address: '', phone: '', payment: 'Készpénz' });
+  const [form, setForm] = useState<FormData>({
+    address: '',
+    phone: '',
+    payment: 'Készpénz',
+  });
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // WhatsApp sipariş gönderme fonksiyonu: sipariş işletme numarasına gider
-  const sendOrderToWhatsApp = (address?: string, phone?: string, notes?: string) => {
-    const orderItemsText = items
+  const sendOrderToWhatsApp = (
+    address?: string,
+    phone?: string,
+    notes?: string
+  ) => {
+    const orderItemsText = cartItems
       .map(
         (item) =>
-          // === PARA BİRİMİ DEĞİŞİKLİĞİ (₺ -> Ft) ===
           `${item.name} x${item.quantity} - ${(item.price * item.quantity).toFixed(0)} Ft`
       )
       .join('\n');
 
-    // === PARA BİRİMİ VE DİL DEĞİŞİKLİĞİ ===
-    const totalPriceText = `\n\nVégösszeg: ${getTotalPrice().toFixed(0)} Ft`;
+    const totalPriceText = `\n\nVégösszeg: ${totalPrice.toFixed(0)} Ft`;
 
-    // === İSİM VE DİL DEĞİŞİKLİĞİ ===
     let message = `Helló! A Karagöz Döner-től szeretnék rendelni:\n\n${orderItemsText}${totalPriceText}`;
 
     if (address) message += `\n\nCím: ${address}`;
     if (phone) message += `\nTelefonszám: ${phone}`;
     if (notes) message += `\nMegjegyzés: ${notes}`;
 
-    // === TELEFON NUMARASI DEĞİŞİKLİĞİ ===
-    const phoneNumber = '36209341537'; // Yeni Macaristan numarası
+    const phoneNumber = '36209341537';
     const encodedMessage = encodeURIComponent(message);
-
     const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(url, '_blank');
   };
 
   const handleCheckout = () => {
-    if (items.length === 0) return;
+    if (cartItems.length === 0) return;
     sendOrderToWhatsApp(form.address, form.phone);
     clearCart();
   };
@@ -62,18 +68,17 @@ export default function CartPage() {
   return (
     <div className="bg-gray-50 min-h-screen pt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* === DİL DEĞİŞİKLİĞİ === */}
-        <h1 className="text-4xl font-bold text-center mb-8 text-red-600">Kosaram</h1>
+        <h1 className="text-4xl font-bold text-center mb-8 text-red-600">
+          Kosaram
+        </h1>
 
-        {items.length === 0 ? (
+        {cartItems.length === 0 ? (
           <div className="text-center p-8 bg-white rounded-lg shadow-md">
-            {/* === DİL DEĞİŞİKLİĞİ === */}
             <p className="text-lg text-gray-700 mb-4">A kosár üres.</p>
             <Link
               href="/menu"
               className="bg-red-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-red-700 transition-colors"
             >
-              {/* === DİL DEĞİŞİKLİĞİ === */}
               Vissza a Menübe
             </Link>
           </div>
@@ -83,61 +88,90 @@ export default function CartPage() {
               {/* Sepet Öğeleri */}
               <div className="lg:col-span-2">
                 <div className="bg-white rounded-lg shadow-md p-6">
-                  {/* === DİL DEĞİŞİKLİĞİ === */}
-                  <h2 className="text-2xl font-semibold mb-6 border-b pb-4 text-gray-800">Kosár Tartalma</h2>
-                  {items.map((item) => (
-                    <div key={item.id} className="flex items-center justify-between py-4 border-b">
+                  <h2 className="text-2xl font-semibold mb-6 border-b pb-4 text-gray-800">
+                    Kosár Tartalma
+                  </h2>
+                  {cartItems.map((item) => (
+                    <div
+                      key={item.id}
+                      className="flex items-center justify-between py-4 border-b"
+                    >
                       <div className="flex items-center">
-                        <span className="text-xl font-medium text-gray-800 w-8 text-center">{item.quantity}x</span>
+                        <span className="text-xl font-medium text-gray-800 w-8 text-center">
+                          {item.quantity}x
+                        </span>
                         <div className="ml-4">
-                          <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
-                          {/* === PARA BİRİMİ DEĞİŞİKLİĞİ === */}
-                          <p className="text-gray-600 text-sm">{item.price} Ft</p>
+                          <h3 className="text-lg font-semibold text-gray-800">
+                            {item.name}
+                          </h3>
+                          <p className="text-gray-600 text-sm">
+                            {item.price} Ft
+                          </p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-2">
                         <button
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity - 1)
+                          }
                           className="bg-gray-200 text-gray-700 px-2 py-1 rounded-md hover:bg-gray-300 transition-colors disabled:opacity-50"
                           disabled={item.quantity <= 1}
                         >
                           -
                         </button>
                         <button
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity + 1)
+                          }
                           className="bg-gray-200 text-gray-700 px-2 py-1 rounded-md hover:bg-gray-300 transition-colors"
                         >
                           +
                         </button>
                         <button
-                          onClick={() => removeItem(item.id)}
+                          onClick={() => removeFromCart(item.id)}
                           className="bg-red-100 text-red-600 p-1 rounded-full hover:bg-red-200 transition-colors"
                           aria-label="Remove item"
                         >
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586l-1.293-1.293z" clipRule="evenodd" />
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586l-1.293-1.293z"
+                              clipRule="evenodd"
+                            />
                           </svg>
                         </button>
                       </div>
                     </div>
                   ))}
                   <div className="flex justify-between items-center pt-4">
-                    {/* === DİL DEĞİŞİKLİĞİ === */}
-                    <span className="text-xl font-bold text-gray-800">Végösszeg:</span>
-                    {/* === PARA BİRİMİ DEĞİŞİKLİĞİ === */}
-                    <span className="text-2xl font-bold text-red-600">{getTotalPrice()} Ft</span>
+                    <span className="text-xl font-bold text-gray-800">
+                      Végösszeg:
+                    </span>
+                    <span className="text-2xl font-bold text-red-600">
+                      {totalPrice} Ft
+                    </span>
                   </div>
                 </div>
               </div>
 
               {/* Sipariş Formu */}
               <div className="bg-white rounded-lg shadow-md p-6 h-fit">
-                {/* === DİL DEĞİŞİKLİĞİ === */}
-                <h2 className="text-2xl font-semibold mb-6 border-b pb-4 text-gray-800">Rendelés Adatai</h2>
+                <h2 className="text-2xl font-semibold mb-6 border-b pb-4 text-gray-800">
+                  Rendelés Adatai
+                </h2>
                 <form>
                   <div className="mb-4">
-                    {/* === DİL DEĞİŞİKLİĞİ === */}
-                    <label htmlFor="address" className="block text-sm font-medium text-gray-700">Cím</label>
+                    <label
+                      htmlFor="address"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Cím
+                    </label>
                     <input
                       type="text"
                       id="address"
@@ -149,8 +183,12 @@ export default function CartPage() {
                     />
                   </div>
                   <div className="mb-4">
-                    {/* === DİL DEĞİŞİKLİĞİ === */}
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Telefonszám</label>
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Telefonszám
+                    </label>
                     <input
                       type="tel"
                       id="phone"
@@ -162,8 +200,12 @@ export default function CartPage() {
                     />
                   </div>
                   <div className="mb-4">
-                    {/* === DİL DEĞİŞİKLİĞİ === */}
-                    <label htmlFor="payment" className="block text-sm font-medium text-gray-700">Fizetési Mód</label>
+                    <label
+                      htmlFor="payment"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Fizetési Mód
+                    </label>
                     <select
                       id="payment"
                       name="payment"
@@ -172,7 +214,6 @@ export default function CartPage() {
                       className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500"
                       required
                     >
-                      {/* === DİL DEĞİŞİKLİĞİ === */}
                       <option value="Készpénz">Készpénz</option>
                       <option value="Bankkártya">Bankkártya</option>
                     </select>
@@ -182,7 +223,6 @@ export default function CartPage() {
                     onClick={handleCheckout}
                     className="w-full bg-red-600 text-white py-2 rounded-md font-semibold hover:bg-red-700 transition-colors"
                   >
-                    {/* === DİL DEĞİŞİKLİĞİ === */}
                     Rendelés Leadása
                   </button>
                 </form>

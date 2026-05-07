@@ -2,7 +2,6 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-// Sepetteki urun tipi
 export interface CartItem {
   id: string;
   name: string;
@@ -11,13 +10,14 @@ export interface CartItem {
   image?: string;
 }
 
-// Context tipi (Navbarin aradigi 'cartItems' burada tanimli)
 interface CartContextType {
   cartItems: CartItem[];
   addToCart: (item: CartItem) => void;
   removeFromCart: (id: string) => void;
+  updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
   totalPrice: number;
+  itemCount: number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -62,6 +62,18 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
+  const updateQuantity = (id: string, quantity: number) => {
+    if (quantity <= 0) {
+      removeFromCart(id);
+      return;
+    }
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, quantity } : item
+      )
+    );
+  };
+
   const clearCart = () => {
     setCartItems([]);
   };
@@ -71,9 +83,19 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     0
   );
 
+  const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, clearCart, totalPrice }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        clearCart,
+        totalPrice,
+        itemCount,
+      }}
     >
       {children}
     </CartContext.Provider>
