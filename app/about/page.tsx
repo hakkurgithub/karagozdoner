@@ -1,117 +1,204 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from "react";
-import { useCart } from "../../components/CartProvider";
-import { MENU_ITEMS, type MenuItem } from "../../lib/menuData";
-import LoadingSpinner from "../../components/LoadingSpinner";
 import Image from "next/image";
 
-export default function MenuPage() {
-    const { addItem, items } = useCart();
-    const [activeCategory, setActiveCategory] = useState("all");
-    const [isClient, setIsClient] = useState(false);
+export default function About() {
+  const content = {
+    address: "2500 Esztergom, Kossuth Lajos utca 30.",
+    phone: "+36 20 934 1537",
+  };
 
-    useEffect(() => {
-        setIsClient(true);
-    }, []);
-
-    // Get unique categories from menu items
-    const allCategories = Array.from(new Set(MENU_ITEMS.map(item => item.category)));
-    const categories = ["all", ...allCategories];
-
-    const filteredItems = MENU_ITEMS.filter((item) =>
-        activeCategory === "all" ? true : item.category === activeCategory
-    );
-
-    const handleAddToCart = (item: MenuItem) => {
-        const price = Math.round(parseFloat(String(item.price)));
-        addItem({
-            id: item.id,
-            name: item.name,
-            price: price,
-        });
-    };
-
-    if (!isClient) {
-        return (
-            <div className="flex items-center justify-center min-h-screen">
-                <LoadingSpinner size="lg" text="Menü betöltése..." />
-            </div>
-        );
-    }
-
-    return (
-        <div className="bg-gray-50 min-h-screen">
-            <div className="container mx-auto px-4 sm:px-6 py-12">
-                <h1 className="text-4xl font-bold text-center text-red-600 mb-8">
-                    {/* === DİL GÜNCELLEMESİ (Aynı kaldı) === */}
-                    Menü
-                </h1>
-
-                {/* Category Filter */}
-                <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
-                    {categories.map((category) => (
-                        <button
-                            key={category}
-                            onClick={() => setActiveCategory(category)}
-                            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                                activeCategory === category
-                                    ? "bg-red-600 text-white"
-                                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                            }`}
-                        >
-                            {/* === DİL GÜNCELLEMESİ === */}
-                            {category === "all" ? "Mind" : category}
-                        </button>
-                    ))}
-                </div>
-
-                {/* Menu Items Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredItems.map((item) => {
-                        // ✅ Sepette bu ürünün olup olmadığını kontrol et
-                        const cartItem = items.find(cartItem => cartItem.id === item.id);
-                        
-                        return (
-                            <div
-                                key={item.id}
-                                className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover:shadow-2xl transition-shadow duration-300"
-                            >
-                                <div className="relative w-full h-48">
-                                    <Image
-                                        src={item.image}
-                                        alt={item.name}
-                                        fill
-                                        className="object-cover"
-                                    />
-                                </div>
-                                <div className="p-5 flex-1 flex flex-col">
-                                    <h3 className="text-xl font-semibold mb-2">{item.name}</h3>
-                                    <p className="text-gray-600 text-sm flex-1">{item.description}</p>
-                                    <div className="flex justify-between items-center mt-4">
-                                        <span className="text-2xl font-bold text-red-600">
-                                            {Math.round(parseFloat(String(item.price)))} Ft
-                                        </span>
-                                        <div className="relative">
-                                            <button
-                                                onClick={() => handleAddToCart(item)}
-                                                className="bg-red-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors"
-                                            >
-                                                <i className="ri-shopping-cart-fill mr-2"></i>Hozzáad
-                                            </button>
-                                            {cartItem && (
-                                                <span className="absolute -top-2 -right-2 bg-yellow-400 text-red-900 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                                                    {cartItem.quantity}
-                                                </span>
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
-            </div>
+  return (
+    <div className="bg-gray-50 text-gray-800">
+      {/* Hero Section */}
+      <section className="bg-red-600 text-white py-20">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">Rólunk</h1>
+          <p className="text-xl md:text-2xl">
+            Autentikus török ízek Esztergom szívében
+          </p>
         </div>
-    );
+      </section>
+
+      {/* About Content */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-6">
+                Karagöz Döner - A Tradíció és az Ízek Találkozása
+              </h2>
+              <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                A Karagöz Döner Esztergom szívében, a Kossuth Lajos utca 30. szám
+                alatt hozza el Önnek az eredeti török ízeket. Családi
+                vállalkozásunk több mint egy évtizedes tapasztalattal áll vendégeink
+                rendelkezésére, hogy a legjobb minőségű döner, kebab és gyros
+                specialitásokat kínáljuk.
+              </p>
+              <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                Családi vállalkozásunk büszke arra, hogy eredeti török receptekkel
+                és friss alapanyagokkal készíti el minden ételét. Dönerjeink
+                naponta frissen készülnek, kebapjaink pedig a hagyományos török
+                fűszerekkel marinálódnak. Minden egyes fogásunkban érezhető a
+                szenvedély, amivel készítjük őket.
+              </p>
+              <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                Hisszük, hogy a minőségi étkezés nem csupán táplálékbevitel, hanem
+                egy élmény. Ezért törekszünk arra, hogy vendégeink ne csupán
+                jóllakjanak, hanem valódi gasztronómiai élményben is részesüljenek.
+                Az Adana kebap fűszeres aromái, az Iskender kebab gazdag joghurtos
+                öntete, vagy egy egyszerű, de tökéletesen elkészített döner -
+                mindegyik ételünk mögött történet és hagyomány áll.
+              </p>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                Célunk, hogy minden vendégünk otthonosan érezze magát, és valódi
+                török vendégszeretetet tapasztaljon meg nálunk. Látogasson el
+                hozzánk, és kóstolja meg Esztergom legjobb török specialitásait!
+                Legyen szó egy gyors ebédről munka közben, egy családi vacsoráról
+                vagy egy baráti összejövetelről - mi mindig szeretettel várjuk.
+              </p>
+            </div>
+
+            <div className="relative h-[400px] rounded-xl overflow-hidden shadow-lg">
+              <Image
+                src="https://raw.githubusercontent.com/hakkurgithub/images/main/porsiyon-et-doner.jpg"
+                alt="Karagöz Döner Étterem belső tere és frissen készült döner"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* History Section */}
+      <section className="bg-white py-16 px-4">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-8">
+            A Karagöz Döner Története
+          </h2>
+          <div className="max-w-4xl mx-auto">
+            <p className="text-gray-700 text-lg leading-relaxed mb-6">
+              A Karagöz Döner története egy családi álom megvalósulásaként
+              kezdődött. Alapítóink célja az volt, hogy az autentikus török
+              ízeket közelebb hozzák az esztergomiak és a városba látogatók
+              számára. A tradicionális recepteket és elkészítési módokat
+              generációról generációra örökítve hoztuk el Magyarországra a
+              felejthetetlen kebab és döner élményt.
+            </p>
+            <p className="text-gray-700 text-lg leading-relaxed mb-6">
+              Kezdetben egy kis büfével indultunk, ahol a helyiek hamar
+              megszerették a frissen sütött pitákat és a mesterien fűszerezett
+              húsokat. Az évek során folyamatosan bővítettük étlapunkat,
+              miközben megőriztük az eredeti ízeket és a minőséget. Ma már
+              Esztergom egyik legnépszerűbb török éttermeként várjuk vendégeinket
+              egy tágas, barátságos környezetben.
+            </p>
+            <p className="text-gray-700 text-lg leading-relaxed">
+              Büszkék vagyunk arra, hogy sok vendégünk már évek óta hűségesen
+              visszatér hozzánk, és hogy egyre több turista is úticéljául
+              választja éttermünket, amikor Esztergomban jár. A Bazilika
+              közelében, könnyen megközelíthető helyen várjuk Önt is, hogy
+              részese lehessen a Karagöz Döner élménynek.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="bg-gray-100 py-16 px-4">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">Értékeink</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center p-6 bg-white rounded-xl shadow-md">
+              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Minőség</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Csak a legfrissebb alapanyagokat használjuk, és minden ételünket
+                nagy gondossággal készítjük el. A húsokat naponta frissen
+                szeleteljük, a zöldségeket pedig minden reggel válogatjuk.
+              </p>
+            </div>
+
+            <div className="text-center p-6 bg-white rounded-xl shadow-md">
+              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Vendégszeretet</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Minden vendégünket családtagként fogadjuk, és törekszünk a
+                legjobb szolgáltatás nyújtására. A mosolygós kiszolgálás és a
+                figyelmes személyzet nálunk alapvető elvárás.
+              </p>
+            </div>
+
+            <div className="text-center p-6 bg-white rounded-xl shadow-md">
+              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Hagyomány</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Eredeti török recepteket követünk, és tiszteletben tartjuk a
+                hagyományos ízeket. Főszakácsaink török szakemberek, akik a
+                hazájukban szerzett tudásukat hozták el hozzánk.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quality Promise */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-8">
+            Minőségi Garancia
+          </h2>
+          <div className="max-w-4xl mx-auto space-y-6">
+            <p className="text-gray-700 text-lg leading-relaxed">
+              A Karagöz Dönernél kiemelt figyelmet fordítunk az élelmiszer-
+              biztonságra és a higiéniára. Konyhánk rendszeresen ellenőrzött,
+              dolgozóink egészségügyi kiskönyvvel rendelkeznek, és folyamatosan
+              képezzük őket a legjobb gyakorlatok terén.
+            </p>
+            <p className="text-gray-700 text-lg leading-relaxed">
+              Ha bármilyen okból nem elégedett ételeink minőségével, kérjük,
+              azonnal jelezze kollégáinknak, és mi kicseréljük vagy visszatérítjük
+              az árát. Vendégeink elégedettsége számunkra a legfontosabb
+              visszajelzés.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Info */}
+      <section className="bg-red-600 text-white py-16 px-4">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-8">Látogasson el hozzánk!</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+            <div>
+              <h3 className="text-xl font-semibold mb-2">Cím</h3>
+              <p>{content.address}</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-2">Telefonszám</h3>
+              <a
+                href={`tel:${content.phone.replace(/\s/g, "")}`}
+                className="hover:underline"
+              >
+                {content.phone}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
