@@ -1,13 +1,12 @@
-'use client';
+"use client";
 
 import { useState, useEffect } from "react";
 import { useCart } from "../../components/CartProvider";
 import { MENU_ITEMS, type MenuItem } from "../../lib/menuData";
-import LoadingSpinner from "../../components/LoadingSpinner";
 import Image from "next/image";
 
 export default function MenuPage() {
-    const { addItem, items } = useCart();
+    const { addToCart, cartItems } = useCart();
     const [activeCategory, setActiveCategory] = useState("all");
     const [isClient, setIsClient] = useState(false);
 
@@ -25,17 +24,18 @@ export default function MenuPage() {
 
     const handleAddToCart = (item: MenuItem) => {
         const price = Math.round(parseFloat(String(item.price)));
-        addItem({
+        addToCart({
             id: item.id,
             name: item.name,
             price: price,
+            quantity: 1,
         });
     };
 
     if (!isClient) {
         return (
             <div className="flex items-center justify-center min-h-screen">
-                <LoadingSpinner size="lg" text="Menü betöltése..." />
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600"></div>
             </div>
         );
     }
@@ -44,7 +44,6 @@ export default function MenuPage() {
         <div className="bg-gray-50 min-h-screen">
             <div className="container mx-auto px-4 sm:px-6 py-12">
                 <h1 className="text-4xl font-bold text-center text-red-600 mb-8">
-                    {/* === DİL GÜNCELLEMESİ (Aynı kaldı) === */}
                     Menü
                 </h1>
 
@@ -60,7 +59,6 @@ export default function MenuPage() {
                                     : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                             }`}
                         >
-                            {/* === DİL GÜNCELLEMESİ === */}
                             {category === "all" ? "Mind" : category}
                         </button>
                     ))}
@@ -69,8 +67,7 @@ export default function MenuPage() {
                 {/* Menu Items Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredItems.map((item) => {
-                        // ✅ Sepette bu ürünün olup olmadığını kontrol et
-                        const cartItem = items.find(cartItem => cartItem.id === item.id);
+                        const cartItem = cartItems.find(cartItem => cartItem.id === item.id);
                         
                         return (
                             <div
@@ -97,7 +94,7 @@ export default function MenuPage() {
                                                 onClick={() => handleAddToCart(item)}
                                                 className="bg-red-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors"
                                             >
-                                                <i className="ri-shopping-cart-fill mr-2"></i>Hozzáad
+                                                Hozzáad
                                             </button>
                                             {cartItem && (
                                                 <span className="absolute -top-2 -right-2 bg-yellow-400 text-red-900 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
