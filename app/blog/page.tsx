@@ -1,201 +1,172 @@
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Általános Szerződési Feltételek",
-  description:
-    "A Karagöz Döner általános szerződési feltételei. Ismerje meg rendelési, szállítási és fizetési feltételeinket, valamint panaszkezelési eljárásunkat.",
-  keywords: [
-    "ászf",
-    "szerződési feltételek",
-    "rendelési feltételek",
-    "szállítási feltételek",
-    "fizetési feltételek",
-    "panaszkezelés",
-  ],
-  robots: "index, follow",
-  alternates: {
-    canonical: "https://www.karagozdoner.com/aszf",
-  },
-};
+import Image from "next/image";
+import Link from "next/link";
 
-export default function TermsPage() {
+export default function BlogPage() {
+  const blogPosts = [
+    {
+      slug: "a-doner-tortenete",
+      title: "A Döner Története: Az Oszmán Birodalomtól a Világsikerig",
+      excerpt:
+        "Ismerje meg a döner eredetét! Hogyan vált az oszmán szultánok kedvenc ételéből a világ egyik legnépszerűbb gyorsételévé? Utazás az időben a török gasztronómia egyik ikonikus fogásával.",
+      date: "2025. március 15.",
+      category: "Történelem",
+      readTime: "5 perc",
+      image: "https://raw.githubusercontent.com/hakkurgithub/images/main/karagoz-hero.jpg",
+    },
+    {
+      slug: "torok-fuszerek",
+      title: "A Török Konyha 5 Legfontosabb Fűszere",
+      excerpt:
+        "A török konyha titka a fűszerekben rejlik. Ismerje meg a sumak, a pul biber, a kömény, a fahéj és a szerecsendió szerepét az autentikus török ételekben, és tudja meg, hogyan használjuk mi ezeket a Karagöz Dönernél.",
+      date: "2025. február 28.",
+      category: "Gasztronómia",
+      readTime: "4 perc",
+      image: "https://raw.githubusercontent.com/hakkurgithub/images/main/porsiyon-et-doner.jpg",
+    },
+    {
+      slug: "adana-kebap",
+      title: "Adana Kebap: A Tűz és a Fűszer Tánca",
+      excerpt:
+        "Az Adana kebap Törökország egyik legismertebb specialitása. Mi a titka a tökéletes Adana kebapnak? Milyen húst használunk, hogyan fűszerezzük, és miért grillezzük nyílt lángon? Minden, amit tudni szeretett volna.",
+      date: "2025. január 20.",
+      category: "Receptek",
+      readTime: "6 perc",
+      image: "https://raw.githubusercontent.com/hakkurgithub/images/main/adana-kebap.jpg",
+    },
+    {
+      slug: "esztergom-latnivalok",
+      title: "Esztergom Látványosságai és a Török Gasztronómia",
+      excerpt:
+        "Látogasson el Esztergomba, és fedezze fel a város nevezetességeit! A Bazilika, a Prímás-sziget és a vár mellett ne hagyja ki a Karagöz Dönert sem. Így tehet teljessé esztergomi kirándulását.",
+      date: "2025. január 10.",
+      category: "Esztergom",
+      readTime: "3 perc",
+      image: "https://raw.githubusercontent.com/hakkurgithub/images/main/karagoz-doner.jpg",
+    },
+    {
+      slug: "miert-a-karagoz-doner",
+      title: "Miért Pont a Karagöz Döner? 10 Ok, amiért Érdemes Meglátogatnunk",
+      excerpt:
+        "Összegyűjtöttük azt a 10 legfontosabb okot, amiért vendégeink visszatérnek hozzánk. A minőségtől a hangulaton át a barátságos árakig - ezek mind a Karagöz Döner erősségei.",
+      date: "2024. december 15.",
+      category: "Éttermünk",
+      readTime: "4 perc",
+      image: "https://raw.githubusercontent.com/hakkurgithub/images/main/gyros-tal.jpg",
+    },
+    {
+      slug: "hazilag-torok-pita",
+      title: "Hogyan Készítsünk Házilag Török Pitát?",
+      excerpt:
+        "Szeretné otthon elkészíteni a tökéletes török pitát? Lépésről lépésre mutatjuk be receptünket, amivel puha, lyukacsos és ínycsiklandó pitákat készíthet otthonában is.",
+      date: "2024. november 30.",
+      category: "Receptek",
+      readTime: "7 perc",
+      image: "https://raw.githubusercontent.com/hakkurgithub/images/main/iskender-kebab.jpg",
+    },
+  ];
+
   return (
     <div className="bg-gray-50 text-gray-800">
+      {/* Hero */}
       <section className="bg-red-600 text-white py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Általános Szerződési Feltételek
-          </h1>
-          <p className="text-xl max-w-2xl mx-auto">
-            Kérjük, rendelés előtt figyelmesen olvassa el általános
-            szerződési feltételeinket.
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">Blog</h1>
+          <p className="text-xl md:text-2xl max-w-2xl mx-auto">
+            Török gasztronómiai érdekességek, receptek és hírek a Karagöz Dönertől.
           </p>
         </div>
       </section>
 
+      {/* Blog Posts */}
       <section className="py-16 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <div className="bg-white rounded-xl shadow-lg p-8 md:p-12 space-y-8">
-            <div>
-              <h2 className="text-2xl font-bold mb-4">1. Általános rendelkezések</h2>
-              <p className="text-gray-700 leading-relaxed">
-                Jelen Általános Szerződési Feltételek (a továbbiakban: „ÁSZF”)
-                a Karagöz Döner (székhely: 2500 Esztergom, Kossuth Lajos utca
-                30., telefon: +36 20 934 1537, e-mail: info@karagozdoner.com;
-                a továbbiakban: „Szolgáltató”) és a weboldalát
-                használó természetes személyek (a továbbiakban: „Vásárló”)
-                közötti jogviszonyt szabályozzák.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold mb-4">2. Szolgáltatások</h2>
-              <p className="text-gray-700 leading-relaxed">
-                A Szolgáltató a weboldalon feltüntetett ételek és italok
-                értékesítését végzi. A szolgáltatások körébe tartozik:
-              </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4 mt-4">
-                <li>Helyben fogyasztás az étteremben</li>
-                <li>Elviteli rendelések</li>
-                <li>Házhoz szállítás (Esztergom területén)</li>
-                <li>Asztalfoglalás</li>
-                <li>Rendezvények, catering szolgáltatás</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold mb-4">3. Rendelés menete</h2>
-              <p className="text-gray-700 leading-relaxed">
-                A Vásárló a weboldalon keresztül vagy telefonon adhat le
-                rendelést. A rendelés leadásával a Vásárló ajánlatot tesz a
-                kiválasztott termékek megvásárlására. A Szolgáltató a rendelést
-                telefonon vagy e-mailben visszaigazolja, amely a szerződés
-                létrejöttét jelenti.
-              </p>
-              <p className="text-gray-700 leading-relaxed mt-4">
-                Rendelést leadni a nyitvatartási időben lehet: hétfőtől
-                vasárnapig, 11:00 és 23:00 között. A rendelések feldolgozása a
-                beérkezés sorrendjében történik.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold mb-4">4. Árak és fizetés</h2>
-              <p className="text-gray-700 leading-relaxed">
-                Az ételek árai forintban (HUF) értendők, és az áfát tartalmazzák.
-                A feltüntetett árak tájékoztató jellegűek, fenntartjuk a jogot az
-                árváltoztatásra. A tényleges fizetendő összeget a rendelés
-                visszaigazolásában közöljük.
-              </p>
-              <h3 className="text-xl font-semibold mb-2 mt-4">Fizetési módok:</h3>
-              <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4">
-                <li>Készpénz (helyszínen)</li>
-                <li>Bankkártya (helyszínen)</li>
-                <li>Utánvét (házhoz szállítás esetén)</li>
-                <li>Banki átutalás (előre egyeztetett esetekben)</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold mb-4">5. Szállítási feltételek</h2>
-              <p className="text-gray-700 leading-relaxed">
-                A házhoz szállítás kizárólag Esztergom város területén belül
-                elérhető. A szállítási idő 30-60 perc, ami függhet a
-                rendelési mennyiségtől és az aktuális forgalomtól. A
-                szállítási díjat a rendelés leadásakor feltüntetjük.
-              </p>
-              <p className="text-gray-700 leading-relaxed mt-4">
-                A szállítási cím pontos megadása a Vásárló felelőssége. Ha a
-                futár a megadott címen nem találja a Vásárlót, a rendelést
-                sikertelen kézbesítésnek minősítjük, és a termék árát nem
-                térítjük vissza.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold mb-4">6. Lemondás és módosítás</h2>
-              <p className="text-gray-700 leading-relaxed">
-                A Vásárló a rendelését a visszaigazolástól számított 15 percen
-                belül díjmentesen lemondhatja vagy módosíthatja telefonon. Ezután
-                a lemondásra vagy módosításra csak abban az esetben van
-                lehetőség, ha az étel elkészítése még nem kezdődött el.
-                Catering és rendezvényszolgáltatás esetén a lemondási
-                feltételek külön megállapodás szerint alakulnak.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold mb-4">7. Minőségi panaszok kezelése</h2>
-              <p className="text-gray-700 leading-relaxed">
-                Ha a megrendelt étel minőségével vagy mennyiségével kapcsolatban
-                panasza van, kérjük, azt haladéktalanul jelezze személyesen
-                az étteremben, vagy telefonon a +36 20 934 1537 számon.
-                Jogos panasz esetén az étel árát visszatérítjük, vagy
-                kicseréljük az ételt. A panaszt a bejelentéstől számított 30
-                napon belül kivizsgáljuk és válaszolunk rá.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold mb-4">8. Adatvédelem</h2>
-              <p className="text-gray-700 leading-relaxed">
-                A Szolgáltató a Vásárló személyes adatait az Adatvédelmi
-                Irányelvekben foglaltak szerint kezeli. Az adatkezelésről
-                bővebb információt a{" "}
-                <a
-                  href="/adatvedelem"
-                  className="text-red-600 hover:underline"
-                >
-                  Adatvédelmi Irányelvek
-                </a>{" "}
-                oldalon talál.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold mb-4">9. Felelősség korlátozása</h2>
-              <p className="text-gray-700 leading-relaxed">
-                A Szolgáltató nem vállal felelősséget az olyan károkért,
-                amelyek a Vásárló által hibásan megadott adatokból
-                (pl. szállítási cím, telefonszám) erednek. A Szolgáltató
-                nem felelős azon károkért sem, amelyek vis maior eseményekből
-                (pl. természeti katasztrófák, közlekedési akadályok) erednek.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold mb-4">10. Jogviták rendezése</h2>
-              <p className="text-gray-700 leading-relaxed">
-                Jelen ÁSZF-re a magyar jogszabályok az irányadók. A felek
-                elsődlegesen békés úton törekszenek a jogviták rendezésére.
-                Ha a felek között felmerült vitás kérdés békés úton nem
-                rendezhető, a Vásárló a lakóhelye szerint illetékes
-                békéltető testülethez fordulhat, vagy polgári peres
-                eljárást kezdeményezhet.
-              </p>
-              <p className="text-gray-700 leading-relaxed mt-4">
-                <strong>Békéltető testület:</strong>
-                <br />
-                Budapesti Békéltető Testület
-                <br />
-                Cím: 1016 Budapest, Krisztina krt. 99.
-                <br />
-                Telefon: +36 1 488 2131
-                <br />
-                E-mail: bekelteto.testulet@bkik.hu
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold mb-4">11. Záró rendelkezések</h2>
-              <p className="text-gray-700 leading-relaxed">
-                A Szolgáltató fenntartja a jogot, hogy jelen ÁSZF-et
-                bármikor egyoldalúan módosítsa. A módosítások a weboldalon
-                történő közzététellel lépnek hatályba. Az ÁSZF legutóbbi
-                frissítésének dátuma: 2025. május 1.
-              </p>
-            </div>
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogPosts.map((post) => (
+              <article
+                key={post.slug}
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col"
+              >
+                <div className="relative w-full h-48">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                    {post.category}
+                  </div>
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <div className="flex items-center text-sm text-gray-500 mb-3">
+                    <span>{post.date}</span>
+                    <span className="mx-2">•</span>
+                    <span>{post.readTime} olvasás</span>
+                  </div>
+                  <h2 className="text-xl font-bold mb-3 leading-snug">
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="hover:text-red-600 transition-colors"
+                    >
+                      {post.title}
+                    </Link>
+                  </h2>
+                  <p className="text-gray-600 text-sm flex-1">
+                    {post.excerpt}
+                  </p>
+                  <div className="mt-4 pt-4 border-t border-gray-100">
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="text-red-600 font-semibold hover:text-red-700 transition-colors inline-flex items-center"
+                    >
+                      Elolvasom
+                      <svg
+                        className="w-4 h-4 ml-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* Newsletter */}
+      <section className="bg-red-600 text-white py-16 px-4">
+        <div className="container mx-auto text-center max-w-2xl">
+          <h2 className="text-3xl font-bold mb-4">
+            Iratkozzon fel hírlevelünkre!
+          </h2>
+          <p className="text-lg mb-8">
+            Legyen az elsők között, akik értesülnek új ételeinkről, különleges
+            ajánlatainkról és eseményeinkről.
+          </p>
+          <form className="flex flex-col sm:flex-row gap-4 justify-center">
+            <input
+              type="email"
+              placeholder="Az Ön e-mail címe"
+              className="px-6 py-3 rounded-full text-gray-800 w-full sm:w-auto sm:min-w-[300px] focus:outline-none focus:ring-2 focus:ring-white"
+            />
+            <button
+              type="submit"
+              className="px-8 py-3 bg-white text-red-600 font-bold rounded-full hover:bg-gray-100 transition-colors"
+            >
+              Feliratkozás
+            </button>
+          </form>
         </div>
       </section>
     </div>
