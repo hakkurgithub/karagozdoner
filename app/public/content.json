@@ -1,0 +1,31 @@
+{
+  "restaurantName": "Karagöz Döner",
+  "heroTitle": "Hagyományos Török Ízek",
+  "heroSubtitle": "Kóstolja meg a legfrissebb alapanyagokból készült ízletes kebabjainkat",
+  "aboutText": "Családunk több mint egy évtizedes tapasztalattal a legfinomabb kebabokat és döner specialitásokat kínáljuk Önnek Esztergomban.",
+  "phone": "+36 20 934 1537",
+  "address": "2500 Esztergom, Kossuth Lajos utca 30.",
+  "socialMedia": {
+    "facebook": "https://www.facebook.com/profile.php?id=61560428630473"
+  },
+  "orderChannels": {
+    "whatsapp": {
+      "active": true,
+      "url": "https://wa.me/36209341537?text=Helló!%20Rendelni%20szeretnék."
+    },
+    "foodora": {
+      "active": true,
+      "url": "#"
+    },
+    "wolt": {
+      "active": true,
+      "url": "#"
+    }
+  },
+  "aboutStats": {
+    "experience": "10+",
+    "customers": "10K+",
+    "menuCount": "50+",
+    "branches": "1"
+  }
+}
