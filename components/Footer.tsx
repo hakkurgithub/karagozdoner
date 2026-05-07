@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 export default function Footer() {
@@ -10,7 +12,7 @@ export default function Footer() {
           <div>
             <h3 className="text-white text-lg font-bold mb-4">Karagöz Döner</h3>
             <p className="text-sm leading-relaxed mb-4">
-              Autentikus török döner és kebab specialitások Esztergom szívében. 
+              Autentikus török döner és kebab specialitások Esztergom szívében.
               Friss alapanyagok, hagyományos receptek, gyors kiszolgálás.
             </p>
             <div className="flex space-x-4">
@@ -22,7 +24,7 @@ export default function Footer() {
                 aria-label="Facebook"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                 </svg>
               </a>
             </div>
@@ -74,7 +76,7 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span>2500 Esztergom,<br/>Kossuth Lajos utca 30.</span>
+                <span>2500 Esztergom,<br />Kossuth Lajos utca 30.</span>
               </li>
               <li className="flex items-center">
                 <svg className="w-5 h-5 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -115,16 +117,11 @@ export default function Footer() {
                   Adatvédelmi Irányelvek
                 </Link>
               </li>
-              <li>
-                <a href="/sitemap.xml" className="hover:text-white transition-colors">
-                  Oldaltérkép
-                </a>
-              </li>
             </ul>
             <div className="mt-6 p-4 bg-gray-800 rounded-lg">
               <p className="text-xs text-gray-400">
-                Ez a weboldal sütiket használ a felhasználói élmény javítása és a 
-                hirdetések megjelenítése érdekében. A weboldal használatával elfogadja 
+                Ez a weboldal sütiket használ a felhasználói élmény javítása és a
+                hirdetések megjelenítése érdekében. A weboldal használatával elfogadja
                 a sütik alkalmazását.
               </p>
             </div>
