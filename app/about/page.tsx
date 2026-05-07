@@ -1,62 +1,13 @@
-import type { Metadata } from "next";
+"use client";
+
 import { useContent } from "../../hooks/useContent";
 import Image from "next/image";
-
-export const metadata: Metadata = {
-  title: "Rólunk",
-  description:
-    "Ismerje meg a Karagöz Döner történetét! Autentikus török döner és kebab specialitásokat kínálunk Esztergom szívében, a Kossuth Lajos utca 30. alatt. Családi vállalkozásunk több mint egy évtizedes tapasztalattal várja vendégeit.",
-  keywords: [
-    "Karagöz Döner története",
-    "török étterem Esztergom",
-    "döner Esztergom",
-    "kebab története",
-    "családi vállalkozás",
-    "autentikus török konyha",
-  ],
-  openGraph: {
-    title: "Rólunk | Karagöz Döner",
-    description:
-      "Ismerje meg a Karagöz Döner történetét! Autentikus török döner és kebab specialitások Esztergom szívében.",
-    url: "https://www.karagozdoner.com/about",
-  },
-  alternates: {
-    canonical: "https://www.karagozdoner.com/about",
-  },
-};
-
-const aboutSchema = {
-  "@context": "https://schema.org",
-  "@type": "AboutPage",
-  name: "Rólunk - Karagöz Döner",
-  description:
-    "A Karagöz Döner története és értékei. Autentikus török döner és kebab Esztergomban.",
-  url: "https://www.karagozdoner.com/about",
-  mainEntity: {
-    "@type": "Restaurant",
-    name: "Karagöz Döner",
-    description:
-      "Autentikus török döner és kebab étterem Esztergom szívében",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Kossuth Lajos utca 30",
-      addressLocality: "Esztergom",
-      postalCode: "2500",
-      addressCountry: "HU",
-    },
-  },
-};
 
 export default function About() {
   const { content } = useContent();
 
   return (
     <div className="bg-gray-50 text-gray-800">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
-      />
-
       {/* Hero Section */}
       <section className="bg-red-600 text-white py-20">
         <div className="container mx-auto px-4 text-center">
@@ -143,7 +94,7 @@ export default function About() {
             <p className="text-gray-700 text-lg leading-relaxed">
               Büszkék vagyunk arra, hogy sok vendégünk már évek óta hűségesen
               visszatér hozzánk, és hogy egyre több turista is úticéljául
-              választja éttermünket, amikor Esztergomban jár. A Basilika
+              választja éttermünket, amikor Esztergomban jár. A Bazilika
               közelében, könnyen megközelíthető helyen várjuk Önt is, hogy
               részese lehessen a Karagöz Döner élménynek.
             </p>
